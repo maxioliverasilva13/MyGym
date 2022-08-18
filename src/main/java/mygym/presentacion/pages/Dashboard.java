@@ -102,7 +102,7 @@ public final class Dashboard extends javax.swing.JFrame {
         backgroundPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         content.setBackground(new java.awt.Color(255, 255, 255));
-        content.setPreferredSize(new java.awt.Dimension(415, 410));
+        content.setPreferredSize(new java.awt.Dimension(720, 540));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);

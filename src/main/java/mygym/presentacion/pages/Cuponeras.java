@@ -35,6 +35,8 @@ public class Cuponeras extends javax.swing.JPanel {
         btnAgregarActividadBG = new javax.swing.JPanel();
         btnAgregarActividad = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(720, 540));
+
         pnlHeader.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
