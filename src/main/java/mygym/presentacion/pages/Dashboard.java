@@ -166,7 +166,7 @@ public final class Dashboard extends javax.swing.JFrame {
 
         buttonCuponera.setBackground(new java.awt.Color(153, 153, 153));
         buttonCuponera.setForeground(new java.awt.Color(255, 255, 255));
-        buttonCuponera.setText("Cuponera");
+        buttonCuponera.setText("Cuponeras");
         buttonCuponera.setBorder(null);
         buttonCuponera.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         buttonCuponera.addActionListener(new java.awt.event.ActionListener() {

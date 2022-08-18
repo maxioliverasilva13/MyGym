@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package mygym.presentacion.pages;
+import mygym.presentacion.forms.crearCuponeraForm;
 
 /**
  *
@@ -13,6 +14,8 @@ public class Cuponeras extends javax.swing.JPanel {
     /**
      * Creates new form Cuponeras
      */
+    crearCuponeraForm formCrear = new crearCuponeraForm();
+    
     public Cuponeras() {
         initComponents();
     }
@@ -34,6 +37,8 @@ public class Cuponeras extends javax.swing.JPanel {
         btnListarActividades = new javax.swing.JLabel();
         btnAgregarActividadBG = new javax.swing.JPanel();
         btnAgregarActividad = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(720, 540));
 
@@ -58,13 +63,18 @@ public class Cuponeras extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        btnCrearBG.setBackground(new java.awt.Color(0, 204, 204));
+        btnCrearBG.setBackground(new java.awt.Color(76, 131, 122));
 
-        btnCrear.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 14)); // NOI18N
+        btnCrear.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         btnCrear.setForeground(new java.awt.Color(255, 255, 255));
         btnCrear.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnCrear.setText("Crear");
         btnCrear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCrear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCrearMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btnCrearBGLayout = new javax.swing.GroupLayout(btnCrearBG);
         btnCrearBG.setLayout(btnCrearBGLayout);
@@ -81,9 +91,9 @@ public class Cuponeras extends javax.swing.JPanel {
                 .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        btnListarActividadesBG.setBackground(new java.awt.Color(0, 204, 204));
+        btnListarActividadesBG.setBackground(new java.awt.Color(76, 131, 122));
 
-        btnListarActividades.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 14)); // NOI18N
+        btnListarActividades.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         btnListarActividades.setForeground(new java.awt.Color(255, 255, 255));
         btnListarActividades.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnListarActividades.setText("Listar");
@@ -104,9 +114,9 @@ public class Cuponeras extends javax.swing.JPanel {
                 .addComponent(btnListarActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        btnAgregarActividadBG.setBackground(new java.awt.Color(0, 204, 204));
+        btnAgregarActividadBG.setBackground(new java.awt.Color(76, 131, 122));
 
-        btnAgregarActividad.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 14)); // NOI18N
+        btnAgregarActividad.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         btnAgregarActividad.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregarActividad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnAgregarActividad.setText("Agregar Actividad a Cuponera");
@@ -127,18 +137,35 @@ public class Cuponeras extends javax.swing.JPanel {
                 .addComponent(btnAgregarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(btnCrearBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(btnAgregarActividadBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(btnListarActividadesBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGap(40, 40, 40)
+                    .addComponent(btnCrearBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(50, 50, 50)
+                    .addComponent(btnAgregarActividadBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(50, 50, 50)
+                    .addComponent(btnListarActividadesBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,10 +175,19 @@ public class Cuponeras extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCrearBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAgregarActividadBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnListarActividadesBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnListarActividadesBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearMouseClicked
+        // TODO add your handling code here:
+        if (!formCrear.isVisible()) {
+            formCrear.setVisible(true);
+        }
+    }//GEN-LAST:event_btnCrearMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnAgregarActividad;
@@ -161,6 +197,8 @@ public class Cuponeras extends javax.swing.JPanel {
     private javax.swing.JLabel btnListarActividades;
     private javax.swing.JPanel btnListarActividadesBG;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JPanel pnlHeader;
     // End of variables declaration//GEN-END:variables
 }
