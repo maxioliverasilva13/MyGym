@@ -34,17 +34,17 @@ public class Cuponeras extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(236, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(286, 286, 286)
                 .addComponent(jLabel1)
-                .addGap(233, 233, 233))
+                .addContainerGap(382, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(33, 33, 33)
                 .addComponent(jLabel1)
-                .addContainerGap(365, Short.MAX_VALUE))
+                .addContainerGap(476, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

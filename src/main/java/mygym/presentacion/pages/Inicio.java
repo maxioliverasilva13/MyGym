@@ -36,17 +36,17 @@ public class Inicio extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(257, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(308, 308, 308)
                 .addComponent(jLabel1)
-                .addGap(238, 238, 238))
+                .addContainerGap(383, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(373, Short.MAX_VALUE))
+                .addContainerGap(503, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

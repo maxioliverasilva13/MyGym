@@ -23,10 +23,10 @@ public class Usuarios extends javax.swing.JPanel {
      */
     public Usuarios() {
         initComponents();
-        JPanel panelContent = new JPanel(new GridLayout(6, 3, 10, 10));
+        JPanel panelContent = new JPanel(new GridLayout(8, 3, 10, 10));
         panelContent.setBorder(new EmptyBorder(0,0,0,0));
         //panelContent.setLayout(new BoxLayout(panelContent, BoxLayout.Y_AXIS));
-        for(int i = 0; i <15; i++) {
+        for(int i = 0; i <20; i++) {
             UserCard card = new UserCard();
             card.setSize(120, 90);
             panelContent.add(card);
@@ -34,9 +34,9 @@ public class Usuarios extends javax.swing.JPanel {
         JScrollPane js = new JScrollPane(panelContent,
           JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
           JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        js.setBounds(0,35,525,374);
+        js.setBounds(0,35,720,525);
         js.setBorder(new EmptyBorder(0,0,0,0));
-        js.setPreferredSize(new Dimension(525, 374));
+        js.getVerticalScrollBar().setUnitIncrement(16);
         add(js);
         revalidate();
         repaint();
@@ -58,7 +58,6 @@ public class Usuarios extends javax.swing.JPanel {
 
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(415, 409));
-        setSize(new java.awt.Dimension(415, 409));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
@@ -87,7 +86,7 @@ public class Usuarios extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 408, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 609, Short.MAX_VALUE)
                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -111,7 +110,7 @@ public class Usuarios extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(379, Short.MAX_VALUE))
+                .addContainerGap(495, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

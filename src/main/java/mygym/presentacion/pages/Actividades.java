@@ -34,17 +34,17 @@ public class Actividades extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(230, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(282, 282, 282)
                 .addComponent(jLabel1)
-                .addGap(226, 226, 226))
+                .addContainerGap(377, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
                 .addComponent(jLabel1)
-                .addContainerGap(374, Short.MAX_VALUE))
+                .addContainerGap(484, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

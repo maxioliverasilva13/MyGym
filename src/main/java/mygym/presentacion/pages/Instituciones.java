@@ -34,17 +34,17 @@ public class Instituciones extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(228, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(291, 291, 291)
                 .addComponent(jLabel1)
-                .addGap(224, 224, 224))
+                .addContainerGap(362, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addContainerGap(369, Short.MAX_VALUE))
+                .addContainerGap(486, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

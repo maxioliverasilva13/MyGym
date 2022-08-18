@@ -34,17 +34,17 @@ public class Clase extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(249, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(309, 309, 309)
                 .addComponent(jLabel1)
-                .addGap(243, 243, 243))
+                .addContainerGap(383, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel1)
-                .addContainerGap(371, Short.MAX_VALUE))
+                .addContainerGap(482, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

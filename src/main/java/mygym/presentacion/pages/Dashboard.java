@@ -61,7 +61,7 @@ public final class Dashboard extends javax.swing.JFrame {
       getButton();
       JPanel paneltoShow = contentController.getContentPanel();
       System.out.println(contentController.activePage);
-      paneltoShow.setSize(525, 409);
+      paneltoShow.setSize(720, 525);
       paneltoShow.setLocation(0,0);
       content.removeAll();
       content.add(paneltoShow, BorderLayout.CENTER);
@@ -92,7 +92,6 @@ public final class Dashboard extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setLocation(new java.awt.Point(50, 50));
 
         buttonInicio.setBackground(new java.awt.Color(0, 204, 204));
         buttonInicio.setForeground(new java.awt.Color(255, 255, 255));
@@ -203,7 +202,7 @@ public final class Dashboard extends javax.swing.JFrame {
                 .addComponent(buttonCuponera, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
 
         content.setPreferredSize(new java.awt.Dimension(415, 410));
@@ -212,7 +211,7 @@ public final class Dashboard extends javax.swing.JFrame {
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 525, Short.MAX_VALUE)
+            .addGap(0, 720, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,12 +225,12 @@ public final class Dashboard extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE))
+                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(content, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+            .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
         );
 
         pack();
