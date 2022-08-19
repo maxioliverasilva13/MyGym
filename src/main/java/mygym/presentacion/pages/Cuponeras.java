@@ -20,6 +20,8 @@ public class Cuponeras extends javax.swing.JPanel {
     public Cuponeras() {
         initComponents();
         scrollTabla.setVisible(false);
+        btnConsultar.setVisible(false);
+        btnConsultarBG.setVisible(false);
     }
 
     /**
@@ -37,10 +39,12 @@ public class Cuponeras extends javax.swing.JPanel {
         btnCrear = new javax.swing.JLabel();
         btnAgregarActividadBG = new javax.swing.JPanel();
         btnAgregarActividad = new javax.swing.JLabel();
-        btnListarActividadesBG = new javax.swing.JPanel();
-        btnListarActividades = new javax.swing.JLabel();
+        btnListarCuponerasBG = new javax.swing.JPanel();
+        btnListarCuponeras = new javax.swing.JLabel();
         scrollTabla = new javax.swing.JScrollPane();
         tablaDatos = new javax.swing.JTable();
+        btnConsultarBG = new javax.swing.JPanel();
+        btnConsultar = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(720, 540));
 
@@ -121,41 +125,41 @@ public class Cuponeras extends javax.swing.JPanel {
 
         bgPanel.add(btnAgregarActividadBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, -1, -1));
 
-        btnListarActividadesBG.setBackground(new java.awt.Color(76, 131, 122));
+        btnListarCuponerasBG.setBackground(new java.awt.Color(76, 131, 122));
 
-        btnListarActividades.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        btnListarActividades.setForeground(new java.awt.Color(255, 255, 255));
-        btnListarActividades.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnListarActividades.setText("Listar");
-        btnListarActividades.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnListarActividades.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnListarCuponeras.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnListarCuponeras.setForeground(new java.awt.Color(255, 255, 255));
+        btnListarCuponeras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnListarCuponeras.setText("Listar");
+        btnListarCuponeras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnListarCuponeras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnListarActividadesMouseClicked(evt);
+                btnListarCuponerasMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnListarActividadesMousePressed(evt);
+                btnListarCuponerasMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnListarActividadesMouseReleased(evt);
+                btnListarCuponerasMouseReleased(evt);
             }
         });
 
-        javax.swing.GroupLayout btnListarActividadesBGLayout = new javax.swing.GroupLayout(btnListarActividadesBG);
-        btnListarActividadesBG.setLayout(btnListarActividadesBGLayout);
-        btnListarActividadesBGLayout.setHorizontalGroup(
-            btnListarActividadesBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnListarActividadesBGLayout.createSequentialGroup()
+        javax.swing.GroupLayout btnListarCuponerasBGLayout = new javax.swing.GroupLayout(btnListarCuponerasBG);
+        btnListarCuponerasBG.setLayout(btnListarCuponerasBGLayout);
+        btnListarCuponerasBGLayout.setHorizontalGroup(
+            btnListarCuponerasBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnListarCuponerasBGLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnListarActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnListarCuponeras, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        btnListarActividadesBGLayout.setVerticalGroup(
-            btnListarActividadesBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnListarActividadesBGLayout.createSequentialGroup()
+        btnListarCuponerasBGLayout.setVerticalGroup(
+            btnListarCuponerasBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnListarCuponerasBGLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnListarActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnListarCuponeras, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        bgPanel.add(btnListarActividadesBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, -1, -1));
+        bgPanel.add(btnListarCuponerasBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, -1, -1));
 
         scrollTabla.setBackground(new java.awt.Color(255, 255, 255));
         scrollTabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -190,7 +194,41 @@ public class Cuponeras extends javax.swing.JPanel {
             tablaDatos.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        bgPanel.add(scrollTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 630, -1));
+        bgPanel.add(scrollTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 630, 370));
+
+        btnConsultarBG.setBackground(new java.awt.Color(76, 131, 122));
+
+        btnConsultar.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnConsultar.setForeground(new java.awt.Color(255, 255, 255));
+        btnConsultar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnConsultar.setText("CONSULTAR");
+        btnConsultar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnConsultarMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnConsultarMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnConsultarMouseReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnConsultarBGLayout = new javax.swing.GroupLayout(btnConsultarBG);
+        btnConsultarBG.setLayout(btnConsultarBGLayout);
+        btnConsultarBGLayout.setHorizontalGroup(
+            btnConsultarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnConsultar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+        );
+        btnConsultarBGLayout.setVerticalGroup(
+            btnConsultarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnConsultarBGLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        bgPanel.add(btnConsultarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 490, 150, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -204,17 +242,24 @@ public class Cuponeras extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void btnCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearMouseClicked
         if (!formCrear.isVisible()) {
             formCrear.setVisible(true);
         }
     }//GEN-LAST:event_btnCrearMouseClicked
 
-    private void btnListarActividadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarActividadesMouseClicked
+    private void btnListarCuponerasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarCuponerasMouseClicked
         if (!scrollTabla.isVisible()) {
             scrollTabla.setVisible(true);
+            btnConsultar.setVisible(true);
+            btnConsultarBG.setVisible(true);
+        }else{
+            scrollTabla.setVisible(false);
+            btnConsultar.setVisible(false);
+            btnConsultarBG.setVisible(false);
         }
-    }//GEN-LAST:event_btnListarActividadesMouseClicked
+    }//GEN-LAST:event_btnListarCuponerasMouseClicked
 
     private void btnCrearMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearMousePressed
         btnCrearBG.setBackground(new Color(103, 149, 142));
@@ -232,22 +277,36 @@ public class Cuponeras extends javax.swing.JPanel {
         btnAgregarActividadBG.setBackground(new Color(76,131,122));
     }//GEN-LAST:event_btnAgregarActividadMouseReleased
 
-    private void btnListarActividadesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarActividadesMousePressed
-        btnListarActividadesBG.setBackground(new Color(103, 149, 142));
-    }//GEN-LAST:event_btnListarActividadesMousePressed
+    private void btnListarCuponerasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarCuponerasMousePressed
+        btnListarCuponerasBG.setBackground(new Color(103, 149, 142));
+    }//GEN-LAST:event_btnListarCuponerasMousePressed
 
-    private void btnListarActividadesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarActividadesMouseReleased
-        btnListarActividadesBG.setBackground(new Color(76,131,122));
-    }//GEN-LAST:event_btnListarActividadesMouseReleased
+    private void btnListarCuponerasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarCuponerasMouseReleased
+        btnListarCuponerasBG.setBackground(new Color(76,131,122));
+    }//GEN-LAST:event_btnListarCuponerasMouseReleased
+
+    private void btnConsultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarMouseClicked
+        // ABRE SUB-FORM CON LAS INSTITUCIONES.
+    }//GEN-LAST:event_btnConsultarMouseClicked
+
+    private void btnConsultarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarMousePressed
+        btnConsultarBG.setBackground(new Color(103, 149, 142));
+    }//GEN-LAST:event_btnConsultarMousePressed
+
+    private void btnConsultarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarMouseReleased
+        btnConsultarBG.setBackground(new Color(76,131,122));
+    }//GEN-LAST:event_btnConsultarMouseReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgPanel;
     private javax.swing.JLabel btnAgregarActividad;
     private javax.swing.JPanel btnAgregarActividadBG;
+    private javax.swing.JLabel btnConsultar;
+    private javax.swing.JPanel btnConsultarBG;
     private javax.swing.JLabel btnCrear;
     private javax.swing.JPanel btnCrearBG;
-    private javax.swing.JLabel btnListarActividades;
-    private javax.swing.JPanel btnListarActividadesBG;
+    private javax.swing.JLabel btnListarCuponeras;
+    private javax.swing.JPanel btnListarCuponerasBG;
     private javax.swing.JLabel lblHeader;
     private javax.swing.JScrollPane scrollTabla;
     private javax.swing.JTable tablaDatos;

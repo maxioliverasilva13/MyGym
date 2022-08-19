@@ -121,11 +121,15 @@ public class crearCuponeraForm extends javax.swing.JFrame {
         lblDescripcion.setText("Descripción");
         jPanel2.add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 80, 30));
 
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 249, 248)));
+
         txtareaDescripcion.setColumns(20);
         txtareaDescripcion.setForeground(new java.awt.Color(204, 204, 204));
         txtareaDescripcion.setLineWrap(true);
         txtareaDescripcion.setRows(5);
         txtareaDescripcion.setText("Ingrese una descripción");
+        txtareaDescripcion.setBorder(null);
         txtareaDescripcion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtareaDescripcionMouseClicked(evt);
@@ -136,7 +140,8 @@ public class crearCuponeraForm extends javax.swing.JFrame {
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 320, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Período de Vigencia"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Período de Vigencia", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dubai", 0, 14))); // NOI18N
+        jPanel1.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
