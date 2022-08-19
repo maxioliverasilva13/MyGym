@@ -57,6 +57,7 @@ public final class Dashboard extends javax.swing.JFrame {
     public Dashboard() {
         initComponents();
         colocatePage();
+        this.setLocationRelativeTo(null);
     }
     
     void colocatePage() {
