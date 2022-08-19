@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package mygym.presentacion.pages;
+import java.awt.Color;
 import mygym.presentacion.forms.crearCuponeraForm;
 
 /**
@@ -18,6 +19,7 @@ public class Cuponeras extends javax.swing.JPanel {
     
     public Cuponeras() {
         initComponents();
+        scrollTabla.setVisible(false);
     }
 
     /**
@@ -29,39 +31,26 @@ public class Cuponeras extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlHeader = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        bgPanel = new javax.swing.JPanel();
+        lblHeader = new javax.swing.JLabel();
         btnCrearBG = new javax.swing.JPanel();
         btnCrear = new javax.swing.JLabel();
-        btnListarActividadesBG = new javax.swing.JPanel();
-        btnListarActividades = new javax.swing.JLabel();
         btnAgregarActividadBG = new javax.swing.JPanel();
         btnAgregarActividad = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        btnListarActividadesBG = new javax.swing.JPanel();
+        btnListarActividades = new javax.swing.JLabel();
+        scrollTabla = new javax.swing.JScrollPane();
+        tablaDatos = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(720, 540));
 
-        pnlHeader.setBackground(new java.awt.Color(255, 255, 255));
+        bgPanel.setBackground(new java.awt.Color(255, 255, 255));
+        bgPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Cuponeras");
-
-        javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
-        pnlHeader.setLayout(pnlHeaderLayout);
-        pnlHeaderLayout.setHorizontalGroup(
-            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHeaderLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        pnlHeaderLayout.setVerticalGroup(
-            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHeaderLayout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        lblHeader.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHeader.setText("Cuponeras");
+        bgPanel.add(lblHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, -1));
 
         btnCrearBG.setBackground(new java.awt.Color(76, 131, 122));
 
@@ -73,6 +62,12 @@ public class Cuponeras extends javax.swing.JPanel {
         btnCrear.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCrearMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnCrearMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnCrearMouseReleased(evt);
             }
         });
 
@@ -91,28 +86,7 @@ public class Cuponeras extends javax.swing.JPanel {
                 .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        btnListarActividadesBG.setBackground(new java.awt.Color(76, 131, 122));
-
-        btnListarActividades.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        btnListarActividades.setForeground(new java.awt.Color(255, 255, 255));
-        btnListarActividades.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnListarActividades.setText("Listar");
-        btnListarActividades.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout btnListarActividadesBGLayout = new javax.swing.GroupLayout(btnListarActividadesBG);
-        btnListarActividadesBG.setLayout(btnListarActividadesBGLayout);
-        btnListarActividadesBGLayout.setHorizontalGroup(
-            btnListarActividadesBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnListarActividadesBGLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnListarActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        btnListarActividadesBGLayout.setVerticalGroup(
-            btnListarActividadesBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnListarActividadesBGLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnListarActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        bgPanel.add(btnCrearBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
 
         btnAgregarActividadBG.setBackground(new java.awt.Color(76, 131, 122));
 
@@ -121,6 +95,14 @@ public class Cuponeras extends javax.swing.JPanel {
         btnAgregarActividad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnAgregarActividad.setText("Agregar Actividad a Cuponera");
         btnAgregarActividad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregarActividad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAgregarActividadMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAgregarActividadMouseReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout btnAgregarActividadBGLayout = new javax.swing.GroupLayout(btnAgregarActividadBG);
         btnAgregarActividadBG.setLayout(btnAgregarActividadBGLayout);
@@ -137,68 +119,137 @@ public class Cuponeras extends javax.swing.JPanel {
                 .addComponent(btnAgregarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        bgPanel.add(btnAgregarActividadBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, -1, -1));
+
+        btnListarActividadesBG.setBackground(new java.awt.Color(76, 131, 122));
+
+        btnListarActividades.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnListarActividades.setForeground(new java.awt.Color(255, 255, 255));
+        btnListarActividades.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnListarActividades.setText("Listar");
+        btnListarActividades.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnListarActividades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnListarActividadesMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnListarActividadesMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnListarActividadesMouseReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnListarActividadesBGLayout = new javax.swing.GroupLayout(btnListarActividadesBG);
+        btnListarActividadesBG.setLayout(btnListarActividadesBGLayout);
+        btnListarActividadesBGLayout.setHorizontalGroup(
+            btnListarActividadesBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnListarActividadesBGLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnListarActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        btnListarActividadesBGLayout.setVerticalGroup(
+            btnListarActividadesBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnListarActividadesBGLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnListarActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        bgPanel.add(btnListarActividadesBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, -1, -1));
+
+        scrollTabla.setBackground(new java.awt.Color(255, 255, 255));
+        scrollTabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        scrollTabla.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        tablaDatos.setAutoCreateRowSorter(true);
+        tablaDatos.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Período Vigencia", "Descuento"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaDatos.setGridColor(new java.awt.Color(255, 255, 255));
+        tablaDatos.setSelectionBackground(new java.awt.Color(0, 204, 204));
+        scrollTabla.setViewportView(tablaDatos);
+        if (tablaDatos.getColumnModel().getColumnCount() > 0) {
+            tablaDatos.getColumnModel().getColumn(0).setResizable(false);
+            tablaDatos.getColumnModel().getColumn(1).setResizable(false);
+            tablaDatos.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        bgPanel.add(scrollTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 630, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                    .addGap(40, 40, 40)
-                    .addComponent(btnCrearBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(50, 50, 50)
-                    .addComponent(btnAgregarActividadBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(50, 50, 50)
-                    .addComponent(btnListarActividadesBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCrearBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregarActividadBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnListarActividadesBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearMouseClicked
-        // TODO add your handling code here:
         if (!formCrear.isVisible()) {
             formCrear.setVisible(true);
         }
     }//GEN-LAST:event_btnCrearMouseClicked
 
+    private void btnListarActividadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarActividadesMouseClicked
+        if (!scrollTabla.isVisible()) {
+            scrollTabla.setVisible(true);
+        }
+    }//GEN-LAST:event_btnListarActividadesMouseClicked
+
+    private void btnCrearMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearMousePressed
+        btnCrearBG.setBackground(new Color(103, 149, 142));
+    }//GEN-LAST:event_btnCrearMousePressed
+
+    private void btnCrearMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearMouseReleased
+        btnCrearBG.setBackground(new Color(76,131,122));
+    }//GEN-LAST:event_btnCrearMouseReleased
+
+    private void btnAgregarActividadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarActividadMousePressed
+        btnAgregarActividadBG.setBackground(new Color(103, 149, 142));
+    }//GEN-LAST:event_btnAgregarActividadMousePressed
+
+    private void btnAgregarActividadMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarActividadMouseReleased
+        btnAgregarActividadBG.setBackground(new Color(76,131,122));
+    }//GEN-LAST:event_btnAgregarActividadMouseReleased
+
+    private void btnListarActividadesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarActividadesMousePressed
+        btnListarActividadesBG.setBackground(new Color(103, 149, 142));
+    }//GEN-LAST:event_btnListarActividadesMousePressed
+
+    private void btnListarActividadesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarActividadesMouseReleased
+        btnListarActividadesBG.setBackground(new Color(76,131,122));
+    }//GEN-LAST:event_btnListarActividadesMouseReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bgPanel;
     private javax.swing.JLabel btnAgregarActividad;
     private javax.swing.JPanel btnAgregarActividadBG;
     private javax.swing.JLabel btnCrear;
     private javax.swing.JPanel btnCrearBG;
     private javax.swing.JLabel btnListarActividades;
     private javax.swing.JPanel btnListarActividadesBG;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JPanel pnlHeader;
+    private javax.swing.JLabel lblHeader;
+    private javax.swing.JScrollPane scrollTabla;
+    private javax.swing.JTable tablaDatos;
     // End of variables declaration//GEN-END:variables
 }

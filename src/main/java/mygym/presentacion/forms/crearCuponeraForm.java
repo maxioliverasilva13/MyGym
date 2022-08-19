@@ -5,6 +5,8 @@
 package mygym.presentacion.forms;
 
 import java.awt.Color;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,6 +19,11 @@ public class crearCuponeraForm extends javax.swing.JFrame {
      */
     public crearCuponeraForm() {
         initComponents();
+    }
+    
+    // Tira una ventana de diálogo, de tipo error.
+    private void lanzarError(String mensaje) {
+        JOptionPane.showMessageDialog(new JFrame(), mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     /**
@@ -152,10 +159,10 @@ public class crearCuponeraForm extends javax.swing.JFrame {
 
         btnCrearBG.setBackground(new java.awt.Color(76, 131, 122));
 
-        btnCrear.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        btnCrear.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
         btnCrear.setForeground(new java.awt.Color(255, 255, 255));
         btnCrear.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnCrear.setText("CREAR");
+        btnCrear.setText("Crear");
         btnCrear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCrear.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
