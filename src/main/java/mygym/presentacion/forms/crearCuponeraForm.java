@@ -7,18 +7,58 @@ package mygym.presentacion.forms;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import mygym.presentacion.pages.Cuponeras;
+import com.raven.datechooser.SelectedDate;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.Date;
+import mygym.logica.usuario.dataTypes.DtCuponera;
+import mygym.presentacion.pages.Cuponeras;
 
 /**
  *
  * @author mandi
  */
-public class crearCuponeraForm extends javax.swing.JFrame {
+public class crearCuponeraForm extends javax.swing.JFrame{
 
     /**
      * Creates new form crearCuponeraForm
      */
+    
+    Color gris = new Color(204,204,204);
+    
     public crearCuponeraForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.getOwner();
+        this.requestFocusInWindow(true);
+        separatorNombre.setForeground(gris);
+        separatorDescuento.setForeground(gris);
+        scrollDescr.setViewportBorder(javax.swing.BorderFactory.createLineBorder(gris));
+        txtNombre.setText("");
+        txtDescuento.setText("");
+        txtareaDescripcion.setText("");
+        
+        
+        txtDescuento.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+                     e.consume();  // if it's not a number, ignore the event
+                }
+            }
+         });
+        
+        txtNombre.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+              char c = e.getKeyChar();
+                 if(!(Character.isAlphabetic(c) || (c==KeyEvent.VK_BACK_SPACE) || c==KeyEvent.VK_DELETE )) {
+                  e.consume();  // ignore the event if it's not an alphabet
+              }
+             }
+          });
     }
     
     // Tira una ventana de diálogo, de tipo error.
@@ -41,18 +81,20 @@ public class crearCuponeraForm extends javax.swing.JFrame {
         lblHeader = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        jSeparator2 = new javax.swing.JSeparator();
+        separatorNombre = new javax.swing.JSeparator();
         lblDescuento = new javax.swing.JLabel();
         txtDescuento = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
+        separatorDescuento = new javax.swing.JSeparator();
         lblDescripcion = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollDescr = new javax.swing.JScrollPane();
         txtareaDescripcion = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtInicio = new javax.swing.JTextField();
         txtFin = new javax.swing.JTextField();
+        separatorFInicio = new javax.swing.JSeparator();
+        separatorFfin = new javax.swing.JSeparator();
         btnCrearBG = new javax.swing.JPanel();
         btnCrear = new javax.swing.JLabel();
 
@@ -62,6 +104,7 @@ public class crearCuponeraForm extends javax.swing.JFrame {
 
         dateChooserFin.setTextRefernce(txtFin);
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Crear cuponera");
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(500, 540));
@@ -80,64 +123,33 @@ public class crearCuponeraForm extends javax.swing.JFrame {
         lblNombre.setText("Nombre");
         jPanel2.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 90, 30));
 
-        txtNombre.setForeground(new java.awt.Color(204, 204, 204));
-        txtNombre.setText("Ingrese un nombre");
         txtNombre.setBorder(null);
-        txtNombre.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtNombreMousePressed(evt);
-            }
-        });
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
-            }
-        });
         jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 210, 30));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 210, 20));
+        jPanel2.add(separatorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 210, 20));
 
         lblDescuento.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblDescuento.setText("Descuento (%)");
         jPanel2.add(lblDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 90, 30));
 
-        txtDescuento.setForeground(new java.awt.Color(204, 204, 204));
-        txtDescuento.setText("Ingrese el porcentaje a descontar");
         txtDescuento.setToolTipText("");
         txtDescuento.setBorder(null);
-        txtDescuento.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtDescuentoMousePressed(evt);
-            }
-        });
-        txtDescuento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescuentoActionPerformed(evt);
-            }
-        });
         jPanel2.add(txtDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 210, 30));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 210, 20));
+        jPanel2.add(separatorDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 210, 20));
 
         lblDescripcion.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblDescripcion.setText("Descripción");
         jPanel2.add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 80, 30));
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 249, 248)));
+        scrollDescr.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        scrollDescr.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 249, 248)));
 
         txtareaDescripcion.setColumns(20);
-        txtareaDescripcion.setForeground(new java.awt.Color(204, 204, 204));
         txtareaDescripcion.setLineWrap(true);
         txtareaDescripcion.setRows(5);
-        txtareaDescripcion.setText("Ingrese una descripción");
         txtareaDescripcion.setBorder(null);
-        txtareaDescripcion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtareaDescripcionMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(txtareaDescripcion);
+        scrollDescr.setViewportView(txtareaDescripcion);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 320, -1));
+        jPanel2.add(scrollDescr, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 320, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Período de Vigencia", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dubai", 0, 14))); // NOI18N
@@ -152,13 +164,22 @@ public class crearCuponeraForm extends javax.swing.JFrame {
         jLabel6.setText("Fecha de Fin");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
+        txtInicio.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        txtInicio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtInicio.setBorder(null);
         txtInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtInicioMouseClicked(evt);
             }
         });
-        jPanel1.add(txtInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 170, -1));
-        jPanel1.add(txtFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 170, -1));
+        jPanel1.add(txtInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 140, 20));
+
+        txtFin.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        txtFin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtFin.setBorder(null);
+        jPanel1.add(txtFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 140, 20));
+        jPanel1.add(separatorFInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 140, 20));
+        jPanel1.add(separatorFfin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 140, 20));
 
         jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 320, 120));
 
@@ -206,73 +227,70 @@ public class crearCuponeraForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    Color gris = new Color(204,204,204);
     
     
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
-
-    private void txtDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescuentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescuentoActionPerformed
-
+    
     private void btnCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearMouseClicked
+        boolean error = false;
         // Control de campo NOMBRE vacío.
-        if (txtNombre.getText().equals("") || txtNombre.getText().equals("Ingrese un nombre")){
-            txtNombre.setText("**Ingrese un nombre**");
-            txtNombre.setForeground(Color.red);
+        if (txtNombre.getText().equals("")){
+            separatorNombre.setForeground(Color.red);
+            error=true;
         }
         
         // Control de campo DESCUENTO vacío.
-        if (txtDescuento.getText().equals("") || txtDescuento.getText().equals("Ingrese el porcentaje a descontar")){
-            txtDescuento.setText("**Ingrese un descuento**");
-            txtDescuento.setForeground(Color.red);
+        if (txtDescuento.getText().equals("")){
+            separatorDescuento.setForeground(Color.red);
+            error=true;
         }
         
         // Control de campo DESCRIPCIÓN vacío.
-        if (txtareaDescripcion.getText().equals("") || txtareaDescripcion.getText().equals("Ingrese una descripción")){
-            txtareaDescripcion.setText("**Ingrese una descripción**");
-            txtareaDescripcion.setForeground(Color.red);
+        if (txtareaDescripcion.getText().equals("")){
+            scrollDescr.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+            scrollDescr.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+            error=true;
+        }
+
+            // Validación campo fecha inicio NO menor a la actual. TO DO
+            SelectedDate dateInicio = dateChooserInicio.getSelectedDate();
+            Date fechaActual = new Date(System.currentTimeMillis());
+            if (dateInicio.getDay() < fechaActual.getDay() || dateInicio.getMonth() < fechaActual.getMonth() || dateInicio.getYear() < fechaActual.getYear()){
+                JOptionPane.showMessageDialog(new JFrame(), "Error, fecha de inicio no puede ser menor a la actual.", "Error", JOptionPane.ERROR_MESSAGE);
+                error = true;
+            }
+                    
+            SelectedDate dateFin = dateChooserFin.getSelectedDate();
+            // Validación campo fecha fin menor o igual a la actual.
+            if (dateFin.getDay() < fechaActual.getDay() || dateFin.getMonth() < fechaActual.getMonth() || dateFin.getYear() < fechaActual.getYear()){
+                JOptionPane.showMessageDialog(new JFrame(), "Error, fecha de fin no puede ser menor a la actual.", "Error", JOptionPane.ERROR_MESSAGE);
+                error = true;
+            }
+            
+        
+        if (!error){
+            if (Cuponeras.cuponeras.isEmpty()){
+                DtCuponera cup = new DtCuponera(txtNombre.getText(), txtareaDescripcion.getText(), new Date(2022, 05, 13), txtDescuento.getText());
+                Cuponeras.agregarElemTabla(cup);
+                txtNombre.setText("");
+                txtDescuento.setText("");
+                txtareaDescripcion.setText("");
+                separatorNombre.setForeground(gris);
+                separatorDescuento.setForeground(gris);
+                scrollDescr.setViewportBorder(javax.swing.BorderFactory.createLineBorder(gris));
+                dispose();
+            }else{
+                DtCuponera cup = new DtCuponera( txtNombre.getText(), txtareaDescripcion.getText(), new Date(2022, 05, 13), txtDescuento.getText() );
+                Cuponeras.agregarElemTabla(cup);
+                txtNombre.setText("");
+                txtDescuento.setText("");
+                txtareaDescripcion.setText("");
+                separatorNombre.setForeground(gris);
+                separatorDescuento.setForeground(gris);
+                scrollDescr.setViewportBorder(javax.swing.BorderFactory.createLineBorder(gris));
+                dispose();
+            }
         }
     }//GEN-LAST:event_btnCrearMouseClicked
-
-    private void txtNombreMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreMousePressed
-        // Vaciar txtField al hacer click.
-        if (txtNombre.getText().equals("Ingrese un nombre") || txtNombre.getText().equals("**Ingrese un nombre**")){
-            txtNombre.setText("");
-            txtNombre.setForeground(Color.black);
-        }
-         // Rellenar el otro txtField al hacer click si está vacío.
-        if(txtDescuento.getText().equals("")){
-            txtDescuento.setText("Ingrese el porcentaje a descontar");
-            txtDescuento.setForeground(gris);
-       }
-        // Rellenar el txtArea al hacer click si está vacío.
-        if(txtareaDescripcion.getText().equals("")){
-            txtareaDescripcion.setText("Ingrese una descripción");
-            txtareaDescripcion.setForeground(gris);
-       }
-    }//GEN-LAST:event_txtNombreMousePressed
-
-    private void txtDescuentoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDescuentoMousePressed
-         // Vaciar txtField al hacer click.
-        if (txtDescuento.getText().equals("Ingrese el porcentaje a descontar") || txtDescuento.getText().equals("**Ingrese un descuento**")){
-            txtDescuento.setText("");
-            txtDescuento.setForeground(Color.black);
-        }
-        // Rellenar el otro txtField al hacer click si está vacío.
-        if(txtNombre.getText().equals("")){
-            txtNombre.setText("Ingrese un nombre");
-            txtNombre.setForeground(gris);
-        }
-        
-         // Vaciar txtArea al hacer click.
-        if(txtareaDescripcion.getText().equals("")){
-            txtareaDescripcion.setText("Ingrese una descripción");
-            txtareaDescripcion.setForeground(gris);
-       }
-    }//GEN-LAST:event_txtDescuentoMousePressed
 
     private void txtInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtInicioMouseClicked
         // TODO add your handling code here:
@@ -282,26 +300,6 @@ public class crearCuponeraForm extends javax.swing.JFrame {
         }
         dateChooserInicio.showPopup(this, 100, 100);
     }//GEN-LAST:event_txtInicioMouseClicked
-
-    private void txtareaDescripcionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtareaDescripcionMouseClicked
-
-        if (txtareaDescripcion.getText().equals("Ingrese una descripción") || txtareaDescripcion.getText().equals("**Ingrese una descripción**")){
-            txtareaDescripcion.setText("");
-            txtareaDescripcion.setForeground(Color.black);
-        }
-        
-        // Rellenar el otro txtField al hacer click si está vacío.
-        if(txtNombre.getText().equals("")){
-            txtNombre.setText("Ingrese un nombre");
-            txtNombre.setForeground(gris);
-        }
-        
-        // Rellenar el otro txtField al hacer click si está vacío.
-        if(txtDescuento.getText().equals("")){
-            txtDescuento.setText("Ingrese el porcentaje a descontar");
-            txtDescuento.setForeground(gris);
-       }
-    }//GEN-LAST:event_txtareaDescripcionMouseClicked
 
     /**
      * @param args the command line arguments
@@ -348,13 +346,15 @@ public class crearCuponeraForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblDescuento;
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JScrollPane scrollDescr;
+    private javax.swing.JSeparator separatorDescuento;
+    private javax.swing.JSeparator separatorFInicio;
+    private javax.swing.JSeparator separatorFfin;
+    private javax.swing.JSeparator separatorNombre;
     private javax.swing.JTextField txtDescuento;
     private javax.swing.JTextField txtFin;
     private javax.swing.JTextField txtInicio;

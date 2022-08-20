@@ -7,6 +7,8 @@ package mygym.presentacion.pages;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import mygym.presentacion.enums.SideBarContent;
 import mygym.presentacion.enums.PAGE;
@@ -57,6 +59,7 @@ public final class Dashboard extends javax.swing.JFrame {
     public Dashboard() {
         initComponents();
         colocatePage();
+        this.setLocationRelativeTo(null);
     }
     
     void colocatePage() {
@@ -98,6 +101,14 @@ public final class Dashboard extends javax.swing.JFrame {
         setLocationByPlatform(true);
         setUndecorated(true);
         setResizable(false);
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                formFocusLost(evt);
+            }
+        });
 
         backgroundPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -116,6 +127,7 @@ public final class Dashboard extends javax.swing.JFrame {
         );
 
         backgroundPanel.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 720, 540));
+        content.getAccessibleContext().setAccessibleParent(this);
 
         sidebarPanel.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -342,6 +354,17 @@ public final class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_exitBtnMouseClicked
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        // TODO add your handling code here:
+        //REFRESCAR TABLAS
+        
+    }//GEN-LAST:event_formFocusGained
+
+    private void formFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusLost
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(new JFrame(), "Focus Lost: ", "Info", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_formFocusLost
 
     /**
      * @param args the command line arguments
