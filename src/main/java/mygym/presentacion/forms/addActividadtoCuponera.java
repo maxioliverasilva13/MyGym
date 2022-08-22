@@ -221,7 +221,7 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         if (selectedInst != null){
             cmbActividades.removeAllItems(); // Primero elimino todos los elems del combobox, para que solo se vean los de la institución seleccionada en el grid.
             cmbActividades.addItem(selectedInst.getNombre());
-            JOptionPane.showMessageDialog(new JFrame(), "Institucion seleccionada: " + selectedInst.getNombre(), "Cuponera seleccionada", JOptionPane.INFORMATION_MESSAGE);
+            //JOptionPane.showMessageDialog(new JFrame(), "Institucion seleccionada: " + selectedInst.getNombre(), "Cuponera seleccionada", JOptionPane.INFORMATION_MESSAGE);
             
         }else{
             JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una cuponera existente.", "Error", JOptionPane.ERROR_MESSAGE);

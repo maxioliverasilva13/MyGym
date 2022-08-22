@@ -98,6 +98,7 @@ public final class Dashboard extends javax.swing.JFrame {
         exitBtn = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("MyGym");
         setLocationByPlatform(true);
         setUndecorated(true);
         setResizable(false);

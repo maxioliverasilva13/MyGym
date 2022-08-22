@@ -7,7 +7,6 @@ package mygym.presentacion.forms;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import mygym.presentacion.pages.Cuponeras;
 import com.raven.datechooser.SelectedDate;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -21,9 +20,7 @@ import mygym.presentacion.pages.Cuponeras;
  */
 public class crearCuponeraForm extends javax.swing.JFrame{
 
-    /**
-     * Creates new form crearCuponeraForm
-     */
+
     
     Color gris = new Color(204,204,204);
     
@@ -61,11 +58,6 @@ public class crearCuponeraForm extends javax.swing.JFrame{
           });
     }
     
-    // Tira una ventana de diálogo, de tipo error.
-    private void lanzarError(String mensaje) {
-        JOptionPane.showMessageDialog(new JFrame(), mensaje, "Error", JOptionPane.ERROR_MESSAGE);
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -167,11 +159,6 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         txtInicio.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         txtInicio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtInicio.setBorder(null);
-        txtInicio.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtInicioMouseClicked(evt);
-            }
-        });
         jPanel1.add(txtInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 140, 20));
 
         txtFin.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
@@ -227,9 +214,7 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
-    
+
     private void btnCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearMouseClicked
         boolean error = false;
         // Control de campo NOMBRE vacío.
@@ -251,55 +236,33 @@ public class crearCuponeraForm extends javax.swing.JFrame{
             error=true;
         }
 
-            // Validación campo fecha inicio NO menor a la actual. TO DO
-            SelectedDate dateInicio = dateChooserInicio.getSelectedDate();
-            Date fechaActual = new Date(System.currentTimeMillis());
-            if (dateInicio.getDay() < fechaActual.getDay() || dateInicio.getMonth() < fechaActual.getMonth() || dateInicio.getYear() < fechaActual.getYear()){
-                JOptionPane.showMessageDialog(new JFrame(), "Error, fecha de inicio no puede ser menor a la actual.", "Error", JOptionPane.ERROR_MESSAGE);
-                error = true;
-            }
-                    
-            SelectedDate dateFin = dateChooserFin.getSelectedDate();
-            // Validación campo fecha fin menor o igual a la actual.
-            if (dateFin.getDay() < fechaActual.getDay() || dateFin.getMonth() < fechaActual.getMonth() || dateFin.getYear() < fechaActual.getYear()){
-                JOptionPane.showMessageDialog(new JFrame(), "Error, fecha de fin no puede ser menor a la actual.", "Error", JOptionPane.ERROR_MESSAGE);
-                error = true;
-            }
-            
-        
+        // Validación campo fecha inicio NO menor a la actual. TO DO
+        SelectedDate dateInicio = dateChooserInicio.getSelectedDate();
+        Date fechaActual = new Date(System.currentTimeMillis());
+        if (dateInicio.getDay() < fechaActual.getDay() || dateInicio.getMonth() < fechaActual.getMonth() || dateInicio.getYear() < fechaActual.getYear()){
+            JOptionPane.showMessageDialog(new JFrame(), "Error, fecha de inicio no puede ser menor a la actual.", "Error", JOptionPane.ERROR_MESSAGE);
+            error = true;
+        }
+
+        SelectedDate dateFin = dateChooserFin.getSelectedDate();
+        // Validación campo fecha fin menor o igual a la actual.
+        if (dateFin.getDay() < fechaActual.getDay() || dateFin.getMonth() < fechaActual.getMonth() || dateFin.getYear() < fechaActual.getYear()){
+            JOptionPane.showMessageDialog(new JFrame(), "Error, fecha de fin no puede ser menor a la actual.", "Error", JOptionPane.ERROR_MESSAGE);
+            error = true;
+        }
+
         if (!error){
-            if (Cuponeras.cuponeras.isEmpty()){
-                DtCuponera cup = new DtCuponera(txtNombre.getText(), txtareaDescripcion.getText(), new Date(2022, 05, 13), txtDescuento.getText());
-                Cuponeras.agregarElemTabla(cup);
-                txtNombre.setText("");
-                txtDescuento.setText("");
-                txtareaDescripcion.setText("");
-                separatorNombre.setForeground(gris);
-                separatorDescuento.setForeground(gris);
-                scrollDescr.setViewportBorder(javax.swing.BorderFactory.createLineBorder(gris));
-                dispose();
-            }else{
-                DtCuponera cup = new DtCuponera( txtNombre.getText(), txtareaDescripcion.getText(), new Date(2022, 05, 13), txtDescuento.getText() );
-                Cuponeras.agregarElemTabla(cup);
-                txtNombre.setText("");
-                txtDescuento.setText("");
-                txtareaDescripcion.setText("");
-                separatorNombre.setForeground(gris);
-                separatorDescuento.setForeground(gris);
-                scrollDescr.setViewportBorder(javax.swing.BorderFactory.createLineBorder(gris));
-                dispose();
-            }
+            DtCuponera cup = new DtCuponera(txtNombre.getText(), txtareaDescripcion.getText(), new Date(2022, 05, 13), txtDescuento.getText());
+            Cuponeras.agregarElemTabla(cup);
+            txtNombre.setText("");
+            txtDescuento.setText("");
+            txtareaDescripcion.setText("");
+            separatorNombre.setForeground(gris);
+            separatorDescuento.setForeground(gris);
+            scrollDescr.setViewportBorder(javax.swing.BorderFactory.createLineBorder(gris));
+            dispose();
         }
     }//GEN-LAST:event_btnCrearMouseClicked
-
-    private void txtInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtInicioMouseClicked
-        // TODO add your handling code here:
-        if (txtInicio.getText().equals("dd/mm/yyyy")){
-            txtInicio.setText("");
-            txtInicio.setForeground(Color.black);
-        }
-        dateChooserInicio.showPopup(this, 100, 100);
-    }//GEN-LAST:event_txtInicioMouseClicked
 
     /**
      * @param args the command line arguments

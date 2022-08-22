@@ -22,7 +22,7 @@ public class Cuponeras extends javax.swing.JPanel {
 
     crearCuponeraForm formCrear = new crearCuponeraForm();
     addActividadtoCuponera formAgregar = new addActividadtoCuponera();
-    public static HashMap<Integer, DtCuponera> cuponeras = new HashMap<Integer, DtCuponera>(); // ELIMINAR
+    public static HashMap<Integer, DtCuponera> cuponeras = new HashMap<Integer, DtCuponera>();
     
     public Cuponeras() {
         initComponents();
@@ -290,7 +290,7 @@ public class Cuponeras extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCrearMouseClicked
 
     private void btnActualizarCuponerasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarCuponerasMouseClicked
-        llenarTabla();
+        llenarTabla(); 
     }//GEN-LAST:event_btnActualizarCuponerasMouseClicked
 
     private void btnCrearMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearMousePressed
@@ -317,7 +317,7 @@ public class Cuponeras extends javax.swing.JPanel {
         DtCuponera selectedCuponera = cuponeras.get(selectedRowId);
          // = new DtCuponera(selectedCuponera.getNombre(), selectedCuponera.getDescripcion(), selectedCuponera.getFechaVigencia(), selectedCuponera.getDescuento());
         if (selectedCuponera != null){
-            JOptionPane.showMessageDialog(new JFrame(), "Cuponera seleccionada: " + selectedCuponera.getNombre(), "Cuponera seleccionada", JOptionPane.INFORMATION_MESSAGE);
+            //JOptionPane.showMessageDialog(new JFrame(), "Cuponera seleccionada: " + selectedCuponera.getNombre(), "Cuponera seleccionada", JOptionPane.INFORMATION_MESSAGE);
             if (!formAgregar.isVisible()) {
                formAgregar.setVisible(true);
             }
