@@ -21,8 +21,9 @@ public class Mavenproject3 {
         Dashboard appDash = new Dashboard();
         appDash.setVisible(true);
         
-        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("myConnection");
-        //EntityManager em = emf.createEntityManager();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("myConnection");
+        EntityManager em = emf.createEntityManager();
+        
         
         //Persona p = new Persona();
         //p.setId(6);
