@@ -36,13 +36,19 @@ public class SideBarContent {
     public JPanel getContentPanel() {
         JPanel pagetoReturn;
         switch (activePage) {
-            case INICIO -> pagetoReturn = new Inicio();
-            case ACTIVIDAD -> pagetoReturn = new Actividades();
-            case CUPONERA -> pagetoReturn = new Cuponeras();
-            case CLASE -> pagetoReturn = new Clase();
-            case INSTITUCION -> pagetoReturn = new Instituciones();
-            case USUARIO -> pagetoReturn = new Usuarios();
-            default -> throw new AssertionError();
+            case INICIO : pagetoReturn = new Inicio();
+            break;
+            case ACTIVIDAD : pagetoReturn = new Actividades();
+                        break;
+            case CUPONERA : pagetoReturn = new Cuponeras();
+                        break;
+            case CLASE : pagetoReturn = new Clase();
+                        break;
+            case INSTITUCION : pagetoReturn = new Instituciones();
+                        break;
+            case USUARIO : pagetoReturn = new Usuarios();
+                        break;
+            default : pagetoReturn = new Inicio();
         }
         return pagetoReturn;
     }

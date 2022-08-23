@@ -239,7 +239,7 @@ public class Actividades extends javax.swing.JPanel {
         btnAgregar.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnAgregar.setText("Mostrar Información de la Act. Seleccionada");
+        btnAgregar.setText("ASd");
         btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -322,6 +322,14 @@ public class Actividades extends javax.swing.JPanel {
         llenarTabla();
     }//GEN-LAST:event_formFocusGained
 
+    private void btnAgregarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseReleased
+        btnAgregarBG.setBackground(new Color(76,131,122));
+    }//GEN-LAST:event_btnAgregarMouseReleased
+
+    private void btnAgregarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMousePressed
+        btnAgregarBG.setBackground(new Color(103, 149, 142));
+    }//GEN-LAST:event_btnAgregarMousePressed
+
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
         // ABRE SUB-FORM CON LAS INSTITUCIONES.
         //DefaultTableModel modelo = (DefaultTableModel) tablaCuponeras.getModel();
@@ -338,14 +346,6 @@ public class Actividades extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una actividad existente.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAgregarMouseClicked
-
-    private void btnAgregarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMousePressed
-        btnAgregarBG.setBackground(new Color(103, 149, 142));
-    }//GEN-LAST:event_btnAgregarMousePressed
-
-    private void btnAgregarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseReleased
-        btnAgregarBG.setBackground(new Color(76,131,122));
-    }//GEN-LAST:event_btnAgregarMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
