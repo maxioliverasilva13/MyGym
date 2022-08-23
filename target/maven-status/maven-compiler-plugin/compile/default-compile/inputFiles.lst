@@ -1,3 +1,25 @@
+<<<<<<< HEAD
+C:\Users\pedri\OneDrive\Documentos\GitHub\MyGym\src\main\java\mygym\presentacion\pages\Dashboard.java
+C:\Users\pedri\OneDrive\Documentos\GitHub\MyGym\src\main\java\mygym\presentacion\pages\Clase.java
+C:\Users\pedri\OneDrive\Documentos\GitHub\MyGym\src\main\java\mygym\presentacion\pages\Cuponeras.java
+C:\Users\pedri\OneDrive\Documentos\GitHub\MyGym\src\main\java\mygym\presentacion\forms\EditUsersForm.java
+C:\Users\pedri\OneDrive\Documentos\GitHub\MyGym\src\main\java\mygym\logica\usuario\ManejadorUsuario.java
+C:\Users\pedri\OneDrive\Documentos\GitHub\MyGym\src\main\java\mygym\presentacion\components\UserCard.java
+C:\Users\pedri\OneDrive\Documentos\GitHub\MyGym\src\main\java\mygym\presentacion\enums\SideBarContent.java
+C:\Users\pedri\OneDrive\Documentos\GitHub\MyGym\src\main\java\mygym\presentacion\enums\PAGE.java
+C:\Users\pedri\OneDrive\Documentos\GitHub\MyGym\src\main\java\mygym\logica\usuario\IControladorUsuario.java
+C:\Users\pedri\OneDrive\Documentos\GitHub\MyGym\src\main\java\mygym\presentacion\pages\Usuarios.java
+C:\Users\pedri\OneDrive\Documentos\GitHub\MyGym\src\main\java\mygym\presentacion\forms\VerInfoUsers.java
+C:\Users\pedri\OneDrive\Documentos\GitHub\MyGym\src\main\java\com\mycompany\mavenproject3\Mavenproject3.java
+C:\Users\pedri\OneDrive\Documentos\GitHub\MyGym\src\main\java\mygym\logica\usuario\dataTypes\UserDataType.java
+C:\Users\pedri\OneDrive\Documentos\GitHub\MyGym\src\main\java\mygym\presentacion\pages\Instituciones.java
+C:\Users\pedri\OneDrive\Documentos\GitHub\MyGym\src\main\java\mygym\presentacion\pages\Inicio.java
+C:\Users\pedri\OneDrive\Documentos\GitHub\MyGym\src\main\java\mygym\presentacion\forms\AddUsersForm.java
+C:\Users\pedri\OneDrive\Documentos\GitHub\MyGym\src\main\java\mygym\logica\usuario\Usuario.java
+C:\Users\pedri\OneDrive\Documentos\GitHub\MyGym\src\main\java\mygym\presentacion\pages\Actividades.java
+C:\Users\pedri\OneDrive\Documentos\GitHub\MyGym\src\main\java\com\mycompany\mavenproject3\Persona.java
+C:\Users\pedri\OneDrive\Documentos\GitHub\MyGym\src\main\java\mygym\logica\usuario\ControladorUsuario.java
+=======
 C:\Users\mandi\Documents\GitHub\MyGym\src\main\java\mygym\presentacion\pages\Actividades.java
 C:\Users\mandi\Documents\GitHub\MyGym\src\main\java\mygym\logica\usuario\dataTypes\UserDataType.java
 C:\Users\mandi\Documents\GitHub\MyGym\src\main\java\mygym\presentacion\pages\Cuponeras.java
@@ -25,3 +47,4 @@ C:\Users\mandi\Documents\GitHub\MyGym\src\main\java\mygym\logica\usuario\dataTyp
 C:\Users\mandi\Documents\GitHub\MyGym\src\main\java\mygym\presentacion\pages\Dashboard.java
 C:\Users\mandi\Documents\GitHub\MyGym\src\main\java\mygym\presentacion\forms\addActividadtoCuponera.java
 C:\Users\mandi\Documents\GitHub\MyGym\src\main\java\mygym\presentacion\pages\Usuarios.java
+>>>>>>> e4b38fe32a6b3515f3d4786f50f49980cc2f8b43
