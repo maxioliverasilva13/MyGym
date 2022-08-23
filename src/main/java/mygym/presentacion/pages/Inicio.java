@@ -29,7 +29,7 @@ public class Inicio extends javax.swing.JPanel {
         pnlHeader = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(415, 409));
+        setPreferredSize(new java.awt.Dimension(720, 540));
 
         pnlHeader.setBackground(new java.awt.Color(255, 255, 255));
 

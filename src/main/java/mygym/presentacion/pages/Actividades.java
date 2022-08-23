@@ -4,19 +4,59 @@
  */
 package mygym.presentacion.pages;
 
+import java.awt.Color;
+import java.util.HashMap;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import mygym.logica.usuario.dataTypes.DtActividad;
+import mygym.logica.usuario.dataTypes.DtInstitucion;
+import mygym.presentacion.forms.createActividadForm;
+import mygym.presentacion.forms.showActividadInfoForm;
+
+
 /**
  *
  * @author maximilianooliverasilva
  */
 public class Actividades extends javax.swing.JPanel {
-
+    createActividadForm formCreate = new createActividadForm();
+     showActividadInfoForm formInfo = new showActividadInfoForm();
+    public static HashMap<Integer, DtActividad> actividadesSistema = new HashMap<>(); // ELIMINAR
+    public static HashMap<Integer, DtInstitucion> institucionesSistema = new HashMap<>(); // ELIMINAR
+    //DtActividad act1 = new DtActividad("Natación", "Actividad de nado.", "60", "1500", "08-09-2022");
+    //DtActividad act2 = new DtActividad("Atletismo", "Correr.", "60", "1500", "08-09-2022");
+    
     /**
      * Creates new form Actividades
      */
     public Actividades() {
         initComponents();
+        llenarCBoxInstituciones();
+        llenarTabla(); // A futuro, se va a tener que modificar éste método para que en la tabla se muestren las actividades dependiendo de qué INSTITUCIÓN esté seleccionada en el combo box de arriba.
     }
-
+    
+    public static void agregarElemColeccion(DtActividad x){
+        int idHashMap = actividadesSistema.size();
+        actividadesSistema.put(idHashMap, x);
+    }
+    
+    public void llenarTabla(){
+    DefaultTableModel modeloDatos = (DefaultTableModel) tablaActividades.getModel();
+        for (int i = 0; i < actividadesSistema.size(); i++){
+            DtActividad currentCuponera = actividadesSistema.get(i);
+            modeloDatos.setValueAt(currentCuponera.getNombre(), i, 0);
+            modeloDatos.setValueAt(currentCuponera.getDescripcion(), i, 1);
+        }
+    }
+    
+        private void llenarCBoxInstituciones(){
+        for (int i = 0; i < institucionesSistema.size(); i++){
+            DtInstitucion currentInstitucion = institucionesSistema.get(i);
+            cmbInstituciones.addItem(currentInstitucion.getNombre());
+        }
+    }    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,45 +66,299 @@ public class Actividades extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlHeader = new javax.swing.JPanel();
+        bgPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        btnAltaBG = new javax.swing.JPanel();
+        btnAlta = new javax.swing.JLabel();
+        scrollTabla = new javax.swing.JScrollPane();
+        tablaActividades = new javax.swing.JTable();
+        btnActualizarActividadesBG = new javax.swing.JPanel();
+        btnActualizarActividades = new javax.swing.JLabel();
+        btnAgregarBG = new javax.swing.JPanel();
+        btnAgregar = new javax.swing.JLabel();
+        cmbInstituciones = new javax.swing.JComboBox<>();
 
-        pnlHeader.setBackground(new java.awt.Color(255, 255, 255));
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
+
+        bgPanel.setBackground(new java.awt.Color(255, 255, 255));
+        bgPanel.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                bgPanelFocusGained(evt);
+            }
+        });
+        bgPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Actividades");
+        bgPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, -1));
 
-        javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
-        pnlHeader.setLayout(pnlHeaderLayout);
-        pnlHeaderLayout.setHorizontalGroup(
-            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHeaderLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        btnAltaBG.setBackground(new java.awt.Color(76, 131, 122));
+
+        btnAlta.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnAlta.setForeground(new java.awt.Color(255, 255, 255));
+        btnAlta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnAlta.setText("Alta de Actividad");
+        btnAlta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAlta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAltaMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAltaMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAltaMouseReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnAltaBGLayout = new javax.swing.GroupLayout(btnAltaBG);
+        btnAltaBG.setLayout(btnAltaBGLayout);
+        btnAltaBGLayout.setHorizontalGroup(
+            btnAltaBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnAltaBGLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        pnlHeaderLayout.setVerticalGroup(
-            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHeaderLayout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+        btnAltaBGLayout.setVerticalGroup(
+            btnAltaBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnAltaBGLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        bgPanel.add(btnAltaBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
+
+        scrollTabla.setBackground(new java.awt.Color(255, 255, 255));
+        scrollTabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        scrollTabla.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        tablaActividades.setAutoCreateRowSorter(true);
+        tablaActividades.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        tablaActividades.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Nombre", "Descripción"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaActividades.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tablaActividades.setGridColor(new java.awt.Color(255, 255, 255));
+        tablaActividades.setSelectionBackground(new java.awt.Color(0, 204, 204));
+        tablaActividades.setShowGrid(false);
+        tablaActividades.setUpdateSelectionOnSort(false);
+        scrollTabla.setViewportView(tablaActividades);
+
+        bgPanel.add(scrollTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 640, 320));
+
+        btnActualizarActividadesBG.setBackground(new java.awt.Color(76, 131, 122));
+
+        btnActualizarActividades.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnActualizarActividades.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizarActividades.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnActualizarActividades.setText("Actualizar Lista");
+        btnActualizarActividades.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnActualizarActividades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnActualizarActividadesMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnActualizarActividadesMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnActualizarActividadesMouseReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnActualizarActividadesBGLayout = new javax.swing.GroupLayout(btnActualizarActividadesBG);
+        btnActualizarActividadesBG.setLayout(btnActualizarActividadesBGLayout);
+        btnActualizarActividadesBGLayout.setHorizontalGroup(
+            btnActualizarActividadesBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnActualizarActividadesBGLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnActualizarActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        btnActualizarActividadesBGLayout.setVerticalGroup(
+            btnActualizarActividadesBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnActualizarActividadesBGLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnActualizarActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        bgPanel.add(btnActualizarActividadesBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, -1, -1));
+
+        btnAgregarBG.setBackground(new java.awt.Color(76, 131, 122));
+
+        btnAgregar.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnAgregar.setText("Mostrar Información de la Act. Seleccionada");
+        btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAgregarMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAgregarMouseReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnAgregarBGLayout = new javax.swing.GroupLayout(btnAgregarBG);
+        btnAgregarBG.setLayout(btnAgregarBGLayout);
+        btnAgregarBGLayout.setHorizontalGroup(
+            btnAgregarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+        );
+        btnAgregarBGLayout.setVerticalGroup(
+            btnAgregarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnAgregarBGLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        bgPanel.add(btnAgregarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, 330, -1));
+
+        cmbInstituciones.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        cmbInstituciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Instituciones" }));
+        cmbInstituciones.setBorder(null);
+        bgPanel.add(cmbInstituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 180, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAltaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaMouseClicked
+        if (!formCreate.isVisible()) {
+            // Focus LOST para el form.
+            formCreate.setVisible(true);
+            //formCrear.transferFocus();
+        }
+    }//GEN-LAST:event_btnAltaMouseClicked
+
+    private void btnAltaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaMousePressed
+        btnAltaBG.setBackground(new Color(103, 149, 142));
+    }//GEN-LAST:event_btnAltaMousePressed
+
+    private void btnAltaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaMouseReleased
+        btnAltaBG.setBackground(new Color(76,131,122));
+    }//GEN-LAST:event_btnAltaMouseReleased
+
+    private void btnActualizarActividadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarActividadesMouseClicked
+        llenarTabla();
+    }//GEN-LAST:event_btnActualizarActividadesMouseClicked
+
+    private void btnActualizarActividadesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarActividadesMousePressed
+        btnActualizarActividadesBG.setBackground(new Color(103, 149, 142));
+    }//GEN-LAST:event_btnActualizarActividadesMousePressed
+
+    private void btnActualizarActividadesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarActividadesMouseReleased
+        btnActualizarActividadesBG.setBackground(new Color(76,131,122));
+    }//GEN-LAST:event_btnActualizarActividadesMouseReleased
+
+    private void bgPanelFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bgPanelFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bgPanelFocusGained
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        // TODO add your handling code here:
+        llenarTabla();
+    }//GEN-LAST:event_formFocusGained
+
+    private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
+        // ABRE SUB-FORM CON LAS INSTITUCIONES.
+        //DefaultTableModel modelo = (DefaultTableModel) tablaCuponeras.getModel();
+        int selectedRowId = tablaActividades.getSelectedRow();
+
+        DtActividad selectedActividad = actividadesSistema.get(selectedRowId);
+        // = new DtCuponera(selectedCuponera.getNombre(), selectedCuponera.getDescripcion(), selectedCuponera.getFechaVigencia(), selectedCuponera.getDescuento());
+        if (selectedActividad != null){
+            //JOptionPane.showMessageDialog(new JFrame(), "Actividad seleccionada: " + selectedActividad.getNombre(), "Información de Selección", JOptionPane.INFORMATION_MESSAGE);
+            if (!formInfo.isVisible()) {
+                formInfo.setVisible(true);
+            }
+        }else{
+            JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una actividad existente.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAgregarMouseClicked
+
+    private void btnAgregarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMousePressed
+        btnAgregarBG.setBackground(new Color(103, 149, 142));
+    }//GEN-LAST:event_btnAgregarMousePressed
+
+    private void btnAgregarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseReleased
+        btnAgregarBG.setBackground(new Color(76,131,122));
+    }//GEN-LAST:event_btnAgregarMouseReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bgPanel;
+    private javax.swing.JLabel btnActualizarActividades;
+    private javax.swing.JPanel btnActualizarActividadesBG;
+    private javax.swing.JLabel btnAgregar;
+    private javax.swing.JPanel btnAgregarBG;
+    private javax.swing.JLabel btnAlta;
+    private javax.swing.JPanel btnAltaBG;
+    private javax.swing.JComboBox<String> cmbInstituciones;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel pnlHeader;
+    private javax.swing.JScrollPane scrollTabla;
+    private javax.swing.JTable tablaActividades;
     // End of variables declaration//GEN-END:variables
 }
