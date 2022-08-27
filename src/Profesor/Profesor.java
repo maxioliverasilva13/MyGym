@@ -11,7 +11,9 @@ import Actividad.Actividad;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import Institucion.Institucion;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.JoinColumn;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -19,6 +21,7 @@ import javax.persistence.Table;
  * @author maximilianooliverasilva
  */
 @Entity
+@PrimaryKeyJoinColumn(name = "userId")
 @Table
 public class Profesor extends Usuario {
  private String descripcionGeneral;
@@ -28,6 +31,7 @@ public class Profesor extends Usuario {
  private Collection<Institucion> instituciones;
  @OneToMany(mappedBy = "profesor")
  private Collection<Actividad> actividades;
+
 
     public String getDescripcionGeneral() {
         return descripcionGeneral;
