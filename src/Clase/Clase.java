@@ -17,6 +17,13 @@ import java.util.Collection;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import Registro.Registro;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import javax.persistence.Basic;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import Registro.DtRegistro;
 
 /**
  *
@@ -29,19 +36,39 @@ public class Clase implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String nombre;
+    @Basic
+    @Temporal(TemporalType.DATE)
     private Date fecha;
     private int capMinima;
     private int capMaxima;
     private String urlAcceso;
+    @Basic
+    @Temporal(TemporalType.DATE)
     private Date fechaRegistro;
     @ManyToOne
     @JoinColumn()
     private Actividad actividad;
     @OneToMany(mappedBy = "clase")
-    private Collection<Registro> registros;
+    private List<Registro> registros;
     
     public int getId() {
         return id;
+    }
+    
+    public void setActividad(Actividad act) {
+        this.actividad = act;
+    }
+
+    public List<Registro> getRegistros() {
+        return registros;
+    }
+
+    public void addRegistro(Registro registr) {
+        this.registros.add(registr);
+    }
+    
+    public Actividad getActividad() {
+        return actividad;
     }
 
     public void setId(int id) {
@@ -94,6 +121,21 @@ public class Clase implements Serializable {
 
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
+    }
+    
+    public DtClase getDtClase() {
+        List<DtRegistro> registrosClase = new ArrayList<DtRegistro>();
+        this.getRegistros().forEach((registro) -> {
+            registrosClase.add(registro.getDtRegistro());
+        });
+        DtClase classParsed = new DtClase(id,nombre, fecha, (actividad != null)
+        ? this.actividad.getProfesor().getNombre(): null, (actividad != null)
+        ? this.actividad.getProfesor().getId() : null, capMinima, capMaxima, urlAcceso, fechaRegistro, 
+         registrosClase, (actividad != null)
+        ? this.actividad.getId(): null, (actividad != null)
+        ? this.actividad.getNombre(): null
+       );
+        return classParsed;
     }
     
     

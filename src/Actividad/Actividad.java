@@ -32,6 +32,7 @@ public class Actividad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    private String nombre;
     private String descripcion;
     private int duracion;
     private float costo;
@@ -86,6 +87,46 @@ public class Actividad implements Serializable {
 
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
+    }
+    
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Profesor getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
+    }
+
+    public Institucion getInstitucion() {
+        return institucion;
+    }
+
+    public void setInstitucion(Institucion institucion) {
+        this.institucion = institucion;
+    }
+
+    public Collection<Clase> getClases() {
+        return clases;
+    }
+
+    public void setClases(Collection<Clase> clases) {
+        this.clases = clases;
+    }
+
+    public Collection<CuponeraXActividad> getCuponerasXActividad() {
+        return cuponerasXActividad;
+    }
+
+    public void setCuponerasXActividad(Collection<CuponeraXActividad> cuponerasXActividad) {
+        this.cuponerasXActividad = cuponerasXActividad;
     }
     
     

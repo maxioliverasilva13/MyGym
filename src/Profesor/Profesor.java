@@ -11,6 +11,7 @@ import Actividad.Actividad;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import Institucion.Institucion;
+import java.util.Set;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
@@ -25,9 +26,13 @@ public class Profesor extends Usuario {
  private String biografia;
  private String linkSitioWeb;
  @ManyToMany()
- private Collection<Institucion> instituciones;
+ private Set<Institucion> instituciones;
  @OneToMany(mappedBy = "profesor")
- private Collection<Actividad> actividades;
+ private Set<Actividad> actividades;
+ 
+ public void addInstitucion(Institucion a){
+     this.instituciones.add(a);
+ }
 
     public String getDescripcionGeneral() {
         return descripcionGeneral;

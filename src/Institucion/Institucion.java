@@ -16,6 +16,7 @@ import Profesor.Profesor;
 import java.util.Collection;
 import javax.persistence.OneToMany;
 import Actividad.Actividad;
+import java.util.List;
 
 /**
  *
@@ -31,9 +32,18 @@ public class Institucion implements Serializable {
     private String descripcion;
     private String url;
     @ManyToMany(mappedBy = "instituciones")
-    private Collection<Profesor> profesores;
+    private List<Profesor> profesores;
     @OneToMany(mappedBy = "institucion")
-    private Collection<Actividad> actividades;
+    private List<Actividad> actividades;
+    
+    public void addProfesor(Profesor prof) {
+        this.profesores.add(prof);
+    }
+    
+    public void addActividad(Actividad act) {
+        this.actividades.add(act);
+    }
+    // public void addProfesor()
 
     public int getId() {
         return id;
@@ -67,6 +77,12 @@ public class Institucion implements Serializable {
         this.url = url;
     }
     
+    
+    public DtInstitucion getDtInstitucion() {
+        DtInstitucion dtToReturn = new DtInstitucion(id, nombre, descripcion, url);
+        // TODO : get all professors for this institucion and all actividades
+        return dtToReturn;
+    }
     
     
 }
