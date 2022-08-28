@@ -65,7 +65,8 @@ public class Cuponeras extends javax.swing.JPanel {
         bgPanel.setBackground(new java.awt.Color(255, 255, 255));
         bgPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblHeader.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        lblHeader.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
+        lblHeader.setForeground(new java.awt.Color(41, 69, 87));
         lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHeader.setText("Cuponeras");
         bgPanel.add(lblHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, -1));
@@ -217,7 +218,7 @@ public class Cuponeras extends javax.swing.JPanel {
         btnAgregar.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnAgregar.setText("Agregar Act. a la Cuponera seleccionada");
+        btnAgregar.setText("Agregar Actividad a la Cuponera");
         btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

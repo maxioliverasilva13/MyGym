@@ -97,20 +97,14 @@ public final class Dashboard extends javax.swing.JFrame {
         headerBar = new javax.swing.JPanel();
         exitBtnBG = new javax.swing.JPanel();
         exitBtn = new javax.swing.JLabel();
+        btnMinimizarBG = new javax.swing.JPanel();
+        btnMinimizar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MyGym");
         setLocationByPlatform(true);
         setUndecorated(true);
         setResizable(false);
-        addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                formFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                formFocusLost(evt);
-            }
-        });
 
         backgroundPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -260,9 +254,9 @@ public final class Dashboard extends javax.swing.JFrame {
         });
         headerBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        exitBtnBG.setBackground(new java.awt.Color(102, 0, 51));
+        exitBtnBG.setBackground(new java.awt.Color(174, 0, 51));
 
-        exitBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        exitBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         exitBtn.setForeground(new java.awt.Color(255, 255, 255));
         exitBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         exitBtn.setText("X");
@@ -277,7 +271,7 @@ public final class Dashboard extends javax.swing.JFrame {
         exitBtnBG.setLayout(exitBtnBGLayout);
         exitBtnBGLayout.setHorizontalGroup(
             exitBtnBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(exitBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+            .addComponent(exitBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
         exitBtnBGLayout.setVerticalGroup(
             exitBtnBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,7 +280,33 @@ public final class Dashboard extends javax.swing.JFrame {
                 .addGap(0, 18, Short.MAX_VALUE))
         );
 
-        headerBar.add(exitBtnBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(827, 0, -1, -1));
+        headerBar.add(exitBtnBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 30, -1));
+
+        btnMinimizarBG.setBackground(java.awt.Color.lightGray);
+
+        btnMinimizar.setFont(new java.awt.Font("Lucida Console", 1, 18)); // NOI18N
+        btnMinimizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnMinimizar.setText("-");
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnMinimizarBGLayout = new javax.swing.GroupLayout(btnMinimizarBG);
+        btnMinimizarBG.setLayout(btnMinimizarBGLayout);
+        btnMinimizarBGLayout.setHorizontalGroup(
+            btnMinimizarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnMinimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+        btnMinimizarBGLayout.setVerticalGroup(
+            btnMinimizarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnMinimizar, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+        );
+
+        headerBar.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 0, 30, -1));
 
         backgroundPanel.add(headerBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 20));
 
@@ -357,16 +377,9 @@ public final class Dashboard extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitBtnMouseClicked
 
-    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
-        // TODO add your handling code here:
-        //REFRESCAR TABLAS
-        
-    }//GEN-LAST:event_formFocusGained
-
-    private void formFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusLost
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(new JFrame(), "Focus Lost: ", "Info", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_formFocusLost
+    private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
+        this.setExtendedState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -408,6 +421,8 @@ public final class Dashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
+    private javax.swing.JLabel btnMinimizar;
+    private javax.swing.JPanel btnMinimizarBG;
     private javax.swing.JButton buttonActividades;
     private javax.swing.JButton buttonClases;
     private javax.swing.JButton buttonCuponera;
