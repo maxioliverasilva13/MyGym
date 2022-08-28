@@ -50,7 +50,7 @@ public class Actividades extends javax.swing.JPanel {
         }
     }
     
-        private void llenarCBoxInstituciones(){
+    private void llenarCBoxInstituciones(){
         for (int i = 0; i < institucionesSistema.size(); i++){
             DtInstitucion currentInstitucion = institucionesSistema.get(i);
             cmbInstituciones.addItem(currentInstitucion.getNombre());
@@ -74,8 +74,8 @@ public class Actividades extends javax.swing.JPanel {
         tablaActividades = new javax.swing.JTable();
         btnActualizarActividadesBG = new javax.swing.JPanel();
         btnActualizarActividades = new javax.swing.JLabel();
-        btnAgregarBG = new javax.swing.JPanel();
-        btnAgregar = new javax.swing.JLabel();
+        btnInfoBG = new javax.swing.JPanel();
+        btnInfo = new javax.swing.JLabel();
         cmbInstituciones = new javax.swing.JComboBox<>();
 
         addFocusListener(new java.awt.event.FocusAdapter() {
@@ -92,7 +92,8 @@ public class Actividades extends javax.swing.JPanel {
         });
         bgPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(41, 69, 87));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Actividades");
         bgPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, -1));
@@ -120,9 +121,7 @@ public class Actividades extends javax.swing.JPanel {
         btnAltaBG.setLayout(btnAltaBGLayout);
         btnAltaBGLayout.setHorizontalGroup(
             btnAltaBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnAltaBGLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(btnAlta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
         );
         btnAltaBGLayout.setVerticalGroup(
             btnAltaBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +130,7 @@ public class Actividades extends javax.swing.JPanel {
                 .addComponent(btnAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        bgPanel.add(btnAltaBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
+        bgPanel.add(btnAltaBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 160, -1));
 
         scrollTabla.setBackground(new java.awt.Color(255, 255, 255));
         scrollTabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -221,9 +220,7 @@ public class Actividades extends javax.swing.JPanel {
         btnActualizarActividadesBG.setLayout(btnActualizarActividadesBGLayout);
         btnActualizarActividadesBGLayout.setHorizontalGroup(
             btnActualizarActividadesBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnActualizarActividadesBGLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnActualizarActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(btnActualizarActividades, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
         );
         btnActualizarActividadesBGLayout.setVerticalGroup(
             btnActualizarActividadesBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,46 +229,46 @@ public class Actividades extends javax.swing.JPanel {
                 .addComponent(btnActualizarActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        bgPanel.add(btnActualizarActividadesBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, -1, -1));
+        bgPanel.add(btnActualizarActividadesBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, 150, -1));
 
-        btnAgregarBG.setBackground(new java.awt.Color(76, 131, 122));
+        btnInfoBG.setBackground(new java.awt.Color(76, 131, 122));
 
-        btnAgregar.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnAgregar.setText("ASd");
-        btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnInfo.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnInfo.setForeground(new java.awt.Color(255, 255, 255));
+        btnInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnInfo.setText("CONSULTAR INFORMACIÓN");
+        btnInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnInfo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAgregarMouseClicked(evt);
+                btnInfoMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnAgregarMousePressed(evt);
+                btnInfoMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnAgregarMouseReleased(evt);
+                btnInfoMouseReleased(evt);
             }
         });
 
-        javax.swing.GroupLayout btnAgregarBGLayout = new javax.swing.GroupLayout(btnAgregarBG);
-        btnAgregarBG.setLayout(btnAgregarBGLayout);
-        btnAgregarBGLayout.setHorizontalGroup(
-            btnAgregarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+        javax.swing.GroupLayout btnInfoBGLayout = new javax.swing.GroupLayout(btnInfoBG);
+        btnInfoBG.setLayout(btnInfoBGLayout);
+        btnInfoBGLayout.setHorizontalGroup(
+            btnInfoBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
         );
-        btnAgregarBGLayout.setVerticalGroup(
-            btnAgregarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnAgregarBGLayout.createSequentialGroup()
+        btnInfoBGLayout.setVerticalGroup(
+            btnInfoBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnInfoBGLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        bgPanel.add(btnAgregarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, 330, -1));
+        bgPanel.add(btnInfoBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, 330, -1));
 
         cmbInstituciones.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         cmbInstituciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Instituciones" }));
         cmbInstituciones.setBorder(null);
-        bgPanel.add(cmbInstituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 180, 40));
+        bgPanel.add(cmbInstituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 200, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -322,15 +319,15 @@ public class Actividades extends javax.swing.JPanel {
         llenarTabla();
     }//GEN-LAST:event_formFocusGained
 
-    private void btnAgregarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseReleased
-        btnAgregarBG.setBackground(new Color(76,131,122));
-    }//GEN-LAST:event_btnAgregarMouseReleased
+    private void btnInfoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInfoMouseReleased
+        btnInfoBG.setBackground(new Color(76,131,122));
+    }//GEN-LAST:event_btnInfoMouseReleased
 
-    private void btnAgregarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMousePressed
-        btnAgregarBG.setBackground(new Color(103, 149, 142));
-    }//GEN-LAST:event_btnAgregarMousePressed
+    private void btnInfoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInfoMousePressed
+        btnInfoBG.setBackground(new Color(103, 149, 142));
+    }//GEN-LAST:event_btnInfoMousePressed
 
-    private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
+    private void btnInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInfoMouseClicked
         // ABRE SUB-FORM CON LAS INSTITUCIONES.
         //DefaultTableModel modelo = (DefaultTableModel) tablaCuponeras.getModel();
         int selectedRowId = tablaActividades.getSelectedRow();
@@ -345,17 +342,17 @@ public class Actividades extends javax.swing.JPanel {
         }else{
             JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una actividad existente.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btnAgregarMouseClicked
+    }//GEN-LAST:event_btnInfoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgPanel;
     private javax.swing.JLabel btnActualizarActividades;
     private javax.swing.JPanel btnActualizarActividadesBG;
-    private javax.swing.JLabel btnAgregar;
-    private javax.swing.JPanel btnAgregarBG;
     private javax.swing.JLabel btnAlta;
     private javax.swing.JPanel btnAltaBG;
+    private javax.swing.JLabel btnInfo;
+    private javax.swing.JPanel btnInfoBG;
     private javax.swing.JComboBox<String> cmbInstituciones;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane scrollTabla;

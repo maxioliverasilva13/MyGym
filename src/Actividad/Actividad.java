@@ -21,6 +21,7 @@ import Cuponera.Cuponera;
 import javax.persistence.OneToMany;
 import Clase.Clase;
 import CuponeraXActividad.CuponeraXActividad;
+import java.util.List;
 
 /**
  *
@@ -128,6 +129,5 @@ public class Actividad implements Serializable {
     public void setCuponerasXActividad(Collection<CuponeraXActividad> cuponerasXActividad) {
         this.cuponerasXActividad = cuponerasXActividad;
     }
-    
-    
+
 }

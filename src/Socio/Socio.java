@@ -8,14 +8,16 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import Registro.Registro;
+import Usuario.Usuario;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.PrimaryKeyJoinColumn;
 
-/**
- *
- * @author maximilianooliverasilva
- */
+
 @Entity
-public class Socio extends Usuario.Usuario {
+@PrimaryKeyJoinColumn(name = "userId")
+public class Socio extends Usuario{
     
     @OneToMany(mappedBy = "socio")
     private Collection<Registro> registros;
+    
 }

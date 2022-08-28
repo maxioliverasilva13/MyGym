@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import Institucion.Institucion;
 import java.util.Set;
 import javax.persistence.JoinColumn;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -20,6 +21,7 @@ import javax.persistence.Table;
  * @author maximilianooliverasilva
  */
 @Entity
+@PrimaryKeyJoinColumn(name = "userId")
 @Table
 public class Profesor extends Usuario {
  private String descripcionGeneral;
@@ -33,6 +35,7 @@ public class Profesor extends Usuario {
  public void addInstitucion(Institucion a){
      this.instituciones.add(a);
  }
+
 
     public String getDescripcionGeneral() {
         return descripcionGeneral;

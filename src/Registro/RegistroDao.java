@@ -16,14 +16,14 @@ import javax.persistence.EntityTransaction;
  *
  * @author maximilianooliverasilva
  */
-public class RegistroDao implements InterfaceRegistroDao {
+public class RegistroDAO implements InterfaceRegistroDao {
     EntityManager em = InterfaceEntityManager.getInstance();
     ClaseDao clasedao = new ClaseDao();
-    
-    RegistroDao(){
-        
+
+    RegistroDAO(){
+
     }
-    
+
     @Override
     public void insertar(int idSocio, int idClase, DtRegistro registro){
         try {
@@ -48,7 +48,7 @@ public class RegistroDao implements InterfaceRegistroDao {
         } catch (Exception e) {
         }
     }
-    
+
     @Override
     public Registro existe(int id){
         try {
@@ -62,6 +62,6 @@ public class RegistroDao implements InterfaceRegistroDao {
         }
         return null;
     }
-    
+
 
 }
