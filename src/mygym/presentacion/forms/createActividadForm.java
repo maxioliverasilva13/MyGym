@@ -26,7 +26,7 @@ public class createActividadForm extends javax.swing.JFrame{
     /**
      * Creates new form crearCuponeraForm
      */
-    
+    int xMouse, yMouse;
     Color gris = new Color(204,204,204);
     
     public createActividadForm() {
@@ -105,6 +105,11 @@ public class createActividadForm extends javax.swing.JFrame{
 
         dateChooserActual = new com.raven.datechooser.DateChooser();
         jPanel2 = new javax.swing.JPanel();
+        dragBar = new javax.swing.JLabel();
+        btnMinimizarBG = new javax.swing.JPanel();
+        btnMinimizar = new javax.swing.JLabel();
+        btnExitBG = new javax.swing.JPanel();
+        btnExit = new javax.swing.JLabel();
         lblHeader = new javax.swing.JLabel();
         lblInstitucion = new javax.swing.JLabel();
         cmbInstituciones = new javax.swing.JComboBox<>();
@@ -137,16 +142,84 @@ public class createActividadForm extends javax.swing.JFrame{
         setTitle("Crear cuponera");
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(500, 540));
+        setUndecorated(true);
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(215, 215, 215)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        dragBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                dragBarMouseDragged(evt);
+            }
+        });
+        dragBar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                dragBarMousePressed(evt);
+            }
+        });
+        jPanel2.add(dragBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 20));
+
+        btnMinimizarBG.setBackground(java.awt.Color.lightGray);
+
+        btnMinimizar.setFont(new java.awt.Font("Lucida Console", 1, 18)); // NOI18N
+        btnMinimizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnMinimizar.setText("-");
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnMinimizarBGLayout = new javax.swing.GroupLayout(btnMinimizarBG);
+        btnMinimizarBG.setLayout(btnMinimizarBGLayout);
+        btnMinimizarBGLayout.setHorizontalGroup(
+            btnMinimizarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnMinimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+        btnMinimizarBGLayout.setVerticalGroup(
+            btnMinimizarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnMinimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+        );
+
+        jPanel2.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 30, 20));
+
+        btnExitBG.setBackground(new java.awt.Color(174, 0, 51));
+
+        btnExit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnExit.setForeground(new java.awt.Color(255, 255, 255));
+        btnExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnExit.setText("X");
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExitMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnExitBGLayout = new javax.swing.GroupLayout(btnExitBG);
+        btnExitBG.setLayout(btnExitBGLayout);
+        btnExitBGLayout.setHorizontalGroup(
+            btnExitBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnExitBGLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        btnExitBGLayout.setVerticalGroup(
+            btnExitBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel2.add(btnExitBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, 30, 20));
 
         lblHeader.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
         lblHeader.setForeground(new java.awt.Color(4, 37, 58));
         lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHeader.setText("Alta de Actividad Deportiva");
-        jPanel2.add(lblHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 500, 29));
+        jPanel2.add(lblHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 500, 29));
 
         lblInstitucion.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblInstitucion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -299,6 +372,26 @@ public class createActividadForm extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_btnCrearMouseClicked
 
+    private void dragBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dragBarMouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xMouse, y - yMouse);
+    }//GEN-LAST:event_dragBarMouseDragged
+
+    private void dragBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dragBarMousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_dragBarMousePressed
+
+    private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
+        this.setExtendedState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarMouseClicked
+
+    private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnExitMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -340,8 +433,13 @@ public class createActividadForm extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnCrear;
     private javax.swing.JPanel btnCrearBG;
+    private javax.swing.JLabel btnExit;
+    private javax.swing.JPanel btnExitBG;
+    private javax.swing.JLabel btnMinimizar;
+    private javax.swing.JPanel btnMinimizarBG;
     private javax.swing.JComboBox<String> cmbInstituciones;
     private com.raven.datechooser.DateChooser dateChooserActual;
+    private javax.swing.JLabel dragBar;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblCosto;
     private javax.swing.JLabel lblDescripcion;
