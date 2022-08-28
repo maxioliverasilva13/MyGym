@@ -78,7 +78,6 @@ public class Instituciones extends javax.swing.JPanel {
         
         newframe.setVisible(true);
         
-        this.dispose();
     }//GEN-LAST:event_addButtonActionPerformed
 
 
