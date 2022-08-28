@@ -21,6 +21,7 @@ import Cuponera.Cuponera;
 import javax.persistence.OneToMany;
 import Clase.Clase;
 import CuponeraXActividad.CuponeraXActividad;
+import java.util.List;
 
 /**
  *
@@ -88,5 +89,15 @@ public class Actividad implements Serializable {
         this.fechaRegistro = fechaRegistro;
     }
     
+    public void setProfesor(Profesor profesor){
+        this.profesor = profesor;
+    }
+    
+    public void setInstitucion(Institucion institucion){
+        this.institucion = institucion;
+        
+    }
+    
+  
     
 }
