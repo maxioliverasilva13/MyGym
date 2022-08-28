@@ -9,7 +9,7 @@ package Registro;
  * @author maximilianooliverasilva
  */
 public class RegistroBO implements InterfaceRegistroBO {
-    RegistroDAO registrodao = new RegistroDAO();
+    RegistroDao registrodao = new RegistroDao();
     
     @Override
     public void agregarRegistro(int idSocio, int idClase, DtRegistro registro){

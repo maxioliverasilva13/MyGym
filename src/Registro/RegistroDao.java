@@ -16,11 +16,11 @@ import javax.persistence.EntityTransaction;
  *
  * @author maximilianooliverasilva
  */
-public class RegistroDAO implements InterfaceRegistroDao {
+public class RegistroDao implements InterfaceRegistroDao {
     EntityManager em = InterfaceEntityManager.getInstance();
     ClaseDao clasedao = new ClaseDao();
 
-    RegistroDAO(){
+    RegistroDao(){
 
     }
 
