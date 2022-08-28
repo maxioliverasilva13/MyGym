@@ -16,6 +16,9 @@ import Actividad.Actividad;
 import java.util.Collection;
 import javax.persistence.OneToMany;
 import CuponeraXActividad.CuponeraXActividad;
+import CuponeraXActividad.DtCuponeraXActividad;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -32,8 +35,11 @@ public class Cuponera implements Serializable {
     private Date periodoVigencia;
     private int descuento;
     @OneToMany(mappedBy = "cuponera")
-    private Collection<CuponeraXActividad> cuponerasXActividad;
+    private List<CuponeraXActividad> cuponerasXActividad;
     
+    public void addCuponeraXActividad(CuponeraXActividad cupXAct) {
+        cuponerasXActividad.add(cupXAct);
+    }
 
     public int getId() {
         return id;
@@ -73,6 +79,16 @@ public class Cuponera implements Serializable {
 
     public void setDescuento(int descuento) {
         this.descuento = descuento;
+    }
+    
+    public DtCuponera getDtCuponera() {
+        List<DtCuponeraXActividad> cups = new ArrayList<>();
+        cuponerasXActividad.forEach((cup) -> {
+            cups.add(cup.getDtCuponeraXActividad());
+        });
+        
+        DtCuponera dtCup = new DtCuponera(id, nombre, descripcion, periodoVigencia, descuento, cups);
+        return dtCup;
     }
     
     

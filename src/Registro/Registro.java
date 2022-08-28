@@ -15,6 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import Socio.Socio;
 import Clase.Clase;
+import javax.persistence.Basic;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -27,6 +30,8 @@ public class Registro implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private float costo;
+    @Basic
+    @Temporal(TemporalType.DATE)
     private Date fecha;
     @ManyToOne
     @JoinColumn
@@ -34,6 +39,22 @@ public class Registro implements Serializable {
     @ManyToOne
     @JoinColumn
     private Clase clase;
+
+    public Socio getSocio() {
+        return socio;
+    }
+
+    public void setSocio(Socio socio) {
+        this.socio = socio;
+    }
+
+    public Clase getClase() {
+        return clase;
+    }
+
+    public void setClase(Clase clase) {
+        this.clase = clase;
+    }
 
     public int getId() {
         return id;
@@ -59,6 +80,13 @@ public class Registro implements Serializable {
         this.fecha = fecha;
     }
     
+    public DtRegistro getDtRegistro() {
+        DtRegistro dtToReturn = new DtRegistro(
+          id, costo, fecha, (socio != null) ? socio.getNombre() : null,
+          (clase != null) ? clase.getNombre() : null
+        );
+        return dtToReturn;
+    }
     
 
 }

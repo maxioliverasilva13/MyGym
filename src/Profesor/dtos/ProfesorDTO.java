@@ -5,6 +5,7 @@
 package Profesor.dtos;
 
 import Usuario.dtos.UsuarioDTO;
+import java.util.Date;
 
 /**
  *

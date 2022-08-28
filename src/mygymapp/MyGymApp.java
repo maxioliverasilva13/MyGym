@@ -29,17 +29,17 @@ import mygym.presentacion.pages.Dashboard;
  */
 public class MyGymApp {
 
-     
-    
-    
-    
-    public static void main(String[] args)  {         
-        EntityManager inter = InterfaceEntityManager.getInstance();    
+
+
+
+
+    public static void main(String[] args)  {
+        EntityManager inter = InterfaceEntityManager.getInstance();
         Dashboard ds = new Dashboard();
         ds.setVisible(true);
-        
+
         IProfesorBO profBO = new ProfesorBO();
-        
+
         try{
            ProfesorDTO pro = profBO.getProfesorById(2);
            System.out.println(pro.getId());
@@ -48,10 +48,10 @@ public class MyGymApp {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
-        
 
-        
-      
+
+
+
     }
-    
+
 }

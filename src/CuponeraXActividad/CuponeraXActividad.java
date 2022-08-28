@@ -47,6 +47,26 @@ public class CuponeraXActividad implements Serializable {
     public void setCantClases(int cantClases) {
         this.cantClases = cantClases;
     }
+
+    public Actividad getActividad() {
+        return actividad;
+    }
+
+    public void setActividad(Actividad actividad) {
+        this.actividad = actividad;
+    }
+
+    public Cuponera getCuponera() {
+        return cuponera;
+    }
+
+    public void setCuponera(Cuponera cuponera) {
+        this.cuponera = cuponera;
+    }
+    
+    public DtCuponeraXActividad getDtCuponeraXActividad() {
+        return new DtCuponeraXActividad(id, cantClases, (cuponera != null) ? cuponera.getDtCuponera() : null);
+    }
     
     
 }
