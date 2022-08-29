@@ -31,20 +31,16 @@ public class ClaseDao implements InterfaceClaseDao {
 
     @Override
     public void insertar(int idActividad, Clase clase){
-        try {
-            Actividad act = em.find(Actividad.class, idActividad);
-            if (act == null) {
-                throw new ActividadNotFoundException("Actividad no encontrada");
-            }
-            EntityTransaction tr = em.getTransaction();
-            tr.begin();
-            clase.setActividad(act);
-            actdao.agergarClase(idActividad, clase);
-            em.persist(clase);
-            tr.commit();
-        } catch (ActividadNotFoundException e) {
-            System.out.println(e.getMessage());
+        Actividad act = em.find(Actividad.class, idActividad);
+        if (act == null) {
+            throw new ActividadNotFoundException("Actividad no encontrada");
         }
+        EntityTransaction tr = em.getTransaction();
+        tr.begin();
+        clase.setActividad(act);
+        actdao.agergarClase(idActividad, clase);
+        em.persist(clase);
+        tr.commit();
     }
     
     @Override
@@ -67,35 +63,24 @@ public class ClaseDao implements InterfaceClaseDao {
     }
     
     public void agregarRegistro(int idClase, int idRegistro){
-        try {
-          Clase clase = existe(idClase);
-          // TODO: SOCIO VALIDATION
-          Registro r = em.find(Registro.class, idRegistro);
-          if (r == null) {
-              throw new RegistroNotFoundException("Registro no encontrado");
-          }
-          EntityTransaction tr = em.getTransaction();
-          tr.begin();
-          clase.addRegistro(r);
-          tr.commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        Clase clase = existe(idClase);
+        // TODO: SOCIO VALIDATION
+        Registro r = em.find(Registro.class, idRegistro);
+        if (r == null) {
+            throw new RegistroNotFoundException("Registro no encontrado");
         }
+        EntityTransaction tr = em.getTransaction();
+        tr.begin();
+        clase.addRegistro(r);
+        tr.commit();
     }
     
     @Override
     public Clase existe(int id){
-        try {
-            Clase clase = em.find(Clase.class, id);
-            if (clase == null) {
-                throw new ClaseNotFoundException("La clase no existe");
-            }
-            return clase;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        Clase clase = em.find(Clase.class, id);
+        if (clase == null) {
+            throw new ClaseNotFoundException("La clase no existe");
         }
-        return null;
+        return clase;
     }
-
-
 }

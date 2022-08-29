@@ -8,7 +8,7 @@ package Profesor.exceptions;
  *
  * @author angel
  */
-public class ProfesorNotExist extends Exception {
+public class ProfesorNotExist extends RuntimeException {
 
     /**
      * Creates a new instance of <code>ProfesorNotExist</code> without detail

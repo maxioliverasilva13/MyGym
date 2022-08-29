@@ -8,7 +8,7 @@ package Exceptions;
  *
  * @author maximilianooliverasilva
  */
-public class ClaseNotFoundException extends Exception { 
+public class ClaseNotFoundException extends RuntimeException { 
     public ClaseNotFoundException(String errorMessage) {
         super(errorMessage);
     }

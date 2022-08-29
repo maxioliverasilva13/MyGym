@@ -8,7 +8,7 @@ package Exceptions;
  *
  * @author maximilianooliverasilva
  */
-public class ProfesorNotFoundException extends Exception { 
+public class ProfesorNotFoundException extends RuntimeException { 
     public ProfesorNotFoundException(String errorMessage) {
         super(errorMessage);
     }

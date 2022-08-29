@@ -8,7 +8,7 @@ package Exceptions;
  *
  * @author maximilianooliverasilva
  */
-public class ActividadNotFoundException extends Exception { 
+public class ActividadNotFoundException extends RuntimeException { 
     public ActividadNotFoundException(String errorMessage) {
         super(errorMessage);
     }

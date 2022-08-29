@@ -8,7 +8,7 @@ package Exceptions;
  *
  * @author maximilianooliverasilva
  */
-public class CuponeraXActividadNotFoundException extends Exception { 
+public class CuponeraXActividadNotFoundException extends RuntimeException { 
     public CuponeraXActividadNotFoundException(String errorMessage) {
         super(errorMessage);
     }

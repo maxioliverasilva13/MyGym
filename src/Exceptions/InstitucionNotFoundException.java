@@ -8,7 +8,7 @@ package Exceptions;
  *
  * @author maximilianooliverasilva
  */
-public class InstitucionNotFoundException extends Exception { 
+public class InstitucionNotFoundException extends RuntimeException { 
     public InstitucionNotFoundException(String errorMessage) {
         super(errorMessage);
     }

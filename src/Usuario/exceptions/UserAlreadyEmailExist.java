@@ -9,7 +9,7 @@ package Usuario.exceptions;
  * @author angel
  */
 @SuppressWarnings("serial")
-public class UserAlreadyEmailExist extends Exception {
+public class UserAlreadyEmailExist extends RuntimeException {
 
     /**
      * Creates a new instance of <code>UserAlreadyEmailExist</code> without
