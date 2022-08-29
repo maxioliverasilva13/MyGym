@@ -6,12 +6,16 @@ package Socio;
 
 
 import EntityManajer.InterfaceEntityManager;
+import Exceptions.RegistroNotFoundException;
+import Exceptions.SocioNotFoundException;
 import Profesor.Profesor;
+import Registro.RegistroDao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import Registro.Registro;
 
 /**
  *
@@ -20,6 +24,7 @@ import javax.persistence.Query;
 public class SocioDAO implements ISocioDAO{
     
     EntityManager em = null;
+    
     public SocioDAO(){
         this.em = InterfaceEntityManager.getInstance();
 
@@ -45,6 +50,26 @@ public class SocioDAO implements ISocioDAO{
           }
     }
     
+    @Override
+    public void agregarRegistro(int idSocio, int idRegistro){
+        try {
+            Socio soc = em.find(Socio.class, idSocio);
+            if (soc == null) {
+                throw new SocioNotFoundException("El socio no existe");
+            }
+            Registro reg = em.find(Registro.class, idRegistro);
+            if (reg == null) {
+                throw new RegistroNotFoundException("Registro no encontrado");
+            }
+             EntityTransaction tr = em.getTransaction();
+             tr.begin();
+             soc.addRegistro(reg);
+             tr.commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     
    
 }

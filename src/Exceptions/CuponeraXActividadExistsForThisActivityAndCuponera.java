@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package CuponeraXActividad;
+package Exceptions;
 
 /**
  *
  * @author maximilianooliverasilva
  */
-public interface InterfaceCuponeraXActividadDao {
-    public void insertar(int idActividad, int idCuponera, DtCuponeraXActividad cupXA);
-    public CuponeraXActividad existe(int idCuXAc);
-
+public class CuponeraXActividadExistsForThisActivityAndCuponera extends Exception { 
+    public CuponeraXActividadExistsForThisActivityAndCuponera(String errorMessage) {
+        super(errorMessage);
+    }
 }

@@ -4,6 +4,9 @@
  */
 package Institucion;
 
+import java.util.HashMap;
+import java.util.List;
+
 /**
  *
  * @author maximilianooliverasilva
@@ -34,8 +37,17 @@ public class InstitucionBO implements InterfaceInstitucionBO {
     public void agregarActividad(int idActividad, int idInstitucion){
         insDao.agregarActividad(idActividad, idInstitucion);
     }
-
-
-
+    
+    
+    @Override
+    public HashMap<Integer, DtInstitucion> listarInstituciones(){
+        List<Institucion> instituciones = insDao.listarInstituciones();
+        HashMap<Integer, DtInstitucion> dtinstituciones = new HashMap<>();
+        
+        instituciones.forEach((ins) -> {
+            dtinstituciones.put(ins.getId(), ins.getDtInstitucion());
+        });
+        return dtinstituciones;
+    }
 
 }

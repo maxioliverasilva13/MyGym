@@ -8,6 +8,7 @@ import Actividad.ActividadBO;
 import Actividad.IActividadBO;
 import Actividad.dtos.ActividadCreateDTO;
 import EntityManajer.InterfaceEntityManager;
+import Institucion.InstitucionBO;
 import Profesor.IProfesorBO;
 import Profesor.Profesor;
 import Profesor.ProfesorBO;
@@ -22,6 +23,16 @@ import Usuario.exceptions.UserAlreadyEmailExist;
 import java.util.Date;
 import javax.persistence.EntityManager;
 import mygym.presentacion.pages.Dashboard;
+import Actividad.Actividad;
+import Actividad.dtos.ActividadDetalleDTO;
+import Clase.ClaseBO;
+import Clase.DtClase;
+import CuponeraXActividad.CuponeraXActividadBo;
+import CuponeraXActividad.CuponeraXActividadDao;
+import Registro.DtRegistro;
+import Registro.RegistroBO;
+import Registro.RegistroDao;
+import CuponeraXActividad.DtCuponeraXActividad;
 
 /**
  *
@@ -35,23 +46,16 @@ public class MyGymApp {
 
     public static void main(String[] args)  {
         EntityManager inter = InterfaceEntityManager.getInstance();
+        ClaseBO clasebo = new ClaseBO();
+         
         Dashboard ds = new Dashboard();
         ds.setVisible(true);
 
-        IProfesorBO profBO = new ProfesorBO();
-
-        try{
-           ProfesorDTO pro = profBO.getProfesorById(2);
-           System.out.println(pro.getId());
-        }catch(ProfesorNotExist p){
-            System.out.println(p.getMessage());
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-
-
-
-
+        //DtRegistro dt = new DtRegistro(0, 155, null, "", "");
+        //reg.agregarRegistro(2, 1, dt);
+        DtClase dtclase = new DtClase(1, "Natacion sinc", null, 1, 2, "www.google.com", null );
+        clasebo.insertarClase(1, dtclase);
+        
     }
 
 }

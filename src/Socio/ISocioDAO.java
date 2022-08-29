@@ -4,6 +4,7 @@
  */
 package Socio;
 
+import CuponeraXActividad.CuponeraXActividad;
 import java.util.List;
 
 /**
@@ -13,4 +14,5 @@ import java.util.List;
 public interface ISocioDAO {
     public List<Socio> listar();
     public Socio getById(int id);
+    public void agregarRegistro(int idSocio, int idRegistro);
 }

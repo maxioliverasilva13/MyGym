@@ -16,7 +16,10 @@ import Profesor.Profesor;
 import java.util.Collection;
 import javax.persistence.OneToMany;
 import Actividad.Actividad;
+import java.util.ArrayList;
 import java.util.List;
+import Profesor.dtos.ProfesorDTO;
+import Actividad.dtos.ActividadDetalleDTO;
 
 /**
  *
@@ -79,8 +82,18 @@ public class Institucion implements Serializable {
     
     
     public DtInstitucion getDtInstitucion() {
-        DtInstitucion dtToReturn = new DtInstitucion(id, nombre, descripcion, url);
-        // TODO : get all professors for this institucion and all actividades
+        List<ProfesorDTO> profs = new ArrayList<>();
+        this.profesores.forEach((profe) -> {
+            ProfesorDTO prof = new ProfesorDTO(profe.getId(), profe.getNombre(), profe.getApellido(), profe.getNickname(), profe.getEmail(), profe.getNacimiento(), profe.getDescripcionGeneral(), profe.getBiografia(), profe.getLinkSitioWeb());
+            profs.add(prof);
+        });
+        List<ActividadDetalleDTO> acts = new ArrayList<>();
+        this.actividades.forEach((activi) -> {
+            ActividadDetalleDTO ac = new ActividadDetalleDTO(activi.getNombre(), activi.getId(), this.getId(), activi.getProfesor().getId(), activi.getCosto(), Float.toString(activi.getCosto()), activi.getFechaRegistro(), activi.getDuracion());
+            acts.add(ac);
+        });
+        
+        DtInstitucion dtToReturn = new DtInstitucion(id, nombre, descripcion, url, profs, acts);
         return dtToReturn;
     }
     

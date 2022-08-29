@@ -56,7 +56,7 @@ public class ActividadBO  implements IActividadBO{
         ActividadDetalleDTO res = null;
         ActividadDao actDao = new ActividadDao();
         
-       // Actividad act = actDao.getById(actDao)
+        // Actividad act = actDao.getById(actDao)
         return null;
         
     }

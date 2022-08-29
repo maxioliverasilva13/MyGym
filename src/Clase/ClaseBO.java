@@ -18,7 +18,7 @@ public class ClaseBO implements InterfaceClaseBO {
     ClaseDao claseDao = new ClaseDao();
     
     @Override
-    public void insertarAct(int idActividad, DtClase clase){
+    public void insertarClase(int idActividad, DtClase clase){
         Clase cl = new Clase();
         cl.setCapMaxima(clase.getCapMaxima());
         cl.setCapMinima(clase.getCapMinima());

@@ -11,6 +11,7 @@ import java.util.Date;
  * @author angel
  */
 public class ActividadDetalleDTO {
+    private String nombre;
     private int id;
     private int institucion_id;
     private double costo;
@@ -23,7 +24,7 @@ public class ActividadDetalleDTO {
 
    
     
-    public ActividadDetalleDTO(int id,int institucion_id,int profesor_id, double costo, String descripcion, Date fecha_registro, int duracion){
+    public ActividadDetalleDTO(String nombre, int id,int institucion_id,int profesor_id, double costo, String descripcion, Date fecha_registro, int duracion){
         this.id = id;
         this.institucion_id = institucion_id;
         this.profesor_id = profesor_id;
@@ -31,6 +32,7 @@ public class ActividadDetalleDTO {
         this.descripcion = descripcion;
         this.fecha_registro = fecha_registro;
         this.duracion = duracion;
+        this.nombre = nombre;
     }
     
     public int getId(){
@@ -46,6 +48,22 @@ public class ActividadDetalleDTO {
      public String getDescripcion(){
          return this.descripcion;
      }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getInstitucion_id() {
+        return institucion_id;
+    }
+
+    public Date getFecha_registro() {
+        return fecha_registro;
+    }
+
+    public int getProfesor_id() {
+        return profesor_id;
+    }
     
      public int getDuracion(){
          return this.duracion;

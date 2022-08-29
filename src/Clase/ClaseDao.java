@@ -15,6 +15,7 @@ import Registro.DtRegistro;
 import Registro.Registro;
 import java.util.Collection;
 import java.util.List;
+import Actividad.ActividadDao;
 
 /**
  *
@@ -22,6 +23,7 @@ import java.util.List;
  */
 public class ClaseDao implements InterfaceClaseDao {
     EntityManager em = InterfaceEntityManager.getInstance();
+    ActividadDao actdao = new ActividadDao();
     
     public ClaseDao(){
         
@@ -37,7 +39,7 @@ public class ClaseDao implements InterfaceClaseDao {
             EntityTransaction tr = em.getTransaction();
             tr.begin();
             clase.setActividad(act);
-            // TODO : actividad.addClase
+            actdao.agergarClase(idActividad, clase);
             em.persist(clase);
             tr.commit();
         } catch (ActividadNotFoundException e) {
@@ -72,7 +74,6 @@ public class ClaseDao implements InterfaceClaseDao {
           if (r == null) {
               throw new RegistroNotFoundException("Registro no encontrado");
           }
-          
           EntityTransaction tr = em.getTransaction();
           tr.begin();
           clase.addRegistro(r);

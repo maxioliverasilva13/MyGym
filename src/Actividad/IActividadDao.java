@@ -21,6 +21,8 @@ public interface IActividadDao {
     public void create(ActividadCreateDTO act ,Profesor profesor,Institucion institucion);
     public Actividad getById(ActividadCreateDTO act);
     public List<Actividad> listAll();
-  
+    public void agregarCupXActividad(int idActividad, CuponeraXActividad idCxA );
+    public void agergarClase(int idActividad, Clase clase);
+
    
 }

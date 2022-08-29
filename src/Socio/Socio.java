@@ -20,4 +20,12 @@ public class Socio extends Usuario{
     @OneToMany(mappedBy = "socio")
     private Collection<Registro> registros;
     
+    public void addRegistro(Registro r) {
+        this.registros.add(r);
+    }
+
+    public Collection<Registro> getRegistros() {
+        return registros;
+    }
+    
 }
