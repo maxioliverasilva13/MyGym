@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 import Profesor.dtos.ProfesorDTO;
 import Actividad.dtos.ActividadDetalleDTO;
+import Actividad.dtos.ActividadDTO;
+import utils.ParserClassesToDt;
 
 /**
  *
@@ -35,9 +37,9 @@ public class Institucion implements Serializable {
     private String descripcion;
     private String url;
     @ManyToMany(mappedBy = "instituciones")
-    private List<Profesor> profesores;
+    private List<Profesor> profesores = new ArrayList<>();
     @OneToMany(mappedBy = "institucion")
-    private List<Actividad> actividades;
+    private List<Actividad> actividades = new ArrayList<>();
     
     public void addProfesor(Profesor prof) {
         this.profesores.add(prof);
@@ -79,21 +81,21 @@ public class Institucion implements Serializable {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    public List<Profesor> getProfesores() {
+        return profesores;
+    }
+
+    public List<Actividad> getActividades() {
+        return actividades;
+    }
+    
     
     
     public DtInstitucion getDtInstitucion() {
-        List<ProfesorDTO> profs = new ArrayList<>();
-        this.profesores.forEach((profe) -> {
-            ProfesorDTO prof = new ProfesorDTO(profe.getId(), profe.getNombre(), profe.getApellido(), profe.getNickname(), profe.getEmail(), profe.getNacimiento(), profe.getDescripcionGeneral(), profe.getBiografia(), profe.getLinkSitioWeb());
-            profs.add(prof);
-        });
-        List<ActividadDetalleDTO> acts = new ArrayList<>();
-        this.actividades.forEach((activi) -> {
-            ActividadDetalleDTO ac = new ActividadDetalleDTO(activi.getNombre(), activi.getId(), this.getId(), activi.getProfesor().getId(), activi.getCosto(), Float.toString(activi.getCosto()), activi.getFechaRegistro(), activi.getDuracion());
-            acts.add(ac);
-        });
-        
-        DtInstitucion dtToReturn = new DtInstitucion(id, nombre, descripcion, url, profs, acts);
+        ParserClassesToDt parseclass = new ParserClassesToDt();
+
+        DtInstitucion dtToReturn = new DtInstitucion(id, nombre, descripcion, url, parseclass.getProfesoresDTO(profesores) , parseclass.getActividadDTO(actividades));
         return dtToReturn;
     }
     

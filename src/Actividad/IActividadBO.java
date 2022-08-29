@@ -9,6 +9,7 @@ import Actividad.dtos.ActividadDTO;
 import Actividad.dtos.ActividadDetalleDTO;
 import CuponeraXActividad.CuponeraXActividad;
 import java.util.HashMap;
+import mygym.logica.usuario.dataTypes.DtActividad;
 
 
 /**
@@ -21,5 +22,5 @@ public interface IActividadBO {
     public HashMap<Integer,ActividadDTO> listarByInstitucion(int idInstitucion);
     public HashMap<Integer,ActividadDTO> listarNotInCuponeras(int cuponeraId);
     public void addCupXAct(CuponeraXActividad cupXAct);
-
+    public HashMap<Integer, ActividadDTO> listarActividades();
 }

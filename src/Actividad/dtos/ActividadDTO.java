@@ -1,62 +1,79 @@
+
+package Actividad.dtos;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Actividad.dtos;
 
+import Clase.DtClase;
+import Institucion.DtInstitucion;
+import Profesor.dtos.ProfesorDTO;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
-/**
- *
- * @author angel
- */
 public class ActividadDTO {
     private int id;
-    private int institucion_id;
-    private double costo;
+    private String nombre;
     private String descripcion;
     private int duracion;
-    private Date fecha_registro;
-    private int profesor_id;
+    private float costo;
+    private Date fechaRegistro;
+    ProfesorDTO profesor;
+    private List<DtClase> clases;
+    DtInstitucion institucion;
     
-    
-   
-    
-    public ActividadDTO(int id,int institucion_id,int profesor_id, double costo, String descripcion, Date fecha_registro, int duracion){
-        this.id = id;
-        this.institucion_id = institucion_id;
-        this.profesor_id = profesor_id;
-        this.costo = costo;
+
+    public ActividadDTO(String nombre, String descripcion, int duracion, float costo, Date fechaRegistro) {
+        this.nombre = nombre;
         this.descripcion = descripcion;
-        this.fecha_registro = fecha_registro;
         this.duracion = duracion;
+        this.costo = costo;
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    
+    public ActividadDTO(int id, String nombre, String descripcion, int duracion, float costo, Date fechaRegistro, ProfesorDTO profe, List<DtClase> clases, DtInstitucion ins) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.duracion = duracion;
+        this.costo = costo;
+        this.fechaRegistro = fechaRegistro;
+        this.profesor = profe;
+        this.clases = clases;
+        this.id = id;
+        this.institucion = ins;
     }
     
     public int getId(){
-        return this.id;
+        return id;
     }
     
-     public int getInstitucionId(){
-         return this.institucion_id;
-     }
-     public double getCosto(){
-         return this.costo;
-     }
-     public String getDescripcion(){
-         return this.descripcion;
-     }
+    public ProfesorDTO getProfesor() {
+        return profesor;
+    }
     
-     public int getDuracion(){
-         return this.duracion;
-     }
-     
-     public Date getFechaRegistro(){
-        return this.fecha_registro;
-     }
-    
-     public int getProfesorId(){
-        return this.profesor_id;   
-     }
-    
-    
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public List<DtClase> getClases() {
+        return clases;
+    }
+
+    public int getDuracion() {
+        return duracion;
+    }
+
+    public float getCosto() {
+        return costo;
+    }
+
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
 }

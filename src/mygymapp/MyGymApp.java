@@ -33,28 +33,27 @@ import Registro.DtRegistro;
 import Registro.RegistroBO;
 import Registro.RegistroDao;
 import CuponeraXActividad.DtCuponeraXActividad;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  *
  * @author maximilianooliverasilva
  */
 public class MyGymApp {
-
-
-
-
-
     public static void main(String[] args)  {
-        EntityManager inter = InterfaceEntityManager.getInstance();
-        ClaseBO clasebo = new ClaseBO();
-         
-        Dashboard ds = new Dashboard();
-        ds.setVisible(true);
-
-        //DtRegistro dt = new DtRegistro(0, 155, null, "", "");
-        //reg.agregarRegistro(2, 1, dt);
-        DtClase dtclase = new DtClase(1, "Natacion sinc", null, 1, 2, "www.google.com", null );
-        clasebo.insertarClase(1, dtclase);
+        EntityManager em = InterfaceEntityManager.getInstance();
+        List<Profesor> profes = em.createNativeQuery("SELECT * FROM USUARIO", Profesor.class).getResultList();
+        
+        List<ProfesorDTO> profesall = new ArrayList<>();
+        profes.forEach((p) -> {
+            profesall.add(p.getDtProfesor());
+        });
+        
+        profesall.forEach((pi) -> {
+            System.out.println(pi.getNombre());
+        });
         
     }
 
