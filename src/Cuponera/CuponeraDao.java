@@ -9,10 +9,13 @@ import CuponeraXActividad.CuponeraXActividad;
 import CuponeraXActividad.DtCuponeraXActividad;
 import EntityManajer.InterfaceEntityManager;
 import Exceptions.CuponeraNotFoundException;
+import Exceptions.CuponeraAlreadyExistsException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,19 +26,24 @@ public class CuponeraDao implements InterfaceCuponeraDao {
     
     @Override
     public void insertar(DtCuponera cuponera){
-        try {
-            Cuponera cup = new Cuponera();
-            cup.setDescripcion(cuponera.getDescripcion());
-            cup.setDescuento(cuponera.getDescuento());
-            cup.setNombre(cuponera.getNombre());
-            cup.setPeriodoVigencia(cuponera.getPeriodoVigencia());
-            EntityTransaction et = em.getTransaction();
-            et.begin();
-            em.persist(cup);
-            et.commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        //try {
+            List<Cuponera> existe = em.createNativeQuery("select * from CUPONERA where NOMBRE='" + cuponera.getNombre() +"'").getResultList();
+            if (existe.size() > 0) {
+                throw new CuponeraAlreadyExistsException("Ya existe una cuponera con ese Nombre.");
+            }else{
+                Cuponera cup = new Cuponera();
+                cup.setDescripcion(cuponera.getDescripcion());
+                cup.setDescuento(cuponera.getDescuento());
+                cup.setNombre(cuponera.getNombre());
+                cup.setPeriodoVigencia(cuponera.getPeriodoVigencia());
+                EntityTransaction et = em.getTransaction();
+                et.begin();
+                em.persist(cup);
+                et.commit();
+            }
+        //} catch (Exception e) {
+            //JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        //}
     }
     
     @Override
