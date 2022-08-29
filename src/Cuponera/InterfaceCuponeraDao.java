@@ -7,6 +7,7 @@ package Cuponera;
 import CuponeraXActividad.DtCuponeraXActividad;
 import java.util.List;
 import java.util.Set;
+import CuponeraXActividad.CuponeraXActividad;
 
 /**
  *
@@ -16,5 +17,5 @@ public interface InterfaceCuponeraDao {
     public void insertar(DtCuponera cuponera);
     public List<Cuponera> listar();
     public Cuponera existe(int idCup);
-    public void agregarCupXActividad(int idCuponera, int idCupXActvidad);
+    public void agregarCupXActividad(int idCuponera, CuponeraXActividad cupXA);
 }

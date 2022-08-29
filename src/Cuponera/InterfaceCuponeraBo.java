@@ -14,6 +14,4 @@ public interface InterfaceCuponeraBo {
     public void agregarCuponera(DtCuponera cuponera);
     public HashMap<Integer, DtCuponera> listarCuponeras();
     public DtCuponera consultarCuponera(int idCuponera);
-    public void agregarCupXActividad(int idCuponera, int idCupXActvidad);
-
 }

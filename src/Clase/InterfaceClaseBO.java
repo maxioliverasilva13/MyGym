@@ -13,7 +13,7 @@ import java.util.HashMap;
  * @author maximilianooliverasilva
  */
 public interface InterfaceClaseBO {
-    public void insertarAct(int idActividad, DtClase clase);
+    public void insertarClase(int idActividad, DtClase clase);
     public HashMap<Integer, DtClase> listarClasesByAct(int idActividad);
     public DtClase consultarClase(int idClase);
     public void agregarRegistro(int idClase, int idRegistro);

@@ -11,6 +11,7 @@ import Exceptions.RegistroNotFoundException;
 import Exceptions.SocioNotFoundException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import Socio.SocioDAO;
 
 /**
  *
@@ -19,8 +20,9 @@ import javax.persistence.EntityTransaction;
 public class RegistroDao implements InterfaceRegistroDao {
     EntityManager em = InterfaceEntityManager.getInstance();
     ClaseDao clasedao = new ClaseDao();
+    SocioDAO socioDao = new SocioDAO();
 
-    RegistroDao(){
+    public RegistroDao(){
 
     }
 
@@ -43,9 +45,11 @@ public class RegistroDao implements InterfaceRegistroDao {
             r.setSocio(socio);
             em.persist(r);
             tr.commit();
-            // TODO : socioDao.agregarRegistro
-            clasedao.agregarRegistro(idClase, idSocio);
+            // Agrego el registro actual a las 2 puntas
+            socioDao.agregarRegistro(idSocio, r.getId());
+            clasedao.agregarRegistro(idClase, r.getId());
         } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 

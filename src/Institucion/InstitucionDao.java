@@ -12,6 +12,7 @@ import Profesor.Profesor;
 import Actividad.Actividad;
 import Exceptions.ActividadNotFoundException;
 import Exceptions.ProfesorNotFoundException;
+import java.util.List;
 
 /**
  *
@@ -88,6 +89,13 @@ public class InstitucionDao implements InterfaceInstitucionDao {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+    
+    @Override
+    public List<Institucion> listarInstituciones() {
+        List<Institucion> instituciones = em.createNativeQuery("select * from INSTITUCION", Institucion.class)
+        .getResultList();
+        return instituciones;
     }
 
 

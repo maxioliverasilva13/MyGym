@@ -49,7 +49,14 @@ public class Actividad implements Serializable {
     @OneToMany(mappedBy = "actividad")
     private Collection<CuponeraXActividad> cuponerasXActividad;
     
-
+    public void addCuponerasXActividad(CuponeraXActividad cuxact){
+        cuponerasXActividad.add(cuxact);
+    }
+    
+    public void addClase(Clase clase){
+        clases.add(clase);
+    }
+    
     public int getId() {
         return id;
     }

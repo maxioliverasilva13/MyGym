@@ -4,6 +4,8 @@
  */
 package Cuponera;
 
+import CuponeraXActividad.CuponeraXActividadDao;
+import CuponeraXActividad.CuponeraXActividad;
 import CuponeraXActividad.DtCuponeraXActividad;
 import EntityManajer.InterfaceEntityManager;
 import Exceptions.CuponeraNotFoundException;
@@ -62,13 +64,13 @@ public class CuponeraDao implements InterfaceCuponeraDao {
         return null;
     }
     
-    public void agregarCupXActividad(int idCuponera, int idCxA ){
+    @Override
+    public void agregarCupXActividad(int idCuponera, CuponeraXActividad cupXA ){
         try {
             Cuponera cup = existe(idCuponera);
-            // find the CxA
             EntityTransaction tr = em.getTransaction();
             tr.begin();
-            cup.addCuponeraXActividad(null);
+            cup.addCuponeraXActividad(cupXA);
             tr.commit();
         } catch (Exception e) {
         }

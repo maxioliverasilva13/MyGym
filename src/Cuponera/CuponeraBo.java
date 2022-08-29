@@ -36,12 +36,5 @@ public class CuponeraBo implements InterfaceCuponeraBo {
         }
         return cup.getDtCuponera();
     }
-    
-    @Override
-    public void agregarCupXActividad(int idCuponera, int idCupXActvidad){
-        cuponeradao.agregarCupXActividad(idCuponera, idCuponera);
-    }
-
-
 
 }

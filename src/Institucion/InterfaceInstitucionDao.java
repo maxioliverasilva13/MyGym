@@ -4,6 +4,8 @@
  */
 package Institucion;
 
+import java.util.List;
+
 /**
  *
  * @author maximilianooliverasilva
@@ -13,5 +15,6 @@ public interface InterfaceInstitucionDao {
     public Institucion existe(int id);
     public void agregarProfesor(int profesorId, int idInstitucion);
     public void agregarActividad(int actId, int insId);
+    public List<Institucion> listarInstituciones();
 
 }

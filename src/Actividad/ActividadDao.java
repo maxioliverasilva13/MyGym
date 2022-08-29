@@ -10,6 +10,10 @@ import Profesor.Profesor;
 import Institucion.Institucion;
 import java.util.ArrayList;
 import java.util.Collection;
+import CuponeraXActividad.CuponeraXActividadDao;
+import Cuponera.Cuponera;
+import Cuponera.CuponeraDao;
+import EntityManajer.InterfaceEntityManager;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -25,17 +29,15 @@ import javax.persistence.Persistence;
 
 
 public class ActividadDao implements IActividadDao {
-     private  EntityManagerFactory emf = Persistence.createEntityManagerFactory("Actividad");
-    
+    EntityManager em = InterfaceEntityManager.getInstance();
+    CuponeraDao cupDao = new CuponeraDao();
+     
     public ActividadDao(){
        
     } 
 
     @Override
     public void create(ActividadCreateDTO act ,Profesor profesor,Institucion institucion) {
-        
-        
-        EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
             Actividad activity = new Actividad();
@@ -60,6 +62,31 @@ public class ActividadDao implements IActividadDao {
     @Override
     public List<Actividad> listAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    @Override
+    public void agregarCupXActividad(int idActividad, CuponeraXActividad cupXA ){
+        try {
+            Actividad act = em.find(Actividad.class, idActividad);
+
+            EntityTransaction tr = em.getTransaction();
+            tr.begin();
+            act.addCuponerasXActividad(cupXA);
+            tr.commit();
+        } catch (Exception e) {
+        }
+    }
+    
+    @Override
+    public void agergarClase(int idActividad, Clase clase){
+        try {
+            Actividad act = em.find(Actividad.class, idActividad);
+            EntityTransaction tr = em.getTransaction();
+            tr.begin();
+            act.addClase(clase);
+            tr.commit();
+        } catch (Exception e) {
+        }
     }
     
   

@@ -4,6 +4,8 @@
  */
 package Institucion;
 
+import java.util.HashMap;
+
 /**
  *
  * @author maximilianooliverasilva
@@ -13,4 +15,5 @@ public interface InterfaceInstitucionBO {
     public DtInstitucion existeInstitucion(int idInstitucion);
     public void agregarProfesor(int idProfesor, int idInstitucion);
     public void agregarActividad(int idActividad, int idInstitucion);
+    public HashMap<Integer, DtInstitucion> listarInstituciones();
 }

@@ -41,6 +41,17 @@ public class DtClase {
         this.idActividad = idActividad;
         this.actividadName = actividadName;
     }
+    
+    public DtClase(int id, String nombre, Date fecha, int capMinima, int capMaxima, String urlAcceso, Date fechaRegistro) {
+        this.id = id;
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.capMinima = capMinima;
+        this.capMaxima = capMaxima;
+        this.urlAcceso = urlAcceso;
+        this.fechaRegistro = fechaRegistro;
+    }
+
 
     public int getId() {
         return id;
