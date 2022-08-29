@@ -4,6 +4,7 @@
  */
 package Institucion;
 
+import Actividad.dtos.ActividadDTO;
 import java.util.List;
 import Profesor.dtos.ProfesorDTO;
 import Actividad.dtos.ActividadDetalleDTO;
@@ -18,9 +19,9 @@ public class DtInstitucion {
     private String descripcion;
     private String url;
     private List<ProfesorDTO> profesores;
-    private List<ActividadDetalleDTO> actividades;
+    private List<ActividadDTO> actividades;
 
-    public DtInstitucion(int id, String nombre, String descripcion, String url, List<ProfesorDTO> profesores, List<ActividadDetalleDTO> actividades) {
+    public DtInstitucion(int id, String nombre, String descripcion, String url, List<ProfesorDTO> profesores, List<ActividadDTO> actividades) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -49,7 +50,7 @@ public class DtInstitucion {
         return profesores;
     }
 
-    public List<ActividadDetalleDTO> getActividades() {
+    public List<ActividadDTO> getActividades() {
         return actividades;
     }
     

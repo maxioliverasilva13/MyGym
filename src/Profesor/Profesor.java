@@ -15,6 +15,12 @@ import java.util.Set;
 import javax.persistence.JoinColumn;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import Profesor.dtos.ProfesorDTO;
+import java.util.ArrayList;
+import Institucion.DtInstitucion;
+import Actividad.dtos.ActividadDTO;
+import java.util.List;
+import utils.ParserClassesToDt;
 
 /**
  *
@@ -59,6 +65,22 @@ public class Profesor extends Usuario {
 
     public void setLinkSitioWeb(String linkSitioWeb) {
         this.linkSitioWeb = linkSitioWeb;
+    }
+
+    public Set<Institucion> getInstituciones() {
+        return instituciones;
+    }
+
+    public Set<Actividad> getActividades() {
+        return actividades;
+    }
+    
+    public ProfesorDTO getDtProfesor() {
+        ParserClassesToDt parseclass = new ParserClassesToDt();
+
+        ProfesorDTO profe = new ProfesorDTO(
+                this.id, this.nombre, this.apellido, this.nickname, this.email, this.nacimiento, this.descripcionGeneral, this.biografia, this.linkSitioWeb, parseclass.getActividadDTOs(actividades), parseclass.getInstitucionesDt(instituciones));
+        return profe;
     }
  
  

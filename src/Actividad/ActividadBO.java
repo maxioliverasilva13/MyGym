@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import mygym.logica.usuario.dataTypes.DtActividad;
+import Actividad.Actividad;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -25,9 +27,7 @@ import java.util.HashMap;
  * @author angel
  */
 public class ActividadBO  implements IActividadBO{
-    
-    
- 
+    ActividadDao actDao = new ActividadDao();
 
     @Override
     public void crear(ActividadCreateDTO actCreate, int institucionId,int profesorId) {
@@ -75,4 +75,15 @@ public class ActividadBO  implements IActividadBO{
     public void addCupXAct(CuponeraXActividad cupXAct) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    @Override
+    public HashMap<Integer, ActividadDTO> listarActividades(){ 
+        HashMap<Integer, ActividadDTO> actividades = new HashMap<>();
+        Collection<Actividad> acts = actDao.listarActividades();
+        acts.forEach((Actividad act) -> {
+            actividades.put(act.getId(), act.getDtActividad());
+        });
+        return actividades;
+    }
+
 }
