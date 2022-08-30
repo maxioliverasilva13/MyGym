@@ -4,15 +4,23 @@
  */
 package mygym.presentacion.pages;
 
+import Institucion.InstitucionBO;
 import java.awt.Color;
 import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import mygym.logica.usuario.dataTypes.DtActividad;
-import mygym.logica.usuario.dataTypes.DtInstitucion;
+import Institucion.DtInstitucion;
+import javax.swing.DefaultComboBoxModel;
 import mygym.presentacion.forms.createActividadForm;
 import mygym.presentacion.forms.showActividadInfoForm;
+import utils.ComboItem;
+import Actividad.ActividadBO;
+import Actividad.dtos.ActividadDTO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 /**
@@ -21,19 +29,31 @@ import mygym.presentacion.forms.showActividadInfoForm;
  */
 public class Actividades extends javax.swing.JPanel {
     createActividadForm formCreate = new createActividadForm();
-     showActividadInfoForm formInfo = new showActividadInfoForm();
+    showActividadInfoForm formInfo = new showActividadInfoForm();
+    DefaultComboBoxModel model = new DefaultComboBoxModel();
+
+    InstitucionBO insBO = new InstitucionBO();
+    ActividadBO actBO = new ActividadBO();
+
     public static HashMap<Integer, DtActividad> actividadesSistema = new HashMap<>(); // ELIMINAR
     public static HashMap<Integer, DtInstitucion> institucionesSistema = new HashMap<>(); // ELIMINAR
-    //DtActividad act1 = new DtActividad("Natación", "Actividad de nado.", "60", "1500", "08-09-2022");
-    //DtActividad act2 = new DtActividad("Atletismo", "Correr.", "60", "1500", "08-09-2022");
     
     /**
      * Creates new form Actividades
      */
     public Actividades() {
         initComponents();
+        tablaActividades.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
         llenarCBoxInstituciones();
-        llenarTabla(); // A futuro, se va a tener que modificar éste método para que en la tabla se muestren las actividades dependiendo de qué INSTITUCIÓN esté seleccionada en el combo box de arriba.
+        //llenarTabla(); // A futuro, se va a tener que modificar éste método para que en la tabla se muestren las actividades dependiendo de qué INSTITUCIÓN esté seleccionada en el combo box de arriba.
+    
+        cmbInstituciones.addActionListener (new ActionListener () {
+            public void actionPerformed(ActionEvent e) {
+                Object selectedItem = cmbInstituciones.getSelectedItem();
+                llenarTabla(Integer.parseInt(((ComboItem)selectedItem).getValue()));
+            }
+        });
     }
     
     public static void agregarElemColeccion(DtActividad x){
@@ -41,20 +61,50 @@ public class Actividades extends javax.swing.JPanel {
         actividadesSistema.put(idHashMap, x);
     }
     
-    public void llenarTabla(){
-    DefaultTableModel modeloDatos = (DefaultTableModel) tablaActividades.getModel();
+    public void llenarTabla(Integer idInstitucion){
+        try {
+            //actividadesSistema = actBO.consultarById(idInstitucion);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    /*
+        DefaultTableModel modeloDatos = (DefaultTableModel) tablaActividades.getModel();
         for (int i = 0; i < actividadesSistema.size(); i++){
             DtActividad currentCuponera = actividadesSistema.get(i);
             modeloDatos.setValueAt(currentCuponera.getNombre(), i, 0);
             modeloDatos.setValueAt(currentCuponera.getDescripcion(), i, 1);
         }
+    */
     }
     
+    
+    /*
+        private void llenarTabla(){
+        cuponeras = cupBo.listarCuponeras();
+        DefaultTableModel modeloDatos = (DefaultTableModel) tablaCuponeras.getModel();
+        modeloDatos.setRowCount(0);
+        cuponeras.forEach((key, value) -> {
+            DtCuponera currentCuponera = cuponeras.get(key);
+
+            modeloDatos.addRow(new Object[]{currentCuponera.getId(), currentCuponera.getNombre(), currentCuponera.getDescripcion(), currentCuponera.getDescuento()});
+        });
+    }
+    */
+    
+    
+    
     private void llenarCBoxInstituciones(){
-        for (int i = 0; i < institucionesSistema.size(); i++){
-            DtInstitucion currentInstitucion = institucionesSistema.get(i);
-            cmbInstituciones.addItem(currentInstitucion.getNombre());
-        }
+        cmbInstituciones.removeAllItems();
+        institucionesSistema = insBO.listarInstituciones();
+        
+        institucionesSistema.forEach((key, value) -> {
+            DtInstitucion currentInstitucion = institucionesSistema.get(key);
+            model.addElement(new ComboItem(key.toString(), currentInstitucion.getNombre()));
+        });
+        
+        cmbInstituciones.setModel(model);
+
     }    
     
     /**
@@ -268,7 +318,7 @@ public class Actividades extends javax.swing.JPanel {
         cmbInstituciones.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         cmbInstituciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Instituciones" }));
         cmbInstituciones.setBorder(null);
-        bgPanel.add(cmbInstituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 200, 40));
+        bgPanel.add(cmbInstituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 240, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -299,7 +349,7 @@ public class Actividades extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAltaMouseReleased
 
     private void btnActualizarActividadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarActividadesMouseClicked
-        llenarTabla();
+        //llenarTabla();
     }//GEN-LAST:event_btnActualizarActividadesMouseClicked
 
     private void btnActualizarActividadesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarActividadesMousePressed
@@ -316,7 +366,7 @@ public class Actividades extends javax.swing.JPanel {
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
         // TODO add your handling code here:
-        llenarTabla();
+        //llenarTabla();
     }//GEN-LAST:event_formFocusGained
 
     private void btnInfoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInfoMouseReleased

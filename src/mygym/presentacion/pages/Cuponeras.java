@@ -275,12 +275,7 @@ public class Cuponeras extends javax.swing.JPanel {
         });
     }
 
-    
-    public void refreshCuponeras(){
-        tablaCuponeras.repaint();
-    }
-
-    
+   
     private void btnCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearMouseClicked
         if (!formCrear.isVisible()) {
                 // Focus LOST para el form.

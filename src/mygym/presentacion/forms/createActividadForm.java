@@ -13,7 +13,7 @@ import java.awt.event.KeyEvent;
 import java.util.Date;
 import javax.swing.JTable;
 import mygym.logica.usuario.dataTypes.DtActividad;
-import mygym.logica.usuario.dataTypes.DtInstitucion;
+import Institucion.DtInstitucion;
 import mygym.presentacion.pages.Actividades;
 
 
@@ -31,11 +31,6 @@ public class createActividadForm extends javax.swing.JFrame{
     
     public createActividadForm() {
         initComponents();
-        DtInstitucion ins1 = new DtInstitucion("Sede Nacional", "Descripción de la sede de Nacional...", "https://nacional.com");
-        DtInstitucion ins2 = new DtInstitucion("Sede Peñarol", "Descripción de la sede de Peñarol...", "https://peñarol.com");
-        agregarElemColeccion(ins1);
-        agregarElemColeccion(ins2);
-
         
         this.setLocationRelativeTo(null);
         this.getOwner();
