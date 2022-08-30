@@ -13,8 +13,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Date;
 import Cuponera.DtCuponera;
-import mygym.presentacion.pages.Cuponeras;
 import ParseDate.ParseDate;
+import mygym.presentacion.pages.Cuponeras;
 
 /**
  *
@@ -306,12 +306,12 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         if (txtDescuento.getText().equals("")){
             separatorDescuento.setForeground(Color.red);
             error=true;
-        }
-        
-        int descuento = Integer.parseInt(txtDescuento.getText());
-        if (descuento > 99 || descuento < 1) {
-            JOptionPane.showMessageDialog(new JFrame(), "El descuento debe ser entre 1 y 99.", "Error", JOptionPane.ERROR_MESSAGE);
-            error = true;
+        }else{
+            int descuento = Integer.parseInt(txtDescuento.getText());
+            if (descuento > 99 || descuento < 1) {
+                JOptionPane.showMessageDialog(new JFrame(), "El descuento debe ser entre 1 y 99.", "Error", JOptionPane.ERROR_MESSAGE);
+                error = true;
+            }
         }
         
         // Control de campo DESCRIPCIÓN vacío.
@@ -325,11 +325,12 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         SelectedDate fechafin = dateChooserFin.getSelectedDate();
         
         // Validación campo fecha fin menor o igual a la actual.
-        if (fechafin.getYear() < actual.getYear()){
-            JOptionPane.showMessageDialog(new JFrame(), "Error, el año de vencimiento no puede ser menor al actual.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (fechafin.getYear() < actual.getYear() 
+          || ((fechafin.getYear() == actual.getYear() && fechafin.getMonth() == actual.getMonth()) && (fechafin.getDay() < actual.getDay())) 
+          || (fechafin.getYear() == actual.getYear() && fechafin.getMonth() < actual.getMonth())){
+            JOptionPane.showMessageDialog(new JFrame(), "Fecha de vencimiento inválida.", "Error", JOptionPane.ERROR_MESSAGE);
             error = true;
         }
-
         if (!error){
             // Parseo al formato de la BD:
             Date ffin = parse.parseDate(fechafin.getYear() + "-" + fechafin.getMonth() + "-" + fechafin.getDay());
