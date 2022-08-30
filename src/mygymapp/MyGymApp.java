@@ -43,18 +43,8 @@ import java.util.List;
  */
 public class MyGymApp {
     public static void main(String[] args)  {
-        EntityManager em = InterfaceEntityManager.getInstance();
-        List<Profesor> profes = em.createNativeQuery("SELECT * FROM USUARIO", Profesor.class).getResultList();
-        
-        List<ProfesorDTO> profesall = new ArrayList<>();
-        profes.forEach((p) -> {
-            profesall.add(p.getDtProfesor());
-        });
-        
-        profesall.forEach((pi) -> {
-            System.out.println(pi.getNombre());
-        });
-        
+        Dashboard ds = new Dashboard();
+        ds.setVisible(true);
     }
 
 }

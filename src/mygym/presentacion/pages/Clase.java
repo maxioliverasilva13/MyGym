@@ -84,6 +84,7 @@ public class Clase extends javax.swing.JPanel {
         addButton1.setToolTipText("");
         addButton1.setBorder(null);
         addButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        addButton1.setOpaque(true);
         addButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         addButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -103,6 +104,7 @@ public class Clase extends javax.swing.JPanel {
         addButton.setToolTipText("");
         addButton.setBorder(null);
         addButton.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        addButton.setOpaque(true);
         addButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

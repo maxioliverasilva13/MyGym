@@ -132,6 +132,7 @@
           <Border info="null"/>
         </Property>
         <Property name="horizontalTextPosition" type="int" value="2"/>
+        <Property name="opaque" type="boolean" value="true"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
       <Events>
@@ -156,6 +157,7 @@
           <Border info="null"/>
         </Property>
         <Property name="horizontalTextPosition" type="int" value="2"/>
+        <Property name="opaque" type="boolean" value="true"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
       <Events>

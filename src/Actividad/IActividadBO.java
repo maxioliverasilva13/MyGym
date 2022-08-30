@@ -22,5 +22,5 @@ public interface IActividadBO {
     public HashMap<Integer,ActividadDTO> listarByInstitucion(int idInstitucion);
     public HashMap<Integer,ActividadDTO> listarNotInCuponeras(int cuponeraId);
     public void addCupXAct(CuponeraXActividad cupXAct);
-    public HashMap<Integer, ActividadDTO> listarActividades();
+    public HashMap<Integer, ActividadDTO> listarActividades(int idActividad);
 }
