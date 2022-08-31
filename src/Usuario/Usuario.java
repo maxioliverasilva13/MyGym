@@ -23,7 +23,6 @@ import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "DTYPE")
 public abstract class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,8 +36,14 @@ public abstract class Usuario implements Serializable {
     @Column()
     protected String email;
     
-    @Column
+    @Column()
     protected Date nacimiento;
+    
+
+    public Usuario(){
+        
+    }
+    
 
     public void setId(int id) {
         this.id = id;

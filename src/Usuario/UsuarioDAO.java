@@ -10,6 +10,7 @@ import Profesor.dtos.ProfesorCreateDTO;
 import Socio.Socio;
 import Socio.dtos.SocioCreateDTO;
 import Usuario.dtos.UsuarioCreateDTO;
+import Usuario.dtos.UsuarioDTO;
 import java.util.List;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
@@ -100,6 +101,15 @@ public class UsuarioDAO implements IUsuarioDAO{
             return null;
          }
          return usuarios.get(0);
+    }
+
+    @Override
+    public List<Usuario> listar() {
+        List<Usuario> usuarios;
+        Query query = this.em.createNativeQuery("SELECT id,nombre,apellido,nickname,email,nacimiento FROM  usuario",Usuario.class);
+        usuarios = query.getResultList();
+        
+        return usuarios;
     }
     
     

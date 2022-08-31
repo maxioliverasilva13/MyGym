@@ -10,38 +10,49 @@ import java.util.Date;
  *
  * @author angel
  */
-public abstract class UsuarioDTO {
-     protected int id;
-     protected String nombre;
-    protected String apellido;
-    protected String nickname;
-    protected String email;
-    protected Date nacimiento;
+public  class UsuarioDTO {
+    protected int ID;
+    protected String NOMBRE;
+    protected String APELLIDO;
+    protected String NICKNAME;
+    protected String EMAIL;
+    protected Date NACIMIENTO;
+    protected String DTYPE;
+    
+    
     
     public UsuarioDTO(int id, String nombre,String apellido,String nickname,String email,Date nacimiento){
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.nickname = nickname;
-        this.email = email;
-        this.nacimiento = nacimiento;
+        this.ID = id;
+        this.NOMBRE = nombre;
+        this.APELLIDO = apellido;
+        this.NICKNAME = nickname;
+        this.EMAIL = email;
+        this.NACIMIENTO = nacimiento;
         
     }
     
     public int getId(){
-        return this.id;
+        return this.ID;
     }
     public String getNombre(){
-        return this.nombre;
+        return this.NOMBRE;
     }
     public String getApellido(){
-        return this.apellido;
+        return this.APELLIDO;
     }
     public String getNickname(){
-        return this.nickname;
+        return this.NICKNAME;
     }
     public String getEmail(){
-        return this.email;
+        return this.EMAIL;
+    }
+    
+    public Date getNacimiento(){
+        return this.NACIMIENTO;
+    }
+    
+    public String getDTYPE(){
+        return this.DTYPE;
     }
     
 }

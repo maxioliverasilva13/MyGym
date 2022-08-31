@@ -33,28 +33,31 @@ import Registro.DtRegistro;
 import Registro.RegistroBO;
 import Registro.RegistroDao;
 import CuponeraXActividad.DtCuponeraXActividad;
+import Exceptions.CuponeraNotFoundException;
+import Exceptions.InstitucionNotFoundException;
+import Institucion.DtInstitucion;
+import Socio.ISocioBO;
+import Socio.SocioBO;
+import Socio.dtos.SocioDTO;
+import Socio.exceptions.SocioNotExist;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import Institucion.InterfaceInstitucionBO;
 
 /**
  *
  * @author maximilianooliverasilva
  */
 public class MyGymApp {
-    public static void main(String[] args)  {
-        EntityManager em = InterfaceEntityManager.getInstance();
-        List<Profesor> profes = em.createNativeQuery("SELECT * FROM USUARIO", Profesor.class).getResultList();
+    public static void main(String[] args) throws SocioNotExist, InstitucionNotFoundException, CuponeraNotFoundException  {
         
-        List<ProfesorDTO> profesall = new ArrayList<>();
-        profes.forEach((p) -> {
-            profesall.add(p.getDtProfesor());
-        });
+        Dashboard dash = new Dashboard();
+        dash.setVisible(true);
         
-        profesall.forEach((pi) -> {
-            System.out.println(pi.getNombre());
-        });
         
+        
+       
     }
 
 }
