@@ -354,7 +354,7 @@ public class createActividadForm extends javax.swing.JFrame{
          
         if (!error){
             DtActividad act = new DtActividad(txtNombre.getText(), txtareaDescripcion.getText(),  txtDuracion.getText(), txtCosto.getText(), dateChooserActual.getDateFormat());
-            Actividades.agregarElemColeccion(act);
+            //Actividades.agregarElemColeccion(act);
             txtNombre.setText("");
             txtDuracion.setText("");
             txtCosto.setText("");

@@ -5,6 +5,7 @@
 package mygym.presentacion.pages;
 
 import Institucion.InstitucionBO;
+import Cuponera.CuponeraBo;
 import java.awt.Color;
 import java.util.HashMap;
 import javax.swing.JFrame;
@@ -35,8 +36,10 @@ public class Actividades extends javax.swing.JPanel {
     InstitucionBO insBO = new InstitucionBO();
     ActividadBO actBO = new ActividadBO();
 
-    public static HashMap<Integer, DtActividad> actividadesSistema = new HashMap<>(); // ELIMINAR
+    public static HashMap<Integer, ActividadDTO> actividadesSistema = new HashMap<>(); // ELIMINAR
     public static HashMap<Integer, DtInstitucion> institucionesSistema = new HashMap<>(); // ELIMINAR
+    
+    CuponeraBo cupbo = new CuponeraBo();
     
     /**
      * Creates new form Actividades
@@ -51,49 +54,30 @@ public class Actividades extends javax.swing.JPanel {
         cmbInstituciones.addActionListener (new ActionListener () {
             public void actionPerformed(ActionEvent e) {
                 Object selectedItem = cmbInstituciones.getSelectedItem();
-                llenarTabla(Integer.parseInt(((ComboItem)selectedItem).getValue()));
+                System.out.println(Integer.parseInt(((ComboItem)selectedItem).getId()));
+                llenarTabla(Integer.parseInt(((ComboItem)selectedItem).getId()));
             }
         });
     }
     
-    public static void agregarElemColeccion(DtActividad x){
-        int idHashMap = actividadesSistema.size();
-        actividadesSistema.put(idHashMap, x);
-    }
-    
+ 
     public void llenarTabla(Integer idInstitucion){
         try {
-            //actividadesSistema = actBO.consultarById(idInstitucion);
+            DefaultTableModel modeloDatos = (DefaultTableModel) tablaActividades.getModel();
+            actividadesSistema = actBO.listarActividades(idInstitucion);
+            modeloDatos.setRowCount(0);
+            actividadesSistema.forEach((key, value) -> {
+                ActividadDTO currentActividad = actividadesSistema.get(key);
+
+                modeloDatos.addRow(new Object[]{currentActividad.getId(), currentActividad.getNombre(), currentActividad.getDescripcion(), currentActividad.getCosto()});
+            });
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-    /*
-        DefaultTableModel modeloDatos = (DefaultTableModel) tablaActividades.getModel();
-        for (int i = 0; i < actividadesSistema.size(); i++){
-            DtActividad currentCuponera = actividadesSistema.get(i);
-            modeloDatos.setValueAt(currentCuponera.getNombre(), i, 0);
-            modeloDatos.setValueAt(currentCuponera.getDescripcion(), i, 1);
-        }
-    */
     }
-    
-    
-    /*
-        private void llenarTabla(){
-        cuponeras = cupBo.listarCuponeras();
-        DefaultTableModel modeloDatos = (DefaultTableModel) tablaCuponeras.getModel();
-        modeloDatos.setRowCount(0);
-        cuponeras.forEach((key, value) -> {
-            DtCuponera currentCuponera = cuponeras.get(key);
 
-            modeloDatos.addRow(new Object[]{currentCuponera.getId(), currentCuponera.getNombre(), currentCuponera.getDescripcion(), currentCuponera.getDescuento()});
-        });
-    }
-    */
-    
-    
-    
     private void llenarCBoxInstituciones(){
         cmbInstituciones.removeAllItems();
         institucionesSistema = insBO.listarInstituciones();
@@ -190,48 +174,48 @@ public class Actividades extends javax.swing.JPanel {
         tablaActividades.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         tablaActividades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nombre", "Descripción"
+                "id", "Nombre", "Descripción", "Costo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                true, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -337,6 +321,7 @@ public class Actividades extends javax.swing.JPanel {
             // Focus LOST para el form.
             formCreate.setVisible(true);
             //formCrear.transferFocus();
+            cupbo.agregarCuponera(null);
         }
     }//GEN-LAST:event_btnAltaMouseClicked
 
@@ -380,6 +365,7 @@ public class Actividades extends javax.swing.JPanel {
     private void btnInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInfoMouseClicked
         // ABRE SUB-FORM CON LAS INSTITUCIONES.
         //DefaultTableModel modelo = (DefaultTableModel) tablaCuponeras.getModel();
+/*
         int selectedRowId = tablaActividades.getSelectedRow();
 
         DtActividad selectedActividad = actividadesSistema.get(selectedRowId);
@@ -392,6 +378,7 @@ public class Actividades extends javax.swing.JPanel {
         }else{
             JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una actividad existente.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+*/
     }//GEN-LAST:event_btnInfoMouseClicked
 
 

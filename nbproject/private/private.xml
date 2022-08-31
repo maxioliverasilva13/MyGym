@@ -3,8 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/mandi/Documents/GitHub/MyGym/src/mygym/presentacion/pages/Usuarios.java</file>
-            <file>file:/C:/Users/mandi/Documents/GitHub/MyGym/src/mygym/presentacion/forms/AddUsersForm.java</file>
+            <file>file:/C:/Users/mandi/Documents/GitHub/MyGym/src/Actividad/ActividadDao.java</file>
+            <file>file:/C:/Users/mandi/Documents/GitHub/MyGym/src/Actividad/ActividadBO.java</file>
+            <file>file:/C:/Users/mandi/Documents/GitHub/MyGym/src/Actividad/Actividad.java</file>
+            <file>file:/C:/Users/mandi/Documents/GitHub/MyGym/src/utils/ComboItem.java</file>
+            <file>file:/C:/Users/mandi/Documents/GitHub/MyGym/src/mygymapp/MyGymApp.java</file>
+            <file>file:/C:/Users/mandi/Documents/GitHub/MyGym/src/mygym/presentacion/pages/Actividades.java</file>
+            <file>file:/C:/Users/mandi/Documents/GitHub/MyGym/src/Actividad/dtos/ActividadDTO.java</file>
+            <file>file:/C:/Users/mandi/Documents/GitHub/MyGym/src/mygym/presentacion/forms/crearCuponeraForm.java</file>
         </group>
     </open-files>
 </project-private>
