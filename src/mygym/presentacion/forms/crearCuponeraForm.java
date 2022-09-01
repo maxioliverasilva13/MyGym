@@ -330,13 +330,17 @@ public class crearCuponeraForm extends javax.swing.JFrame{
             error=true;
         }
         
+        if (error){ // para que no llegue a validar fecha hasta que se resuelvan antes todos los campos vacíos.
+            return;
+        }
         SelectedDate actual = dateChooserActual.getSelectedDate();
         SelectedDate fechafin = dateChooserFin.getSelectedDate();
         
-        // Validación campo fecha fin menor o igual a la actual.
+        // Validación campo fecha fin
         if (fechafin.getYear() < actual.getYear() 
           || ((fechafin.getYear() == actual.getYear() && fechafin.getMonth() == actual.getMonth()) && (fechafin.getDay() < actual.getDay())) 
-          || (fechafin.getYear() == actual.getYear() && fechafin.getMonth() < actual.getMonth())){
+          || (fechafin.getYear() == actual.getYear() && fechafin.getMonth() < actual.getMonth())
+          || (fechafin.getYear() == actual.getYear() && fechafin.getMonth() == actual.getMonth() && fechafin.getDay() == actual.getDay())){
             JOptionPane.showMessageDialog(new JFrame(), "Fecha de vencimiento inválida.", "Error", JOptionPane.ERROR_MESSAGE);
             error = true;
         }

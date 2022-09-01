@@ -4,6 +4,7 @@
  */
 package mygym.presentacion.forms;
 
+import Actividad.ActividadBO;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -12,9 +13,13 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Date;
 import javax.swing.JTable;
-import mygym.logica.usuario.dataTypes.DtActividad;
+import Actividad.dtos.ActividadCreateDTO;
 import Institucion.DtInstitucion;
+import Institucion.InstitucionBO;
+import java.util.HashMap;
+import javax.swing.DefaultComboBoxModel;
 import mygym.presentacion.pages.Actividades;
+import utils.ComboItem;
 
 
 /**
@@ -23,15 +28,19 @@ import mygym.presentacion.pages.Actividades;
  */
 public class createActividadForm extends javax.swing.JFrame{
 
-    /**
-     * Creates new form crearCuponeraForm
-     */
+   public static HashMap<Integer, DtInstitucion> instituciones = new HashMap<>(); // ELIMINAR
+   
     int xMouse, yMouse;
     Color gris = new Color(204,204,204);
+    DefaultComboBoxModel model = new DefaultComboBoxModel();
+    ActividadBO actBO = new ActividadBO();
+    InstitucionBO insBO = new InstitucionBO();
+
     
     public createActividadForm() {
         initComponents();
-        
+        llenarCBoxInstituciones();
+
         this.setLocationRelativeTo(null);
         this.getOwner();
         this.requestFocusInWindow(true);
@@ -42,8 +51,6 @@ public class createActividadForm extends javax.swing.JFrame{
         txtDuracion.setText("");
         txtCosto.setText("");
         txtareaDescripcion.setText("");
-        cmbInstituciones.removeAllItems(); // Primero elimino todos los elems del combobox, para que solo se vean los de la institución seleccionada en el grid.
-        llenarCBoxInstituciones();
         
         txtDuracion.addKeyListener(new KeyAdapter() {
             @Override
@@ -76,19 +83,17 @@ public class createActividadForm extends javax.swing.JFrame{
           });
         txtFecha.enable(false);
     }
-    
+     
     private void llenarCBoxInstituciones(){
-        for (int i = 0; i < Actividades.institucionesSistema.size(); i++){
-            DtInstitucion currentInsti = Actividades.institucionesSistema.get(i);
-            cmbInstituciones.addItem(currentInsti.getNombre());
-        }
+        cmbInstituciones.removeAllItems();
+        instituciones = insBO.listarInstituciones();
+        instituciones.forEach((key, value) -> {
+            DtInstitucion currentInstitucion = instituciones.get(key);
+            model.addElement(new ComboItem(key.toString(), currentInstitucion.getNombre()));
+        });
+        cmbInstituciones.setModel(model);
     }    
-    
-    public static void agregarElemColeccion(DtInstitucion x){
-        int idHashMap = Actividades.institucionesSistema.size();
-        Actividades.institucionesSistema.put(idHashMap, x);
-    }
-    
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -353,8 +358,7 @@ public class createActividadForm extends javax.swing.JFrame{
         }
          
         if (!error){
-            DtActividad act = new DtActividad(txtNombre.getText(), txtareaDescripcion.getText(),  txtDuracion.getText(), txtCosto.getText(), dateChooserActual.getDateFormat());
-            //Actividades.agregarElemColeccion(act);
+            //ActividadCreateDTO act = new ActividadCreateDTO(txtNombre.getText(), txtareaDescripcion.getText(),  txtDuracion.getText(), txtCosto.getText(), dateChooserActual.getDateFormat());
             txtNombre.setText("");
             txtDuracion.setText("");
             txtCosto.setText("");
