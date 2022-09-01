@@ -5,7 +5,9 @@ import Usuario.dtos.UsuarioCreateDTO;
 import Usuario.dtos.UsuarioDTO;
 import Usuario.exceptions.UserAlreadyEmailExist;
 import Usuario.exceptions.UserAlreadyNickExist;
+import Usuario.exceptions.UserNotExist;
 import java.util.HashMap;
+import java.util.List;
 import javax.persistence.NoResultException;
 
 /*
@@ -36,17 +38,26 @@ public class UsuarioBO implements IUsuarioBO {
     public HashMap<Integer, UsuarioDTO> listarUsuarios() {
          UsuarioDAO userDao = new UsuarioDAO();
          HashMap<Integer,UsuarioDTO> res = new HashMap<Integer,UsuarioDTO>();
-         userDao.listar().forEach((user) ->{
-             UsuarioDTO usuarioAdd = new UsuarioDTO(user.getId(),user.getNombre(),user.getApellido(),user.getNickname(),user.getEmail(),user.getNacimiento());
-             res.put(usuarioAdd.getId(),usuarioAdd);
+         List<Usuario> userList = userDao.listar();
+         userList.forEach((user) -> {
+             res.put(user.getId(), new UsuarioDTO(user.getId(),user.getNombre(),user.getApellido(),user.getNickname(),user.getEmail(), user.getNacimiento()));
          });
-        return res;
+         return res;
     }
 
     @Override
-    public String getTipoById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String getTipoById(int id) throws UserNotExist {
+         UsuarioDAO userDao = new UsuarioDAO();
+         
+         if(userDao.getById(id) == null){
+             throw new UserNotExist("Usuario no existe");
+         }
+        
+         return userDao.getTipoById(id);
+         
     }
+    
+ 
     
     
     

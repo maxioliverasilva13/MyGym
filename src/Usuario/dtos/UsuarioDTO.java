@@ -17,7 +17,6 @@ public  class UsuarioDTO {
     protected String NICKNAME;
     protected String EMAIL;
     protected Date NACIMIENTO;
-    protected String DTYPE;
     
     
     
@@ -28,6 +27,7 @@ public  class UsuarioDTO {
         this.NICKNAME = nickname;
         this.EMAIL = email;
         this.NACIMIENTO = nacimiento;
+       
         
     }
     
@@ -51,8 +51,6 @@ public  class UsuarioDTO {
         return this.NACIMIENTO;
     }
     
-    public String getDTYPE(){
-        return this.DTYPE;
-    }
+  
     
 }

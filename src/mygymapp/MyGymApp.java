@@ -44,6 +44,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import Institucion.InterfaceInstitucionBO;
+import Usuario.exceptions.UserNotExist;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -54,6 +57,19 @@ public class MyGymApp {
         
         Dashboard dash = new Dashboard();
         dash.setVisible(true);
+        
+        IUsuarioBO usuarioBo = new UsuarioBO();
+        
+        usuarioBo.listarUsuarios().forEach((key,user)->{
+          System.out.println(user.getId());
+            try {
+                System.out.println(usuarioBo.getTipoById(user.getId()));
+            } catch (UserNotExist ex) {
+                Logger.getLogger(MyGymApp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+        
         
         
         

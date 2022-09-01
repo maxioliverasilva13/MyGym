@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
+import javax.persistence.Basic;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -23,21 +24,25 @@ import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Usuario implements Serializable {
+@DiscriminatorColumn(name="DTYPE")
+public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    protected int id;
+    public int id;
     @Column()
-    protected String nickname;
+    private  String nickname;
     @Column
-    protected String nombre;
+    private  String nombre;
     @Column
-    protected String apellido;
+    private String apellido;
     @Column()
-    protected String email;
+    private String email;
     
     @Column()
-    protected Date nacimiento;
+    private Date nacimiento;
+    
+    @Basic(optional = true)
+    private String DTYPE;
     
 
     public Usuario(){
@@ -92,5 +97,10 @@ public abstract class Usuario implements Serializable {
     public Date getNacimiento() {
         return nacimiento;
     }
+    
+    public String getDtype(){
+        return DTYPE;
+    }
+   
 
 }

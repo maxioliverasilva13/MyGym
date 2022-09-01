@@ -11,6 +11,7 @@ import Socio.Socio;
 import Socio.dtos.SocioCreateDTO;
 import Usuario.dtos.UsuarioCreateDTO;
 import Usuario.dtos.UsuarioDTO;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
@@ -106,10 +107,38 @@ public class UsuarioDAO implements IUsuarioDAO{
     @Override
     public List<Usuario> listar() {
         List<Usuario> usuarios;
-        Query query = this.em.createNativeQuery("SELECT id,nombre,apellido,nickname,email,nacimiento FROM  usuario",Usuario.class);
+        Query query = this.em.createNativeQuery("SELECT * FROM  usuario LEFT JOIN profesor ON usuario.id = profesor.userId LEFT JOIN socio ON socio.userId = usuario.id",Usuario.class);
         usuarios = query.getResultList();
-        
+    
         return usuarios;
+    }
+
+    @Override
+    public Usuario getById(int id) {
+        
+         EntityTransaction tx = this.em.getTransaction();
+         try{
+              tx.begin();
+               Usuario find = (Usuario)this.em.find(Usuario.class, id);
+               tx.commit();
+               return find;    
+          }catch(NoResultException e){
+              return null;
+          }
+    }
+
+    @Override
+    public String getTipoById(int id) {
+        EntityTransaction tx = this.em.getTransaction();
+         try{
+              tx.begin();
+               Usuario find = (Usuario)this.em.find(Usuario.class, id);
+               tx.commit();
+               return find.getDtype();
+          }catch(NoResultException e){
+              return null;
+          }
+        
     }
     
     

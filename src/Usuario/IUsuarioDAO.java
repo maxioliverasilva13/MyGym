@@ -17,5 +17,8 @@ public interface IUsuarioDAO {
      public List<Usuario> listar();
      public Usuario getByNickname(String nickname);
      public Usuario getByEmail(String email);
+     public Usuario getById(int id);
+     public String getTipoById(int id);
+     
    
 }
