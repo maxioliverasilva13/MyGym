@@ -19,15 +19,18 @@
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Usuario/IUsuarioDAO.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Socio/SocioDAO.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Actividad/ActividadDao.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Socio/dtos/SocioEditDTO.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Usuario/dtos/UsuarioCreateDTO.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Actividad/IActividadDao.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Institucion/Institucion.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Profesor/dtos/ProfesorCreateDTO.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Socio/ISocioDAO.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Usuario/UsuarioDAO.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Actividad/Actividad.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Institucion/DtInstitucion.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Usuario/dtos/UsuarioDTO.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Actividad/ActividadBO.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/utils/ParserClassesToDt.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Socio/SocioBO.java</file>
         </group>
     </open-files>

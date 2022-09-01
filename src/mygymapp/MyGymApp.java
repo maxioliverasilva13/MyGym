@@ -61,11 +61,10 @@ public class MyGymApp {
         IUsuarioBO usuarioBo = new UsuarioBO();
         
         usuarioBo.listarUsuarios().forEach((key,user)->{
-          System.out.println(user.getId());
             try {
                 System.out.println(usuarioBo.getTipoById(user.getId()));
             } catch (UserNotExist ex) {
-                Logger.getLogger(MyGymApp.class.getName()).log(Level.SEVERE, null, ex);
+               ;
             }
         });
         

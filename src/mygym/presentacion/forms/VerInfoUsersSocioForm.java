@@ -4,6 +4,13 @@
  */
 package mygym.presentacion.forms;
 
+import Socio.ISocioBO;
+import Socio.SocioBO;
+import Socio.dtos.SocioDTO;
+import Socio.exceptions.SocioNotExist;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.DefaultListModel;
 import javax.swing.WindowConstants;
 
 
@@ -16,8 +23,13 @@ public class VerInfoUsersSocioForm extends javax.swing.JFrame {
     /**
      * Creates new form AddUsersForm
      */
-    public VerInfoUsersSocioForm() {
+    private int socioId;
+    private SocioDTO socioData = null;
+    public VerInfoUsersSocioForm(int socioId) {
+        this.socioId = socioId;
+        this.loadSocio(socioId);
         initComponents();
+        this.render();
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         dispose();
         this.setLocationRelativeTo(null);
@@ -89,7 +101,7 @@ public class VerInfoUsersSocioForm extends javax.swing.JFrame {
         jLabel13.setText("Adrian");
 
         jLabel15.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jLabel15.setText("Adrian");
+        jLabel15.setText("SOCIO");
 
         jLabel16.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel16.setText("Adrian");
@@ -208,7 +220,7 @@ public class VerInfoUsersSocioForm extends javax.swing.JFrame {
                         .addGap(128, 128, 128)
                         .addComponent(jLabel9))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(79, 79, 79))))
         );
@@ -286,68 +298,41 @@ public class VerInfoUsersSocioForm extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VerInfoUsersSocioForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VerInfoUsersSocioForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VerInfoUsersSocioForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VerInfoUsersSocioForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    
+    
+    private void loadSocio(int socioId){
+        ISocioBO socioBO = new SocioBO();
+        try{
+           SocioDTO socio = socioBO.consultarSocio(socioId);
+           this.socioData = socio;
+           System.out.println(this.socioData);
+        }catch(SocioNotExist s){
+            System.out.println(s);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VerInfoUsersSocioForm().setVisible(true);
-            }
-        });
+        
     }
+    
+    private void render(){
+          this.jLabel13.setText(this.socioData.getNickname());
+           this.jLabel16.setText(this.socioData.getNombre());
+           this.jLabel17.setText(this.socioData.getApellido());
+           this.jLabel18.setText(this.socioData.getEmail());
+          
+            SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+            String date = DATE_FORMAT.format(this.socioData.getNacimiento());
+            this.jLabel19.setText(date.toString());
+            
+            
+            DefaultListModel listModelRegistros = new DefaultListModel();
+            this.socioData.getRegistros().forEach(registro -> {
+                listModelRegistros.addElement(registro.getClaseName());
+            });
+            this.jList1.setModel(listModelRegistros);
+           
+    }
+  
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
