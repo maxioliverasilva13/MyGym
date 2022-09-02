@@ -131,6 +131,11 @@ public class crearCuponeraForm extends javax.swing.JFrame{
 
         txtDescuento.setToolTipText("");
         txtDescuento.setBorder(null);
+        txtDescuento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDescuentoKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 210, 30));
         jPanel2.add(separatorDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 210, 20));
 
@@ -165,6 +170,11 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         txtInicio.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         txtInicio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtInicio.setBorder(null);
+        txtInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtInicioActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 140, 20));
 
         txtFin.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
@@ -239,7 +249,7 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         );
         btnMinimizarBGLayout.setVerticalGroup(
             btnMinimizarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnMinimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+            .addComponent(btnMinimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE)
         );
 
         jPanel2.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 30, 20));
@@ -355,6 +365,14 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnExitMouseClicked
+
+    private void txtInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInicioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtInicioActionPerformed
+
+    private void txtDescuentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescuentoKeyTyped
 
     /**
      * @param args the command line arguments

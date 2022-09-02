@@ -4,6 +4,7 @@
  */
 package mygym.presentacion.pages;
 
+import Cuponera.CuponeraBo;
 import java.awt.Color;
 import java.util.HashMap;
 import javax.swing.JFrame;
@@ -26,6 +27,8 @@ public class Actividades extends javax.swing.JPanel {
     public static HashMap<Integer, DtInstitucion> institucionesSistema = new HashMap<>(); // ELIMINAR
     //DtActividad act1 = new DtActividad("Natación", "Actividad de nado.", "60", "1500", "08-09-2022");
     //DtActividad act2 = new DtActividad("Atletismo", "Correr.", "60", "1500", "08-09-2022");
+    
+    CuponeraBo cupbo = new CuponeraBo();
     
     /**
      * Creates new form Actividades
@@ -287,6 +290,7 @@ public class Actividades extends javax.swing.JPanel {
             // Focus LOST para el form.
             formCreate.setVisible(true);
             //formCrear.transferFocus();
+            cupbo.agregarCuponera(null);
         }
     }//GEN-LAST:event_btnAltaMouseClicked
 

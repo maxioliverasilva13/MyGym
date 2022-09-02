@@ -23,6 +23,6 @@ public interface IActividadDao {
     public List<Actividad> listAll();
     public void agregarCupXActividad(int idActividad, CuponeraXActividad idCxA );
     public void agergarClase(int idActividad, Clase clase);
-    public Collection<Actividad> listarActividades();
+    public Collection<Actividad> listarActividades(int idInstitucion);
    
 }

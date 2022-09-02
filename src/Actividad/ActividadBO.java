@@ -77,9 +77,9 @@ public class ActividadBO  implements IActividadBO{
     }
     
     @Override
-    public HashMap<Integer, ActividadDTO> listarActividades(){ 
+    public HashMap<Integer, ActividadDTO> listarActividades(int idInstitucion){ 
         HashMap<Integer, ActividadDTO> actividades = new HashMap<>();
-        Collection<Actividad> acts = actDao.listarActividades();
+        Collection<Actividad> acts = actDao.listarActividades(idInstitucion);
         acts.forEach((Actividad act) -> {
             actividades.put(act.getId(), act.getDtActividad());
         });
