@@ -21,8 +21,6 @@ import javax.persistence.Persistence;
  */
 public class ProfesorBO implements IProfesorBO {
     
-    
-  
     @Override
     public ProfesorDTO getProfesorById(int id) throws ProfesorNotExist  {
          IProfesorDao profDao = new ProfesorDao();

@@ -4,6 +4,11 @@
  */
 package mygym.presentacion.institucion;
 
+import Institucion.DtInstitucion;
+import Institucion.InstitucionBO;
+import java.awt.Color;
+import javax.swing.border.MatteBorder;
+
 /**
  *
  * @author pedri
@@ -13,6 +18,8 @@ public class AddInstitucionForm extends javax.swing.JFrame {
     /**
      * Creates new form AddInstitucionForm
      */
+    InstitucionBO Ins = new InstitucionBO();
+    
     public AddInstitucionForm() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -177,7 +184,22 @@ public class AddInstitucionForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+   
+        if (jTextField2.getText() .equals("")) {
+            jTextField2.setBorder(new MatteBorder(0,0,1,0, Color.red));
+        }
+        
+        if (jTextArea2.getText() .equals("")) {
+            jTextArea2.setBorder(new MatteBorder(1,1,1,1, Color.red));
+        }
+        
+        if (jTextField6.getText() .equals("")) {
+            jTextField6.setBorder(new MatteBorder(0,0,1,0, Color.red));
+        }
+        
+        DtInstitucion indt = new DtInstitucion(0, jTextField2.getText(), jTextArea2.getText(), jTextField6.getText(), null, null);
+        Ins.agregarInstitucion(indt);
+        System.out.println(("Institucion agregada"));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1cancel(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1cancel
@@ -218,6 +240,7 @@ public class AddInstitucionForm extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

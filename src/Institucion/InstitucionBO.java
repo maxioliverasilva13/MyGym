@@ -47,6 +47,7 @@ public class InstitucionBO implements InterfaceInstitucionBO {
         instituciones.forEach((ins) -> {
             dtinstituciones.put(ins.getId(), ins.getDtInstitucion());
         });
+        
         return dtinstituciones;
     }
 
