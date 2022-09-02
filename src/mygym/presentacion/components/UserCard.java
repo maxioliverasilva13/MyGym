@@ -182,7 +182,7 @@ public class UserCard extends javax.swing.JPanel {
                 newframe.setVisible(true);
                 this.dispose();
             }else{   // es un profesor
-                  VerInfoUsersProfesorForm newframe = new VerInfoUsersProfesorForm();
+                  VerInfoUsersProfesorForm newframe = new VerInfoUsersProfesorForm(this.id);
                   newframe.setVisible(true);
                   this.dispose();
             }

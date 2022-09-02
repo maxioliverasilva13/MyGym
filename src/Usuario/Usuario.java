@@ -30,19 +30,19 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int id;
     @Column()
-    private  String nickname;
+    protected String nickname;
     @Column
-    private  String nombre;
+    protected   String nombre;
     @Column
-    private String apellido;
+    protected String apellido;
     @Column()
-    private String email;
+    protected  String email;
     
     @Column()
-    private Date nacimiento;
+     protected  Date nacimiento;
     
     @Basic(optional = true)
-    private String DTYPE;
+    protected  String DTYPE;
     
 
     public Usuario(){

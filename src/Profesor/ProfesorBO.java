@@ -18,6 +18,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import utils.ParserClassesToDt;
 
 /**
  *
@@ -44,16 +45,9 @@ public class ProfesorBO implements IProfesorBO {
                actividades.add(actividad.getDtActividad());
           });
          
-         profFind.getInstituciones().forEach((institucion) ->{
-               instituciones.add(institucion.getDtInstitucion());
-         });
-
-        res = new ProfesorDTO(profFind.getId(),profFind.getNombre(),
-                 profFind.getApellido(),profFind.getNickname(),profFind.getEmail(),profFind.getNacimiento(),  profFind.getDescripcionGeneral(),
-                 profFind.getBiografia(),
-         profFind.getLinkSitioWeb(),
-         actividades,
-         instituciones);
+         
+         ParserClassesToDt parserClass = new ParserClassesToDt(); 
+            res = profFind.getDtProfesor();
          return res;
     }
 

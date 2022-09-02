@@ -4,6 +4,13 @@
  */
 package mygym.presentacion.forms;
 
+import Institucion.DtInstitucion;
+import Profesor.IProfesorBO;
+import Profesor.ProfesorBO;
+import Profesor.dtos.ProfesorDTO;
+import Profesor.exceptions.ProfesorNotExist;
+import java.text.SimpleDateFormat;
+import javax.swing.DefaultListModel;
 import javax.swing.WindowConstants;
 
 
@@ -16,11 +23,17 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
     /**
      * Creates new form AddUsersForm
      */
-    public VerInfoUsersProfesorForm() {
+    private int profesorId;
+    private ProfesorDTO profDto = null;
+    public VerInfoUsersProfesorForm(int profesorId) {
+        this.profesorId = profesorId;
+        
+        this.loadProfesor(this.profesorId);
         initComponents();
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         dispose();
         this.setLocationRelativeTo(null);
+        this.render();
     }
 
     /**
@@ -107,7 +120,7 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
         jLabel13.setText("Adrian");
 
         jLabel15.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jLabel15.setText("Adrian");
+        jLabel15.setText("PROFESOR");
 
         jLabel16.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel16.setText("Adrian");
@@ -257,7 +270,7 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(380, 380, 380)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,51 +370,52 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VerInfoUsersProfesorForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VerInfoUsersProfesorForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VerInfoUsersProfesorForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VerInfoUsersProfesorForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    
+    private void loadProfesor(int idProf) {
+       IProfesorBO profesorBo = new ProfesorBO();
+       try{
+           this.profDto = profesorBo.getProfesorById(idProf);
+       }catch(ProfesorNotExist ex){
+           System.out.println("Profesor no existe");
+       }
+        
+    }
+    
+    private void render(){
+        
+        this.jLabel13.setText(this.profDto.getNickname());
+        this.jLabel16.setText(this.profDto.getNombre());
+        this.jLabel17.setText(this.profDto.getApellido());
+        this.jLabel18.setText(this.profDto.getEmail());
+        
+        SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+        String date = DATE_FORMAT.format(this.profDto.getNacimiento());
+        this.jLabel19.setText(date);
+        
+        this.jTextArea2.setText(this.profDto.getBiografia());
+        this.jTextArea3.setText(this.profDto.getdescripcionGeneral());
+        this.jLabel19.setText(date);
+        this.jLabel21.setText(this.profDto.getLinkSitioWeb());
+        
+        String nameInstitucion = "";
+        if(!this.profDto.getInstituciones().isEmpty()){
+            DtInstitucion institucion = this.profDto.getInstituciones().get(0);
+            nameInstitucion = institucion.getNombre();
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VerInfoUsersProfesorForm().setVisible(true);
-            }
+        this.jLabel20.setText(nameInstitucion);
+        
+        
+        DefaultListModel listModelActividades = new DefaultListModel();
+            
+        this.profDto.getActividades().forEach(actividad -> {
+            listModelActividades.addElement(actividad.getNombre());
+        
         });
+        this.jList1.setModel(listModelActividades);
+
+        
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
