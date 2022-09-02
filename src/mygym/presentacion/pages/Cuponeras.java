@@ -323,7 +323,9 @@ public class Cuponeras extends javax.swing.JPanel {
                formAgregar.setVisible(true);
             }
         }else{
+            
             JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una cuponera existente.", "Error", JOptionPane.ERROR_MESSAGE);
+            
         }
     }//GEN-LAST:event_btnAgregarMouseClicked
 
