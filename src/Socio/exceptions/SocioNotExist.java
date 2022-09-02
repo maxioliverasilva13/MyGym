@@ -8,7 +8,7 @@ package Socio.exceptions;
  *
  * @author angel
  */
-public class SocioNotExist extends Exception{
+public class SocioNotExist extends RuntimeException{
 
     /**
      * Creates a new instance of <code>SocioNotExist</code> without detail

@@ -6,10 +6,10 @@ package Exceptions;
 
 /**
  *
- * @author maximilianooliverasilva
+ * @author mandi
  */
-public class InstitucionNotFoundException extends RuntimeException { 
-    public InstitucionNotFoundException(String errorMessage) {
+public class CuponeraAlreadyExistsException extends RuntimeException {
+    public CuponeraAlreadyExistsException(String errorMessage) {
         super(errorMessage);
     }
 }

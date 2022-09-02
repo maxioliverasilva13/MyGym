@@ -8,7 +8,7 @@ package Exceptions;
  *
  * @author maximilianooliverasilva
  */
-public class SocioNotFoundException extends Exception { 
+public class SocioNotFoundException extends RuntimeException { 
     public SocioNotFoundException(String errorMessage) {
         super(errorMessage);
     }

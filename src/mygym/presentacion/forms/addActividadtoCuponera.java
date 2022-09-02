@@ -9,9 +9,9 @@ import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import mygym.logica.usuario.dataTypes.DtCuponera;
-import mygym.logica.usuario.dataTypes.DtCuponeraDetalle;
-import mygym.logica.usuario.dataTypes.DtInstitucion;
+import Institucion.DtInstitucion;
+import Institucion.InstitucionBO;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -19,21 +19,20 @@ import mygym.logica.usuario.dataTypes.DtInstitucion;
  */
 public class addActividadtoCuponera extends javax.swing.JFrame {
     
-    public static HashMap<Integer, DtInstitucion> institucionesSistema = new HashMap<Integer, DtInstitucion>(); // ELIMINAR
+    public static HashMap<Integer, DtInstitucion> instituciones = new HashMap<>();
+    InstitucionBO insBO = new InstitucionBO();
     int xMouse, yMouse;
 
-    
     /**
      * Creates new form agregarActividadACuponera
      */
     public addActividadtoCuponera() {
         initComponents();
-        DtInstitucion ins1 = new DtInstitucion("Sede Nacional", "La sede de Nacional", "https://nacional.com");
-        DtInstitucion ins2 = new DtInstitucion("Sede Peñarol", "La sede de Peñarol", "https://Peñarol.com");
-        agregarElemTabla(ins1);
-        agregarElemTabla(ins2);
-        
-        llenarTabla();
+        tablaInstituciones.getColumnModel().getColumn(0).setMinWidth(0);
+        tablaInstituciones.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablaInstituciones.getColumnModel().getColumn(0).setWidth(0);
+        tablaInstituciones.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        llenarTablaInstituciones();
         this.setLocationRelativeTo(null);
     }
 
@@ -151,43 +150,43 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         tablaInstituciones.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         tablaInstituciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Nombre", "Descripción"
+                "", "Nombre", "Descripción"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -269,21 +268,17 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-        private void llenarTabla(){
-        DefaultTableModel modeloDatos = (DefaultTableModel) tablaInstituciones.getModel();
-        for (int i = 0; i < institucionesSistema.size(); i++){
-            DtInstitucion currentInstitucion = institucionesSistema.get(i);
-            //modeloDatos.addRow(new Object [] {currentCuponera.getNombre(), currentCuponera.getDescripcion(), currentCuponera.getDescuento()});           
-            modeloDatos.setValueAt(currentInstitucion.getNombre(), i, 0);
-            modeloDatos.setValueAt(currentInstitucion.getDescripcion(), i, 1);
-        }
-    }
+        private void llenarTablaInstituciones(){
+            instituciones = insBO.listarInstituciones();
+            DefaultTableModel tableModel = (DefaultTableModel) tablaInstituciones.getModel();
+            tableModel.setRowCount(0);
+            instituciones.forEach((key, value) -> {
+            DtInstitucion currentInstitucion = instituciones.get(key);
 
-    public static void agregarElemTabla(DtInstitucion x){
-        int idHashMap = institucionesSistema.size();
-        institucionesSistema.put(idHashMap, x);
+            tableModel.addRow(new Object[]{currentInstitucion.getId(), currentInstitucion.getNombre(), currentInstitucion.getDescripcion()});
+        });    
     }
-    
+   
     private void btnSeleccionarActividadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeleccionarActividadMouseClicked
         // Agrega la actividad a la cuponera.
     }//GEN-LAST:event_btnSeleccionarActividadMouseClicked
@@ -299,8 +294,14 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
     private void tablaInstitucionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaInstitucionesMouseClicked
         // TODO add your handling code here:
         int selectedRowId = tablaInstituciones.getSelectedRow();
-        
-        DtInstitucion selectedInst = institucionesSistema.get(selectedRowId);
+        if(selectedRowId == -1){
+            JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una institución existente.", "Error", JOptionPane.ERROR_MESSAGE);
+            cmbActividades.removeAllItems();
+            return;
+        }
+        Object idObj = tablaInstituciones.getValueAt(selectedRowId, 0);
+        int selectedInsitucionID = (Integer) idObj;
+        DtInstitucion selectedInst = instituciones.get(selectedInsitucionID);
         if (selectedInst != null){
             cmbActividades.removeAllItems(); // Primero elimino todos los elems del combobox, para que solo se vean los de la institución seleccionada en el grid.
             cmbActividades.addItem(selectedInst.getNombre());
@@ -310,13 +311,6 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
             cmbActividades.removeAllItems();
             JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una cuponera existente.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-        /*  *************************COMBOBOX*************************
-        for (int i = 0; i < institucionesSistema.size(); i++){
-            DtActividad act1 = new DtActividad("Natación", "Actividad de nado.", 60, 1500, new Date(08-09-2022));
-            cmbActividades.addItem(selectedInst.getNombre());
-        }
-        */
     }//GEN-LAST:event_tablaInstitucionesMouseClicked
 
     private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked

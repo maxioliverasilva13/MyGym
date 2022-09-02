@@ -27,7 +27,6 @@ public class CuponeraXActividadDao implements InterfaceCuponeraXActividadDao {
     
     @Override
     public void insertar(int idActividad, int idCuponera, DtCuponeraXActividad cupXact){
-        try {
         // EXISTE ACTIVIDA
         Actividad act = em.find(Actividad.class, idActividad);
         if (act == null) {
@@ -48,23 +47,14 @@ public class CuponeraXActividadDao implements InterfaceCuponeraXActividadDao {
         et.commit();
         cupdao.agregarCupXActividad(idCuponera, cuxa);
         actDao.agregarCupXActividad(idActividad, cuxa);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
     }
     
     @Override
-    public CuponeraXActividad existe(int idCuXAc) {
-        try {
-           CuponeraXActividad cuxa = em.find(CuponeraXActividad.class, idCuXAc);
-           if (cuxa == null){
-               throw new CuponeraXActividadNotFoundException("Cuponera X Actividad no encontrada");
-           }
-           return cuxa;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
+public CuponeraXActividad existe(int idCuXAc) {
+    CuponeraXActividad cuxa = em.find(CuponeraXActividad.class, idCuXAc);
+    if (cuxa == null){
+        throw new CuponeraXActividadNotFoundException("Cuponera X Actividad no encontrada");
     }
-
+    return cuxa;
+    }
 }

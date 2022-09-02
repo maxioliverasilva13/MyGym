@@ -11,8 +11,9 @@ import java.util.HashMap; // Eliminar
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import mygym.logica.usuario.dataTypes.DtCuponera;
-// import javax.swing.table.DefaultTableModel;
+import Cuponera.CuponeraBo;
+import Cuponera.DtCuponera;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -20,15 +21,17 @@ import mygym.logica.usuario.dataTypes.DtCuponera;
  */
 public class Cuponeras extends javax.swing.JPanel {
 
+    CuponeraBo cupBo = new CuponeraBo();
     crearCuponeraForm formCrear = new crearCuponeraForm();
     addActividadtoCuponera formAgregar = new addActividadtoCuponera();
     public static HashMap<Integer, DtCuponera> cuponeras = new HashMap<Integer, DtCuponera>();
-    
+
     public Cuponeras() {
         initComponents();
-        //scrollTabla.setVisible(false);
-        //btnAgregar.setVisible(false);
-        //btnAgregarBG.setVisible(false);
+        tablaCuponeras.getColumnModel().getColumn(0).setMinWidth(0);
+        tablaCuponeras.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablaCuponeras.getColumnModel().getColumn(0).setWidth(0);
+        tablaCuponeras.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         llenarTabla();
     }
 
@@ -151,48 +154,48 @@ public class Cuponeras extends javax.swing.JPanel {
         tablaCuponeras.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         tablaCuponeras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nombre", "Descripción", "Descuento"
+                "", "Nombre", "Descripción", "Descuento"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -207,8 +210,10 @@ public class Cuponeras extends javax.swing.JPanel {
         scrollTabla.setViewportView(tablaCuponeras);
         if (tablaCuponeras.getColumnModel().getColumnCount() > 0) {
             tablaCuponeras.getColumnModel().getColumn(0).setResizable(false);
+            tablaCuponeras.getColumnModel().getColumn(0).setPreferredWidth(0);
             tablaCuponeras.getColumnModel().getColumn(1).setResizable(false);
             tablaCuponeras.getColumnModel().getColumn(2).setResizable(false);
+            tablaCuponeras.getColumnModel().getColumn(3).setResizable(false);
         }
 
         bgPanel.add(scrollTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 630, 400));
@@ -259,29 +264,18 @@ public class Cuponeras extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public void llenarTabla(){
+    private void llenarTabla(){
+        cuponeras = cupBo.listarCuponeras();
         DefaultTableModel modeloDatos = (DefaultTableModel) tablaCuponeras.getModel();
-        for (int i = 0; i < cuponeras.size(); i++){
-            DtCuponera currentCuponera = cuponeras.get(i);
-            //modeloDatos.addRow(new Object [] {currentCuponera.getNombre(), currentCuponera.getDescripcion(), currentCuponera.getDescuento()});           
-            modeloDatos.setValueAt(currentCuponera.getNombre(), i, 0);
-            modeloDatos.setValueAt(currentCuponera.getDescripcion(), i, 1);
-            modeloDatos.setValueAt(currentCuponera.getDescuento(), i, 2);
-        }
-    }
-    
-    
-    public static void agregarElemTabla(DtCuponera x){
-        int idHashMap = cuponeras.size();
-        cuponeras.put(idHashMap, x);
+        modeloDatos.setRowCount(0);
+        cuponeras.forEach((key, value) -> {
+            DtCuponera currentCuponera = cuponeras.get(key);
+
+            modeloDatos.addRow(new Object[]{currentCuponera.getId(), currentCuponera.getNombre(), currentCuponera.getDescripcion(), currentCuponera.getDescuento()});
+        });
     }
 
-    
-    public void refreshCuponeras(){
-        tablaCuponeras.repaint();
-    }
-
-    
+   
     private void btnCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearMouseClicked
         if (!formCrear.isVisible()) {
                 // Focus LOST para el form.
@@ -311,21 +305,17 @@ public class Cuponeras extends javax.swing.JPanel {
     }//GEN-LAST:event_btnActualizarCuponerasMouseReleased
 
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
-        // ABRE SUB-FORM CON LAS INSTITUCIONES.
-        //DefaultTableModel modelo = (DefaultTableModel) tablaCuponeras.getModel();
         int selectedRowId = tablaCuponeras.getSelectedRow();
-        
-        DtCuponera selectedCuponera = cuponeras.get(selectedRowId);
-         // = new DtCuponera(selectedCuponera.getNombre(), selectedCuponera.getDescripcion(), selectedCuponera.getFechaVigencia(), selectedCuponera.getDescuento());
-        if (selectedCuponera != null){
-            //JOptionPane.showMessageDialog(new JFrame(), "Cuponera seleccionada: " + selectedCuponera.getNombre(), "Cuponera seleccionada", JOptionPane.INFORMATION_MESSAGE);
-            if (!formAgregar.isVisible()) {
-               formAgregar.setVisible(true);
-            }
-        }else{
-            
+        if(selectedRowId == -1){
             JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una cuponera existente.", "Error", JOptionPane.ERROR_MESSAGE);
-            
+            return;
+        }
+        Object idObj = tablaCuponeras.getValueAt(selectedRowId, 0);
+        int id = (Integer) idObj;
+        DtCuponera selectedCuponera = cuponeras.get(id);
+        
+        if (!formAgregar.isVisible()) {
+           formAgregar.setVisible(true);
         }
     }//GEN-LAST:event_btnAgregarMouseClicked
 
@@ -341,12 +331,10 @@ public class Cuponeras extends javax.swing.JPanel {
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
         // ACTUALIZAR GRID
-        tablaCuponeras.repaint();
     }//GEN-LAST:event_formFocusGained
 
     private void formFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusLost
         // TODO add your handling code here:
-        tablaCuponeras.repaint();
     }//GEN-LAST:event_formFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

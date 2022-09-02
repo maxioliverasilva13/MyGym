@@ -28,44 +28,33 @@ public class RegistroDao implements InterfaceRegistroDao {
 
     @Override
     public void insertar(int idSocio, int idClase, DtRegistro registro){
-        try {
-            Clase clase = clasedao.existe(idClase);
-            // TODO: FIND SOCIO WITH EXIST
-            Socio socio = em.find(Socio.class, idSocio);
-            if (socio == null) {
-                throw new SocioNotFoundException("Socio no encontrado");
-            }
-            // existe la clase y el socio
-            Registro r = new Registro();
-            r.setCosto(registro.getCosto());
-            r.setFecha(registro.getFecha());
-            EntityTransaction tr = em.getTransaction();
-            tr.begin();
-            r.setClase(clase);
-            r.setSocio(socio);
-            em.persist(r);
-            tr.commit();
-            // Agrego el registro actual a las 2 puntas
-            socioDao.agregarRegistro(idSocio, r.getId());
-            clasedao.agregarRegistro(idClase, r.getId());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        Clase clase = clasedao.existe(idClase);
+        // TODO: FIND SOCIO WITH EXIST
+        Socio socio = em.find(Socio.class, idSocio);
+        if (socio == null) {
+            throw new SocioNotFoundException("Socio no encontrado");
         }
+        // existe la clase y el socio
+        Registro r = new Registro();
+        r.setCosto(registro.getCosto());
+        r.setFecha(registro.getFecha());
+        EntityTransaction tr = em.getTransaction();
+        tr.begin();
+        r.setClase(clase);
+        r.setSocio(socio);
+        em.persist(r);
+        tr.commit();
+        // Agrego el registro actual a las 2 puntas
+        socioDao.agregarRegistro(idSocio, r.getId());
+        clasedao.agregarRegistro(idClase, r.getId());
     }
 
     @Override
     public Registro existe(int id){
-        try {
-            Registro ins = em.find(Registro.class, id);
-            if (ins == null) {
-                throw new RegistroNotFoundException("El registro no existe");
-            }
-            return ins;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        Registro ins = em.find(Registro.class, id);
+        if (ins == null) {
+            throw new RegistroNotFoundException("El registro no existe");
         }
-        return null;
+        return ins;
     }
-
-
 }
