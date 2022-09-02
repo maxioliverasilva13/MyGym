@@ -103,6 +103,7 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         dateChooserActual.setFocusable(false);
         dateChooserActual.setTextRefernce(txtInicio);
 
+
         dateChooserFin.setTextRefernce(txtFin);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);

@@ -98,11 +98,13 @@ public class AddClaseForm extends javax.swing.JFrame {
         dateChooserFechaRegistro.setTextRefernce(fecha);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(408, 720));
+        setPreferredSize(new java.awt.Dimension(408, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel1.setText("Agregar clase");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 6, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
 
         jComboBox1.setEnabled(false);
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 229, 344, 34));
@@ -206,7 +208,7 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 340, 47));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 600, 340, 47));
 
         jTextField8.setOpaque(true);
         jTextField8.addActionListener(new java.awt.event.ActionListener() {

@@ -146,12 +146,16 @@ public class Actividad implements Serializable {
 
     public ActividadDTO getDtActividad() {
         List<DtClase> allClases = new ArrayList<>();
-        ProfesorDTO profe = new ProfesorDTO(profesor.getId(), profesor.getNombre(), profesor.getApellido(), profesor.getNickname(), profesor.getEmail(), profesor.getNacimiento(), profesor.getDescripcionGeneral(), profesor.getBiografia(), profesor.getLinkSitioWeb()
-        );
-        // esto es para no crear un cyclo de relaciones
-        
-        DtInstitucion dtIns = new DtInstitucion(institucion.getId(), institucion.getNombre(), institucion.getDescripcion(), institucion.getUrl(), null, null);
-        
+        ProfesorDTO profe = null;
+        if(this.profesor != null){
+            profe = new ProfesorDTO(profesor.getId(), profesor.getNombre(), profesor.getApellido(), profesor.getNickname(), profesor.getEmail(), profesor.getNacimiento(), profesor.getDescripcionGeneral(), profesor.getBiografia(), profesor.getLinkSitioWeb());
+            
+        }
+        DtInstitucion dtIns = null;
+        if(this.institucion != null){
+              dtIns = new DtInstitucion(institucion.getId(), institucion.getNombre(), institucion.getDescripcion(), institucion.getUrl(), null, null);
+        }
+     
         ActividadDTO dt = new ActividadDTO(
                 this.id, this.nombre , this.descripcion, this.duracion, this.costo, this.fechaRegistro, profe, allClases, dtIns);
         return dt;

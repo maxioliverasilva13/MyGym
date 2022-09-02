@@ -40,9 +40,6 @@ public class ProfesorDTO extends UsuarioDTO {
      
     }
 
-    public String getDescripcionGeneral() {
-        return descripcionGeneral;
-    }
 
     public List<DtInstitucion> getInstituciones() {
         return instituciones;

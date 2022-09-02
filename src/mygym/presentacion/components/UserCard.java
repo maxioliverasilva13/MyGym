@@ -4,6 +4,9 @@
  */
 package mygym.presentacion.components;
 
+import Usuario.IUsuarioBO;
+import Usuario.UsuarioBO;
+import Usuario.exceptions.UserNotExist;
 import java.awt.Color;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.BorderFactory;
@@ -22,8 +25,20 @@ public class UserCard extends javax.swing.JPanel {
     /**
      * Creates new form UserCard
      */
-    public UserCard() {
+    private int id;
+    private  String nombre;
+    private String apellido;
+    private String email;
+    public UserCard(int id,String nombre,String apellido,String email) {
         initComponents();
+        
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        
+        this.render();
+        
     }
 
     /**
@@ -159,10 +174,26 @@ public class UserCard extends javax.swing.JPanel {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        VerInfoUsersSocioForm newframe = new VerInfoUsersSocioForm();
+        IUsuarioBO usuarioBo = new UsuarioBO();
+        try{
+            System.out.println(usuarioBo.getTipoById(this.id));
+            if(usuarioBo.getTipoById(this.id).equals("Socio")){
+                VerInfoUsersSocioForm newframe = new VerInfoUsersSocioForm(this.id);
+                newframe.setVisible(true);
+                this.dispose();
+            }else{   // es un profesor
+                  VerInfoUsersProfesorForm newframe = new VerInfoUsersProfesorForm();
+                  newframe.setVisible(true);
+                  this.dispose();
+            }
+            
+            
+        }catch(UserNotExist ex){
+            System.out.println("Usuario no existe");
+        }
         
+        VerInfoUsersSocioForm newframe = new VerInfoUsersSocioForm(this.id);
         newframe.setVisible(true);
-        
         this.dispose();
     }
 
@@ -170,6 +201,10 @@ public class UserCard extends javax.swing.JPanel {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void render(){
+        this.jLabel1.setText(this.nombre + " " + this.apellido);
+        this.jLabel2.setText(this.email);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

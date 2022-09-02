@@ -20,4 +20,7 @@ public interface ISocioBO {
     public void editar(int id, SocioEditDTO socioEdit);
     public SocioDTO consultarSocio(int id) throws SocioNotExist;
     public void agregarRegistro(Registro newRegistro);
+   
+    
+    
 }

@@ -77,12 +77,8 @@ public class Profesor extends Usuario {
     
     public ProfesorDTO getDtProfesor() {
         ParserClassesToDt parseclass = new ParserClassesToDt();
-
-        ProfesorDTO profe = new ProfesorDTO(
-                this.id, this.nombre, this.apellido, this.nickname, this.email, this.nacimiento, this.descripcionGeneral, this.biografia, this.linkSitioWeb, parseclass.getActividadDTOs(actividades), parseclass.getInstitucionesDt(instituciones));
+        ProfesorDTO profe = new ProfesorDTO(this.id, this.nombre, this.apellido, this.nickname, this.email, this.nacimiento, this.descripcionGeneral, this.biografia, this.linkSitioWeb, parseclass.getActividadDTOs(actividades), parseclass.getInstitucionesDt(instituciones));
         return profe;
     }
- 
- 
 
 }

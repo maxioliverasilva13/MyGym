@@ -5,11 +5,14 @@
 package Socio;
 
 import Profesor.Profesor;
+import Registro.DtRegistro;
 import Registro.Registro;
 import Socio.dtos.SocioDTO;
 import Socio.dtos.SocioEditDTO;
 import Socio.exceptions.SocioNotExist;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 /**
@@ -44,7 +47,8 @@ public class SocioBO implements ISocioBO {
                item.getApellido(),
                item.getNickname(),
                item.getEmail(),
-               item.getNacimiento()
+               item.getNacimiento(),
+               null
             ));
         });
         return socios;
@@ -52,16 +56,23 @@ public class SocioBO implements ISocioBO {
 
     @Override
     public SocioDTO consultarSocio(int id) throws SocioNotExist {
-         ISocioDAO socioDao = new SocioDAO();
+        ISocioDAO socioDao = new SocioDAO();
         Socio socioFind = socioDao.getById(id);
+        SocioDTO res;
         if(socioFind  == null){
             throw new SocioNotExist("El socio no existe");
         }
-        SocioDTO socio = new SocioDTO(socioFind.getId(),socioFind.getNombre(),socioFind.getApellido(),
-        socioFind.getNickname(),socioFind.getEmail(),socioFind.getNacimiento());
+        List<DtRegistro> registros = new ArrayList();
         
-        return socio;
+        socioFind.getRegistros().forEach((registro) ->{
+            registros.add(registro.getDtRegistro());
+        });
+        
+        res = new SocioDTO(socioFind.getId(), socioFind.getNombre(),socioFind.getApellido(),socioFind.getNickname(),socioFind.getEmail(),socioFind.getNacimiento(),registros);        
+        return res;
         
     }
+
+  
    
 }
