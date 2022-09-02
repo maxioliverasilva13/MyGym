@@ -4,9 +4,29 @@
  */
 package mygym.presentacion.forms;
 
+import Actividad.ActividadBO;
+import Actividad.dtos.ActividadDTO;
+import Clase.ClaseBO;
+import Clase.ClaseDao;
+import Clase.DtClase;
+import Institucion.DtInstitucion;
+import Institucion.InstitucionBO;
+import Profesor.dtos.ProfesorDTO;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import ParseDate.ParseDate;
+import com.raven.datechooser.SelectedDate;
+import java.awt.event.KeyEvent;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
+import java.util.Date;
+import javax.swing.Icon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
+import javax.swing.plaf.IconUIResource;
 
 /**
  *
@@ -17,10 +37,16 @@ public class AddClaseForm extends javax.swing.JFrame {
     /**
      * Creates new form AddUsersForm
      */
-    String[] instituciones;
-    String[] actividades ;
     String[] profesores;
     
+    InstitucionBO insBO = new InstitucionBO();
+    ActividadBO actBO = new ActividadBO();
+    ClaseBO claseBO = new ClaseBO();
+    HashMap<Integer, DtInstitucion> instituciones = insBO.listarInstituciones();
+    HashMap<Integer, ActividadDTO> actividades = new HashMap<>();
+
+    Integer selectedInstitucionId = null;
+    Integer selectedActividadId = null;
     
     public AddClaseForm() {
         initComponents();
@@ -39,7 +65,7 @@ public class AddClaseForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jOptionPane1 = new javax.swing.JOptionPane();
+        dateChooserFechaRegistro = new com.raven.datechooser.DateChooser();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
@@ -64,15 +90,27 @@ public class AddClaseForm extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        fecha = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+
+        dateChooserFechaRegistro.setToolTipText("");
+        dateChooserFechaRegistro.setName(""); // NOI18N
+        dateChooserFechaRegistro.setTextRefernce(fecha);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(408, 720));
+        setPreferredSize(new java.awt.Dimension(408, 720));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel1.setText("Agregar clase");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
 
         jComboBox1.setEnabled(false);
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 229, 344, 34));
 
         jLabel7.setText("Elige una institucion");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 35, -1, -1));
 
         jComboBox2.setEnabled(false);
         jComboBox2.addItemListener(new java.awt.event.ItemListener() {
@@ -80,10 +118,13 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jComboBox2ItemStateChanged(evt);
             }
         });
+        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 58, 344, 34));
 
         jLabel8.setText("Elige una actividad deportiva ");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 119, -1, -1));
 
-        jLabel9.setText("Elige un profesor ");
+        jLabel9.setText("Elija un profesor");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 206, -1, -1));
 
         jComboBox3.setEnabled(false);
         jComboBox3.addItemListener(new java.awt.event.ItemListener() {
@@ -91,14 +132,18 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jComboBox3ItemStateChanged(evt);
             }
         });
+        getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 142, 344, 34));
 
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
             }
         });
+        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 315, 344, 35));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 286, -1, -1));
 
         jLabel2.setText("Ingresa un nombre");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 292, -1, -1));
 
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,14 +158,20 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jTextField6KeyReleased(evt);
             }
         });
+        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 471, 348, 36));
 
-        jLabel3.setText("minimo socios");
+        jLabel3.setText("Minimo Socios");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 356, -1, -1));
 
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 368, -1, -1));
+        jLabel4.getAccessibleContext().setAccessibleName("labelErrorCapacidad");
 
         errorCapacidadLbl.setForeground(new java.awt.Color(255, 0, 0));
         errorCapacidadLbl.setName("errorCapacidad"); // NOI18N
+        getContentPane().add(errorCapacidadLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 368, -1, -1));
 
+        jTextField7.setOpaque(true);
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField7ActionPerformed(evt);
@@ -133,13 +184,20 @@ public class AddClaseForm extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField7KeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField7KeyTyped(evt);
+            }
         });
+        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 379, 95, 35));
 
-        jLabel5.setText("url acceso");
+        jLabel5.setText("Url Acceso");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 448, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(0, 203, 126));
+        jButton1.setBackground(new java.awt.Color(0, 153, 153));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Agregar");
+        jButton1.setBorder(null);
+        jButton1.setOpaque(true);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -150,7 +208,9 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 600, 340, 47));
 
+        jTextField8.setOpaque(true);
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
@@ -163,147 +223,56 @@ public class AddClaseForm extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField8KeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField8KeyTyped(evt);
+            }
         });
+        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(276, 379, 95, 35));
 
-        jLabel6.setText("maximo socios");
+        jLabel6.setText("Maximo Socios");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 356, -1, -1));
 
         jLabel11.setBackground(new java.awt.Color(255, 0, 102));
+        jLabel11.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel11.setName("errorLblMinSocios"); // NOI18N
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(221, 420, 150, 16));
 
+        jLabel12.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel12.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 420, 177, 16));
+        jLabel12.getAccessibleContext().setAccessibleName("errorMaxSociosLbl");
 
         jLabel13.setForeground(new java.awt.Color(255, 51, 0));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 292, -1, -1));
 
+        jLabel14.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel14.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 454, 206, 11));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 0, 51));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 379, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextField5)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel13))
-                        .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jComboBox3, 0, 339, Short.MAX_VALUE)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jComboBox2, 0, 339, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(errorCapacidadLbl)
-                                .addGap(2, 2, 2)
-                                .addComponent(jLabel4)
-                                .addGap(123, 123, 123))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel15)
-                                .addGap(18, 18, 18)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(23, 23, 23))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel12))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel11))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel14)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 37, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(15, 15, 15))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(147, 147, 147)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(errorCapacidadLbl))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel15)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel11))
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(jLabel12)
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
-        );
+        fecha.setBackground(new java.awt.Color(242, 242, 242));
+        fecha.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        fecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        fecha.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        fecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fechaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 561, 140, 20));
 
-        jLabel4.getAccessibleContext().setAccessibleName("labelErrorCapacidad");
-        jLabel12.getAccessibleContext().setAccessibleName("errorMaxSociosLbl");
+        jLabel16.setText("Fecha de clase");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 532, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -383,7 +352,6 @@ public class AddClaseForm extends javax.swing.JFrame {
         }
         
                 
-         System.out.println("hola");
          if(nombreText.isEmpty()){
              this.jLabel13.setText("el nombre no puede estar vacio");
              countErrors++;
@@ -401,8 +369,28 @@ public class AddClaseForm extends javax.swing.JFrame {
          if(countErrors > 0){
              return;
          }
+         
+        System.out.println(selectedActividadId);
+        ParseDate parseDate = new ParseDate();
+        LocalDate now = LocalDate.now();
+        int capMinima = Integer.parseInt(jTextField7.getText());
+        int capMaxima = Integer.parseInt(jTextField8.getText());
+        String urlAcceso = jTextField6.getText();
+        Date fechaRegistro = parseDate.parseDate(now.getYear() + "-" + now.getMonthValue() + "-" + now.getDayOfMonth());
+        SelectedDate selected = dateChooserFechaRegistro.getSelectedDate();
+        Date fechaClase = parseDate.parseDate(selected.getYear() + "-" + selected.getMonth() + "-" + selected.getDay());
+        String nombre = jTextField5.getText();
+        DtClase dt = new DtClase(0, nombre, fechaClase, capMinima, capMaxima, urlAcceso, fechaRegistro);
+        try {
+            claseBO.insertarClase(selectedActividadId, dt);
+
+            JOptionPane.showMessageDialog(new JFrame(), "La clase se inserto correctamente", "Agregado Correctamente", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+        }
+         
+        
         this.setVisible(false);
-        this.cleanFields(); 
+        this.cleanFields();
     }//GEN-LAST:event_jButton1MouseClicked
 
      private static boolean  checkValidUrl(String url){
@@ -418,16 +406,58 @@ public class AddClaseForm extends javax.swing.JFrame {
         
      }
     private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
-       this.loadActividades();
+        String selectedItem = jComboBox2.getSelectedItem().toString();
+        instituciones.forEach((Integer k, DtInstitucion d) -> {
+            if (d.getNombre() == selectedItem) {
+                if (selectedInstitucionId != k) {
+                  selectedInstitucionId = k;
+                  this.loadActividades();
+                } 
+            }
+        });
     }//GEN-LAST:event_jComboBox2ItemStateChanged
 
     private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
-        this.loadProfesores();
+        Object sels = this.jComboBox3.getSelectedItem();
+        String selectedItem = (sels != null) ? sels.toString() : null;
+        if (selectedItem != null) {
+             actividades.forEach((Integer k, ActividadDTO d) -> {
+            if (d.getNombre() == selectedItem) {
+                if (selectedActividadId != k) {
+                  selectedActividadId = k;
+                  ProfesorDTO profe = d.getProfesor();
+                  // add the only profesor for this class
+                  this.jComboBox1.addItem(profe.getNombre() + " " + profe.getApellido());
+                } 
+            }
+            });
+        }
     }//GEN-LAST:event_jComboBox3ItemStateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fechaActionPerformed
+
+    private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
+    char c = evt.getKeyChar();
+    if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+         evt.consume();  // if it's not a number, ignore the event
+    }
+    // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField8KeyTyped
+
+    private void jTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyTyped
+    char c = evt.getKeyChar();
+    if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+         evt.consume();  // if it's not a number, ignore the event
+    }
+    // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7KeyTyped
 
     /**
      * @param args the command line arguments
@@ -490,19 +520,19 @@ public class AddClaseForm extends javax.swing.JFrame {
     
     private void loadInstituciones(){
        this.jComboBox2.removeAllItems();
-       this.instituciones =  new String[]{"Club san jose", "Club deportivo"};
-       for(String cadena :instituciones) {
-           this.jComboBox2.addItem(cadena);
-       }
+        instituciones.forEach((Integer key, DtInstitucion i) -> {
+            this.jComboBox2.addItem(i.getNombre());
+       });
        this.jComboBox2.enable(true);
     }
     
       private void loadActividades(){
        this.jComboBox3.removeAllItems();
-       this.actividades =  new String[]{"Natacion", "Boxeo"};
-       for(String cadena :actividades) {
-           this.jComboBox3.addItem(cadena);
-       }
+       actividades = actBO.listarActividades(selectedInstitucionId);
+       actividades.forEach((Integer key, ActividadDTO data) -> {
+           this.jComboBox3.addItem(data.getNombre());
+       });
+      
        this.jComboBox3.enable(true);
        
     }
@@ -517,7 +547,9 @@ public class AddClaseForm extends javax.swing.JFrame {
       }
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.raven.datechooser.DateChooser dateChooserFechaRegistro;
     private javax.swing.JLabel errorCapacidadLbl;
+    private javax.swing.JTextField fecha;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
@@ -529,6 +561,7 @@ public class AddClaseForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -537,7 +570,6 @@ public class AddClaseForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;

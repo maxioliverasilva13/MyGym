@@ -4,6 +4,8 @@
  */
 package mygym.presentacion.pages;
 
+import java.awt.Toolkit;
+import mygym.presentacion.components.AgregarRegistros;
 import mygym.presentacion.components.ChooseInstitucion;
 import mygym.presentacion.forms.AddClaseForm;
 
@@ -16,7 +18,9 @@ public class Clase extends javax.swing.JPanel {
     /**
      * Creates new form Clase
      */
-     AddClaseForm form = new AddClaseForm();
+    AddClaseForm form = new AddClaseForm();
+    AgregarRegistros ar = new AgregarRegistros();
+
     public Clase() {
         initComponents();
     }
@@ -34,9 +38,11 @@ public class Clase extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         addButton1 = new javax.swing.JButton();
+        Agregar = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(720, 540));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlHeader.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -77,6 +83,8 @@ public class Clase extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(-5, 0, 770, -1));
+
         addButton1.setBackground(new java.awt.Color(0, 153, 153));
         addButton1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         addButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -84,6 +92,7 @@ public class Clase extends javax.swing.JPanel {
         addButton1.setToolTipText("");
         addButton1.setBorder(null);
         addButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        addButton1.setOpaque(true);
         addButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         addButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -95,54 +104,52 @@ public class Clase extends javax.swing.JPanel {
                 addButton1ActionPerformed(evt);
             }
         });
+        add(addButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 187, 51));
+
+        Agregar.setBackground(new java.awt.Color(0, 153, 153));
+        Agregar.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        Agregar.setForeground(new java.awt.Color(255, 255, 255));
+        Agregar.setText("Agregar");
+        Agregar.setToolTipText("");
+        Agregar.setBorder(null);
+        Agregar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        Agregar.setOpaque(true);
+        Agregar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarActionPerformed(evt);
+            }
+        });
+        add(Agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 176, 51));
 
         addButton.setBackground(new java.awt.Color(0, 153, 153));
         addButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         addButton.setForeground(new java.awt.Color(255, 255, 255));
-        addButton.setText("Agregar");
+        addButton.setText("Agregar Registros");
         addButton.setToolTipText("");
         addButton.setBorder(null);
         addButton.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        addButton.setOpaque(true);
         addButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        addButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addButtonMouseClicked(evt);
+            }
+        });
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addButtonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(131, 131, 131)
-                .addComponent(addButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(148, 148, 148))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                    .addComponent(addButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(92, Short.MAX_VALUE))
-        );
+        add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 176, 51));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         if (!form.isVisible()) {
             form.setVisible(true);
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_addButtonActionPerformed
+    }//GEN-LAST:event_AgregarActionPerformed
 
     private void addButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButton1ActionPerformed
         ChooseInstitucion chooseInstitucion = new ChooseInstitucion();
@@ -153,8 +160,21 @@ public class Clase extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_addButton1MouseClicked
 
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        if (!ar.isVisible()) {
+            ar.setVisible(true);
+        }
+        //ÇÇar.setLocationRelativeTo(null);
+        //ar.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width  - getSize().width) / 2, (Toolkit.getDefaultToolkit().getScreenSize().height - getSize().height) / 2);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void addButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButtonMouseClicked
+    }//GEN-LAST:event_addButtonMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Agregar;
     private javax.swing.JButton addButton;
     private javax.swing.JButton addButton1;
     private javax.swing.JLabel jLabel2;

@@ -18,8 +18,6 @@ public  class UsuarioDTO {
     protected String EMAIL;
     protected Date NACIMIENTO;
     
-    
-    
     public UsuarioDTO(int id, String nombre,String apellido,String nickname,String email,Date nacimiento){
         this.ID = id;
         this.NOMBRE = nombre;

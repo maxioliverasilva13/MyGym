@@ -32,7 +32,7 @@ public class SocioDAO implements ISocioDAO{
     
     public List<Socio> listar(){
         List<Socio> res;  
-        Query query = this.em.createNativeQuery("SELECT * FROM profesor JOIN usuario ON profesor.userId = usuario.id", Socio.class);
+        Query query = this.em.createNativeQuery("SELECT * FROM socio JOIN usuario ON socio.userId = usuario.id", Socio.class);
         res = query.getResultList();
         return res;
     }

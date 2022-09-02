@@ -53,26 +53,9 @@ import java.util.logging.Logger;
  * @author maximilianooliverasilva
  */
 public class MyGymApp {
-    public static void main(String[] args) throws SocioNotExist, InstitucionNotFoundException, CuponeraNotFoundException  {
-        
-        Dashboard dash = new Dashboard();
-        dash.setVisible(true);
-        
-        IUsuarioBO usuarioBo = new UsuarioBO();
-        
-        usuarioBo.listarUsuarios().forEach((key,user)->{
-            try {
-                System.out.println(usuarioBo.getTipoById(user.getId()));
-            } catch (UserNotExist ex) {
-               ;
-            }
-        });
-        
-        
-        
-        
-        
-       
-    }
 
+    public static void main(String[] args)  {
+        Dashboard ds = new Dashboard();
+        ds.setVisible(true);
+    }
 }

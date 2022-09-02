@@ -4,6 +4,8 @@
  */
 package mygym.presentacion.pages;
 
+import Institucion.DtInstitucion;
+import Institucion.InstitucionBO;
 import mygym.presentacion.institucion.AddInstitucionForm;
 
 
@@ -16,8 +18,22 @@ public class Instituciones extends javax.swing.JPanel {
     /**
      * Creates new form Instituciones
      */
+    InstitucionBO inst = new InstitucionBO();
+    int iterador;
     public Instituciones() {
         initComponents();
+        listado();
+        
+    }
+    
+    public void listado() {
+        inst.listarInstituciones().forEach((Integer key, DtInstitucion ins)->{
+            DtInstitucion indt = new DtInstitucion(ins.getId(), ins.getNombre(), ins.getDescripcion(), ins.getUrl(), null, null);
+            tablaInstituciones.setValueAt(indt.getNombre(), iterador, 0);
+            tablaInstituciones.setValueAt(indt.getDescripcion(), iterador, 1);
+            tablaInstituciones.setValueAt(indt.getUrl(), iterador, 2);
+            iterador++;
+        });  
     }
 
     /**
@@ -31,6 +47,8 @@ public class Instituciones extends javax.swing.JPanel {
 
         addButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        scrollTabla = new javax.swing.JScrollPane();
+        tablaInstituciones = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -52,6 +70,69 @@ public class Instituciones extends javax.swing.JPanel {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Instituciones");
 
+        scrollTabla.setBackground(new java.awt.Color(255, 255, 255));
+        scrollTabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        scrollTabla.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        tablaInstituciones.setAutoCreateRowSorter(true);
+        tablaInstituciones.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        tablaInstituciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Nombre de Institucion", "Descripcion", "Url"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaInstituciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tablaInstituciones.setGridColor(new java.awt.Color(255, 255, 255));
+        tablaInstituciones.setSelectionBackground(new java.awt.Color(0, 204, 204));
+        tablaInstituciones.setShowGrid(false);
+        tablaInstituciones.setUpdateSelectionOnSort(false);
+        scrollTabla.setViewportView(tablaInstituciones);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -62,6 +143,10 @@ public class Instituciones extends javax.swing.JPanel {
                 .addGap(247, 247, 247)
                 .addComponent(addButton)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(scrollTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -69,7 +154,9 @@ public class Instituciones extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(addButton)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 514, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(scrollTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -84,6 +171,8 @@ public class Instituciones extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane scrollTabla;
+    private javax.swing.JTable tablaInstituciones;
     // End of variables declaration//GEN-END:variables
 
     private void dispose() {
