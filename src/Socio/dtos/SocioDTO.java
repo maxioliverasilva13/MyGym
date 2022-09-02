@@ -4,8 +4,10 @@
  */
 package Socio.dtos;
 
+import Registro.DtRegistro;
 import Usuario.dtos.UsuarioDTO;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -13,27 +15,14 @@ import java.util.Date;
  */
 public class SocioDTO extends UsuarioDTO{
 
-    
-    public SocioDTO(int id,String nombre,String apellido,String nickname,String email,Date nacimiento){
+    private List<DtRegistro> registros;
+    public SocioDTO(int id,String nombre,String apellido,String nickname,String email,Date nacimiento,List<DtRegistro> registros){
         super(id,nombre,apellido,nickname,email,nacimiento);
-       
+        this.registros  = registros;
     }
     
-    public String getNombre(){
-        return this.nombre;
+    public List<DtRegistro> getRegistros(){
+        return this.registros;
     }
-    public String getApellido(){
-        return this.apellido;
-    }
-    public String getNickname(){
-        return this.nickname;
-    }
- 
-    public Date getNacimiento(){
-        return this.nacimiento;
-    }
-    
-    public String getEmail(){
-        return this.email;
-    }
+   
 }

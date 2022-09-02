@@ -5,6 +5,8 @@
 package Usuario;
 
 import Usuario.dtos.UsuarioCreateDTO;
+import Usuario.dtos.UsuarioDTO;
+import java.util.List;
 
 /**
  *
@@ -12,6 +14,11 @@ import Usuario.dtos.UsuarioCreateDTO;
  */
 public interface IUsuarioDAO {
      public void  create(UsuarioCreateDTO userCreate);
+     public List<Usuario> listar();
      public Usuario getByNickname(String nickname);
      public Usuario getByEmail(String email);
+     public Usuario getById(int id);
+     public String getTipoById(int id);
+     
+   
 }

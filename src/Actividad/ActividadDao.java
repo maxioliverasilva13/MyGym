@@ -99,5 +99,11 @@ public class ActividadDao implements IActividadDao {
         return null;
     }
 
+    @Override
+    public Collection<Actividad> listarActividadesByInstitucionNotIntCup(int institucionId, int cuponeraId) {
+         List<Actividad> actividades = this.em.createNativeQuery("SELECT actividad.id,actividad.costo, actividad.duracion, actividad.fecharegistro, actividad.nombre ,actividad.descripcion FROM actividad LEFT JOIN cuponeraxactividad ON actividad.id = cuponeraxactividad.ACTIVIDAD_ID WHERE cuponeraxactividad.CUPONERA_ID <> "+cuponeraId+" AND actividad.INSTITUCION_ID = "+institucionId, Actividad.class).getResultList();
+         return actividades;
+    }
+
   
 }

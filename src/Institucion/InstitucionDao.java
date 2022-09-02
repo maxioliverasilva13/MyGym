@@ -21,7 +21,7 @@ import java.util.List;
 public class InstitucionDao implements InterfaceInstitucionDao {
     EntityManager em = InterfaceEntityManager.getInstance();
     
-    InstitucionDao(){
+    public InstitucionDao(){
         
     }
     

@@ -33,15 +33,27 @@ import Registro.DtRegistro;
 import Registro.RegistroBO;
 import Registro.RegistroDao;
 import CuponeraXActividad.DtCuponeraXActividad;
+import Exceptions.CuponeraNotFoundException;
+import Exceptions.InstitucionNotFoundException;
+import Institucion.DtInstitucion;
+import Socio.ISocioBO;
+import Socio.SocioBO;
+import Socio.dtos.SocioDTO;
+import Socio.exceptions.SocioNotExist;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import Institucion.InterfaceInstitucionBO;
+import Usuario.exceptions.UserNotExist;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author maximilianooliverasilva
  */
 public class MyGymApp {
+
     public static void main(String[] args)  {
         Dashboard ds = new Dashboard();
         ds.setVisible(true);

@@ -93,10 +93,8 @@ public class Institucion implements Serializable {
     
     
     public DtInstitucion getDtInstitucion() {
-        ParserClassesToDt parseclass = new ParserClassesToDt();
-
-        DtInstitucion dtToReturn = new DtInstitucion(id, nombre, descripcion, url, parseclass.getProfesoresDTO(profesores) , parseclass.getActividadDTO(actividades));
-        return dtToReturn;
+        DtInstitucion res = new DtInstitucion(this.id,this.nombre,this.descripcion,this.url,null,null);
+        return res;
     }
     
     

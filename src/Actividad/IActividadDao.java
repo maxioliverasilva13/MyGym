@@ -23,6 +23,6 @@ public interface IActividadDao {
     public List<Actividad> listAll();
     public void agregarCupXActividad(int idActividad, CuponeraXActividad idCxA );
     public void agergarClase(int idActividad, Clase clase);
+    public Collection<Actividad> listarActividadesByInstitucionNotIntCup(int institucionId, int cuponeraId);  // lista las actividades pertenecientes a esa actividad que no tienen esa cuponera
     public Collection<Actividad> listarActividades(int idInstitucion);
-   
 }

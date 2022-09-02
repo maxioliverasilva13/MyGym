@@ -2,8 +2,12 @@ package Usuario;
 
 import Profesor.dtos.ProfesorCreateDTO;
 import Usuario.dtos.UsuarioCreateDTO;
+import Usuario.dtos.UsuarioDTO;
 import Usuario.exceptions.UserAlreadyEmailExist;
 import Usuario.exceptions.UserAlreadyNickExist;
+import Usuario.exceptions.UserNotExist;
+import java.util.HashMap;
+import java.util.List;
 import javax.persistence.NoResultException;
 
 /*
@@ -29,5 +33,32 @@ public class UsuarioBO implements IUsuarioBO {
         userDao.create(userCreate);
         
     }
+
+    @Override
+    public HashMap<Integer, UsuarioDTO> listarUsuarios() {
+         UsuarioDAO userDao = new UsuarioDAO();
+         HashMap<Integer,UsuarioDTO> res = new HashMap<Integer,UsuarioDTO>();
+         List<Usuario> userList = userDao.listar();
+         userList.forEach((user) -> {
+             res.put(user.getId(), new UsuarioDTO(user.getId(),user.getNombre(),user.getApellido(),user.getNickname(),user.getEmail(), user.getNacimiento()));
+         });
+         return res;
+    }
+
+    @Override
+    public String getTipoById(int id) throws UserNotExist {
+         UsuarioDAO userDao = new UsuarioDAO();
+         
+         if(userDao.getById(id) == null){
+             throw new UserNotExist("Usuario no existe");
+         }
+        
+         return userDao.getTipoById(id);
+         
+    }
+    
+ 
+    
+    
     
 }

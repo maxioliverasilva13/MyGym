@@ -16,6 +16,12 @@ import java.util.Date;
 import java.util.HashMap;
 import mygym.logica.usuario.dataTypes.DtActividad;
 import Actividad.Actividad;
+import Cuponera.CuponeraDao;
+import Cuponera.InterfaceCuponeraDao;
+import Exceptions.CuponeraNotFoundException;
+import Exceptions.InstitucionNotFoundException;
+import Institucion.InstitucionDao;
+import Institucion.InterfaceInstitucionDao;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -61,14 +67,24 @@ public class ActividadBO  implements IActividadBO{
         
     }
 
-    @Override
-    public HashMap<Integer, ActividadDTO> listarByInstitucion(int idInstitucion) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
 
     @Override
-    public HashMap<Integer, ActividadDTO> listarNotInCuponeras(int cuponeraId) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public HashMap<Integer, ActividadDTO> listarByInstitucionNotInCuponeras(int institucionId, int cuponeraId) throws InstitucionNotFoundException,CuponeraNotFoundException{
+        InterfaceInstitucionDao insDao = new InstitucionDao();
+        InterfaceCuponeraDao cupDao = new CuponeraDao();
+        if(insDao.existe(institucionId) == null){
+            throw new InstitucionNotFoundException("Institucion no existe");
+        }
+        if(cupDao.existe(cuponeraId) == null){
+            throw new CuponeraNotFoundException("Cuponera no existe");
+        }
+        
+        HashMap<Integer,ActividadDTO> res = new HashMap<Integer,ActividadDTO>();
+        this.actDao.listarActividadesByInstitucionNotIntCup(institucionId, cuponeraId).forEach((actividad) ->{
+             res.put(actividad.getId(), actividad.getDtActividad());
+        });
+        return res;
     }
 
     @Override
@@ -84,6 +100,11 @@ public class ActividadBO  implements IActividadBO{
             actividades.put(act.getId(), act.getDtActividad());
         });
         return actividades;
+    }
+
+    @Override
+    public HashMap<Integer, ActividadDTO> listarByInstitucion(int idInstitucion) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

@@ -4,6 +4,8 @@
  */
 package mygym.presentacion.pages;
 
+import Usuario.IUsuarioBO;
+import Usuario.UsuarioBO;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -24,15 +26,11 @@ public class Usuarios extends javax.swing.JPanel {
      */
     public Usuarios() {
         initComponents();
-        JPanel panelContent = new JPanel(new GridLayout(8, 3, 10, 10));
+        JPanel panelContent = new JPanel(new GridLayout(3, 3, 10,10));
         panelContent.setBorder(new EmptyBorder(0,0,0,0));
         panelContent.setBackground(Color.white); 
         //panelContent.setLayout(new BoxLayout(panelContent, BoxLayout.Y_AXIS));
-        for(int i = 0; i <20; i++) {
-            UserCard card = new UserCard();
-            card.setSize(120, 90);
-            panelContent.add(card);
-        }
+        this.LoadUsers(panelContent);
         JScrollPane js = new JScrollPane(panelContent,
           JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
           JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -106,7 +104,14 @@ public class Usuarios extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_addButtonActionPerformed
 
-
+    private void LoadUsers(JPanel panel){
+        IUsuarioBO usuarioBo = new UsuarioBO();
+        usuarioBo.listarUsuarios().forEach((key,user) ->{
+           UserCard card = new UserCard(key,user.getNombre(),user.getApellido(),user.getEmail());
+           card.setSize(120, 90);
+           panel.add(card);
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JLabel jLabel2;
