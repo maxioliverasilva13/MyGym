@@ -11,8 +11,8 @@ import java.util.Date;
  * @author angel
  */
 public abstract class UsuarioDTO {
-     protected int id;
-     protected String nombre;
+    protected int id;
+    protected String nombre;
     protected String apellido;
     protected String nickname;
     protected String email;

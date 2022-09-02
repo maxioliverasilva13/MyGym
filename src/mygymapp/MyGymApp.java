@@ -46,5 +46,4 @@ public class MyGymApp {
         Dashboard ds = new Dashboard();
         ds.setVisible(true);
     }
-
 }

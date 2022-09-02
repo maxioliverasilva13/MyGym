@@ -94,8 +94,6 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         btnExitBG = new javax.swing.JPanel();
         btnExit = new javax.swing.JLabel();
 
-        dateChooserInicio.setToolTipText("");
-        dateChooserInicio.setName(""); // NOI18N
         dateChooserInicio.setTextRefernce(txtInicio);
 
         dateChooserFin.setTextRefernce(txtFin);
