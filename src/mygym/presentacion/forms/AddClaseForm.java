@@ -98,8 +98,8 @@ public class AddClaseForm extends javax.swing.JFrame {
         dateChooserFechaRegistro.setTextRefernce(fecha);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(408, 683));
-        setPreferredSize(new java.awt.Dimension(408, 683));
+        setMinimumSize(new java.awt.Dimension(408, 720));
+        setPreferredSize(new java.awt.Dimension(408, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
