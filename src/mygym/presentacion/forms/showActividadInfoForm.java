@@ -5,14 +5,18 @@
 package mygym.presentacion.forms;
 
 import javax.swing.JFrame;
-import mygym.logica.usuario.dataTypes.DtActividad;
-import mygym.logica.usuario.dataTypes.DtCuponera;
+import Actividad.dtos.ActividadDTO;
+import Cuponera.DtCuponera;
+import java.util.HashMap;
+import mygym.presentacion.pages.Actividades;
 
 /**
  *
  * @author mandi
  */
 public class showActividadInfoForm extends javax.swing.JFrame {
+    public static HashMap<Integer, ActividadDTO> actividades = Actividades.actividadesSistema;
+
     int xMouse, yMouse;
 
     /**
@@ -21,6 +25,14 @@ public class showActividadInfoForm extends javax.swing.JFrame {
     public showActividadInfoForm() {
         initComponents();
         this.setLocationRelativeTo(null);
+        // llenarCBoxCuponerasAsociadas();
+        // llenarCBoxClasesAsociadas();   
+    }
+    
+    public showActividadInfoForm(Integer idactividad) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        pintarInfoActividad(idactividad);
         // llenarCBoxCuponerasAsociadas();
         // llenarCBoxClasesAsociadas();   
     }
@@ -46,12 +58,14 @@ public class showActividadInfoForm extends javax.swing.JFrame {
 */
     
     // Pintar los datos de un DataActividad (La actividad que seleccionó en el dashboard)
-    private void pintarInfoActividad(DtActividad act){
-        nombreActividad.setText(act.getNombre());
-        costoActividad.setText(act.getCosto());
-        duracionActividad.setText(act.getDuracion());
-        fechaAltaActividad.setText(act.getFechaRegistro());
-        txaDescripcionActividad.setText(act.getDescripcion());
+    private void pintarInfoActividad(Integer idAct){
+        ActividadDTO selectedAct = actividades.get(idAct);
+        
+        nombreActividad.setText(selectedAct.getNombre());
+        costoActividad.setText(Float.toString(selectedAct.getCosto()));
+        duracionActividad.setText(Integer.toString(selectedAct.getDuracion()));
+        fechaAltaActividad.setText(selectedAct.getFechaRegistro().toString());
+        txaDescripcionActividad.setText(selectedAct.getDescripcion());
     }
     
     // Pintar información de la Cuponera seleccionada en el COMBOBOX
@@ -62,7 +76,7 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         // . . .
                 
         nombreCuponera.setText(cup.getNombre());
-        descuentoCuponera.setText(cup.getDescuento());
+        descuentoCuponera.setText(Integer.toString(cup.getDescuento()));
         periodoVigenciaCuponera.setText("Fecha lalala");
         txaDescripcionCuponera.setText(cup.getDescripcion());
     }

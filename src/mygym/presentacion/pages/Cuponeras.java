@@ -23,7 +23,6 @@ public class Cuponeras extends javax.swing.JPanel {
 
     CuponeraBo cupBo = new CuponeraBo();
     crearCuponeraForm formCrear = new crearCuponeraForm();
-    addActividadtoCuponera formAgregar = new addActividadtoCuponera();
     public static HashMap<Integer, DtCuponera> cuponeras = new HashMap<Integer, DtCuponera>();
 
     public Cuponeras() {
@@ -312,8 +311,10 @@ public class Cuponeras extends javax.swing.JPanel {
         }
         Object idObj = tablaCuponeras.getValueAt(selectedRowId, 0);
         int id = (Integer) idObj;
-        DtCuponera selectedCuponera = cuponeras.get(id);
+        //System.out.println("Id de la cuponera seleccionada en el DASHBOARD: "+ id);
         
+        addActividadtoCuponera formAgregar = new addActividadtoCuponera(id);
+
         if (!formAgregar.isVisible()) {
            formAgregar.setVisible(true);
         }

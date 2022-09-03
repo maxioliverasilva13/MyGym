@@ -24,7 +24,7 @@ import javax.persistence.Persistence;
  * @author angel
  */
 public class ProfesorBO implements IProfesorBO {
-    
+
     @Override
     public ProfesorDTO getProfesorById(int id) throws ProfesorNotExist  {
          IProfesorDao profDao = new ProfesorDao();
@@ -73,5 +73,14 @@ public class ProfesorBO implements IProfesorBO {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-   
+    public HashMap<Integer, ProfesorDTO> listarProfesores(){
+        ProfesorDao profDao = new ProfesorDao();
+        List<Profesor> profes = profDao.listarProfesores();
+        HashMap<Integer, ProfesorDTO> profesDTO = new HashMap<>();
+        profes.forEach((prof) -> {
+            profesDTO.put(prof.getId(), prof.getDtProfesor());
+        });
+        
+        return profesDTO;
+    }   
 }

@@ -29,7 +29,7 @@ import java.awt.event.ActionListener;
  */
 public class Actividades extends javax.swing.JPanel {
     createActividadForm formCreate = new createActividadForm();
-    showActividadInfoForm formInfo = new showActividadInfoForm();
+    //showActividadInfoForm formInfo = new showActividadInfoForm();
     DefaultComboBoxModel model = new DefaultComboBoxModel();
 
     InstitucionBO insBO = new InstitucionBO();
@@ -51,12 +51,11 @@ public class Actividades extends javax.swing.JPanel {
         tablaActividades.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         llenarCBoxInstituciones();
-        //llenarTabla(); // A futuro, se va a tener que modificar éste método para que en la tabla se muestren las actividades dependiendo de qué INSTITUCIÓN esté seleccionada en el combo box de arriba.
+        cmbInstituciones.setSelectedItem(null);
     
         cmbInstituciones.addActionListener (new ActionListener () {
             public void actionPerformed(ActionEvent e) {
                 Object selectedItem = cmbInstituciones.getSelectedItem();
-                System.out.println(Integer.parseInt(((ComboItem)selectedItem).getId()));
                 llenarTabla(Integer.parseInt(((ComboItem)selectedItem).getId()));
             }
         });
@@ -378,6 +377,7 @@ public class Actividades extends javax.swing.JPanel {
         int selectedActividadID = (Integer) idObj;
         ActividadDTO selectedAct = actividadesSistema.get(selectedActividadID); // PASARLE ESTE DT POR EL CONSTRUCTOR DEL FORM
         if (selectedAct != null){
+            showActividadInfoForm formInfo = new showActividadInfoForm(selectedActividadID);
             if (!formInfo.isVisible()) {
                 formInfo.setVisible(true);
             }
