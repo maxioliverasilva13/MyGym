@@ -50,8 +50,6 @@ public class createActividadForm extends javax.swing.JFrame{
         initComponents();
         llenarCBoxInstituciones();
         llenarCBoxProfesores();
-        cmbInstituciones.setSelectedItem(null);
-        cmbProfesores.setSelectedItem(null);
         
         this.setLocationRelativeTo(null);
         separatorNombre.setForeground(gris);
@@ -102,6 +100,7 @@ public class createActividadForm extends javax.swing.JFrame{
             modelInstituciones.addElement(new ComboItem(key.toString(), currentInstitucion.getNombre()));
         });
         cmbInstituciones.setModel(modelInstituciones);
+        cmbInstituciones.setSelectedItem(null);
     }    
    
         private void llenarCBoxProfesores(){
@@ -112,6 +111,7 @@ public class createActividadForm extends javax.swing.JFrame{
             modelProfesores.addElement(new ComboItem(key.toString(), currentProf.getNombre()));
         });
         cmbProfesores.setModel(modelProfesores);
+        cmbProfesores.setSelectedItem(null);
     }    
     
     /**
@@ -362,6 +362,15 @@ public class createActividadForm extends javax.swing.JFrame{
        
     private void btnCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearMouseClicked
         boolean error = false;
+        
+        if (cmbInstituciones.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(new JFrame(), "Seleccione una Insitución.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        } else if (cmbProfesores.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(new JFrame(), "Seleccione un Profesor.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         // Control de campo NOMBRE vacío.
         if (txtNombre.getText().equals("")){
             separatorNombre.setForeground(Color.red);

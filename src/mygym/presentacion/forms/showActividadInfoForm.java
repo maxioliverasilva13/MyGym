@@ -101,15 +101,10 @@ public class showActividadInfoForm extends javax.swing.JFrame {
     
     // Pintar información de la Cuponera seleccionada en el COMBOBOX
     private void pintarInfoClaseSeleccionada(DtClase clase){
-        
-        
-        // . . .
-        // luego va al hashmap de clasesAsociadas local e itera hasta llegar al "selectedIndex", que representa el DtCuponera indicado y pinta los datos abajo.
-        // . . .
-               
+
         nombreClase.setText(clase.getNombre());
         fechaClase.setText(clase.getFecha().toString());
-        profesorClase.setText("Fecha lalala");
+        profesorClase.setText(clase.getProfesor());
         capacidadMinimaClase.setText(Integer.toString(clase.getCapMinima()));
         capacidadMaximaClase.setText(Integer.toString(clase.getCapMaxima()));
         URLClase.setText(clase.getUrlAcceso());
