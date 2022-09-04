@@ -262,7 +262,7 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         btnSeleccionarActividad.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         btnSeleccionarActividad.setForeground(new java.awt.Color(255, 255, 255));
         btnSeleccionarActividad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnSeleccionarActividad.setText("Seleccionar");
+        btnSeleccionarActividad.setText("Agregar a la Cuponera");
         btnSeleccionarActividad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSeleccionarActividad.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -280,9 +280,7 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         btnSeleccionarActividadBG.setLayout(btnSeleccionarActividadBGLayout);
         btnSeleccionarActividadBGLayout.setHorizontalGroup(
             btnSeleccionarActividadBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnSeleccionarActividadBGLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnSeleccionarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(btnSeleccionarActividad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
         );
         btnSeleccionarActividadBGLayout.setVerticalGroup(
             btnSeleccionarActividadBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,16 +289,16 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
                 .addComponent(btnSeleccionarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(btnSeleccionarActividadBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 500, -1, -1));
+        jPanel1.add(btnSeleccionarActividadBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 500, 220, -1));
 
         cmbActividades.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         cmbActividades.setBorder(null);
-        jPanel1.add(cmbActividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 200, -1));
+        jPanel1.add(cmbActividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 200, -1));
 
         lblInfo.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblInfo.setText("Actividades disponibles: (que no están en esta Cuponera)");
-        jPanel1.add(lblInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 670, -1));
+        jPanel1.add(lblInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 670, -1));
 
         lblHeader1.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         lblHeader1.setForeground(new java.awt.Color(4, 37, 58));
@@ -311,11 +309,11 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         lblClases.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblClases.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblClases.setText("Cantidad de Clases");
-        jPanel1.add(lblClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 450, 120, 30));
+        jPanel1.add(lblClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 120, 30));
 
         txtClases.setBorder(null);
-        jPanel1.add(txtClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 450, 200, 30));
-        jPanel1.add(separatorClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 480, 200, 20));
+        jPanel1.add(txtClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, 200, 30));
+        jPanel1.add(separatorClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 470, 200, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
