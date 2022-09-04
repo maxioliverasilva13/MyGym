@@ -89,9 +89,9 @@ public class ActividadDao implements IActividadDao {
         }
     }
     
-    public Collection<Actividad> listarActividades() {
+    public Collection<Actividad> listarActividades(int idInstitucion) {
         try {
-            List<Actividad> actividades = em.createNativeQuery("select * from ACTIVIDAD", Actividad.class).getResultList();
+            List<Actividad> actividades = em.createNativeQuery("select * from ACTIVIDAD a WHERE a.INSTITUCION_ID=" + idInstitucion, Actividad.class).getResultList();
             return actividades;
         } catch (Exception e) {
             System.out.println(e.getMessage());

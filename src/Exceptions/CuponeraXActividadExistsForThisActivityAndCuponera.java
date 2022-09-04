@@ -8,7 +8,7 @@ package Exceptions;
  *
  * @author maximilianooliverasilva
  */
-public class CuponeraXActividadExistsForThisActivityAndCuponera extends Exception { 
+public class CuponeraXActividadExistsForThisActivityAndCuponera extends RuntimeException { 
     public CuponeraXActividadExistsForThisActivityAndCuponera(String errorMessage) {
         super(errorMessage);
     }

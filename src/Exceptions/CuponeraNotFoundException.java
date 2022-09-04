@@ -8,7 +8,7 @@ package Exceptions;
  *
  * @author maximilianooliverasilva
  */
-public class CuponeraNotFoundException extends Exception { 
+public class CuponeraNotFoundException extends RuntimeException { 
     public CuponeraNotFoundException(String errorMessage) {
         super(errorMessage);
     }

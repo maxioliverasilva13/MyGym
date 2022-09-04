@@ -8,7 +8,7 @@ package Exceptions;
  *
  * @author maximilianooliverasilva
  */
-public class RegistroNotFoundException extends Exception { 
+public class RegistroNotFoundException extends RuntimeException { 
     public RegistroNotFoundException(String errorMessage) {
         super(errorMessage);
     }

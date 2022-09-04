@@ -40,36 +40,26 @@ public class InstitucionDao implements InterfaceInstitucionDao {
     
     @Override
     public Institucion existe(int id){
-        try {
-            Institucion ins = em.find(Institucion.class, id);
-            if (ins == null) {
-                throw new InstitucionNotFoundException("La institucion no existe");
-            }
-            return ins;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        Institucion ins = em.find(Institucion.class, id);
+        if (ins == null) {
+            throw new InstitucionNotFoundException("La institucion no existe");
         }
-        return null;
+        return ins;
     }
     
     @Override
     public void agregarProfesor(int profesorId, int idInstitucion){
-        try {
-            Institucion ins = existe(idInstitucion);
-            Profesor prof = em.find(Profesor.class, profesorId);
-            if (prof == null) {
-                throw new ProfesorNotFoundException("La institucion no existe");
-            }
-            EntityTransaction tr = em.getTransaction();
-            tr.begin();
-            ins.addProfesor(prof);
-            prof.addInstitucion(ins);
-            em.persist(ins);
-            em.persist(prof);
-            tr.commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        Institucion ins = existe(idInstitucion);
+        Profesor prof = em.find(Profesor.class, profesorId);
+        if (prof == null) {
+            throw new ProfesorNotFoundException("La institucion no existe");
         }
+        EntityTransaction tr = em.getTransaction();
+        tr.begin();
+        ins.addProfesor(prof);
+        em.persist(ins);
+        em.persist(prof);
+        tr.commit();
     }
     
     @Override

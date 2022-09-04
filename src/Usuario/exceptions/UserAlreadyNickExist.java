@@ -11,7 +11,7 @@ package Usuario.exceptions;
 
 
 @SuppressWarnings("serial")
-public class UserAlreadyNickExist extends Exception {
+public class UserAlreadyNickExist extends RuntimeException {
 
     /**
      * Creates a new instance of <code>UserAlreadyNickExist</code> without

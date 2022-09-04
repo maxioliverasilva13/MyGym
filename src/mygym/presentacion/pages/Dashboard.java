@@ -44,13 +44,19 @@ public final class Dashboard extends javax.swing.JFrame {
         buttonUsuarios.setBackground(new Color(153, 153, 153));
         buttonUsuarios.setOpaque(true);
         switch (activePage) {
-            case INICIO -> buttonToReturn = buttonInicio;
-            case ACTIVIDAD -> buttonToReturn = buttonActividades;
-            case CUPONERA -> buttonToReturn = buttonCuponera;
-            case CLASE -> buttonToReturn = buttonClases;
-            case INSTITUCION -> buttonToReturn = buttonInstitucion;
-            case USUARIO -> buttonToReturn = buttonUsuarios;
-            default -> throw new AssertionError();
+            case INICIO: buttonToReturn = buttonInicio;
+            break;
+            case ACTIVIDAD : buttonToReturn = buttonActividades;
+            break;
+            case CUPONERA : buttonToReturn = buttonCuponera;            
+            break;
+            case CLASE : buttonToReturn = buttonClases;
+            break;
+            case INSTITUCION : buttonToReturn = buttonInstitucion;
+            break;
+            case USUARIO : buttonToReturn = buttonUsuarios;
+            break;
+            default : throw new AssertionError();
         }
         buttonToReturn.setBackground(new Color(0, 204, 204));
         buttonToReturn.setOpaque(true);

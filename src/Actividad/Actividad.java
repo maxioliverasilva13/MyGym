@@ -146,7 +146,6 @@ public class Actividad implements Serializable {
 
     public ActividadDTO getDtActividad() {
         List<DtClase> allClases = new ArrayList<>();
-        
         ProfesorDTO profe = null;
         if(this.profesor != null){
             profe = new ProfesorDTO(profesor.getId(), profesor.getNombre(), profesor.getApellido(), profesor.getNickname(), profesor.getEmail(), profesor.getNacimiento(), profesor.getDescripcionGeneral(), profesor.getBiografia(), profesor.getLinkSitioWeb());

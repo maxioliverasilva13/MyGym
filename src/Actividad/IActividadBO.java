@@ -24,6 +24,5 @@ public interface IActividadBO {
     public HashMap<Integer,ActividadDTO> listarByInstitucion(int idInstitucion);
     public HashMap<Integer,ActividadDTO> listarByInstitucionNotInCuponeras(int institucionId, int cuponeraId) throws InstitucionNotFoundException,CuponeraNotFoundException;
     public void addCupXAct(CuponeraXActividad cupXAct);
-    public HashMap<Integer, ActividadDTO> listarActividades();
-    
+    public HashMap<Integer, ActividadDTO> listarActividades(int idActividad);
 }

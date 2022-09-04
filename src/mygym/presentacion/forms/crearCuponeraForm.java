@@ -4,6 +4,7 @@
  */
 package mygym.presentacion.forms;
 
+import Cuponera.CuponeraBo;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -11,7 +12,8 @@ import com.raven.datechooser.SelectedDate;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Date;
-import mygym.logica.usuario.dataTypes.DtCuponera;
+import Cuponera.DtCuponera;
+import ParseDate.ParseDate;
 import mygym.presentacion.pages.Cuponeras;
 
 /**
@@ -22,6 +24,8 @@ public class crearCuponeraForm extends javax.swing.JFrame{
 
     int xMouse, yMouse;
     Color gris = new Color(204,204,204);
+    CuponeraBo cupBo = new CuponeraBo();
+    ParseDate parse = new ParseDate();
     
     public crearCuponeraForm() {
         initComponents();
@@ -55,6 +59,7 @@ public class crearCuponeraForm extends javax.swing.JFrame{
               }
              }
           });
+        txtInicio.enable(false);
     }
     
     /**
@@ -66,7 +71,7 @@ public class crearCuponeraForm extends javax.swing.JFrame{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dateChooserInicio = new com.raven.datechooser.DateChooser();
+        dateChooserActual = new com.raven.datechooser.DateChooser();
         dateChooserFin = new com.raven.datechooser.DateChooser();
         jPanel2 = new javax.swing.JPanel();
         lblHeader = new javax.swing.JLabel();
@@ -94,9 +99,10 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         btnExitBG = new javax.swing.JPanel();
         btnExit = new javax.swing.JLabel();
 
-        dateChooserInicio.setToolTipText("");
-        dateChooserInicio.setName(""); // NOI18N
-        dateChooserInicio.setTextRefernce(txtInicio);
+        dateChooserActual.setEnabled(false);
+        dateChooserActual.setFocusable(false);
+        dateChooserActual.setTextRefernce(txtInicio);
+
 
         dateChooserFin.setTextRefernce(txtFin);
 
@@ -131,6 +137,11 @@ public class crearCuponeraForm extends javax.swing.JFrame{
 
         txtDescuento.setToolTipText("");
         txtDescuento.setBorder(null);
+        txtDescuento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDescuentoKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 210, 30));
         jPanel2.add(separatorDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 210, 20));
 
@@ -155,8 +166,9 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jLabel5.setText("Fecha de Inicio");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText("Fecha Actual");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 80, -1));
 
         jLabel6.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel6.setText("Fecha de Fin");
@@ -165,8 +177,13 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         txtInicio.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         txtInicio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtInicio.setBorder(null);
+        txtInicio.setDisabledTextColor(new java.awt.Color(102, 102, 102));
+        txtInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtInicioActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 140, 20));
-
         txtFin.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         txtFin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtFin.setBorder(null);
@@ -239,7 +256,7 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         );
         btnMinimizarBGLayout.setVerticalGroup(
             btnMinimizarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnMinimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+            .addComponent(btnMinimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE)
         );
 
         jPanel2.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 30, 20));
@@ -299,6 +316,12 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         if (txtDescuento.getText().equals("")){
             separatorDescuento.setForeground(Color.red);
             error=true;
+        }else{
+            int descuento = Integer.parseInt(txtDescuento.getText());
+            if (descuento > 99 || descuento < 1) {
+                JOptionPane.showMessageDialog(new JFrame(), "El descuento debe ser entre 1 y 99.", "Error", JOptionPane.ERROR_MESSAGE);
+                error = true;
+            }
         }
         
         // Control de campo DESCRIPCIÓN vacío.
@@ -307,31 +330,42 @@ public class crearCuponeraForm extends javax.swing.JFrame{
             scrollDescr.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
             error=true;
         }
-
-        // Validación campo fecha inicio NO menor a la actual. TO DO
-        SelectedDate dateInicio = dateChooserInicio.getSelectedDate();
-        Date fechaActual = new Date(System.currentTimeMillis());
-        if (dateInicio.getDay() < fechaActual.getDay() || dateInicio.getMonth() < fechaActual.getMonth() || dateInicio.getYear() < fechaActual.getYear()){
-            JOptionPane.showMessageDialog(new JFrame(), "Error, fecha de inicio no puede ser menor a la actual.", "Error", JOptionPane.ERROR_MESSAGE);
+        
+        if (error){ // para que no llegue a validar fecha hasta que se resuelvan antes todos los campos vacíos.
+            return;
+        }
+        SelectedDate actual = dateChooserActual.getSelectedDate();
+        SelectedDate fechafin = dateChooserFin.getSelectedDate();
+        
+        // Validación campo fecha fin
+        if (fechafin.getYear() < actual.getYear() 
+          || ((fechafin.getYear() == actual.getYear() && fechafin.getMonth() == actual.getMonth()) && (fechafin.getDay() < actual.getDay())) 
+          || (fechafin.getYear() == actual.getYear() && fechafin.getMonth() < actual.getMonth())
+          || (fechafin.getYear() == actual.getYear() && fechafin.getMonth() == actual.getMonth() && fechafin.getDay() == actual.getDay())){
+            JOptionPane.showMessageDialog(new JFrame(), "Fecha de vencimiento inválida.", "Error", JOptionPane.ERROR_MESSAGE);
             error = true;
         }
-
-        SelectedDate dateFin = dateChooserFin.getSelectedDate();
-        // Validación campo fecha fin menor o igual a la actual.
-        if (dateFin.getDay() < fechaActual.getDay() || dateFin.getMonth() < fechaActual.getMonth() || dateFin.getYear() < fechaActual.getYear()){
-            JOptionPane.showMessageDialog(new JFrame(), "Error, fecha de fin no puede ser menor a la actual.", "Error", JOptionPane.ERROR_MESSAGE);
-            error = true;
-        }
-
         if (!error){
-            DtCuponera cup = new DtCuponera(txtNombre.getText(), txtareaDescripcion.getText(), new Date(2022, 05, 13), txtDescuento.getText());
-            Cuponeras.agregarElemTabla(cup);
+            // Parseo al formato de la BD:
+            Date ffin = parse.parseDate(fechafin.getYear() + "-" + fechafin.getMonth() + "-" + fechafin.getDay());
+            
+            //    TODO: MODIFICAR ID DINÁMICO?
+            DtCuponera cup = new DtCuponera(0, txtNombre.getText(), txtareaDescripcion.getText(), ffin, Integer.parseInt(txtDescuento.getText()), null);
+            
+            try{
+                cupBo.agregarCuponera(cup);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             txtNombre.setText("");
             txtDescuento.setText("");
             txtareaDescripcion.setText("");
             separatorNombre.setForeground(gris);
             separatorDescuento.setForeground(gris);
             scrollDescr.setViewportBorder(javax.swing.BorderFactory.createLineBorder(gris));
+            JOptionPane.showMessageDialog(new JFrame(), "Cuponera registrada con éxito!", "Información", JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }
     }//GEN-LAST:event_btnCrearMouseClicked
@@ -355,6 +389,14 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnExitMouseClicked
+
+    private void txtInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInicioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtInicioActionPerformed
+
+    private void txtDescuentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescuentoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -399,8 +441,8 @@ public class crearCuponeraForm extends javax.swing.JFrame{
     private javax.swing.JPanel btnExitBG;
     private javax.swing.JLabel btnMinimizar;
     private javax.swing.JPanel btnMinimizarBG;
+    private com.raven.datechooser.DateChooser dateChooserActual;
     private com.raven.datechooser.DateChooser dateChooserFin;
-    private com.raven.datechooser.DateChooser dateChooserInicio;
     private javax.swing.JLabel dragBar;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

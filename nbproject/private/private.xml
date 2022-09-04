@@ -29,6 +29,7 @@
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Socio/ISocioDAO.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Usuario/UsuarioDAO.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Actividad/Actividad.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/forms/createActividadForm.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/forms/VerInfoUsersProfesorForm.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Institucion/DtInstitucion.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/forms/VerInfoUsersSocioForm.java</file>
@@ -37,6 +38,8 @@
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/forms/crearCuponeraForm.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Actividad/ActividadBO.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/utils/ParserClassesToDt.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/forms/AddClaseForm.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/forms/AddUsersForm.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Socio/SocioBO.java</file>
         </group>
     </open-files>

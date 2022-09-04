@@ -26,10 +26,6 @@ import utils.ParserClassesToDt;
  */
 public class ProfesorBO implements IProfesorBO {
     
-    
- 
-        
-     ;
     @Override
     public ProfesorDTO getProfesorById(int id) throws ProfesorNotExist  {
          IProfesorDao profDao = new ProfesorDao();
