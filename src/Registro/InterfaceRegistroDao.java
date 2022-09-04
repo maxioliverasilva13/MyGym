@@ -4,11 +4,13 @@
  */
 package Registro;
 
+import java.util.List;
+
 /**
  *
  * @author maximilianooliverasilva
  */
 public interface InterfaceRegistroDao {
-    public void insertar(int idSocio, int idClase, DtRegistro registro);
+    public void insertar(int idSocio, List<Integer> clases, DtRegistro registro);
     public Registro existe(int idRegistro);
 }

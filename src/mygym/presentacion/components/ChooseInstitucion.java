@@ -45,7 +45,8 @@ public class ChooseInstitucion extends javax.swing.JFrame {
         this.labelCreacion.setText("");
         this.labelInicio.setText("");
         this.labelUrl.setText("");
-        this.labelProfesor.setText("");
+        this.labelProfesor.setText("");        
+        this.labelCantAlumnos.setText("");
         this.jComboActividades.setEnabled(false);
         this.jComboClases.setEnabled(false);
         this.jComboInstituciones.setEnabled(false);
@@ -96,12 +97,14 @@ public class ChooseInstitucion extends javax.swing.JFrame {
             String capMin = Integer.toString(this.selectedClase.getCapMinima());
             String capMax = Integer.toString(this.selectedClase.getCapMaxima());
             String urlAcceso = this.selectedClase.getUrlAcceso();
+            String cantAlumnos = Integer.toString(this.selectedClase.getRegistros().size());
             this.labelProfesor.setText(profesorNombre);
             this.labelInicio.setText(fechaHoraInicio);
             this.labelCreacion.setText(fechaCreacion);
             this.labelCapMaxima.setText(capMax);
             this.labelCapMinima.setText(capMin);
             this.labelUrl.setText(urlAcceso);
+            this.labelCantAlumnos.setText(cantAlumnos);
             colocateCorrectResults();
         } else {
             // fillEmptyClassData();
@@ -149,6 +152,8 @@ public class ChooseInstitucion extends javax.swing.JFrame {
         labelCapMaxima = new javax.swing.JLabel();
         labelUrl = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        labelCantAlumnos = new javax.swing.JLabel();
         panelNotFound = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -275,10 +280,18 @@ public class ChooseInstitucion extends javax.swing.JFrame {
         panelInfo.add(labelUrl, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, -1));
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel21.setText("Url de acceso");
-        panelInfo.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+        jLabel21.setText("Cantidad Alumnos:");
+        panelInfo.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
-        getContentPane().add(panelInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 320, 150));
+        jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel22.setText("Url de acceso");
+        panelInfo.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+
+        labelCantAlumnos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelCantAlumnos.setText("2");
+        panelInfo.add(labelCantAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, -1, -1));
+
+        getContentPane().add(panelInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 320, 170));
 
         panelNotFound.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 0, 0, new java.awt.Color(0, 0, 0)));
         panelNotFound.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -435,9 +448,11 @@ public class ChooseInstitucion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JOptionPane jOptionPane1;
+    private javax.swing.JLabel labelCantAlumnos;
     private javax.swing.JLabel labelCapMaxima;
     private javax.swing.JLabel labelCapMinima;
     private javax.swing.JLabel labelCreacion;
