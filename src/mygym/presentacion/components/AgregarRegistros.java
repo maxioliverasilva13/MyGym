@@ -6,6 +6,9 @@ package mygym.presentacion.components;
 
 import Actividad.ActividadBO;
 import Actividad.dtos.ActividadDTO;
+import Clase.ClaseBO;
+import Clase.DtClase;
+import CustomCalendar.main.CalendarCustom;
 import Institucion.DtInstitucion;
 import Institucion.InstitucionBO;
 import java.awt.Button;
@@ -16,6 +19,8 @@ import java.util.List;
 import javax.swing.WindowConstants;
 import javax.swing.plaf.metal.MetalButtonUI;
 import ParseDate.ParseDate;
+import Registro.DtRegistro;
+import Registro.RegistroBO;
 import Socio.SocioBO;
 import Socio.dtos.SocioDTO;
 import java.awt.event.ActionEvent;
@@ -23,7 +28,12 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.HashMap;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import mygym.presentacion.pages.Instituciones;
+import sun.security.pkcs.ContentInfo;
+import utils.CustomClick;
 
 /**
  *
@@ -39,13 +49,18 @@ public class AgregarRegistros extends javax.swing.JFrame {
     InstitucionBO insBo = new InstitucionBO();
     ActividadBO actBo = new ActividadBO();
     SocioBO socBo = new SocioBO();
+    ClaseBO claseBO = new ClaseBO();
+    RegistroBO regBO = new RegistroBO();
 
     HashMap<Integer, ActividadDTO> actividades = new HashMap<>();
     HashMap<Integer, DtInstitucion> instituciones = new HashMap<>();
     HashMap<Integer, SocioDTO> socios = new HashMap<>();
+    HashMap<Integer, DtClase> clases = new HashMap<>();
+    
     int selectedInstitucionId;
     int selectedActividadId;
     int selectedSocioId;
+    int selectedClaseId;
     
     private void llenarComboboxInstituciones() {
         jComboInstitucion.removeAllItems();
@@ -66,24 +81,54 @@ public class AgregarRegistros extends javax.swing.JFrame {
     }
     
     public void initSteps() {
+        addFinal.setVisible(false);
         step1.setVisible(false);
         step2.setVisible(false);
         step4.setVisible(false);
         step3.setVisible(false);
     }
     
+    public void fillSelectedClases() {
+        this.selectedClases.setText("Clases Seleccionadas: " + CustomClick.selectedClaseId.size());
+        if (CustomClick.selectedClaseId.size() > 0) {
+            addFinal.setVisible(true);
+        } else {
+            addFinal.setVisible(false);
+        }
+    }
+    
+    ActionListener autoFillSelectedClasses = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            fillSelectedClases();
+        }
+    };
+
+    
     public void initCalendar() {
-        List<LocalDate> lista = new ArrayList<>();
-        
-        
-        lista.add(LocalDate.parse("2022-09-03"));
-        lista.add(LocalDate.parse("2022-09-04"));
-        lista.add(LocalDate.parse("2022-10-04"));
-        lista.add(LocalDate.parse("2023-01-22"));
-        this.calendar.setAction((ActionEvent e) -> {
-            System.out.println("Example");
-        });
-        this.calendar.setList(lista);
+        CustomClick.selectedClaseId = new ArrayList<>();
+        fillSelectedClases();
+        calendarContent.removeAll();
+        HashMap<Integer, DtClase> allClasses = claseBO.listarClasesByAct(this.selectedActividadId);
+        if (allClasses.size() == 0) {
+            clases = allClasses;
+            JLabel j = new JLabel();
+            j.setText("No encontramos clases disponibles para esta actividad");
+            j.setForeground(new Color(0,0,0));
+            j.setAlignmentX(CENTER_ALIGNMENT);
+            j.setAlignmentY(CENTER_ALIGNMENT);
+            calendarContent.add(j);
+        } else {
+            CalendarCustom c = new CalendarCustom();
+            calendarContent.add(c);
+            List<CustomClick> lista = new ArrayList<>();
+            allClasses.forEach((Integer key, DtClase clase) -> {
+                CustomClick event = new CustomClick(clase);
+                event.setAditionalEvent(autoFillSelectedClasses);
+                lista.add(event);
+            });
+            c.setList(lista);
+        }
     }
     
     public AgregarRegistros() {
@@ -92,13 +137,13 @@ public class AgregarRegistros extends javax.swing.JFrame {
         dispose();
         setText();
         initSteps();
-        initCalendar();
         llenarComboboxInstituciones();
         llenarComboboxSocios();
         
     }
     
     public void nextStep() {
+        addFinal.setVisible(false);
         if (!step1.isVisible() && !step2.isVisible() && !step4.isVisible() && !step3.isVisible()) {
             initSteps();
             step1.setVisible(true);
@@ -116,6 +161,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
         }
         if (!step1.isVisible() && !step2.isVisible() && step3.isVisible() && !step4.isVisible()) {
             initSteps();
+            initCalendar();
             step4.setVisible(true);
             return;
         }
@@ -153,9 +199,12 @@ public class AgregarRegistros extends javax.swing.JFrame {
     }
     
     public void backStep() {
+        addFinal.setVisible(false);
         if (step1.isVisible() && !step2.isVisible() && !step3.isVisible() && !step4.isVisible()) {
-            initSteps();
+            initCalendar();
+            System.out.println("Soy yo");
             step4.setVisible(true);
+            step1.setVisible(false);
             return;
         }
         if (step2.isVisible() && !step1.isVisible() && !step4.isVisible() && !step3.isVisible()) {
@@ -196,9 +245,11 @@ public class AgregarRegistros extends javax.swing.JFrame {
         jComboActividad = new javax.swing.JComboBox<>();
         step4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        calendar = new main.CalendarCustom();
+        calendarContent = new javax.swing.JPanel();
         next = new javax.swing.JButton();
         back = new javax.swing.JButton();
+        selectedClases = new javax.swing.JLabel();
+        addFinal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(780, 710));
@@ -277,7 +328,9 @@ public class AgregarRegistros extends javax.swing.JFrame {
 
         jLabel2.setText("Seleccione una Clase Disponible");
         step4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-        step4.add(calendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 37, 720, 340));
+
+        calendarContent.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        step4.add(calendarContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 730, 370));
 
         getContentPane().add(step4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 730, 380));
 
@@ -301,7 +354,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
                 nextActionPerformed(evt);
             }
         });
-        getContentPane().add(next, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 760, 100, 30));
+        getContentPane().add(next, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 770, 100, 30));
 
         back.setBackground(new java.awt.Color(0, 153, 153));
         back.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -322,6 +375,31 @@ public class AgregarRegistros extends javax.swing.JFrame {
             }
         });
         getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 770, 100, 30));
+
+        selectedClases.setText("Clases Seleccionadas: ");
+        getContentPane().add(selectedClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 730, -1, -1));
+
+        addFinal.setBackground(new java.awt.Color(0, 153, 153));
+        addFinal.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        addFinal.setForeground(new java.awt.Color(255, 255, 255));
+        addFinal.setText("Agregar");
+        addFinal.setToolTipText("");
+        addFinal.setActionCommand("");
+        addFinal.setBorder(null);
+        addFinal.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        addFinal.setName(""); // NOI18N
+        addFinal.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        addFinal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addFinalMouseClicked(evt);
+            }
+        });
+        addFinal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addFinalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(addFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 770, 100, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -401,6 +479,29 @@ public class AgregarRegistros extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_jComboSociosActionPerformed
 
+    private void addFinalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addFinalMouseClicked
+         try {
+            if (selectedSocioId == 0) {
+                JOptionPane.showMessageDialog(new JFrame(), "Seleccione un id de socio", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (CustomClick.selectedClaseId.size() == 0) {
+                JOptionPane.showMessageDialog(new JFrame(), "Seleccione al menos una clase", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            // TODO GET PRECIO
+            DtRegistro reg = new DtRegistro(0, 155, new Date(), "", "");
+            regBO.agregarRegistro(selectedSocioId, CustomClick.selectedClaseId, reg);
+            JOptionPane.showMessageDialog(new JFrame(), "Se registo correctamente el socio a las clases seleccionadas" , "Registro completado", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_addFinalMouseClicked
+
+    private void addFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFinalActionPerformed
+       
+    }//GEN-LAST:event_addFinalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -447,8 +548,9 @@ public class AgregarRegistros extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addFinal;
     private javax.swing.JButton back;
-    private main.CalendarCustom calendar;
+    private javax.swing.JPanel calendarContent;
     private javax.swing.JComboBox<String> jComboActividad;
     private javax.swing.JComboBox<String> jComboInstitucion;
     private javax.swing.JComboBox<String> jComboSocios;
@@ -458,6 +560,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JButton next;
+    private javax.swing.JLabel selectedClases;
     private javax.swing.JPanel step1;
     private javax.swing.JPanel step2;
     private javax.swing.JPanel step3;
