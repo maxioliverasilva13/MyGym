@@ -158,9 +158,9 @@ public class UserCard extends javax.swing.JPanel {
     }//GEN-LAST:event_click
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        VerInfoUsersProfesorForm newframe = new VerInfoUsersProfesorForm();
+      //  VerInfoUsersProfesorForm newframe = new VerInfoUsersProfesorForm(2);
         
-        newframe.setVisible(true);
+      //  newframe.setVisible(true);
         
         this.dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
