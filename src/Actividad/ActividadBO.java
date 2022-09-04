@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import mygym.logica.usuario.dataTypes.DtActividad;
 import Actividad.Actividad;
 import Cuponera.CuponeraDao;
 import Cuponera.InterfaceCuponeraDao;
@@ -36,25 +35,16 @@ public class ActividadBO  implements IActividadBO{
     ActividadDao actDao = new ActividadDao();
 
     @Override
-    public void crear(ActividadCreateDTO actCreate, int institucionId,int profesorId) {
-           IActividadDao actDao = new ActividadDao();
+    public void crear(ActividadCreateDTO actCreate, int institucionId, int profesorId) {
            IProfesorDao profDao = new ProfesorDao();
-           //IInstitucioDao  insDao = new InstitucionDao();
+           InterfaceInstitucionDao  insDao = new InstitucionDao();
            Profesor profesorFind = profDao.getById(profesorId);
            if(profesorFind == null){
-               
+               throw new Exceptions.ProfesorNotFoundException("Profesor no encontrado.");
            }
-           //Institucion instFind = insDao.getById(institucionId);    
-           /*if(insDao.getBydId(institucionId)  == null){
-               exception
-            }
            
-           */
-            //actDao.create(actCreate,profesorFind,ins);
-          
-              
-           
-//throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+           Institucion instFind = insDao.existe(institucionId);
+           actDao.create(actCreate, profesorFind, instFind);
     }
 
     @Override

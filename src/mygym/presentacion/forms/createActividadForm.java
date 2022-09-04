@@ -15,7 +15,10 @@ import java.util.Date;
 import javax.swing.JTable;
 import Actividad.dtos.ActividadCreateDTO;
 import Institucion.DtInstitucion;
+import Profesor.dtos.ProfesorDTO;
 import Institucion.InstitucionBO;
+import ParseDate.ParseDate;
+import Profesor.ProfesorBO;
 import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
 import mygym.presentacion.pages.Actividades;
@@ -28,22 +31,27 @@ import utils.ComboItem;
  */
 public class createActividadForm extends javax.swing.JFrame{
 
-   public static HashMap<Integer, DtInstitucion> instituciones = new HashMap<>(); // ELIMINAR
-   
+   public static HashMap<Integer, DtInstitucion> instituciones = new HashMap<>();
+   public static HashMap<Integer, ProfesorDTO> profesores = new HashMap<>(); 
+
+    DefaultComboBoxModel modelInstituciones = new DefaultComboBoxModel();
+    DefaultComboBoxModel modelProfesores = new DefaultComboBoxModel();
+    ParseDate parse = new ParseDate();
     int xMouse, yMouse;
     Color gris = new Color(204,204,204);
-    DefaultComboBoxModel model = new DefaultComboBoxModel();
+
     ActividadBO actBO = new ActividadBO();
     InstitucionBO insBO = new InstitucionBO();
+    ProfesorBO profBO = new ProfesorBO();
+    
 
     
     public createActividadForm() {
         initComponents();
         llenarCBoxInstituciones();
-
+        llenarCBoxProfesores();
+        
         this.setLocationRelativeTo(null);
-        this.getOwner();
-        this.requestFocusInWindow(true);
         separatorNombre.setForeground(gris);
         separatorDuracion.setForeground(gris);
         scrollDescr.setViewportBorder(javax.swing.BorderFactory.createLineBorder(gris));
@@ -89,11 +97,23 @@ public class createActividadForm extends javax.swing.JFrame{
         instituciones = insBO.listarInstituciones();
         instituciones.forEach((key, value) -> {
             DtInstitucion currentInstitucion = instituciones.get(key);
-            model.addElement(new ComboItem(key.toString(), currentInstitucion.getNombre()));
+            modelInstituciones.addElement(new ComboItem(key.toString(), currentInstitucion.getNombre()));
         });
-        cmbInstituciones.setModel(model);
+        cmbInstituciones.setModel(modelInstituciones);
+        cmbInstituciones.setSelectedItem(null);
     }    
    
+        private void llenarCBoxProfesores(){
+        cmbProfesores.removeAllItems();
+        profesores = profBO.listarProfesores();
+        profesores.forEach((key, value) -> {
+            ProfesorDTO currentProf = profesores.get(key);
+            modelProfesores.addElement(new ComboItem(key.toString(), currentProf.getNombre()));
+        });
+        cmbProfesores.setModel(modelProfesores);
+        cmbProfesores.setSelectedItem(null);
+    }    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -130,6 +150,8 @@ public class createActividadForm extends javax.swing.JFrame{
         separatorFecha = new javax.swing.JSeparator();
         btnCrearBG = new javax.swing.JPanel();
         btnCrear = new javax.swing.JLabel();
+        lblProfesor = new javax.swing.JLabel();
+        cmbProfesores = new javax.swing.JComboBox<>();
 
         dateChooserActual.setToolTipText("");
         dateChooserActual.setEnabled(false);
@@ -224,44 +246,44 @@ public class createActividadForm extends javax.swing.JFrame{
         lblInstitucion.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblInstitucion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblInstitucion.setText("Institucion");
-        jPanel2.add(lblInstitucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 70, 30));
+        jPanel2.add(lblInstitucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 70, 30));
 
-        cmbInstituciones.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
-        jPanel2.add(cmbInstituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 210, 30));
+        cmbInstituciones.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        jPanel2.add(cmbInstituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 210, 30));
 
         lblNombre.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNombre.setText("Nombre");
-        jPanel2.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 50, 30));
+        jPanel2.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 50, 30));
 
         txtNombre.setBorder(null);
-        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 210, 30));
-        jPanel2.add(separatorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 210, 20));
+        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 210, 30));
+        jPanel2.add(separatorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 210, 20));
 
         lblDuracion.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblDuracion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDuracion.setText("Duración (minutos)");
-        jPanel2.add(lblDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 120, 30));
+        jPanel2.add(lblDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 120, 30));
 
         txtDuracion.setToolTipText("");
         txtDuracion.setBorder(null);
-        jPanel2.add(txtDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 210, 30));
-        jPanel2.add(separatorDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 210, 20));
+        jPanel2.add(txtDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 210, 30));
+        jPanel2.add(separatorDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 210, 20));
 
         lblCosto.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblCosto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCosto.setText("Costo");
-        jPanel2.add(lblCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 40, 30));
+        jPanel2.add(lblCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 40, 30));
 
         txtCosto.setToolTipText("");
         txtCosto.setBorder(null);
-        jPanel2.add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 210, 30));
-        jPanel2.add(separatorCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 210, 20));
+        jPanel2.add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 210, 30));
+        jPanel2.add(separatorCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 210, 20));
 
         lblDescripcion.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblDescripcion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDescripcion.setText("Descripción");
-        jPanel2.add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 70, 30));
+        jPanel2.add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 70, 30));
 
         scrollDescr.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         scrollDescr.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 249, 248)));
@@ -272,18 +294,18 @@ public class createActividadForm extends javax.swing.JFrame{
         txtareaDescripcion.setBorder(null);
         scrollDescr.setViewportView(txtareaDescripcion);
 
-        jPanel2.add(scrollDescr, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 210, -1));
+        jPanel2.add(scrollDescr, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 210, -1));
 
         lblFecha.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFecha.setText("Fecha del Sistema");
-        jPanel2.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, 150, 30));
+        jPanel2.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, 150, 30));
 
         txtFecha.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         txtFecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtFecha.setBorder(null);
-        jPanel2.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, 130, 20));
-        jPanel2.add(separatorFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, 130, 20));
+        jPanel2.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 420, 130, 20));
+        jPanel2.add(separatorFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 130, 20));
 
         btnCrearBG.setBackground(new java.awt.Color(76, 131, 122));
 
@@ -313,7 +335,15 @@ public class createActividadForm extends javax.swing.JFrame{
                 .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel2.add(btnCrearBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, -1, -1));
+        jPanel2.add(btnCrearBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, -1, -1));
+
+        lblProfesor.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        lblProfesor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblProfesor.setText("Profesor");
+        jPanel2.add(lblProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 70, 30));
+
+        cmbProfesores.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        jPanel2.add(cmbProfesores, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 210, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -332,6 +362,15 @@ public class createActividadForm extends javax.swing.JFrame{
        
     private void btnCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearMouseClicked
         boolean error = false;
+        
+        if (cmbInstituciones.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(new JFrame(), "Seleccione una Insitución.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        } else if (cmbProfesores.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(new JFrame(), "Seleccione un Profesor.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         // Control de campo NOMBRE vacío.
         if (txtNombre.getText().equals("")){
             separatorNombre.setForeground(Color.red);
@@ -358,7 +397,22 @@ public class createActividadForm extends javax.swing.JFrame{
         }
          
         if (!error){
-            //ActividadCreateDTO act = new ActividadCreateDTO(txtNombre.getText(), txtareaDescripcion.getText(),  txtDuracion.getText(), txtCosto.getText(), dateChooserActual.getDateFormat());
+            
+            Object selectedItemInsti = cmbInstituciones.getSelectedItem();
+            int selectedInstitucionId = Integer.parseInt(((ComboItem)selectedItemInsti).getId());           
+            
+            Object selectedItemProf = cmbInstituciones.getSelectedItem();
+            int selectedProfId = Integer.parseInt(((ComboItem)selectedItemProf).getId());           
+            
+            SelectedDate fActual = dateChooserActual.getSelectedDate();
+            Date fecha = parse.parseDate(fActual.getYear() + "-" + fActual.getMonth() + "-" + fActual.getDay());
+            ActividadCreateDTO act = new ActividadCreateDTO(selectedInstitucionId, selectedProfId, Float.parseFloat(txtCosto.getText()), txtNombre.getText(), txtareaDescripcion.getText(), fecha, Integer.parseInt(txtDuracion.getText())); 
+            try {
+                actBO.crear(act, selectedInstitucionId, selectedProfId);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             txtNombre.setText("");
             txtDuracion.setText("");
             txtCosto.setText("");
@@ -437,6 +491,7 @@ public class createActividadForm extends javax.swing.JFrame{
     private javax.swing.JLabel btnMinimizar;
     private javax.swing.JPanel btnMinimizarBG;
     private javax.swing.JComboBox<String> cmbInstituciones;
+    private javax.swing.JComboBox<String> cmbProfesores;
     private com.raven.datechooser.DateChooser dateChooserActual;
     private javax.swing.JLabel dragBar;
     private javax.swing.JPanel jPanel2;
@@ -447,6 +502,7 @@ public class createActividadForm extends javax.swing.JFrame{
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblInstitucion;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblProfesor;
     private javax.swing.JScrollPane scrollDescr;
     private javax.swing.JSeparator separatorCosto;
     private javax.swing.JSeparator separatorDuracion;

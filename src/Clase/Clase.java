@@ -129,7 +129,7 @@ public class Clase implements Serializable {
             registrosClase.add(registro.getDtRegistro());
         });
         DtClase classParsed = new DtClase(id,nombre, fecha, (actividad != null)
-        ? this.actividad.getProfesor().getNombre(): null, (actividad != null)
+        ? this.actividad.getProfesor().getNombre()+ " " + this.actividad.getProfesor().getApellido(): null, (actividad != null)
         ? this.actividad.getProfesor().getId() : null, capMinima, capMaxima, urlAcceso, fechaRegistro, 
          registrosClase, (actividad != null)
         ? this.actividad.getId(): null, (actividad != null)

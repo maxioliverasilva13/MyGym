@@ -29,7 +29,7 @@ import java.awt.event.ActionListener;
  */
 public class Actividades extends javax.swing.JPanel {
     createActividadForm formCreate = new createActividadForm();
-    showActividadInfoForm formInfo = new showActividadInfoForm();
+    //showActividadInfoForm formInfo = new showActividadInfoForm();
     DefaultComboBoxModel model = new DefaultComboBoxModel();
 
     InstitucionBO insBO = new InstitucionBO();
@@ -51,13 +51,24 @@ public class Actividades extends javax.swing.JPanel {
         tablaActividades.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         llenarCBoxInstituciones();
-        //llenarTabla(); // A futuro, se va a tener que modificar éste método para que en la tabla se muestren las actividades dependiendo de qué INSTITUCIÓN esté seleccionada en el combo box de arriba.
+        cmbInstituciones.setSelectedItem(null);
     
         cmbInstituciones.addActionListener (new ActionListener () {
             public void actionPerformed(ActionEvent e) {
                 Object selectedItem = cmbInstituciones.getSelectedItem();
-                System.out.println(Integer.parseInt(((ComboItem)selectedItem).getId()));
-                llenarTabla(Integer.parseInt(((ComboItem)selectedItem).getId()));
+                if (selectedItem != null) {
+                    llenarTabla(Integer.parseInt(((ComboItem)selectedItem).getId()));
+                }
+            }
+        });
+        
+        formCreate.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                Object selectedItem = cmbInstituciones.getSelectedItem();
+                if (selectedItem != null) {
+                    llenarTabla(Integer.parseInt(((ComboItem)selectedItem).getId()));
+                }
             }
         });
     }
@@ -106,8 +117,6 @@ public class Actividades extends javax.swing.JPanel {
         cmbInstituciones = new javax.swing.JComboBox<>();
         btnAltaBG = new javax.swing.JPanel();
         btnAlta = new javax.swing.JLabel();
-        btnActualizarActividadesBG = new javax.swing.JPanel();
-        btnActualizarActividades = new javax.swing.JLabel();
         scrollTabla = new javax.swing.JScrollPane();
         tablaActividades = new javax.swing.JTable();
         btnInfoBG = new javax.swing.JPanel();
@@ -137,7 +146,7 @@ public class Actividades extends javax.swing.JPanel {
         cmbInstituciones.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         cmbInstituciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Instituciones" }));
         cmbInstituciones.setBorder(null);
-        bgPanel.add(cmbInstituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 240, 40));
+        bgPanel.add(cmbInstituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 240, 40));
 
         btnAltaBG.setBackground(new java.awt.Color(76, 131, 122));
 
@@ -171,41 +180,7 @@ public class Actividades extends javax.swing.JPanel {
                 .addComponent(btnAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        bgPanel.add(btnAltaBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 160, -1));
-
-        btnActualizarActividadesBG.setBackground(new java.awt.Color(76, 131, 122));
-
-        btnActualizarActividades.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        btnActualizarActividades.setForeground(new java.awt.Color(255, 255, 255));
-        btnActualizarActividades.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnActualizarActividades.setText("Actualizar Lista");
-        btnActualizarActividades.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnActualizarActividades.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnActualizarActividadesMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnActualizarActividadesMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnActualizarActividadesMouseReleased(evt);
-            }
-        });
-
-        javax.swing.GroupLayout btnActualizarActividadesBGLayout = new javax.swing.GroupLayout(btnActualizarActividadesBG);
-        btnActualizarActividadesBG.setLayout(btnActualizarActividadesBGLayout);
-        btnActualizarActividadesBGLayout.setHorizontalGroup(
-            btnActualizarActividadesBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnActualizarActividades, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-        );
-        btnActualizarActividadesBGLayout.setVerticalGroup(
-            btnActualizarActividadesBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnActualizarActividadesBGLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnActualizarActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        bgPanel.add(btnActualizarActividadesBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 150, -1));
+        bgPanel.add(btnAltaBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 160, -1));
 
         scrollTabla.setBackground(new java.awt.Color(255, 255, 255));
         scrollTabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -270,7 +245,7 @@ public class Actividades extends javax.swing.JPanel {
         tablaActividades.setUpdateSelectionOnSort(false);
         scrollTabla.setViewportView(tablaActividades);
 
-        bgPanel.add(scrollTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 640, 320));
+        bgPanel.add(scrollTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 640, 350));
 
         btnInfoBG.setBackground(new java.awt.Color(76, 131, 122));
 
@@ -307,9 +282,9 @@ public class Actividades extends javax.swing.JPanel {
         bgPanel.add(btnInfoBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, 330, -1));
 
         jLabel2.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("Seleccione una Institución");
-        bgPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 44, 240, 40));
+        bgPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 160, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -336,19 +311,6 @@ public class Actividades extends javax.swing.JPanel {
     private void btnAltaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaMouseReleased
         btnAltaBG.setBackground(new Color(76,131,122));
     }//GEN-LAST:event_btnAltaMouseReleased
-
-    private void btnActualizarActividadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarActividadesMouseClicked
-    // CREO QUE ESTE BOTÓN NO SE VA A NECESITAR. El listado se actualiza al cambiar de item seleccionado en el combobox.
-        //llenarTabla();
-    }//GEN-LAST:event_btnActualizarActividadesMouseClicked
-
-    private void btnActualizarActividadesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarActividadesMousePressed
-        btnActualizarActividadesBG.setBackground(new Color(103, 149, 142));
-    }//GEN-LAST:event_btnActualizarActividadesMousePressed
-
-    private void btnActualizarActividadesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarActividadesMouseReleased
-        btnActualizarActividadesBG.setBackground(new Color(76,131,122));
-    }//GEN-LAST:event_btnActualizarActividadesMouseReleased
 
     private void bgPanelFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bgPanelFocusGained
         // TODO add your handling code here:
@@ -378,6 +340,7 @@ public class Actividades extends javax.swing.JPanel {
         int selectedActividadID = (Integer) idObj;
         ActividadDTO selectedAct = actividadesSistema.get(selectedActividadID); // PASARLE ESTE DT POR EL CONSTRUCTOR DEL FORM
         if (selectedAct != null){
+            showActividadInfoForm formInfo = new showActividadInfoForm(selectedActividadID);
             if (!formInfo.isVisible()) {
                 formInfo.setVisible(true);
             }
@@ -406,8 +369,6 @@ public class Actividades extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgPanel;
-    private javax.swing.JLabel btnActualizarActividades;
-    private javax.swing.JPanel btnActualizarActividadesBG;
     private javax.swing.JLabel btnAlta;
     private javax.swing.JPanel btnAltaBG;
     private javax.swing.JLabel btnInfo;

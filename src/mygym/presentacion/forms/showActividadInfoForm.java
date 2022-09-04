@@ -5,14 +5,29 @@
 package mygym.presentacion.forms;
 
 import javax.swing.JFrame;
-import mygym.logica.usuario.dataTypes.DtActividad;
-import mygym.logica.usuario.dataTypes.DtCuponera;
+import Actividad.dtos.ActividadDTO;
+import Clase.DtClase;
+import Cuponera.DtCuponera;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import mygym.presentacion.pages.Actividades;
+import utils.ComboItem;
 
 /**
  *
  * @author mandi
  */
 public class showActividadInfoForm extends javax.swing.JFrame {
+    public static HashMap<Integer, ActividadDTO> actividades = Actividades.actividadesSistema;
+    List<DtClase> clases = new ArrayList<>();
+
+    DefaultComboBoxModel modelClases = new DefaultComboBoxModel();
+    DefaultComboBoxModel modelCuponeras = new DefaultComboBoxModel();
+
+    
     int xMouse, yMouse;
 
     /**
@@ -25,7 +40,16 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         // llenarCBoxClasesAsociadas();   
     }
     
+    public showActividadInfoForm(Integer idactividad) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        pintarInfoActividad(idactividad);
+        // llenarCBoxCuponerasAsociadas();
+        llenarCBoxClasesAsociadas(idactividad); 
+        cmbClases.setSelectedItem(null);
+    }
     
+
     
 /*      ( TERMINAR DE IMPLEMENTAR AL UNIR CON EL BACK )
         private void llenarCBoxCuponerasAsociadas(){
@@ -36,22 +60,29 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         }
 */
     
-/*      ( TERMINAR DE IMPLEMENTAR AL UNIR CON EL BACK )
-        private void llenarCBoxClasesAsociadas(){
-            for (int i = 0; i < clasesAsociadas.size(); i++){
-                DtClase currentClase = clasesAsociadas.get(i);
-                cmbClases.addItem(currentClase.getNombre());
-            }
-        }    
-*/
+    private void llenarCBoxClasesAsociadas(Integer idAct){
+        cmbClases.setSelectedItem(null);
+        ActividadDTO selectedAct = actividades.get(idAct);
+        try {
+            clases = selectedAct.getClases();
+            clases.forEach((currentDT) -> {
+                modelClases.addElement(new ComboItem(Integer.toString(currentDT.getId()), currentDT.getNombre()));
+            });
+            cmbClases.setModel(modelClases);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }    
     
     // Pintar los datos de un DataActividad (La actividad que seleccionó en el dashboard)
-    private void pintarInfoActividad(DtActividad act){
-        nombreActividad.setText(act.getNombre());
-        costoActividad.setText(act.getCosto());
-        duracionActividad.setText(act.getDuracion());
-        fechaAltaActividad.setText(act.getFechaRegistro());
-        txaDescripcionActividad.setText(act.getDescripcion());
+    private void pintarInfoActividad(Integer idAct){
+        ActividadDTO selectedAct = actividades.get(idAct);
+        
+        nombreActividad.setText(selectedAct.getNombre());
+        costoActividad.setText(Float.toString(selectedAct.getCosto()));
+        duracionActividad.setText(Integer.toString(selectedAct.getDuracion()));
+        fechaAltaActividad.setText(selectedAct.getFechaRegistro().toString());
+        txaDescripcionActividad.setText(selectedAct.getDescripcion());
     }
     
     // Pintar información de la Cuponera seleccionada en el COMBOBOX
@@ -62,29 +93,23 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         // . . .
                 
         nombreCuponera.setText(cup.getNombre());
-        descuentoCuponera.setText(cup.getDescuento());
+        descuentoCuponera.setText(Integer.toString(cup.getDescuento()));
         periodoVigenciaCuponera.setText("Fecha lalala");
         txaDescripcionCuponera.setText(cup.getDescripcion());
     }
     
     
-/*    ( TERMINAR DE IMPLEMENTAR AL UNIR CON EL BACK )
     // Pintar información de la Cuponera seleccionada en el COMBOBOX
     private void pintarInfoClaseSeleccionada(DtClase clase){
-        int selectedIndex = cmbClases.getSelectedIndex(); // Devuelve el número de ítem seleccionado en el combobox, indexado desde el 0 como si fuese un array.
-        // . . .
-        // luego va al hashmap de clasesAsociadas local e itera hasta llegar al "selectedIndex", que representa el DtCuponera indicado y pinta los datos abajo.
-        // . . .
-                
+
         nombreClase.setText(clase.getNombre());
-        fechaClase.setText(clase.getFecha());
-        profesorClase.setText("Fecha lalala");
-        capacidadMinimaClase.setText(clase.getDescripcion());
-        capacidadMaximaClase.setText(clase.getDescripcion());
-        URLClase.setText(clase.getDescripcion());
-        fechaAltaClase.setText(clase.getFechaRegistro());
+        fechaClase.setText(clase.getFecha().toString());
+        profesorClase.setText(clase.getProfesor());
+        capacidadMinimaClase.setText(Integer.toString(clase.getCapMinima()));
+        capacidadMaximaClase.setText(Integer.toString(clase.getCapMaxima()));
+        URLClase.setText(clase.getUrlAcceso());
+        fechaAltaClase.setText(clase.getFechaRegistro().toString());
     }
-*/
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -171,6 +196,11 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         bgPanel.add(cmbCuponeras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 180, -1));
 
         cmbClases.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un Item" }));
+        cmbClases.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbClasesActionPerformed(evt);
+            }
+        });
         bgPanel.add(cmbClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 320, 180, -1));
 
         jLabel3.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
@@ -453,6 +483,20 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnExitMouseClicked
+
+    private void cmbClasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClasesActionPerformed
+            Object selectedItem = cmbClases.getSelectedItem();
+            
+            if (selectedItem != null){
+                    int claseAbuscar = Integer.parseInt(((ComboItem)selectedItem).getId());
+                    clases.forEach((currentDT) -> {
+                        if (currentDT.getId() == claseAbuscar){
+                            pintarInfoClaseSeleccionada(currentDT);
+                            return;
+                        }
+                    });
+            }
+    }//GEN-LAST:event_cmbClasesActionPerformed
 
     /**
      * @param args the command line arguments
