@@ -4,14 +4,19 @@
  */
 package mygym.presentacion.forms;
 
+import Actividad.dtos.ActividadDTO;
+import Clase.ClaseBO;
+import Clase.InterfaceClaseBO;
 import Institucion.DtInstitucion;
 import Profesor.IProfesorBO;
 import Profesor.ProfesorBO;
 import Profesor.dtos.ProfesorDTO;
 import Profesor.exceptions.ProfesorNotExist;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.WindowConstants;
+import mygym.logica.usuario.dataTypes.DtActividad;
 
 
 /**
@@ -25,15 +30,15 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
      */
     private int profesorId;
     private ProfesorDTO profDto = null;
+    private List<ActividadDTO> allActividades = null;
     public VerInfoUsersProfesorForm(int profesorId) {
         this.profesorId = profesorId;
-        
         this.loadProfesor(this.profesorId);
         initComponents();
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         dispose();
         this.setLocationRelativeTo(null);
-        this.render();
+        this.initialRender();
     }
 
     /**
@@ -55,14 +60,12 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jButton1 = new javax.swing.JButton();
@@ -113,9 +116,6 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
         jLabel9.setText("Informacion de Clases");
 
-        jLabel11.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
-        jLabel11.setText("Institucion");
-
         jLabel13.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel13.setText("Adrian");
 
@@ -133,9 +133,6 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
 
         jLabel19.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel19.setText("Adrian");
-
-        jLabel20.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jLabel20.setText("Adrian");
 
         jLabel22.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
         jLabel22.setText("Informacion Personal");
@@ -184,11 +181,6 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel21.setText("Adrian");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList1.setToolTipText("");
         jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -197,12 +189,17 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
                 jList1MouseEntered(evt);
             }
         });
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jList2.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList2ValueChanged(evt);
+            }
         });
         jScrollPane4.setViewportView(jList2);
 
@@ -254,10 +251,6 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
                                 .addGap(115, 115, 115)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel11)
-                                        .addGap(98, 98, 98)
-                                        .addComponent(jLabel20))
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel9)
                                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -283,11 +276,7 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
                                     .addComponent(jLabel22)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel9)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel11)
-                                            .addComponent(jLabel20))
-                                        .addGap(48, 48, 48)
+                                        .addGap(86, 86, 86)
                                         .addComponent(jLabel8)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -364,6 +353,28 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jList1MouseEntered
 
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+         int idActividadSelected = -1;
+         String valueSelected = (String)this.jList1.getSelectedValue();
+         
+         for(int i= 0 ; i < this.allActividades.size(); i ++){
+            if(this.allActividades.get(i).getNombre().equals(valueSelected)){
+                idActividadSelected = this.allActividades.get(i).getId();
+                break;
+            }
+         }
+         if(idActividadSelected == -1){
+             return;
+         }
+         
+         this.renderClasesByActividad(idActividadSelected);
+             
+    }//GEN-LAST:event_jList1ValueChanged
+
+    private void jList2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList2ValueChanged
+        
+    }//GEN-LAST:event_jList2ValueChanged
+
     /**
      * @param args the command line arguments
      */
@@ -378,7 +389,7 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
         
     }
     
-    private void render(){
+    private void initialRender(){
         
         this.jLabel13.setText(this.profDto.getNickname());
         this.jLabel16.setText(this.profDto.getNombre());
@@ -393,25 +404,23 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
         this.jTextArea3.setText(this.profDto.getdescripcionGeneral());
         this.jLabel19.setText(date);
         this.jLabel21.setText(this.profDto.getLinkSitioWeb());
+       
+          DefaultListModel listModelActividades = new DefaultListModel();   
+          this.allActividades = this.profDto.getActividades();
+          this.allActividades.forEach(actividad -> {
+                listModelActividades.addElement(actividad.getNombre());
+          });
+          this.jList1.setModel(listModelActividades);
+    }
+    
+    private void renderClasesByActividad(int actividadId){
+        InterfaceClaseBO claseBo = new ClaseBO();
         
-        String nameInstitucion = "";
-        if(!this.profDto.getInstituciones().isEmpty()){
-            DtInstitucion institucion = this.profDto.getInstituciones().get(0);
-            nameInstitucion = institucion.getNombre();
-        }
-        this.jLabel20.setText(nameInstitucion);
-        
-        
-        DefaultListModel listModelActividades = new DefaultListModel();
-            
-        this.profDto.getActividades().forEach(actividad -> {
-            listModelActividades.addElement(actividad.getNombre());
-        
+        DefaultListModel listModelClases = new DefaultListModel();            
+        claseBo.listarClasesByAct(actividadId).forEach((key,clase) -> {
+              listModelClases.addElement(clase.getNombre());
         });
-        this.jList1.setModel(listModelActividades);
-
-        
-        
+        this.jList2.setModel(listModelClases);
         
     }
 
@@ -419,7 +428,6 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -429,7 +437,6 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;

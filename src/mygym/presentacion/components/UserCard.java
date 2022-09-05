@@ -176,7 +176,6 @@ public class UserCard extends javax.swing.JPanel {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         IUsuarioBO usuarioBo = new UsuarioBO();
         try{
-            System.out.println(usuarioBo.getTipoById(this.id));
             if(usuarioBo.getTipoById(this.id).equals("Socio")){
                 VerInfoUsersSocioForm newframe = new VerInfoUsersSocioForm(this.id);
                 newframe.setVisible(true);
