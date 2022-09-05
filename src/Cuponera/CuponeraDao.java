@@ -26,8 +26,6 @@ public class CuponeraDao implements InterfaceCuponeraDao {
     
     @Override
     public void insertar(DtCuponera cuponera){
-        //try {
-            System.out.println(cuponera);
             List<Cuponera> existe = em.createNativeQuery("select * from CUPONERA where NOMBRE='" + cuponera.getNombre() +"'").getResultList();
             if (existe.size() > 0) {
                 throw new CuponeraAlreadyExistsException("Ya existe una cuponera con ese Nombre.");
@@ -42,9 +40,6 @@ public class CuponeraDao implements InterfaceCuponeraDao {
                 em.persist(cup);
                 et.commit();
             }
-        //} catch (Exception e) {
-            //JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        //}
     }
     
     @Override

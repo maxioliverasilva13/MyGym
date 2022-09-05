@@ -6,6 +6,7 @@ package Actividad.dtos;
  */
 
 import Clase.DtClase;
+import CuponeraXActividad.DtCuponeraXActividad;
 import Institucion.DtInstitucion;
 import Profesor.dtos.ProfesorDTO;
 import java.util.Date;
@@ -21,6 +22,7 @@ public class ActividadDTO {
     private Date fechaRegistro;
     ProfesorDTO profesor;
     private List<DtClase> clases;
+    private List<DtCuponeraXActividad> cuponerasXActivdad;
     DtInstitucion institucion;
     
 
@@ -31,7 +33,6 @@ public class ActividadDTO {
         this.costo = costo;
         this.fechaRegistro = fechaRegistro;
     }
-
     
     public ActividadDTO(int id, String nombre, String descripcion, int duracion, float costo, Date fechaRegistro, ProfesorDTO profe, List<DtClase> clases, DtInstitucion ins) {
         this.nombre = nombre;
@@ -43,6 +44,19 @@ public class ActividadDTO {
         this.clases = clases;
         this.id = id;
         this.institucion = ins;
+    }
+    
+    public ActividadDTO(int id, String nombre, String descripcion, int duracion, float costo, Date fechaRegistro, ProfesorDTO profe, List<DtClase> clases, DtInstitucion ins, List<DtCuponeraXActividad> cuponerasXActivdad) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.duracion = duracion;
+        this.costo = costo;
+        this.fechaRegistro = fechaRegistro;
+        this.profesor = profe;
+        this.clases = clases;
+        this.id = id;
+        this.institucion = ins;
+        this.cuponerasXActivdad = cuponerasXActivdad;
     }
     
     public int getId(){
@@ -71,6 +85,10 @@ public class ActividadDTO {
 
     public float getCosto() {
         return costo;
+    }
+    
+    public List<DtCuponeraXActividad> getDtCuponeraXActividad() {
+        return this.cuponerasXActivdad;
     }
 
     public Date getFechaRegistro() {

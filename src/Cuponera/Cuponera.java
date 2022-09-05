@@ -83,9 +83,11 @@ public class Cuponera implements Serializable {
     
     public DtCuponera getDtCuponera() {
         List<DtCuponeraXActividad> cups = new ArrayList<>();
-        cuponerasXActividad.forEach((cup) -> {
-            cups.add(cup.getDtCuponeraXActividad());
-        });
+        if (cuponerasXActividad != null) {
+            cuponerasXActividad.forEach((cup) -> {  
+                cups.add(cup.getDtCuponeraXActividad());
+            });
+        }
         
         DtCuponera dtCup = new DtCuponera(id, nombre, descripcion, periodoVigencia, descuento, cups);
         return dtCup;

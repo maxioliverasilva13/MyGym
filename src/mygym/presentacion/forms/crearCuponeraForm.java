@@ -14,7 +14,6 @@ import java.awt.event.KeyEvent;
 import java.util.Date;
 import Cuponera.DtCuponera;
 import ParseDate.ParseDate;
-import mygym.presentacion.pages.Cuponeras;
 
 /**
  *
@@ -349,23 +348,25 @@ public class crearCuponeraForm extends javax.swing.JFrame{
             // Parseo al formato de la BD:
             Date ffin = parse.parseDate(fechafin.getYear() + "-" + fechafin.getMonth() + "-" + fechafin.getDay());
             
-            //    TODO: MODIFICAR ID DINÁMICO?
             DtCuponera cup = new DtCuponera(0, txtNombre.getText(), txtareaDescripcion.getText(), ffin, Integer.parseInt(txtDescuento.getText()), null);
             
             try{
                 cupBo.agregarCuponera(cup);
+                JOptionPane.showMessageDialog(new JFrame(), "Cuponera registrada con éxito!", "Información", JOptionPane.INFORMATION_MESSAGE);
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+            
 
+            
             txtNombre.setText("");
             txtDescuento.setText("");
             txtareaDescripcion.setText("");
             separatorNombre.setForeground(gris);
             separatorDescuento.setForeground(gris);
             scrollDescr.setViewportBorder(javax.swing.BorderFactory.createLineBorder(gris));
-            JOptionPane.showMessageDialog(new JFrame(), "Cuponera registrada con éxito!", "Información", JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }
     }//GEN-LAST:event_btnCrearMouseClicked

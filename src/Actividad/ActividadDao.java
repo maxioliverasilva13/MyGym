@@ -41,6 +41,7 @@ public class ActividadDao implements IActividadDao {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
             Actividad activity = new Actividad();
+            activity.setNombre(act.getNombre());
             activity.setDescripcion(act.getDescripcion());
             activity.setDuracion(act.getDuracion());
             activity.setFechaRegistro(act.getFechaRegistro());
@@ -101,7 +102,7 @@ public class ActividadDao implements IActividadDao {
 
     @Override
     public Collection<Actividad> listarActividadesByInstitucionNotIntCup(int institucionId, int cuponeraId) {
-         List<Actividad> actividades = this.em.createNativeQuery("SELECT actividad.id,actividad.costo, actividad.duracion, actividad.fecharegistro, actividad.nombre ,actividad.descripcion FROM actividad LEFT JOIN cuponeraxactividad ON actividad.id = cuponeraxactividad.ACTIVIDAD_ID WHERE cuponeraxactividad.CUPONERA_ID <> "+cuponeraId+" AND actividad.INSTITUCION_ID = "+institucionId, Actividad.class).getResultList();
+         List<Actividad> actividades = this.em.createNativeQuery("SELECT actividad.id, actividad.costo, actividad.duracion, actividad.fecharegistro, actividad.nombre ,actividad.descripcion FROM actividad WHERE actividad.ID NOT IN (SELECT actividad.id FROM actividad LEFT JOIN cuponeraxactividad ON actividad.id = cuponeraxactividad.ACTIVIDAD_ID WHERE cuponeraxactividad.CUPONERA_ID = " + cuponeraId + " AND actividad.INSTITUCION_ID = "+institucionId + ") ", Actividad.class).getResultList();
          return actividades;
     }
 

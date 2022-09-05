@@ -4,6 +4,8 @@
  */
 package Registro;
 
+import java.util.List;
+
 /**
  *
  * @author maximilianooliverasilva
@@ -12,7 +14,7 @@ public class RegistroBO implements InterfaceRegistroBO {
     RegistroDao registrodao = new RegistroDao();
     
     @Override
-    public void agregarRegistro(int idSocio, int idClase, DtRegistro registro){
-        registrodao.insertar(idSocio, idClase, registro);
+    public void agregarRegistro(int idSocio,  List<Integer> clases, DtRegistro registro){
+        registrodao.insertar(idSocio, clases, registro);
     }
 }

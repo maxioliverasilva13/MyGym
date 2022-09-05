@@ -4,6 +4,12 @@
  */
 package mygym.presentacion.forms;
 
+import Actividad.ActividadBO;
+import CuponeraXActividad.CuponeraXActividadBo;
+import Actividad.dtos.ActividadDTO;
+import CuponeraXActividad.DtCuponeraXActividad;
+import Exceptions.CuponeraNotFoundException;
+import Exceptions.InstitucionNotFoundException;
 import java.awt.Color;
 import java.util.HashMap;
 import javax.swing.JFrame;
@@ -11,7 +17,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Institucion.DtInstitucion;
 import Institucion.InstitucionBO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ListSelectionModel;
+import utils.ComboItem;
 
 /**
  *
@@ -20,9 +32,15 @@ import javax.swing.ListSelectionModel;
 public class addActividadtoCuponera extends javax.swing.JFrame {
     
     public static HashMap<Integer, DtInstitucion> instituciones = new HashMap<>();
+    DefaultComboBoxModel model = new DefaultComboBoxModel();
     InstitucionBO insBO = new InstitucionBO();
-    int xMouse, yMouse;
+    ActividadBO actBO = new ActividadBO();
+    CuponeraXActividadBo cupxactBO = new CuponeraXActividadBo();
 
+    
+    int xMouse, yMouse;
+    int idCupSeleccionada;
+    int idActSeleccionada;
     /**
      * Creates new form agregarActividadACuponera
      */
@@ -34,6 +52,38 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         tablaInstituciones.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         llenarTablaInstituciones();
         this.setLocationRelativeTo(null);
+    }
+    
+    // Segundo constructor, para recibir parámetros.
+    public addActividadtoCuponera(Integer idCuponera) {
+        initComponents();
+        idCupSeleccionada = idCuponera;
+        tablaInstituciones.getColumnModel().getColumn(0).setMinWidth(0);
+        tablaInstituciones.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablaInstituciones.getColumnModel().getColumn(0).setWidth(0);
+        tablaInstituciones.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        separatorClases.setForeground(Color.gray);
+        llenarTablaInstituciones();
+        this.setLocationRelativeTo(null);
+        
+        cmbActividades.addActionListener (new ActionListener () {
+            public void actionPerformed(ActionEvent e) {
+                Object selectedItem = cmbActividades.getSelectedItem();
+                if (selectedItem != null){
+                    idActSeleccionada = Integer.parseInt(((ComboItem)selectedItem).getId());
+                }
+            }
+        });
+        
+        txtClases.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+                     e.consume();  // if it's not a number, ignore the event
+                }
+            }
+         });
     }
 
     /**
@@ -59,11 +109,14 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         cmbActividades = new javax.swing.JComboBox<>();
         lblInfo = new javax.swing.JLabel();
         lblHeader1 = new javax.swing.JLabel();
+        lblClases = new javax.swing.JLabel();
+        txtClases = new javax.swing.JTextField();
+        separatorClases = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agregar Actividad Deportiva a Cuponera");
-        setMaximumSize(new java.awt.Dimension(670, 530));
-        setMinimumSize(new java.awt.Dimension(670, 530));
+        setMaximumSize(new java.awt.Dimension(670, 560));
+        setMinimumSize(new java.awt.Dimension(670, 560));
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -202,14 +255,14 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         });
         scrollTabla.setViewportView(tablaInstituciones);
 
-        jPanel1.add(scrollTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 630, 290));
+        jPanel1.add(scrollTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 630, 290));
 
         btnSeleccionarActividadBG.setBackground(new java.awt.Color(76, 131, 122));
 
         btnSeleccionarActividad.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         btnSeleccionarActividad.setForeground(new java.awt.Color(255, 255, 255));
         btnSeleccionarActividad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnSeleccionarActividad.setText("Seleccionar");
+        btnSeleccionarActividad.setText("Agregar a la Cuponera");
         btnSeleccionarActividad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSeleccionarActividad.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -227,9 +280,7 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         btnSeleccionarActividadBG.setLayout(btnSeleccionarActividadBGLayout);
         btnSeleccionarActividadBGLayout.setHorizontalGroup(
             btnSeleccionarActividadBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnSeleccionarActividadBGLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnSeleccionarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(btnSeleccionarActividad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
         );
         btnSeleccionarActividadBGLayout.setVerticalGroup(
             btnSeleccionarActividadBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,21 +289,31 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
                 .addComponent(btnSeleccionarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(btnSeleccionarActividadBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 460, -1, -1));
+        jPanel1.add(btnSeleccionarActividadBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 500, 220, -1));
 
+        cmbActividades.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         cmbActividades.setBorder(null);
-        jPanel1.add(cmbActividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 420, 150, -1));
+        jPanel1.add(cmbActividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 200, -1));
 
         lblInfo.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblInfo.setText("Actividades disponibles: (que no están en esta Cuponera)");
-        jPanel1.add(lblInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 670, -1));
+        jPanel1.add(lblInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 670, -1));
 
         lblHeader1.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         lblHeader1.setForeground(new java.awt.Color(4, 37, 58));
         lblHeader1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblHeader1.setText("Seleccione una Institución:");
-        jPanel1.add(lblHeader1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 260, 29));
+        jPanel1.add(lblHeader1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 260, 29));
+
+        lblClases.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        lblClases.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblClases.setText("Cantidad de Clases");
+        jPanel1.add(lblClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 120, 30));
+
+        txtClases.setBorder(null);
+        jPanel1.add(txtClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, 200, 30));
+        jPanel1.add(separatorClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 470, 200, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -262,7 +323,7 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
         );
 
         pack();
@@ -278,9 +339,31 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
             tableModel.addRow(new Object[]{currentInstitucion.getId(), currentInstitucion.getNombre(), currentInstitucion.getDescripcion()});
         });    
     }
-   
+        
+    // Agrega la actividad a la cuponera.
     private void btnSeleccionarActividadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeleccionarActividadMouseClicked
-        // Agrega la actividad a la cuponera.
+        boolean error = false;
+        
+        if (cmbActividades.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(new JFrame(), "Debe seleccionar un item de las actividades disponibles.", "Error", JOptionPane.ERROR_MESSAGE);
+            error = true;
+        }
+        
+        if (txtClases.getText().equals("")){
+            separatorClases.setForeground(Color.red);
+            error=true;
+        }
+        
+        if (!error){
+            try {
+                DtCuponeraXActividad dt = new DtCuponeraXActividad(Integer.parseInt(txtClases.getText()));
+                cupxactBO.agregarCupXAct(idActSeleccionada, idCupSeleccionada, dt);
+                JOptionPane.showMessageDialog(new JFrame(), "¡Actividad insertada a la cuponera con exito!", "Actividad Insertada", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnSeleccionarActividadMouseClicked
 
     private void btnSeleccionarActividadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeleccionarActividadMousePressed
@@ -301,18 +384,24 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         }
         Object idObj = tablaInstituciones.getValueAt(selectedRowId, 0);
         int selectedInsitucionID = (Integer) idObj;
-        DtInstitucion selectedInst = instituciones.get(selectedInsitucionID);
-        if (selectedInst != null){
-            cmbActividades.removeAllItems(); // Primero elimino todos los elems del combobox, para que solo se vean los de la institución seleccionada en el grid.
-            cmbActividades.addItem(selectedInst.getNombre());
-            //JOptionPane.showMessageDialog(new JFrame(), "Institucion seleccionada: " + selectedInst.getNombre(), "Cuponera seleccionada", JOptionPane.INFORMATION_MESSAGE);
-            
-        }else{
-            cmbActividades.removeAllItems();
-            JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una cuponera existente.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        cmbActividades.removeAllItems(); // Primero elimino todos los elems del combobox, para que solo se vean los de la institución seleccionada en el grid.
+        //System.out.println("Id de la institucion seleccionada en la tabla: " + selectedInsitucionID);
+        try {
+            HashMap<Integer, ActividadDTO> actividades = actBO.listarByInstitucionNotInCuponeras(selectedInsitucionID, idCupSeleccionada);
+            actividades.forEach((key, value) -> {
+                ActividadDTO currentActividadDTO = actividades.get(key);
+                model.addElement(new ComboItem(key.toString(), currentActividadDTO.getNombre()));
+            });
+            cmbActividades.setModel(model);
+            cmbActividades.setSelectedItem(null);
+        } catch (Exception e) {
+            cmbActividades.setSelectedItem(null);
+            JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }  
     }//GEN-LAST:event_tablaInstitucionesMouseClicked
 
+    
+    
     private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
         // TODO add your handling code here:
         this.dispose();
@@ -386,10 +475,13 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbActividades;
     private javax.swing.JLabel dragBar;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblClases;
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblHeader1;
     private javax.swing.JLabel lblInfo;
     private javax.swing.JScrollPane scrollTabla;
+    private javax.swing.JSeparator separatorClases;
     private javax.swing.JTable tablaInstituciones;
+    private javax.swing.JTextField txtClases;
     // End of variables declaration//GEN-END:variables
 }

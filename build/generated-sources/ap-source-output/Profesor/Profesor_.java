@@ -3,12 +3,12 @@ package Profesor;
 import Actividad.Actividad;
 import Institucion.Institucion;
 import Usuario.Usuario_;
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2022-08-31T00:06:14", comments="EclipseLink-2.7.10.v20211216-rNA")
+@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2022-09-04T19:29:21")
 @StaticMetamodel(Profesor.class)
 public class Profesor_ extends Usuario_ {
 

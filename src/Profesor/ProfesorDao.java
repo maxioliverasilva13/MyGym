@@ -54,7 +54,10 @@ public class ProfesorDao  implements IProfesorDao {
           }
     }
 
-    
+    public List<Profesor> listarProfesores() {
+        List<Profesor> profesores = em.createNativeQuery("SELECT * FROM profesor JOIN usuario ON profesor.userId = usuario.id", Profesor.class).getResultList();
+        return profesores;
+    }    
 
     @Override
     public Profesor getByNickname(String nickname) {
