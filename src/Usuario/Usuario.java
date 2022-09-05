@@ -40,9 +40,9 @@ public class Usuario implements Serializable {
     
     @Column()
     protected Date nacimiento;
-    
+
     @Basic(optional = true)
-    private String DTYPE;
+    protected  String DTYPE;
     
 
     public Usuario(){

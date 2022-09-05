@@ -158,9 +158,9 @@ public class UserCard extends javax.swing.JPanel {
     }//GEN-LAST:event_click
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        VerInfoUsersProfesorForm newframe = new VerInfoUsersProfesorForm();
+      //  VerInfoUsersProfesorForm newframe = new VerInfoUsersProfesorForm(2);
         
-        newframe.setVisible(true);
+      //  newframe.setVisible(true);
         
         this.dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -176,13 +176,12 @@ public class UserCard extends javax.swing.JPanel {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         IUsuarioBO usuarioBo = new UsuarioBO();
         try{
-            System.out.println(usuarioBo.getTipoById(this.id));
             if(usuarioBo.getTipoById(this.id).equals("Socio")){
                 VerInfoUsersSocioForm newframe = new VerInfoUsersSocioForm(this.id);
                 newframe.setVisible(true);
                 this.dispose();
             }else{   // es un profesor
-                  VerInfoUsersProfesorForm newframe = new VerInfoUsersProfesorForm();
+                  VerInfoUsersProfesorForm newframe = new VerInfoUsersProfesorForm(this.id);
                   newframe.setVisible(true);
                   this.dispose();
             }

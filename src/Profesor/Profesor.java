@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import Institucion.DtInstitucion;
 import Actividad.dtos.ActividadDTO;
 import java.util.List;
+import javax.persistence.OneToOne;
 import utils.ParserClassesToDt;
 
 /**
@@ -38,9 +39,6 @@ public class Profesor extends Usuario {
  @OneToMany(mappedBy = "profesor")
  private Set<Actividad> actividades;
  
- public void addInstitucion(Institucion a){
-     this.instituciones.add(a);
- }
 
 
     public String getDescripcionGeneral() {
@@ -68,7 +66,7 @@ public class Profesor extends Usuario {
     }
 
     public Set<Institucion> getInstituciones() {
-        return instituciones;
+        return this.instituciones;
     }
 
     public Set<Actividad> getActividades() {

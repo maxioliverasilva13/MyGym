@@ -6,6 +6,7 @@ package Profesor.dtos;
 
 import Actividad.dtos.ActividadDTO;
 import Institucion.DtInstitucion;
+import Institucion.Institucion;
 import Usuario.dtos.UsuarioDTO;
 import java.util.Date;
 import java.util.List;
@@ -30,19 +31,19 @@ public class ProfesorDTO extends UsuarioDTO {
        
     }
     
-    public ProfesorDTO(int id,String nombre,String apellido,String nickname,String email ,Date nacimiento,String descripcionGeneral,String biografia,String linkSitioWeb, List<ActividadDTO> acts, List<DtInstitucion> ins){
+    public ProfesorDTO(int id,String nombre,String apellido,String nickname,String email ,Date nacimiento,String descripcionGeneral,String biografia,String linkSitioWeb, List<ActividadDTO> acts, List<DtInstitucion> instituciones){
       super(id, nombre,apellido,nickname,email,nacimiento);
       this.descripcionGeneral = descripcionGeneral;
       this.biografia = biografia;
       this.linkSitioWeb = linkSitioWeb;
       this.actividades = acts;
-      this.instituciones = ins;
+      this.instituciones = instituciones;
      
     }
 
 
     public List<DtInstitucion> getInstituciones() {
-        return instituciones;
+        return this.instituciones;
     }
 
     public List<ActividadDTO> getActividades() {

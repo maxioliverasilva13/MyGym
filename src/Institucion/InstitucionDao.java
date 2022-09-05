@@ -57,7 +57,6 @@ public class InstitucionDao implements InterfaceInstitucionDao {
         EntityTransaction tr = em.getTransaction();
         tr.begin();
         ins.addProfesor(prof);
-        prof.addInstitucion(ins);
         em.persist(ins);
         em.persist(prof);
         tr.commit();
