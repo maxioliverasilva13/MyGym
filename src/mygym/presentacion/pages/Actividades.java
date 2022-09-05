@@ -130,6 +130,7 @@ public class Actividades extends javax.swing.JPanel {
         });
 
         bgPanel.setBackground(new java.awt.Color(255, 255, 255));
+        bgPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(215, 215, 215)));
         bgPanel.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 bgPanelFocusGained(evt);
@@ -146,6 +147,7 @@ public class Actividades extends javax.swing.JPanel {
         cmbInstituciones.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         cmbInstituciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Instituciones" }));
         cmbInstituciones.setBorder(null);
+        cmbInstituciones.setFocusable(false);
         bgPanel.add(cmbInstituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 240, 40));
 
         btnAltaBG.setBackground(new java.awt.Color(76, 131, 122));
