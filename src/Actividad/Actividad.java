@@ -29,6 +29,7 @@ import Profesor.dtos.ProfesorDTO;
 import Actividad.dtos.ActividadDTO;
 import Institucion.DtInstitucion;
 import utils.ParserClassesToDt;
+import CuponeraXActividad.DtCuponeraXActividad;
 
 /**
  *
@@ -158,9 +159,12 @@ public class Actividad implements Serializable {
         if(this.institucion != null){
               dtIns = new DtInstitucion(institucion.getId(), institucion.getNombre(), institucion.getDescripcion(), institucion.getUrl(), null, null);
         }
-     
+        List<DtCuponeraXActividad> cuponerasXact = new ArrayList<>();
+        this.getCuponerasXActividad().forEach((cuponera) -> {
+            cuponerasXact.add(cuponera.getDtCuponeraXActividad());
+        });  
         ActividadDTO dt = new ActividadDTO(
-                this.id, this.nombre , this.descripcion, this.duracion, this.costo, this.fechaRegistro, profe, allClases, dtIns);
+                this.id, this.nombre , this.descripcion, this.duracion, this.costo, this.fechaRegistro, profe, allClases, dtIns, cuponerasXact);
         return dt;
     }
 

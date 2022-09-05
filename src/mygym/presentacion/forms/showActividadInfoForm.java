@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import Actividad.dtos.ActividadDTO;
 import Clase.DtClase;
 import Cuponera.DtCuponera;
+import CuponeraXActividad.DtCuponeraXActividad;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,7 +24,10 @@ import utils.ComboItem;
 public class showActividadInfoForm extends javax.swing.JFrame {
     public static HashMap<Integer, ActividadDTO> actividades = Actividades.actividadesSistema;
     List<DtClase> clases = new ArrayList<>();
+    List<DtCuponeraXActividad> cuponeras = new ArrayList<>();
+    DtCuponeraXActividad selectedCuponera;
 
+    
     DefaultComboBoxModel modelClases = new DefaultComboBoxModel();
     DefaultComboBoxModel modelCuponeras = new DefaultComboBoxModel();
 
@@ -44,6 +48,7 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         pintarInfoActividad(idactividad);
+        pintarInfoCuponerasAsociadas(idactividad);
         // llenarCBoxCuponerasAsociadas();
         llenarCBoxClasesAsociadas(idactividad); 
         cmbClases.setSelectedItem(null);
@@ -83,6 +88,22 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         duracionActividad.setText(Integer.toString(selectedAct.getDuracion()));
         fechaAltaActividad.setText(selectedAct.getFechaRegistro().toString());
         txaDescripcionActividad.setText(selectedAct.getDescripcion());
+    }
+    
+    private void pintarInfoCuponerasAsociadas(Integer idAct){
+        this.cmbCuponeras.removeAllItems();
+        ActividadDTO selectedAct = actividades.get(idAct);
+        if (selectedAct.getDtCuponeraXActividad() != null) {
+            selectedAct.getDtCuponeraXActividad().forEach((DtCuponeraXActividad cuxa) -> {
+                String nombre = cuxa.getCuponera().getNombre();
+                cuponeras.add(cuxa);
+                cmbCuponeras.addItem(nombre);
+            });
+        }
+    }
+    
+    private void llenarCuponeraInfo(int idCuponera) {
+        
     }
     
     // Pintar información de la Cuponera seleccionada en el COMBOBOX
@@ -143,6 +164,8 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        cantidadClases = new javax.swing.JLabel();
         panelClases = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         nombreClase = new javax.swing.JLabel();
@@ -266,7 +289,7 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         txaDescripcionCuponera.setRows(5);
         scrollCuponera.setViewportView(txaDescripcionCuponera);
 
-        panelCuponeras.add(scrollCuponera, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 220, -1));
+        panelCuponeras.add(scrollCuponera, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 220, -1));
 
         periodoVigenciaCuponera.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         periodoVigenciaCuponera.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -286,22 +309,32 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Nombre: ");
-        panelCuponeras.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
+        panelCuponeras.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, 20));
 
         jLabel11.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("Descuento:");
-        panelCuponeras.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 120, -1));
+        panelCuponeras.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 140, -1));
 
         jLabel10.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel10.setText("Período de Vigencia:");
-        panelCuponeras.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 120, -1));
+        jLabel10.setText("Cantidad de clases");
+        panelCuponeras.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 140, -1));
 
         jLabel9.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("Descripción:");
-        panelCuponeras.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 120, -1));
+        panelCuponeras.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 140, -1));
+
+        jLabel19.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel19.setText("Período de Vigencia:");
+        panelCuponeras.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 140, -1));
+
+        cantidadClases.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        cantidadClases.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cantidadClases.setText("xxxxxxxxxxxxxxxx");
+        panelCuponeras.add(cantidadClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 250, 20));
 
         bgPanel.add(panelCuponeras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 400, 230));
 
@@ -398,7 +431,7 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         btnMinimizar.setForeground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnMinimizar.setText("-");
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnMinimizarMouseClicked(evt);
@@ -424,7 +457,7 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
         btnExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnExit.setText("X");
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnExitMouseClicked(evt);
@@ -461,7 +494,18 @@ public class showActividadInfoForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbCuponerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCuponerasActionPerformed
-        // TODO add your handling code here:
+       Object selectedString = cmbCuponeras.getSelectedItem();
+       if (selectedString != null) {
+           String stringSelectedString = selectedString.toString();
+           System.out.println("asd");
+           System.out.println(cuponeras.size());
+           cuponeras.forEach((DtCuponeraXActividad cuxa) -> {
+               if (stringSelectedString == cuxa.getCuponera().getNombre()) {
+                   selectedCuponera = cuxa;
+                   fillSelectedCuponera();
+               }
+           });
+       }
     }//GEN-LAST:event_cmbCuponerasActionPerformed
 
     private void dragBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dragBarMouseDragged
@@ -501,6 +545,18 @@ public class showActividadInfoForm extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+
+    public void fillSelectedCuponera() {
+        if (selectedCuponera.getCuponera() != null) {
+            DtCuponera cup = selectedCuponera.getCuponera();
+            this.nombreCuponera.setText(cup.getNombre());
+            this.descuentoCuponera.setText(Float.toString(cup.getDescuento()));
+            this.periodoVigenciaCuponera.setText(cup.getPeriodoVigencia().toString());
+            this.cantidadClases.setText(Integer.toString(selectedCuponera.getCantClases()));
+            this.txaDescripcionCuponera.setText(cup.getDescripcion());
+        }
+    }
+            
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -540,6 +596,7 @@ public class showActividadInfoForm extends javax.swing.JFrame {
     private javax.swing.JPanel btnExitBG;
     private javax.swing.JLabel btnMinimizar;
     private javax.swing.JPanel btnMinimizarBG;
+    private javax.swing.JLabel cantidadClases;
     private javax.swing.JLabel capacidadMaximaClase;
     private javax.swing.JLabel capacidadMinimaClase;
     private javax.swing.JComboBox<String> cmbClases;
@@ -561,6 +618,7 @@ public class showActividadInfoForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

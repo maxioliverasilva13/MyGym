@@ -70,7 +70,7 @@ public class CuponeraXActividad implements Serializable {
             DtCuponera cup = new DtCuponera(this.cuponera.getId(), this.cuponera.getNombre(), this.cuponera.getDescripcion(), this.cuponera.getPeriodoVigencia(), this.cuponera.getDescuento(), null);
             return new DtCuponeraXActividad(id, cantClases,  cup);
         }
-        return new DtCuponeraXActividad(id, cantClases, null);
+        return new DtCuponeraXActividad(id, cantClases, this.cuponera.getDtCuponera());
     }
     
 }
