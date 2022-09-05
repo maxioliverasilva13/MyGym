@@ -137,6 +137,7 @@ public final class Dashboard extends javax.swing.JFrame {
         buttonInicio.setForeground(new java.awt.Color(255, 255, 255));
         buttonInicio.setText("Inicio");
         buttonInicio.setBorder(null);
+        buttonInicio.setFocusPainted(false);
         buttonInicio.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         buttonInicio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         buttonInicio.addActionListener(new java.awt.event.ActionListener() {
@@ -149,6 +150,7 @@ public final class Dashboard extends javax.swing.JFrame {
         buttonUsuarios.setForeground(new java.awt.Color(255, 255, 255));
         buttonUsuarios.setText("Usuarios");
         buttonUsuarios.setBorder(null);
+        buttonUsuarios.setFocusPainted(false);
         buttonUsuarios.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         buttonUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,6 +162,7 @@ public final class Dashboard extends javax.swing.JFrame {
         buttonActividades.setForeground(new java.awt.Color(255, 255, 255));
         buttonActividades.setText("Actividades");
         buttonActividades.setBorder(null);
+        buttonActividades.setFocusPainted(false);
         buttonActividades.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         buttonActividades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,6 +174,7 @@ public final class Dashboard extends javax.swing.JFrame {
         buttonClases.setForeground(new java.awt.Color(255, 255, 255));
         buttonClases.setText("Clases");
         buttonClases.setBorder(null);
+        buttonClases.setFocusPainted(false);
         buttonClases.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         buttonClases.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,6 +186,7 @@ public final class Dashboard extends javax.swing.JFrame {
         buttonCuponera.setForeground(new java.awt.Color(255, 255, 255));
         buttonCuponera.setText("Cuponeras");
         buttonCuponera.setBorder(null);
+        buttonCuponera.setFocusPainted(false);
         buttonCuponera.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         buttonCuponera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,6 +198,7 @@ public final class Dashboard extends javax.swing.JFrame {
         buttonInstitucion.setForeground(new java.awt.Color(255, 255, 255));
         buttonInstitucion.setText("Institucion");
         buttonInstitucion.setBorder(null);
+        buttonInstitucion.setFocusPainted(false);
         buttonInstitucion.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         buttonInstitucion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -248,6 +254,7 @@ public final class Dashboard extends javax.swing.JFrame {
         backgroundPanel.add(sidebarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 560));
 
         headerBar.setBackground(new java.awt.Color(255, 255, 255));
+        headerBar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(215, 215, 215)));
         headerBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 headerBarMouseDragged(evt);

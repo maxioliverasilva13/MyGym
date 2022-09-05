@@ -14,6 +14,7 @@ import CuponeraXActividad.CuponeraXActividadDao;
 import Cuponera.Cuponera;
 import Cuponera.CuponeraDao;
 import EntityManajer.InterfaceEntityManager;
+import Exceptions.ActividadAlreadyExistsException;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -38,6 +39,10 @@ public class ActividadDao implements IActividadDao {
 
     @Override
     public void create(ActividadCreateDTO act ,Profesor profesor,Institucion institucion) {
+        List<Cuponera> existe = em.createNativeQuery("select * from ACTIVIDAD where NOMBRE='" + act.getNombre() +"' AND INSTITUCION_ID="+institucion.getId()).getResultList();
+        if (!existe.isEmpty()) {
+            throw new ActividadAlreadyExistsException("Ya existe una actividad con ese Nombre, en la institución especificada.");
+        }else{
         EntityTransaction tx = em.getTransaction();
         tx.begin();
             Actividad activity = new Actividad();
@@ -53,6 +58,7 @@ public class ActividadDao implements IActividadDao {
             em.persist(activity);
             
         tx.commit();
+    }
     }
 
     @Override

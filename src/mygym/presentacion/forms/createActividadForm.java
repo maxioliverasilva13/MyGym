@@ -249,6 +249,7 @@ public class createActividadForm extends javax.swing.JFrame{
         jPanel2.add(lblInstitucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 70, 30));
 
         cmbInstituciones.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        cmbInstituciones.setFocusable(false);
         jPanel2.add(cmbInstituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 210, 30));
 
         lblNombre.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
@@ -343,6 +344,7 @@ public class createActividadForm extends javax.swing.JFrame{
         jPanel2.add(lblProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 70, 30));
 
         cmbProfesores.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        cmbProfesores.setFocusable(false);
         jPanel2.add(cmbProfesores, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 210, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

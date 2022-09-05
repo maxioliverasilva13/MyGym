@@ -68,6 +68,7 @@ public class Cuponeras extends javax.swing.JPanel {
         });
 
         bgPanel.setBackground(new java.awt.Color(255, 255, 255));
+        bgPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(215, 215, 215)));
         bgPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblHeader.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N

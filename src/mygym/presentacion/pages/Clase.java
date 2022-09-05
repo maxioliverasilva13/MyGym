@@ -4,6 +4,7 @@
  */
 package mygym.presentacion.pages;
 
+import java.awt.Color;
 import java.awt.Toolkit;
 import mygym.presentacion.components.AgregarRegistros;
 import mygym.presentacion.components.ChooseInstitucion;
@@ -35,150 +36,120 @@ public class Clase extends javax.swing.JPanel {
     private void initComponents() {
 
         pnlHeader = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        addButton1 = new javax.swing.JButton();
-        Agregar = new javax.swing.JButton();
-        addButton = new javax.swing.JButton();
+        btnConsultar = new javax.swing.JButton();
+        btnAltaClase = new javax.swing.JButton();
+        btnAltaRegistro = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(720, 540));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlHeader.setBackground(new java.awt.Color(255, 255, 255));
+        pnlHeader.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(215, 215, 215)));
+        pnlHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel2.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(41, 69, 87));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Clases");
+        pnlHeader.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(280, 280, 280))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jLabel2)
-        );
-
-        javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
-        pnlHeader.setLayout(pnlHeaderLayout);
-        pnlHeaderLayout.setHorizontalGroup(
-            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHeaderLayout.createSequentialGroup()
-                .addGap(306, 306, 306)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(61, 61, 61))
-        );
-        pnlHeaderLayout.setVerticalGroup(
-            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHeaderLayout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(-5, 0, 770, -1));
-
-        addButton1.setBackground(new java.awt.Color(0, 153, 153));
-        addButton1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        addButton1.setForeground(new java.awt.Color(255, 255, 255));
-        addButton1.setText("Consultar");
-        addButton1.setToolTipText("");
-        addButton1.setBorder(null);
-        addButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        addButton1.setOpaque(true);
-        addButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        addButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnConsultar.setBackground(new java.awt.Color(76, 131, 122));
+        btnConsultar.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnConsultar.setForeground(new java.awt.Color(255, 255, 255));
+        btnConsultar.setText("Consultar");
+        btnConsultar.setToolTipText("");
+        btnConsultar.setBorder(null);
+        btnConsultar.setFocusPainted(false);
+        btnConsultar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnConsultar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addButton1MouseClicked(evt);
+                btnConsultarMouseClicked(evt);
             }
         });
-        addButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButton1ActionPerformed(evt);
+                btnConsultarActionPerformed(evt);
             }
         });
-        add(addButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 187, 51));
+        pnlHeader.add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, 200, 40));
 
-        Agregar.setBackground(new java.awt.Color(0, 153, 153));
-        Agregar.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        Agregar.setForeground(new java.awt.Color(255, 255, 255));
-        Agregar.setText("Agregar");
-        Agregar.setToolTipText("");
-        Agregar.setBorder(null);
-        Agregar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        Agregar.setOpaque(true);
-        Agregar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Agregar.addActionListener(new java.awt.event.ActionListener() {
+        btnAltaClase.setBackground(new java.awt.Color(76, 131, 122));
+        btnAltaClase.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnAltaClase.setForeground(new java.awt.Color(255, 255, 255));
+        btnAltaClase.setText("Alta de Clase");
+        btnAltaClase.setToolTipText("");
+        btnAltaClase.setBorder(null);
+        btnAltaClase.setFocusPainted(false);
+        btnAltaClase.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnAltaClase.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAltaClase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AgregarActionPerformed(evt);
+                btnAltaClaseActionPerformed(evt);
             }
         });
-        add(Agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 176, 51));
+        pnlHeader.add(btnAltaClase, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 190, 40));
 
-        addButton.setBackground(new java.awt.Color(0, 153, 153));
-        addButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        addButton.setForeground(new java.awt.Color(255, 255, 255));
-        addButton.setText("Agregar Registros");
-        addButton.setToolTipText("");
-        addButton.setBorder(null);
-        addButton.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        addButton.setOpaque(true);
-        addButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        addButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAltaRegistro.setBackground(new java.awt.Color(76, 131, 122));
+        btnAltaRegistro.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnAltaRegistro.setForeground(new java.awt.Color(255, 255, 255));
+        btnAltaRegistro.setText("Agregar Registro");
+        btnAltaRegistro.setToolTipText("");
+        btnAltaRegistro.setBorder(null);
+        btnAltaRegistro.setFocusPainted(false);
+        btnAltaRegistro.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnAltaRegistro.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAltaRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addButtonMouseClicked(evt);
+                btnAltaRegistroMouseClicked(evt);
             }
         });
-        addButton.addActionListener(new java.awt.event.ActionListener() {
+        btnAltaRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButtonActionPerformed(evt);
+                btnAltaRegistroActionPerformed(evt);
             }
         });
-        add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 176, 51));
+        pnlHeader.add(btnAltaRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(256, 40, 200, 40));
+
+        add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 540));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
+    private void btnAltaClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaClaseActionPerformed
         if (!form.isVisible()) {
             form.setVisible(true);
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_AgregarActionPerformed
+    }//GEN-LAST:event_btnAltaClaseActionPerformed
 
-    private void addButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButton1ActionPerformed
-        ChooseInstitucion chooseInstitucion = new ChooseInstitucion();
-        chooseInstitucion.setVisible(true);
-    }//GEN-LAST:event_addButton1ActionPerformed
-
-    private void addButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButton1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addButton1MouseClicked
-
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+    private void btnAltaRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaRegistroActionPerformed
         if (!ar.isVisible()) {
             ar.setVisible(true);
         }
         //ÇÇar.setLocationRelativeTo(null);
         //ar.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width  - getSize().width) / 2, (Toolkit.getDefaultToolkit().getScreenSize().height - getSize().height) / 2);
         // TODO add your handling code here:
-    }//GEN-LAST:event_addButtonActionPerformed
+    }//GEN-LAST:event_btnAltaRegistroActionPerformed
 
-    private void addButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButtonMouseClicked
-    }//GEN-LAST:event_addButtonMouseClicked
+    private void btnAltaRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaRegistroMouseClicked
+
+    }//GEN-LAST:event_btnAltaRegistroMouseClicked
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        ChooseInstitucion chooseInstitucion = new ChooseInstitucion();
+        chooseInstitucion.setVisible(true);
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnConsultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConsultarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Agregar;
-    private javax.swing.JButton addButton;
-    private javax.swing.JButton addButton1;
+    private javax.swing.JButton btnAltaClase;
+    private javax.swing.JButton btnAltaRegistro;
+    private javax.swing.JButton btnConsultar;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel pnlHeader;
     // End of variables declaration//GEN-END:variables
 }
