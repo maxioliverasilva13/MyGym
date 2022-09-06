@@ -13,16 +13,18 @@ import java.util.Date;
 public class ActividadCreateDTO {
     private int institucion_id;
     private float costo;
+    private String nombre;
     private String descripcion;
     private int duracion;
     private Date fecha_registro;
     private int profesor_id;
     
     
-    public ActividadCreateDTO(int institucion_id,int profesor_id, float costo, String descripcion, Date fecha_registro, int duracion){
+    public ActividadCreateDTO(int institucion_id,int profesor_id, float costo, String nombre, String descripcion, Date fecha_registro, int duracion){
         this.institucion_id = institucion_id;
         this.profesor_id = profesor_id;
         this.costo = costo;
+        this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha_registro = fecha_registro;
         this.duracion = duracion;
@@ -35,6 +37,9 @@ public class ActividadCreateDTO {
      public float getCosto(){
          return this.costo;
      }
+     public String getNombre(){
+         return this.nombre;
+     }     
      public String getDescripcion(){
          return this.descripcion;
      }

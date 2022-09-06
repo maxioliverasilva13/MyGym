@@ -32,7 +32,6 @@ public class ClaseBO implements InterfaceClaseBO {
     @Override
     public HashMap<Integer, DtClase> listarClasesByAct(int idActividad){
         List<Clase> clases = claseDao.getClasesByActividad(idActividad);
-        System.out.println(clases.size());
         HashMap<Integer, DtClase> parsedClases = new HashMap<>();
         for (int i = 0; i < clases.size(); i++) {
              Clase clase = clases.get(i);

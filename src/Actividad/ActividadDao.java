@@ -14,6 +14,7 @@ import CuponeraXActividad.CuponeraXActividadDao;
 import Cuponera.Cuponera;
 import Cuponera.CuponeraDao;
 import EntityManajer.InterfaceEntityManager;
+import Exceptions.ActividadAlreadyExistsException;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -38,9 +39,14 @@ public class ActividadDao implements IActividadDao {
 
     @Override
     public void create(ActividadCreateDTO act ,Profesor profesor,Institucion institucion) {
+        List<Cuponera> existe = em.createNativeQuery("select * from ACTIVIDAD where NOMBRE='" + act.getNombre() +"' AND INSTITUCION_ID="+institucion.getId()).getResultList();
+        if (!existe.isEmpty()) {
+            throw new ActividadAlreadyExistsException("Ya existe una actividad con ese Nombre, en la institución especificada.");
+        }else{
         EntityTransaction tx = em.getTransaction();
         tx.begin();
             Actividad activity = new Actividad();
+            activity.setNombre(act.getNombre());
             activity.setDescripcion(act.getDescripcion());
             activity.setDuracion(act.getDuracion());
             activity.setFechaRegistro(act.getFechaRegistro());
@@ -52,6 +58,7 @@ public class ActividadDao implements IActividadDao {
             em.persist(activity);
             
         tx.commit();
+    }
     }
 
     @Override
@@ -101,7 +108,7 @@ public class ActividadDao implements IActividadDao {
 
     @Override
     public Collection<Actividad> listarActividadesByInstitucionNotIntCup(int institucionId, int cuponeraId) {
-         List<Actividad> actividades = this.em.createNativeQuery("SELECT actividad.id,actividad.costo, actividad.duracion, actividad.fecharegistro, actividad.nombre ,actividad.descripcion FROM actividad LEFT JOIN cuponeraxactividad ON actividad.id = cuponeraxactividad.ACTIVIDAD_ID WHERE cuponeraxactividad.CUPONERA_ID <> "+cuponeraId+" AND actividad.INSTITUCION_ID = "+institucionId, Actividad.class).getResultList();
+         List<Actividad> actividades = this.em.createNativeQuery("SELECT actividad.id, actividad.costo, actividad.duracion, actividad.fecharegistro, actividad.nombre ,actividad.descripcion FROM actividad WHERE actividad.ID NOT IN (SELECT actividad.id FROM actividad LEFT JOIN cuponeraxactividad ON actividad.id = cuponeraxactividad.ACTIVIDAD_ID WHERE cuponeraxactividad.CUPONERA_ID = " + cuponeraId + " AND actividad.INSTITUCION_ID = "+institucionId + ") ", Actividad.class).getResultList();
          return actividades;
     }
 

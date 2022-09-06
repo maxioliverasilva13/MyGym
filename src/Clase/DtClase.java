@@ -51,6 +51,11 @@ public class DtClase {
         this.urlAcceso = urlAcceso;
         this.fechaRegistro = fechaRegistro;
     }
+    
+    
+    public DtClase() {
+       
+    }
 
 
     public int getId() {

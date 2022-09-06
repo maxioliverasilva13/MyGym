@@ -4,11 +4,12 @@
  */
 package Registro;
 
+import java.util.List;
+
 /**
  *
  * @author maximilianooliverasilva
  */
 public interface InterfaceRegistroBO {
-    public void agregarRegistro(int idSocio, int idClase, DtRegistro registro);
-
+    public void agregarRegistro(int idSocio, List<Integer> clases, DtRegistro registro);
 }

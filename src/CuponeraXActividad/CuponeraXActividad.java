@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import Actividad.Actividad;
 import Cuponera.Cuponera;
+import Cuponera.DtCuponera;
 /**
  *
  * @author maximilianooliverasilva
@@ -65,8 +66,11 @@ public class CuponeraXActividad implements Serializable {
     }
     
     public DtCuponeraXActividad getDtCuponeraXActividad() {
-        return new DtCuponeraXActividad(id, cantClases, (cuponera != null) ? cuponera.getDtCuponera() : null);
+        if (cuponera != null) {
+            DtCuponera cup = new DtCuponera(this.cuponera.getId(), this.cuponera.getNombre(), this.cuponera.getDescripcion(), this.cuponera.getPeriodoVigencia(), this.cuponera.getDescuento(), null);
+            return new DtCuponeraXActividad(id, cantClases,  cup);
+        }
+        return new DtCuponeraXActividad(id, cantClases, this.cuponera.getDtCuponera());
     }
-    
     
 }

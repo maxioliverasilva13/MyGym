@@ -12,6 +12,7 @@ import Institucion.DtInstitucion;
 import Institucion.InstitucionBO;
 import java.util.HashMap;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import mygym.presentacion.forms.*;
 import javax.swing.WindowConstants;
@@ -38,6 +39,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
     int selectedIdInstitucion;
     int selectedIdActividad;
     int selectedIdClase;
+    int xMouse, yMouse;
     
     public void initializeSomeFields() {
         this.labelCapMaxima.setText("");
@@ -45,7 +47,8 @@ public class ChooseInstitucion extends javax.swing.JFrame {
         this.labelCreacion.setText("");
         this.labelInicio.setText("");
         this.labelUrl.setText("");
-        this.labelProfesor.setText("");
+        this.labelProfesor.setText("");        
+        this.labelCantAlumnos.setText("");
         this.jComboActividades.setEnabled(false);
         this.jComboClases.setEnabled(false);
         this.jComboInstituciones.setEnabled(false);
@@ -54,6 +57,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
     
     public ChooseInstitucion() {
         initComponents();
+        this.setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         dispose();
         text.setText("Lo siento ! No encontramos ninguna clase");
@@ -82,7 +86,6 @@ public class ChooseInstitucion extends javax.swing.JFrame {
     }
     
     public void fillClaseData() {
-        System.out.println("Algo");
         if (selectedClase != null) {
             String fechaHoraInicio = "Vacio";
             String fechaCreacion = "Vacio";
@@ -96,12 +99,14 @@ public class ChooseInstitucion extends javax.swing.JFrame {
             String capMin = Integer.toString(this.selectedClase.getCapMinima());
             String capMax = Integer.toString(this.selectedClase.getCapMaxima());
             String urlAcceso = this.selectedClase.getUrlAcceso();
+            String cantAlumnos = Integer.toString(this.selectedClase.getRegistros().size());
             this.labelProfesor.setText(profesorNombre);
             this.labelInicio.setText(fechaHoraInicio);
             this.labelCreacion.setText(fechaCreacion);
             this.labelCapMaxima.setText(capMax);
             this.labelCapMinima.setText(capMin);
             this.labelUrl.setText(urlAcceso);
+            this.labelCantAlumnos.setText(cantAlumnos);
             colocateCorrectResults();
         } else {
             // fillEmptyClassData();
@@ -124,6 +129,12 @@ public class ChooseInstitucion extends javax.swing.JFrame {
     private void initComponents() {
 
         jOptionPane1 = new javax.swing.JOptionPane();
+        bgPanel = new javax.swing.JPanel();
+        dragBar2 = new javax.swing.JLabel();
+        btnMinimizarBG = new javax.swing.JPanel();
+        btnMinimizar = new javax.swing.JLabel();
+        btnExitBG = new javax.swing.JPanel();
+        btnExit = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         errorCapacidadLbl = new javax.swing.JLabel();
@@ -149,32 +160,110 @@ public class ChooseInstitucion extends javax.swing.JFrame {
         labelCapMaxima = new javax.swing.JLabel();
         labelUrl = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        labelCantAlumnos = new javax.swing.JLabel();
         panelNotFound = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(361, 478));
-        setPreferredSize(new java.awt.Dimension(361, 478));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(360, 430));
+        setMinimumSize(new java.awt.Dimension(360, 430));
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 287, -1, -1));
+
+        bgPanel.setBackground(new java.awt.Color(255, 255, 255));
+        bgPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(215, 215, 215)));
+        bgPanel.setMaximumSize(new java.awt.Dimension(360, 430));
+        bgPanel.setMinimumSize(new java.awt.Dimension(360, 430));
+        bgPanel.setPreferredSize(new java.awt.Dimension(360, 430));
+        bgPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        dragBar2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                dragBar2MouseDragged(evt);
+            }
+        });
+        dragBar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                dragBar2MousePressed(evt);
+            }
+        });
+        bgPanel.add(dragBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 20));
+
+        btnMinimizarBG.setBackground(java.awt.Color.lightGray);
+
+        btnMinimizar.setFont(new java.awt.Font("Lucida Console", 1, 18)); // NOI18N
+        btnMinimizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnMinimizar.setText("-");
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnMinimizarBGLayout = new javax.swing.GroupLayout(btnMinimizarBG);
+        btnMinimizarBG.setLayout(btnMinimizarBGLayout);
+        btnMinimizarBGLayout.setHorizontalGroup(
+            btnMinimizarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnMinimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+        btnMinimizarBGLayout.setVerticalGroup(
+            btnMinimizarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnMinimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+        );
+
+        bgPanel.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 30, 20));
+
+        btnExitBG.setBackground(new java.awt.Color(174, 0, 51));
+
+        btnExit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnExit.setForeground(new java.awt.Color(255, 255, 255));
+        btnExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnExit.setText("X");
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExitMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnExitBGLayout = new javax.swing.GroupLayout(btnExitBG);
+        btnExitBG.setLayout(btnExitBGLayout);
+        btnExitBGLayout.setHorizontalGroup(
+            btnExitBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnExitBGLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        btnExitBGLayout.setVerticalGroup(
+            btnExitBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        bgPanel.add(btnExitBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 30, 20));
+        bgPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 287, -1, -1));
 
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(478, 555, -1, -1));
+        bgPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(478, 555, -1, -1));
         jLabel4.getAccessibleContext().setAccessibleName("labelErrorCapacidad");
 
         errorCapacidadLbl.setForeground(new java.awt.Color(255, 0, 0));
         errorCapacidadLbl.setName("errorCapacidad"); // NOI18N
-        getContentPane().add(errorCapacidadLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(476, 555, -1, -1));
+        bgPanel.add(errorCapacidadLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(476, 555, -1, -1));
 
         jLabel11.setBackground(new java.awt.Color(255, 0, 102));
         jLabel11.setForeground(new java.awt.Color(255, 0, 51));
         jLabel11.setName("errorLblMinSocios"); // NOI18N
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(954, 606, -1, -1));
+        bgPanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(954, 606, -1, -1));
 
         jLabel12.setForeground(new java.awt.Color(255, 0, 51));
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(476, 612, -1, -1));
+        bgPanel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(476, 612, -1, -1));
         jLabel12.getAccessibleContext().setAccessibleName("errorMaxSociosLbl");
 
+        jComboClases.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        jComboClases.setFocusable(false);
         jComboClases.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboClasesItemStateChanged(evt);
@@ -185,16 +274,18 @@ public class ChooseInstitucion extends javax.swing.JFrame {
                 jComboClasesActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 290, 30));
+        bgPanel.add(jComboClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 290, 30));
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jLabel13.setText("Elija una clase");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+        bgPanel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel14.setText("Elige una institucion");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 23, -1, -1));
+        jLabel14.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        jLabel14.setText("Elije una institucion");
+        bgPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 23, -1, -1));
 
+        jComboInstituciones.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        jComboInstituciones.setFocusable(false);
         jComboInstituciones.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboInstitucionesItemStateChanged(evt);
@@ -205,12 +296,14 @@ public class ChooseInstitucion extends javax.swing.JFrame {
                 jComboInstitucionesActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboInstituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 290, 30));
+        bgPanel.add(jComboInstituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 290, 30));
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel15.setText("Elije una Actividad");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        jLabel15.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        jLabel15.setText("Elija una Actividad");
+        bgPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
+        jComboActividades.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        jComboActividades.setFocusable(false);
         jComboActividades.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboActividadesItemStateChanged(evt);
@@ -221,72 +314,84 @@ public class ChooseInstitucion extends javax.swing.JFrame {
                 jComboActividadesActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboActividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 290, 30));
+        bgPanel.add(jComboActividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 290, 30));
 
+        panelInfo.setBackground(new java.awt.Color(255, 255, 255));
         panelInfo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 0, 0, new java.awt.Color(0, 0, 0)));
         panelInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
         jLabel9.setText("Informacion de la clase");
-        panelInfo.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
+        panelInfo.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -8, -1, 50));
 
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel16.setText("Profesor:");
         panelInfo.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
-        labelProfesor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelProfesor.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         labelProfesor.setText("Nicolas escobar");
         panelInfo.add(labelProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel17.setText("Fecha y hora de inicio:");
         panelInfo.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
-        labelInicio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelInicio.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         labelInicio.setText("27/08/2022 17:00");
-        panelInfo.add(labelInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, -1, -1));
+        panelInfo.add(labelInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, -1, -1));
 
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel18.setText("Fecha de creacion:");
         panelInfo.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
-        labelCreacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelCreacion.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         labelCreacion.setText("19/08/2022 ");
-        panelInfo.add(labelCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, -1, -1));
+        panelInfo.add(labelCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
 
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel19.setText("Capacidad minima socios:");
         panelInfo.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
-        labelCapMinima.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelCapMinima.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         labelCapMinima.setText("2");
-        panelInfo.add(labelCapMinima, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
+        panelInfo.add(labelCapMinima, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 50, -1));
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel20.setText("Capacidad maxima socios:");
         panelInfo.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
-        labelCapMaxima.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelCapMaxima.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         labelCapMaxima.setText("10");
-        panelInfo.add(labelCapMaxima, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
+        panelInfo.add(labelCapMaxima, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 50, -1));
 
-        labelUrl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelUrl.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         labelUrl.setText("https://zoom.com/sa2ad");
-        panelInfo.add(labelUrl, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, -1));
+        panelInfo.add(labelUrl, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 240, -1));
 
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel21.setText("Url de acceso");
-        panelInfo.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+        jLabel21.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        jLabel21.setText("Cantidad Alumnos:");
+        panelInfo.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
-        getContentPane().add(panelInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 320, 150));
+        jLabel22.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        jLabel22.setText("Url de acceso");
+        panelInfo.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+
+        labelCantAlumnos.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        labelCantAlumnos.setText("2");
+        panelInfo.add(labelCantAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 60, -1));
+
+        bgPanel.add(panelInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 330, 170));
 
         panelNotFound.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 0, 0, new java.awt.Color(0, 0, 0)));
         panelNotFound.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel1.setText("Lo sentimos, no encontramos ninguna clase !");
-        panelNotFound.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+        panelNotFound.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        getContentPane().add(panelNotFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 310, 70));
+        bgPanel.add(panelNotFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 310, 70));
+
+        getContentPane().add(bgPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 430));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -341,6 +446,26 @@ public class ChooseInstitucion extends javax.swing.JFrame {
     private void jComboClasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboClasesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboClasesActionPerformed
+
+    private void dragBar2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dragBar2MouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xMouse, y - yMouse);
+    }//GEN-LAST:event_dragBar2MouseDragged
+
+    private void dragBar2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dragBar2MousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_dragBar2MousePressed
+
+    private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
+        this.setExtendedState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarMouseClicked
+
+    private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnExitMouseClicked
 
     /**
      * @param args the command line arguments
@@ -418,6 +543,12 @@ public class ChooseInstitucion extends javax.swing.JFrame {
   
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bgPanel;
+    private javax.swing.JLabel btnExit;
+    private javax.swing.JPanel btnExitBG;
+    private javax.swing.JLabel btnMinimizar;
+    private javax.swing.JPanel btnMinimizarBG;
+    private javax.swing.JLabel dragBar2;
     private javax.swing.JLabel errorCapacidadLbl;
     private javax.swing.JComboBox<String> jComboActividades;
     private javax.swing.JComboBox<String> jComboClases;
@@ -435,9 +566,11 @@ public class ChooseInstitucion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JOptionPane jOptionPane1;
+    private javax.swing.JLabel labelCantAlumnos;
     private javax.swing.JLabel labelCapMaxima;
     private javax.swing.JLabel labelCapMinima;
     private javax.swing.JLabel labelCreacion;
