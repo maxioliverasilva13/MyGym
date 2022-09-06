@@ -5,6 +5,10 @@
 package mygym.presentacion.forms;
 
 
+import Institucion.DtInstitucion;
+import Institucion.Institucion;
+import Institucion.InstitucionBO;
+import Institucion.InterfaceInstitucionBO;
 import Profesor.dtos.ProfesorCreateDTO;
 import Socio.dtos.SocioCreateDTO;
 import Usuario.UsuarioBO;
@@ -13,10 +17,16 @@ import Usuario.exceptions.UserAlreadyNickExist;
 import com.raven.datechooser.SelectedDate;
 import java.awt.Color;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import javax.swing.border.MatteBorder;
+import utils.ComboItem;
 
 /**
  *
@@ -37,6 +47,7 @@ public class AddUsersForm extends javax.swing.JFrame {
         dispose();
         this.setLocationRelativeTo(null);
         jPanel2.hide();
+        this.loadInstituciones();
     }
     
     /**
@@ -84,7 +95,7 @@ public class AddUsersForm extends javax.swing.JFrame {
 
         fechaNac.setTextRefernce(jTextField5);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -376,40 +387,51 @@ public class AddUsersForm extends javax.swing.JFrame {
                 error=true;        
             }
             
-            if (jTextField6.getText() .equals("")) {
-            jTextField6.setBorder(new MatteBorder(0,0,1,0, Color.red));
-            error=true;
-            }
         }
         
-        if (error == false) {           
+        Object selectedItemInsti = jComboBox2.getSelectedItem();
+        
+        try {
+             if (error == false) {           
             SelectedDate sDate = fechaNac.getSelectedDate();
                 
             Date fecha = new Date(sDate.getDay(), sDate.getMonth(), sDate.getYear());
            
             if (jComboBox1.getItemAt(jComboBox1.getSelectedIndex()) .equals("Profesor/a")) {
-                ProfesorCreateDTO prof = new ProfesorCreateDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(), jTextArea2.getText(), jTextArea1.getText(), jTextField4.getText(), jTextField6.getText(), fecha);
-                try {
+                int selectedInstitucionId = Integer.parseInt(((ComboItem)selectedItemInsti).getId());
+        
+                if (selectedInstitucionId == 0) {
+                    JOptionPane.showMessageDialog(new JFrame(), "Por favor seleccione una institucion", "Error", JOptionPane.INFORMATION_MESSAGE);
+                }
+                ProfesorCreateDTO prof = new ProfesorCreateDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(), jTextArea2.getText(), jTextArea1.getText(), jTextField4.getText(), jTextField6.getText(), fecha, selectedInstitucionId);
                     usr.create(prof);
-                } catch (UserAlreadyEmailExist ex) {
-                    Logger.getLogger(AddUsersForm.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (UserAlreadyNickExist ex) {
-                    Logger.getLogger(AddUsersForm.class.getName()).log(Level.SEVERE, null, ex);
-                } 
+                    this.dispose();
             }
             if (jComboBox1.getItemAt(jComboBox1.getSelectedIndex()) .equals("Socio/a")) {
                 SocioCreateDTO usu = new SocioCreateDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(), jTextField4.getText(), fecha);
-                try {
                     usr.create(usu);
-                } catch (UserAlreadyEmailExist ex) {
-                    Logger.getLogger(AddUsersForm.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (UserAlreadyNickExist ex) {
-                    Logger.getLogger(AddUsersForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    this.dispose();
             }
-        }        
-    }//GEN-LAST:event_jButton2MouseClicked
+            JOptionPane.showMessageDialog(new JFrame(), "Usuario agregado correctamente", "Usuario Agregado", JOptionPane.INFORMATION_MESSAGE);
 
+        }        
+        } catch (Exception e) {
+                JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton2MouseClicked
+    private void loadInstituciones(){
+         this.jComboBox2.removeAllItems();
+         InterfaceInstitucionBO  insBo = new InstitucionBO();
+         HashMap<Integer,DtInstitucion> instituciones = insBo.listarInstituciones();
+         
+         
+         DefaultComboBoxModel modelInstituciones = new DefaultComboBoxModel();
+         instituciones.forEach((key, value) -> {
+            DtInstitucion currentInstitucion = instituciones.get(key);
+            modelInstituciones.addElement(new ComboItem(key.toString(), currentInstitucion.getNombre()));
+          });
+         this.jComboBox2.setModel(modelInstituciones);
+    }
     /**
      * @param args the command line arguments
      */

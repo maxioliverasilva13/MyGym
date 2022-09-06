@@ -529,9 +529,11 @@ public class AddClaseForm extends javax.swing.JFrame {
             if (d.getNombre() == selectedItem) {
                 if (selectedActividadId != k) {
                   selectedActividadId = k;
-                  ProfesorDTO profe = d.getProfesor();
-                  // add the only profesor for this class
-                  this.jComboBox1.addItem(profe.getNombre() + " " + profe.getApellido());
+                  if (d.getProfesor() != null) {
+                      ProfesorDTO profe = d.getProfesor();
+                    // add the only profesor for this class
+                    this.jComboBox1.addItem(profe.getNombre() + " " + profe.getApellido());
+                  }
                 } 
             }
             });

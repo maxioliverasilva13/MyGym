@@ -53,7 +53,7 @@ public class ParserClassesToDt {
         return dt;
     }
     
-    public List<DtInstitucion> getInstitucionesDt(Set<Institucion> instituciones) {
+    public List<DtInstitucion> getInstitucionesDt(List<Institucion> instituciones) {
         List<DtInstitucion> ins = new ArrayList<>();
         instituciones.forEach((Institucion i) -> {
            ins.add(i.getDtInstitucion());

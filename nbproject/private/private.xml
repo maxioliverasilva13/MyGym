@@ -3,15 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Usuario/UsuarioBO.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/ParseDate/ParseDate.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Usuario/Usuario.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/nbproject/genfiles.properties</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Clase/ClaseBO.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Socio/dtos/SocioDTO.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Clase/ClaseDao.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Socio/ISocioBO.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Actividad/IActividadBO.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/META-INF/persistence.xml</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/EntityManajer/InterfaceEntityManager.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Profesor/Profesor.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Profesor/dtos/ProfesorDTO.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Usuario/IUsuarioBO.java</file>
@@ -40,17 +42,9 @@
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Actividad/ActividadBO.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/utils/ParserClassesToDt.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/forms/AddClaseForm.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/nbproject/project.properties</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/forms/AddUsersForm.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Socio/SocioBO.java</file>
-=======
-            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/mygym/presentacion/pages/Actividades.java</file>
-            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/mygym/presentacion/forms/showActividadInfoForm.java</file>
-            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/CuponeraXActividad/DtCuponeraXActividad.java</file>
-            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/Actividad/Actividad.java</file>
-            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/Actividad/ActividadBO.java</file>
-            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/mygymapp/MyGymApp.java</file>
-            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/Actividad/dtos/ActividadDTO.java</file>
->>>>>>> fd7d03888dfc5941643df91be21a77e4561b9124
         </group>
     </open-files>
 </project-private>

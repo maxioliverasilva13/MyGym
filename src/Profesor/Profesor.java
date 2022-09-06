@@ -35,11 +35,13 @@ public class Profesor extends Usuario {
  private String biografia;
  private String linkSitioWeb;
  @ManyToMany()
- private Set<Institucion> instituciones;
+ private List<Institucion> instituciones = new ArrayList();
  @OneToMany(mappedBy = "profesor")
  private Set<Actividad> actividades;
  
-
+    public void agregarInstitucion(Institucion ins) {
+        this.instituciones.add(ins);
+    }
 
     public String getDescripcionGeneral() {
         return descripcionGeneral;
@@ -65,7 +67,7 @@ public class Profesor extends Usuario {
         this.linkSitioWeb = linkSitioWeb;
     }
 
-    public Set<Institucion> getInstituciones() {
+    public List<Institucion> getInstituciones() {
         return this.instituciones;
     }
 

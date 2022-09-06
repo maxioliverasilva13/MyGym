@@ -30,7 +30,15 @@ public class Usuarios extends javax.swing.JPanel {
         panelContent.setBorder(new EmptyBorder(0,0,0,0));
         panelContent.setBackground(Color.white); 
         //panelContent.setLayout(new BoxLayout(panelContent, BoxLayout.Y_AXIS));
-        this.LoadUsers(panelContent);
+        form.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                 LoadUsers(panelContent);
+                 System.out.println("Soy yo");
+                 revalidate();
+                 repaint();
+            }
+        });
         JScrollPane js = new JScrollPane(panelContent,
           JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
           JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -105,12 +113,16 @@ public class Usuarios extends javax.swing.JPanel {
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void LoadUsers(JPanel panel){
+        panel.removeAll();
         IUsuarioBO usuarioBo = new UsuarioBO();
-        usuarioBo.listarUsuarios().forEach((key,user) ->{
+        int sizeOfRows = usuarioBo.listarUsuarios().size();;
+        usuarioBo.listarUsuarios().forEach((key,user) -> {
+            
            UserCard card = new UserCard(key,user.getNombre(),user.getApellido(),user.getEmail());
            card.setSize(120, 90);
            panel.add(card);
         });
+        new GridLayout((sizeOfRows / 3) + 1, 3, 10,10);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;

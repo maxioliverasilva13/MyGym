@@ -20,6 +20,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import org.eclipse.persistence.exceptions.DatabaseException;
+import Institucion.InstitucionDao;
+import Institucion.Institucion;
 
 
 /**
@@ -29,6 +31,7 @@ import org.eclipse.persistence.exceptions.DatabaseException;
 public class UsuarioDAO implements IUsuarioDAO{
     
     EntityManager em = null;
+    InstitucionDao insDao = new InstitucionDao();
     
     public UsuarioDAO(){
         this.em = InterfaceEntityManager.getInstance();
@@ -41,6 +44,7 @@ public class UsuarioDAO implements IUsuarioDAO{
         tx.begin();
       
          if(userCreate instanceof ProfesorCreateDTO){
+            
             ProfesorCreateDTO profCreate = (ProfesorCreateDTO)userCreate;
             
             Profesor newProfesor = new Profesor();
@@ -52,6 +56,8 @@ public class UsuarioDAO implements IUsuarioDAO{
             newProfesor.setBiografia(profCreate.getBiografia());
             newProfesor.setLinkSitioWeb(profCreate.getLinkSitioWeb());
             newProfesor.setDescripcionGeneral(profCreate.getdescripcionGeneral());
+            Institucion ins = insDao.existe(profCreate.getIdInstitucion());
+            newProfesor.agregarInstitucion(ins);
             
             this.em.persist(newProfesor);
             
