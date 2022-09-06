@@ -19,7 +19,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import org.eclipse.persistence.exceptions.DatabaseException;
 
 
 /**
