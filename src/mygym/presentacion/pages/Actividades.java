@@ -342,7 +342,7 @@ public class Actividades extends javax.swing.JPanel {
         int selectedActividadID = (Integer) idObj;
         ActividadDTO selectedAct = actividadesSistema.get(selectedActividadID); // PASARLE ESTE DT POR EL CONSTRUCTOR DEL FORM
         if (selectedAct != null){
-            showActividadInfoForm formInfo = new showActividadInfoForm(selectedActividadID);
+            showActividadInfoForm formInfo = new showActividadInfoForm(selectedAct);
             if (!formInfo.isVisible()) {
                 formInfo.setVisible(true);
             }

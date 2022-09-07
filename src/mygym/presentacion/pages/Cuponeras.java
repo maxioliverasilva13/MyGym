@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import Cuponera.CuponeraBo;
 import Cuponera.DtCuponera;
 import javax.swing.ListSelectionModel;
+import mygym.presentacion.forms.showInfoCuponera;
 
 /**
  *
@@ -56,6 +57,7 @@ public class Cuponeras extends javax.swing.JPanel {
         tablaCuponeras = new javax.swing.JTable();
         btnAgregarBG = new javax.swing.JPanel();
         btnAgregar = new javax.swing.JLabel();
+        btnConsultar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(720, 540));
         addFocusListener(new java.awt.event.FocusAdapter() {
@@ -206,7 +208,7 @@ public class Cuponeras extends javax.swing.JPanel {
         btnAgregarBG.setLayout(btnAgregarBGLayout);
         btnAgregarBGLayout.setHorizontalGroup(
             btnAgregarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+            .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
         );
         btnAgregarBGLayout.setVerticalGroup(
             btnAgregarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,7 +217,28 @@ public class Cuponeras extends javax.swing.JPanel {
                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        bgPanel.add(btnAgregarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, 330, -1));
+        bgPanel.add(btnAgregarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 470, 310, -1));
+
+        btnConsultar.setBackground(new java.awt.Color(76, 131, 122));
+        btnConsultar.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnConsultar.setForeground(new java.awt.Color(255, 255, 255));
+        btnConsultar.setText("Consultar Información");
+        btnConsultar.setToolTipText("");
+        btnConsultar.setBorder(null);
+        btnConsultar.setFocusPainted(false);
+        btnConsultar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnConsultar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnConsultarMouseClicked(evt);
+            }
+        });
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
+        bgPanel.add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 310, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -293,10 +316,36 @@ public class Cuponeras extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_formFocusLost
 
+    private void btnConsultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConsultarMouseClicked
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+
+        int selectedRowId = tablaCuponeras.getSelectedRow();
+        if(selectedRowId == -1){
+            JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una cuponera existente.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Object idObj = tablaCuponeras.getValueAt(selectedRowId, 0);
+        int selectedCuponeraID = (Integer) idObj;
+        DtCuponera selectedCup = cuponeras.get(selectedCuponeraID); // PASARLE ESTE DT POR EL CONSTRUCTOR DEL FORM
+        if (selectedCup != null){
+            showInfoCuponera formInfo = new showInfoCuponera(selectedCup);
+            if (!formInfo.isVisible()) {
+                formInfo.setVisible(true);
+            }
+        }else{
+            JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una cuponera existente.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgPanel;
     private javax.swing.JLabel btnAgregar;
     private javax.swing.JPanel btnAgregarBG;
+    private javax.swing.JButton btnConsultar;
     private javax.swing.JLabel btnCrear;
     private javax.swing.JPanel btnCrearBG;
     private javax.swing.JLabel lblHeader;
