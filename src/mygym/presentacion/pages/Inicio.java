@@ -4,6 +4,15 @@
  */
 package mygym.presentacion.pages;
 //import mygym.presentacion.pages.Instituciones;
+import Actividad.ActividadBO;
+import Actividad.dtos.ActividadDTO;
+import Cuponera.CuponeraBo;
+import Cuponera.DtCuponera;
+import Institucion.DtInstitucion;
+import Institucion.InstitucionBO;
+import java.util.HashMap;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import mygym.presentacion.pages.Cuponeras;
 import mygym.presentacion.pages.Actividades;
 /**
@@ -15,17 +24,34 @@ public class Inicio extends javax.swing.JPanel {
     /**
      * Creates new form Inicio
      */
+    InstitucionBO insBO = new InstitucionBO();
+    ActividadBO actBO = new ActividadBO();
+    CuponeraBo cupBo = new CuponeraBo();
+    
+    HashMap<Integer, DtCuponera> cuponerasSistema = new HashMap<>();
+    HashMap<Integer, DtInstitucion> institucionesSistema = new HashMap<>(); 
+    HashMap<Integer, ActividadDTO> actividadesSistema = new HashMap<>(); 
+
+    
     public Inicio() {
         initComponents();
         initializeFields();
     }
 
     public void initializeFields(){
+        try {
+            cuponerasSistema = cupBo.listarCuponeras();
+            institucionesSistema = insBO.listarInstituciones();
+            actividadesSistema = actBO.getAllActividades();
+            
+            cantInstituciones.setText(Integer.toString(institucionesSistema.size()));
+            cantCuponeras.setText(Integer.toString(cuponerasSistema.size()));
+            cantActividades.setText(Integer.toString(actividadesSistema.size()));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
         
-        
-        cantInstituciones.setText("3");
-        cantCuponeras.setText(Integer.toString(Cuponeras.cuponeras.size()));
-        cantActividades.setText(Integer.toString(Actividades.actividadesSistema.size()));
+
     }
     
     /**

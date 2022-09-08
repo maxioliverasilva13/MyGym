@@ -111,6 +111,10 @@ public class ActividadDao implements IActividadDao {
          List<Actividad> actividades = this.em.createNativeQuery("SELECT actividad.id, actividad.costo, actividad.duracion, actividad.fecharegistro, actividad.nombre ,actividad.descripcion FROM actividad WHERE actividad.ID NOT IN (SELECT actividad.id FROM actividad LEFT JOIN cuponeraxactividad ON actividad.id = cuponeraxactividad.ACTIVIDAD_ID WHERE cuponeraxactividad.CUPONERA_ID = " + cuponeraId + " AND actividad.INSTITUCION_ID = "+institucionId + ") ", Actividad.class).getResultList();
          return actividades;
     }
+    
 
-  
+    public Collection<Actividad> getAllActividades() {
+       List<Actividad> actividades = this.em.createNativeQuery("SELECT actividad.id FROM actividad", Actividad.class).getResultList();
+        return actividades;
+    }
 }
