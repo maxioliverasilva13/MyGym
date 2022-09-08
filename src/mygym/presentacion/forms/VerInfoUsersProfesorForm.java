@@ -413,6 +413,16 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
           int index = theList.locationToIndex(mouseEvent.getPoint());
           if (index >= 0) {
             Object o = theList.getModel().getElementAt(index);
+            String actividadName = o.toString();
+            if (actividadName != "") {
+                allActividades.forEach((ActividadDTO act) -> {
+                    if (act.getNombre().equals(actividadName)) {
+                        System.out.println(act.getClases());
+                        showActividadInfoForm s = new showActividadInfoForm(act);
+                        s.setVisible(true);
+                    }
+                });
+            }
             // System.out.println("Double-clicked on: " + o.toString());
           }
         }
@@ -468,6 +478,7 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
           DefaultListModel listModelActividades = new DefaultListModel();   
           this.allActividades = this.profDto.getActividades();
           this.allActividades.forEach(actividad -> {
+              System.out.println(actividad.getClases().size());
                 listModelActividades.addElement(actividad.getNombre());
           });
           this.jList1.setModel(listModelActividades);

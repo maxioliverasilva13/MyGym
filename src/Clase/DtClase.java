@@ -60,6 +60,17 @@ public class DtClase {
     }
     
     
+    public DtClase(int id, String nombre, Date fecha, int capMinima, int capMaxima, String urlAcceso, Date fechaRegistro, String profesor) {
+        this.id = id;
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.capMinima = capMinima;
+        this.capMaxima = capMaxima;
+        this.urlAcceso = urlAcceso;
+        this.fechaRegistro = fechaRegistro;
+        this.profesor = profesor;
+    }
+    
     public DtClase(int id, String nombre, Date fecha, int capMinima, int capMaxima, String urlAcceso, Date fechaRegistro) {
         this.id = id;
         this.nombre = nombre;
@@ -69,7 +80,7 @@ public class DtClase {
         this.urlAcceso = urlAcceso;
         this.fechaRegistro = fechaRegistro;
     }
-    
+        
     
     public DtClase() {
        

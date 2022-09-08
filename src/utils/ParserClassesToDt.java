@@ -7,6 +7,7 @@ package utils;
 import Actividad.Actividad;
 import Actividad.dtos.ActividadDTO;
 import Clase.DtClase;
+import Cuponera.DtCuponera;
 import Institucion.DtInstitucion;
 import Institucion.Institucion;
 import Profesor.dtos.ProfesorDTO;
@@ -14,7 +15,9 @@ import Profesor.Profesor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
+import CuponeraXActividad.CuponeraXActividad;
+import CuponeraXActividad.DtCuponeraXActividad;
+import Cuponera.Cuponera;
 /**
  *
  * @author maximilianooliverasilva
@@ -48,8 +51,24 @@ public class ParserClassesToDt {
     }
     
     public ActividadDTO getDtActividad(Actividad actividad) {
+        List<DtClase> clases = new ArrayList<>();
+        actividad.getClases().forEach((Clase.Clase c) -> {
+            String profesorName = c.getActividad().getProfesor().getNombre();
+            DtClase cn = new DtClase(c.getId(), c.getNombre(), c.getFecha(), c.getCapMinima(), c.getCapMaxima(), c.getUrlAcceso(), c.getFechaRegistro(), profesorName);
+            clases.add(cn);
+        });
+        
+        List<DtCuponeraXActividad> cuponerasXAct = new ArrayList<>();
+        actividad.getCuponerasXActividad().forEach((CuponeraXActividad cuxa) -> {
+            Cuponera cup = cuxa.getCuponera();
+            DtCuponera dtCup = new DtCuponera(cup.getId(), cup.getNombre(), cup.getDescripcion(), cup.getPeriodoVigencia(), cup.getDescuento(), null);
+            DtCuponeraXActividad cu = new DtCuponeraXActividad(cuxa.getId(), cuxa.getCantClases(), dtCup);
+            cuponerasXAct.add(cu);
+        });
+        
+        
         ActividadDTO dt = new ActividadDTO(
-                actividad.getId(), actividad.getNombre() , actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaRegistro(), null, null, null);
+                actividad.getId(), actividad.getNombre() , actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaRegistro(), null, clases, null, cuponerasXAct);
         return dt;
     }
     

@@ -38,13 +38,11 @@ public class ProfesorBO implements IProfesorBO {
          List<DtInstitucion> instituciones = new ArrayList();
          List<ActividadDTO> actividades = new ArrayList();
          
-         profFind.getActividades().forEach((actividad) ->{
+          profFind.getActividades().forEach((actividad) ->{
                actividades.add(actividad.getDtActividad());
           });
          
-         
-         ParserClassesToDt parserClass = new ParserClassesToDt(); 
-            res = profFind.getDtProfesor();
+         res = profFind.getDtProfesor();
          return res;
     }
 
