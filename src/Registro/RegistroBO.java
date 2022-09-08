@@ -17,4 +17,7 @@ public class RegistroBO implements InterfaceRegistroBO {
     public void agregarRegistro(int idSocio,  List<Integer> clases, DtRegistro registro){
         registrodao.insertar(idSocio, clases, registro);
     }
+
+   
+    
 }

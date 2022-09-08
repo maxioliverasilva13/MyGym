@@ -8,7 +8,12 @@ import EntityManajer.InterfaceEntityManager;
 import Profesor.dtos.ProfesorCreateDTO;
 import Profesor.dtos.ProfesorDTO;
 import Profesor.dtos.ProfesorEditDTO;
+import Socio.Socio;
+import Socio.dtos.SocioEditDTO;
+import Socio.exceptions.SocioNotExist;
 import Usuario.Usuario;
+import Usuario.exceptions.UserAlreadyEmailExist;
+import Usuario.exceptions.UserAlreadyNickExist;
 import java.util.HashMap;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -16,6 +21,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import Usuario.UsuarioDAO;
 
 /**
  *
@@ -23,7 +29,7 @@ import javax.persistence.Query;
  */
 public class ProfesorDao  implements IProfesorDao {
     
-    
+    UsuarioDAO userDao = new UsuarioDAO();
     EntityManager em = null;
     
     public ProfesorDao(){
@@ -32,11 +38,33 @@ public class ProfesorDao  implements IProfesorDao {
     
     
   
-    @Override
-    public void editById(int id, ProfesorEditDTO editProf) {
+     @Override
+    public void editById(int id, ProfesorEditDTO editProf) {        
         
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Profesor prof = this.getById(id);
+        if (prof == null) {
+            throw new SocioNotExist("El socio no existe");
+        }
+        if(!prof.getNickname().equals(editProf.getNickname()) && userDao.getByNickname(editProf.getNickname()) != null){
+              throw new UserAlreadyNickExist("ya existe un usuario con este nickname");
+        }
+        if(!prof.getEmail().equals(editProf.getEmail()) && userDao.getByEmail(editProf.getEmail()) != null){
+              throw new UserAlreadyEmailExist("ya existe un usuario con este email");
+        }
+        EntityTransaction tr = em.getTransaction();
+        tr.begin();
+        System.out.println(editProf.getEmail());
+        prof.setApellido(editProf.getApellido());
+        prof.setEmail(editProf.getEmail());
+        prof.setNacimiento(editProf.getFechaNacimiento());
+        prof.setNombre(editProf.getNombre());
+        prof.setNickname(editProf.getNickname());
+        prof.setDescripcionGeneral(editProf.getDescripcionGeneral());
+        prof.setLinkSitioWeb(editProf.getLinkSitioWeb());
+        prof.setBiografia(editProf.getBiografia());
+        tr.commit();
     }
+
 
    
    

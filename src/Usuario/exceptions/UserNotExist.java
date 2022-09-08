@@ -8,7 +8,7 @@ package Usuario.exceptions;
  *
  * @author angel
  */
-public class UserNotExist extends Exception {
+public class UserNotExist extends RuntimeException {
 
     /**
      * Creates a new instance of <code>UserNotExist</code> without detail

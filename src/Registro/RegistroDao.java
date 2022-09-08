@@ -75,4 +75,6 @@ public class RegistroDao implements InterfaceRegistroDao {
         }
         return ins;
     }
+
+    
 }

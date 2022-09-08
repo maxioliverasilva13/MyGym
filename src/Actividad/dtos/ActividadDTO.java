@@ -9,6 +9,7 @@ import Clase.DtClase;
 import CuponeraXActividad.DtCuponeraXActividad;
 import Institucion.DtInstitucion;
 import Profesor.dtos.ProfesorDTO;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -21,8 +22,8 @@ public class ActividadDTO {
     private float costo;
     private Date fechaRegistro;
     ProfesorDTO profesor;
-    private List<DtClase> clases;
-    private List<DtCuponeraXActividad> cuponerasXActivdad;
+    private List<DtClase> clases = new ArrayList<>();
+    private List<DtCuponeraXActividad> cuponerasXActivdad = new ArrayList<>();
     DtInstitucion institucion;
     
 
@@ -41,22 +42,29 @@ public class ActividadDTO {
         this.costo = costo;
         this.fechaRegistro = fechaRegistro;
         this.profesor = profe;
-        this.clases = clases;
+        if (clases != null) {
+            this.clases = clases;
+        }
         this.id = id;
         this.institucion = ins;
     }
     
-    public ActividadDTO(int id, String nombre, String descripcion, int duracion, float costo, Date fechaRegistro, ProfesorDTO profe, List<DtClase> clases, DtInstitucion ins, List<DtCuponeraXActividad> cuponerasXActivdad) {
+    public ActividadDTO(int id, String nombre, String descripcion, int duracion, float costo, Date fechaRegistro, ProfesorDTO profe, List<DtClase> clases, DtInstitucion ins, List<DtCuponeraXActividad> cupsXAct) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
         this.costo = costo;
         this.fechaRegistro = fechaRegistro;
         this.profesor = profe;
+        if (clases != null) {
+            this.clases = clases;
+        }
         this.clases = clases;
         this.id = id;
         this.institucion = ins;
-        this.cuponerasXActivdad = cuponerasXActivdad;
+        if (cupsXAct != null) {
+           this.cuponerasXActivdad = cupsXAct;
+        }
     }
     
     public int getId(){

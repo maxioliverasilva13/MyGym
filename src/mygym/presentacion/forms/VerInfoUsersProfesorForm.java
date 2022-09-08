@@ -6,17 +6,26 @@ package mygym.presentacion.forms;
 
 import Actividad.dtos.ActividadDTO;
 import Clase.ClaseBO;
+import Clase.DtClase;
 import Clase.InterfaceClaseBO;
 import Institucion.DtInstitucion;
 import Profesor.IProfesorBO;
 import Profesor.ProfesorBO;
 import Profesor.dtos.ProfesorDTO;
 import Profesor.exceptions.ProfesorNotExist;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import mygym.logica.usuario.dataTypes.DtActividad;
+import mygym.presentacion.components.ChooseInstitucion;
 
 
 /**
@@ -30,7 +39,10 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
      */
     private int profesorId;
     private ProfesorDTO profDto = null;
-    private List<ActividadDTO> allActividades = null;
+    private List<ActividadDTO> allActividades = new ArrayList<>();
+    private List<DtClase> allClases = new ArrayList<>();
+    private ChooseInstitucion claseInfoForm = null;
+    
     public VerInfoUsersProfesorForm(int profesorId) {
         this.profesorId = profesorId;
         this.loadProfesor(this.profesorId);
@@ -39,6 +51,8 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
         dispose();
         this.setLocationRelativeTo(null);
         this.initialRender();
+        jList1.addMouseListener(mouseListener);
+        jList2.addMouseListener(mouseListenerClase);
     }
 
     /**
@@ -379,6 +393,62 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     
+    public  DtClase findClaseByName(String claseName) {
+        List<DtClase> claseToReturn = new ArrayList<>();
+        this.allClases.forEach((DtClase c) -> {
+            if (c.getNombre().equals(claseName)) {
+                 claseToReturn.add(c);
+            }
+        });
+        if (claseToReturn.size() > 0) {
+            return claseToReturn.get(0);
+        }
+        return null;
+    }
+    
+    MouseListener mouseListener = new MouseAdapter() {
+      public void mouseClicked(MouseEvent mouseEvent) {
+          JList<String> theList = (JList) mouseEvent.getSource();
+        if (mouseEvent.getClickCount() == 2) {
+          int index = theList.locationToIndex(mouseEvent.getPoint());
+          if (index >= 0) {
+            Object o = theList.getModel().getElementAt(index);
+            String actividadName = o.toString();
+            if (actividadName != "") {
+                allActividades.forEach((ActividadDTO act) -> {
+                    if (act.getNombre().equals(actividadName)) {
+                        System.out.println(act.getClases());
+                        showActividadInfoForm s = new showActividadInfoForm(act);
+                        s.setVisible(true);
+                    }
+                });
+            }
+            // System.out.println("Double-clicked on: " + o.toString());
+          }
+        }
+      }
+    };
+    
+    MouseListener mouseListenerClase = new MouseAdapter() {
+      public void mouseClicked(MouseEvent mouseEvent) {
+          JList<String> theList = (JList) mouseEvent.getSource();
+        if (mouseEvent.getClickCount() == 2) {
+          int index = theList.locationToIndex(mouseEvent.getPoint());
+          if (index >= 0) {
+            Object o = theList.getModel().getElementAt(index);
+            DtClase clase = findClaseByName(o.toString());
+            if (clase == null) {
+                JOptionPane.showMessageDialog(new JFrame(), "La clase seleccionada es inavlida", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+                claseInfoForm = new ChooseInstitucion(clase);
+                claseInfoForm.setVisible(true);
+          }
+        }
+      }
+    };
+    
+    
+    
     private void loadProfesor(int idProf) {
        IProfesorBO profesorBo = new ProfesorBO();
        try{
@@ -408,6 +478,7 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
           DefaultListModel listModelActividades = new DefaultListModel();   
           this.allActividades = this.profDto.getActividades();
           this.allActividades.forEach(actividad -> {
+              System.out.println(actividad.getClases().size());
                 listModelActividades.addElement(actividad.getNombre());
           });
           this.jList1.setModel(listModelActividades);
@@ -415,9 +486,10 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
     
     private void renderClasesByActividad(int actividadId){
         InterfaceClaseBO claseBo = new ClaseBO();
-        
-        DefaultListModel listModelClases = new DefaultListModel();            
+        this.allClases.clear();
+        DefaultListModel listModelClases = new DefaultListModel();  
         claseBo.listarClasesByAct(actividadId).forEach((key,clase) -> {
+              this.allClases.add(clase);
               listModelClases.addElement(clase.getNombre());
         });
         this.jList2.setModel(listModelClases);
