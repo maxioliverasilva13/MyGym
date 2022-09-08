@@ -4,6 +4,7 @@
  */
 package Registro;
 
+import Clase.Clase;
 import java.util.List;
 
 /**

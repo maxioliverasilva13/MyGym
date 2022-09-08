@@ -28,10 +28,9 @@ public class UsuarioBO implements IUsuarioBO {
               throw new UserAlreadyNickExist("ya existe un usuario con este nickname");
         }
         if(userDao.getByEmail(userCreate.getEmail()) != null){
-              throw new UserAlreadyEmailExist("ya existe un usuario con este nickname");
+              throw new UserAlreadyEmailExist("ya existe un usuario con este email");
         }
         userDao.create(userCreate);
-        
     }
 
     @Override

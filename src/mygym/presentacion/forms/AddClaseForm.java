@@ -29,6 +29,7 @@ import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import javax.swing.plaf.IconUIResource;
 
+
 /**
  *
  * @author maximilianooliverasilva
@@ -474,7 +475,7 @@ public class AddClaseForm extends javax.swing.JFrame {
              return;
          }
          
-        System.out.println(selectedActividadId);
+      
         ParseDate parseDate = new ParseDate();
         LocalDate now = LocalDate.now();
         int capMinima = Integer.parseInt(jTextField7.getText());
@@ -484,10 +485,15 @@ public class AddClaseForm extends javax.swing.JFrame {
         SelectedDate selected = dateChooserFechaRegistro.getSelectedDate();
         Date fechaClase = parseDate.parseDate(selected.getYear() + "-" + selected.getMonth() + "-" + selected.getDay());
         String nombre = jTextField5.getText();
+       
+        if(selectedActividadId == null){
+             JOptionPane.showMessageDialog(new JFrame(), "Debes elegir una actividad", "Actividad no seleccionada", JOptionPane.ERROR_MESSAGE);
+             return;
+        }
         DtClase dt = new DtClase(0, nombre, fechaClase, capMinima, capMaxima, urlAcceso, fechaRegistro);
+   
         try {
             claseBO.insertarClase(selectedActividadId, dt);
-
             JOptionPane.showMessageDialog(new JFrame(), "La clase se insertó correctamente", "Agregado Correctamente", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
         }
@@ -529,12 +535,16 @@ public class AddClaseForm extends javax.swing.JFrame {
             if (d.getNombre() == selectedItem) {
                 if (selectedActividadId != k) {
                   selectedActividadId = k;
-                  ProfesorDTO profe = d.getProfesor();
-                  // add the only profesor for this class
-                  this.jComboBox1.addItem(profe.getNombre() + " " + profe.getApellido());
+                  if (d.getProfesor() != null) {
+                      ProfesorDTO profe = d.getProfesor();
+                    // add the only profesor for this class
+                    this.jComboBox1.addItem(profe.getNombre() + " " + profe.getApellido());
+                  }
                 } 
             }
             });
+        }else{
+            selectedActividadId = null;
         }
     }//GEN-LAST:event_jComboBox3ItemStateChanged
 

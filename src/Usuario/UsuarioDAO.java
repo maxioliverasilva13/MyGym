@@ -5,6 +5,8 @@
 package Usuario;
 
 import EntityManajer.InterfaceEntityManager;
+import Institucion.Institucion;
+import Institucion.InstitucionDao;
 import Profesor.Profesor;
 import Profesor.dtos.ProfesorCreateDTO;
 import Socio.Socio;
@@ -21,6 +23,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 
+
 /**
  *
  * @author angel
@@ -28,6 +31,7 @@ import javax.persistence.TypedQuery;
 public class UsuarioDAO implements IUsuarioDAO{
     
     EntityManager em = null;
+    InstitucionDao insDao = new InstitucionDao();
     
     public UsuarioDAO(){
         this.em = InterfaceEntityManager.getInstance();
@@ -40,6 +44,7 @@ public class UsuarioDAO implements IUsuarioDAO{
         tx.begin();
       
          if(userCreate instanceof ProfesorCreateDTO){
+            
             ProfesorCreateDTO profCreate = (ProfesorCreateDTO)userCreate;
             
             Profesor newProfesor = new Profesor();
@@ -51,6 +56,8 @@ public class UsuarioDAO implements IUsuarioDAO{
             newProfesor.setBiografia(profCreate.getBiografia());
             newProfesor.setLinkSitioWeb(profCreate.getLinkSitioWeb());
             newProfesor.setDescripcionGeneral(profCreate.getdescripcionGeneral());
+            Institucion ins = insDao.existe(profCreate.getIdInstitucion());
+            newProfesor.agregarInstitucion(ins);
             
             this.em.persist(newProfesor);
             

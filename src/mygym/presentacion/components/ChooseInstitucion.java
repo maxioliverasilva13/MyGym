@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import mygym.presentacion.forms.*;
 import javax.swing.WindowConstants;
+import utils.Datehelper;
 
 
 /**
@@ -89,12 +90,13 @@ public class ChooseInstitucion extends javax.swing.JFrame {
         if (selectedClase != null) {
             String fechaHoraInicio = "Vacio";
             String fechaCreacion = "Vacio";
+            Datehelper dateHelper = new Datehelper();
             String profesorNombre = this.selectedClase.getProfesor();
             if (this.selectedClase.getFecha() != null) {
-                fechaHoraInicio = this.selectedClase.getFecha().toString();
+                fechaHoraInicio = dateHelper.dateToStringFormat(this.selectedClase.getFecha());
             }
             if (this.selectedClase.getFechaRegistro() != null) {
-                fechaCreacion = this.selectedClase.getFechaRegistro().toString();
+                fechaCreacion = dateHelper.dateToStringFormat(this.selectedClase.getFechaRegistro());
             }
             String capMin = Integer.toString(this.selectedClase.getCapMinima());
             String capMax = Integer.toString(this.selectedClase.getCapMaxima());
@@ -338,7 +340,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
 
         labelInicio.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         labelInicio.setText("27/08/2022 17:00");
-        panelInfo.add(labelInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, -1, -1));
+        panelInfo.add(labelInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel18.setText("Fecha de creacion:");
@@ -346,7 +348,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
 
         labelCreacion.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         labelCreacion.setText("19/08/2022 ");
-        panelInfo.add(labelCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
+        panelInfo.add(labelCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel19.setText("Capacidad minima socios:");
@@ -354,7 +356,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
 
         labelCapMinima.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         labelCapMinima.setText("2");
-        panelInfo.add(labelCapMinima, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 50, -1));
+        panelInfo.add(labelCapMinima, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 50, -1));
 
         jLabel20.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel20.setText("Capacidad maxima socios:");
@@ -362,11 +364,11 @@ public class ChooseInstitucion extends javax.swing.JFrame {
 
         labelCapMaxima.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         labelCapMaxima.setText("10");
-        panelInfo.add(labelCapMaxima, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 50, -1));
+        panelInfo.add(labelCapMaxima, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 50, -1));
 
         labelUrl.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         labelUrl.setText("https://zoom.com/sa2ad");
-        panelInfo.add(labelUrl, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 240, -1));
+        panelInfo.add(labelUrl, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 240, -1));
 
         jLabel21.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel21.setText("Cantidad Alumnos:");
@@ -378,7 +380,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
 
         labelCantAlumnos.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         labelCantAlumnos.setText("2");
-        panelInfo.add(labelCantAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 60, -1));
+        panelInfo.add(labelCantAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 60, -1));
 
         bgPanel.add(panelInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 330, 170));
 

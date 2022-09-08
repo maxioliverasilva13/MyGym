@@ -250,6 +250,11 @@ public class createActividadForm extends javax.swing.JFrame{
 
         cmbInstituciones.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         cmbInstituciones.setFocusable(false);
+        cmbInstituciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbInstitucionesActionPerformed(evt);
+            }
+        });
         jPanel2.add(cmbInstituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 210, 30));
 
         lblNombre.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
@@ -446,6 +451,10 @@ public class createActividadForm extends javax.swing.JFrame{
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnExitMouseClicked
+
+    private void cmbInstitucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbInstitucionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbInstitucionesActionPerformed
 
     /**
      * @param args the command line arguments

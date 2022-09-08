@@ -3,55 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Usuario/UsuarioBO.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/ParseDate/ParseDate.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Usuario/Usuario.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Clase/ClaseBO.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Socio/dtos/SocioDTO.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Clase/ClaseDao.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Socio/ISocioBO.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Actividad/IActividadBO.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Profesor/Profesor.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Profesor/dtos/ProfesorDTO.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Usuario/IUsuarioBO.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Usuario/exceptions/UserNotExist.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygymapp/MyGymApp.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Profesor/ProfesorBO.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Usuario/IUsuarioDAO.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Socio/SocioDAO.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/components/UserCard.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Actividad/ActividadDao.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Socio/dtos/SocioEditDTO.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Usuario/dtos/UsuarioCreateDTO.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Actividad/IActividadDao.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Institucion/Institucion.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Profesor/dtos/ProfesorCreateDTO.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Socio/ISocioDAO.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Usuario/UsuarioDAO.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Actividad/Actividad.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/forms/createActividadForm.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/forms/VerInfoUsersProfesorForm.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Institucion/DtInstitucion.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/forms/VerInfoUsersSocioForm.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Institucion/InstitucionDao.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Usuario/dtos/UsuarioDTO.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/forms/crearCuponeraForm.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Actividad/ActividadBO.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/utils/ParserClassesToDt.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/forms/AddClaseForm.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/nbproject/project.properties</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/forms/AddUsersForm.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Socio/SocioBO.java</file>
-=======
-            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/mygym/presentacion/pages/Actividades.java</file>
-            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/mygym/presentacion/forms/showActividadInfoForm.java</file>
-            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/CuponeraXActividad/DtCuponeraXActividad.java</file>
-            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/Actividad/Actividad.java</file>
-            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/Actividad/ActividadBO.java</file>
-            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/mygymapp/MyGymApp.java</file>
-            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/Actividad/dtos/ActividadDTO.java</file>
->>>>>>> fd7d03888dfc5941643df91be21a77e4561b9124
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/components/ChooseInstitucion.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/components/ChooseActividad.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/components/AgregarRegistros.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/forms/showActividadInfoForm.java</file>
         </group>
     </open-files>
 </project-private>
