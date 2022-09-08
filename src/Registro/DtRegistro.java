@@ -17,6 +17,7 @@ public class DtRegistro {
     private Date fecha;
     private String socioName;
     private String claseName;
+    
 
     public DtRegistro(int id, float costo, Date fecha, String socioName, String claseName) {
         this.id = id;

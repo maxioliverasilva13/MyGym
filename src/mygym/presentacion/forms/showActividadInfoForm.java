@@ -16,6 +16,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import mygym.presentacion.pages.Actividades;
 import utils.ComboItem;
+import utils.Datehelper;
 
 /**
  *
@@ -44,30 +45,19 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         // llenarCBoxClasesAsociadas();   
     }
     
-    public showActividadInfoForm(Integer idactividad) {
+   
+        public showActividadInfoForm(ActividadDTO act) {
         initComponents();
         this.setLocationRelativeTo(null);
-        pintarInfoActividad(idactividad);
-        pintarInfoCuponerasAsociadas(idactividad);
+        pintarInfoActividad(act);
+        pintarInfoCuponerasAsociadas(act);
         // llenarCBoxCuponerasAsociadas();
-        llenarCBoxClasesAsociadas(idactividad); 
-        cmbClases.setSelectedItem(null);
+        llenarCBoxClasesAsociadas(act); 
     }
-    
 
+   
     
-/*      ( TERMINAR DE IMPLEMENTAR AL UNIR CON EL BACK )
-        private void llenarCBoxCuponerasAsociadas(){
-            for (int i = 0; i < cuponerasAsociadas.size(); i++){
-                DtCuponera currentCuponera = cuponerasAsociadas.get(i);
-                cmbCuponeras.addItem(currentCuponera.getNombre());
-            }
-        }
-*/
-    
-    private void llenarCBoxClasesAsociadas(Integer idAct){
-        cmbClases.setSelectedItem(null);
-        ActividadDTO selectedAct = actividades.get(idAct);
+    private void llenarCBoxClasesAsociadas(ActividadDTO selectedAct){
         try {
             clases = selectedAct.getClases();
             clases.forEach((currentDT) -> {
@@ -80,19 +70,18 @@ public class showActividadInfoForm extends javax.swing.JFrame {
     }    
     
     // Pintar los datos de un DataActividad (La actividad que seleccionó en el dashboard)
-    private void pintarInfoActividad(Integer idAct){
-        ActividadDTO selectedAct = actividades.get(idAct);
-        
+    private void pintarInfoActividad(ActividadDTO selectedAct){
+        Datehelper helpDate= new Datehelper();
+        String strFechaRegistro = helpDate.dateToStringFormat(selectedAct.getFechaRegistro());
         nombreActividad.setText(selectedAct.getNombre());
         costoActividad.setText(Float.toString(selectedAct.getCosto()));
         duracionActividad.setText(Integer.toString(selectedAct.getDuracion()));
-        fechaAltaActividad.setText(selectedAct.getFechaRegistro().toString());
+        fechaAltaActividad.setText(strFechaRegistro);
         txaDescripcionActividad.setText(selectedAct.getDescripcion());
     }
     
-    private void pintarInfoCuponerasAsociadas(Integer idAct){
+    private void pintarInfoCuponerasAsociadas(ActividadDTO selectedAct){
         this.cmbCuponeras.removeAllItems();
-        ActividadDTO selectedAct = actividades.get(idAct);
         if (selectedAct.getDtCuponeraXActividad() != null) {
             selectedAct.getDtCuponeraXActividad().forEach((DtCuponeraXActividad cuxa) -> {
                 String nombre = cuxa.getCuponera().getNombre();
@@ -108,11 +97,8 @@ public class showActividadInfoForm extends javax.swing.JFrame {
     
     // Pintar información de la Cuponera seleccionada en el COMBOBOX
     private void pintarInfoCuponeraSeleccionada(DtCuponera cup){
-        int selectedIndex = cmbCuponeras.getSelectedIndex(); // Devuelve el número de ítem seleccionado en el combobox, indexado desde el 0 como si fuese un array.
-        // . . .
-        // luego va al hashmap de cuponerasAsociadas local e itera hasta llegar al "selectedIndex", que representa el DtCuponera indicado y pinta los datos abajo.
-        // . . .
-                
+        int selectedIndex = cmbCuponeras.getSelectedIndex();
+        
         nombreCuponera.setText(cup.getNombre());
         descuentoCuponera.setText(Integer.toString(cup.getDescuento()));
         periodoVigenciaCuponera.setText("Fecha lalala");
@@ -122,14 +108,19 @@ public class showActividadInfoForm extends javax.swing.JFrame {
     
     // Pintar información de la Cuponera seleccionada en el COMBOBOX
     private void pintarInfoClaseSeleccionada(DtClase clase){
-
+        
+        Datehelper helperDate = new Datehelper();
+        
+        String fechaAltaClaseStr = helperDate.dateToStringFormat(clase.getFecha());
+        String fechaClaseStr = helperDate.dateToStringFormat(clase.getFecha());
+        
         nombreClase.setText(clase.getNombre());
-        fechaClase.setText(clase.getFecha().toString());
+        fechaClase.setText(fechaClaseStr);
         profesorClase.setText(clase.getProfesor());
         capacidadMinimaClase.setText(Integer.toString(clase.getCapMinima()));
         capacidadMaximaClase.setText(Integer.toString(clase.getCapMaxima()));
         URLClase.setText(clase.getUrlAcceso());
-        fechaAltaClase.setText(clase.getFechaRegistro().toString());
+        fechaAltaClase.setText(fechaAltaClaseStr);
     }
     
     @SuppressWarnings("unchecked")
@@ -497,8 +488,6 @@ public class showActividadInfoForm extends javax.swing.JFrame {
        Object selectedString = cmbCuponeras.getSelectedItem();
        if (selectedString != null) {
            String stringSelectedString = selectedString.toString();
-           System.out.println("asd");
-           System.out.println(cuponeras.size());
            cuponeras.forEach((DtCuponeraXActividad cuxa) -> {
                if (stringSelectedString == cuxa.getCuponera().getNombre()) {
                    selectedCuponera = cuxa;
@@ -548,10 +537,14 @@ public class showActividadInfoForm extends javax.swing.JFrame {
 
     public void fillSelectedCuponera() {
         if (selectedCuponera.getCuponera() != null) {
+            
+            Datehelper helperDate = new Datehelper();
             DtCuponera cup = selectedCuponera.getCuponera();
+            
+            String periodoDeVigenciaStr = helperDate.dateToStringFormat(cup.getPeriodoVigencia());
             this.nombreCuponera.setText(cup.getNombre());
             this.descuentoCuponera.setText(Float.toString(cup.getDescuento()));
-            this.periodoVigenciaCuponera.setText(cup.getPeriodoVigencia().toString());
+            this.periodoVigenciaCuponera.setText(periodoDeVigenciaStr);
             this.cantidadClases.setText(Integer.toString(selectedCuponera.getCantClases()));
             this.txaDescripcionCuponera.setText(cup.getDescripcion());
         }

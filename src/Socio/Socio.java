@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import Registro.Registro;
 import Usuario.Usuario;
+import java.util.Date;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -27,5 +28,39 @@ public class Socio extends Usuario{
     public Collection<Registro> getRegistros() {
         return registros;
     }
+
+    public void setRegistros(Collection<Registro> registros) {
+        this.registros = registros;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setNacimiento(Date nacimiento) {
+        this.nacimiento = nacimiento;
+    }
+
+    public void setDTYPE(String DTYPE) {
+        this.DTYPE = DTYPE;
+    }
+    
+    
     
 }

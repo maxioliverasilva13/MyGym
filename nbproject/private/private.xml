@@ -3,12 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Clase/Clase.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/pages/Usuarios.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/pages/Cuponeras.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/forms/AddClaseForm.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/forms/AddUsersForm.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Actividad/Actividad.java</file>
+=======
+            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/mygym/presentacion/components/AgregarRegistros.java</file>
+            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/mygymapp/MyGymApp.java</file>
+            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/EntityManajer/InterfaceEntityManager.java</file>
+>>>>>>> 4ceb12c50e8d7a17b1424485f54792a22fcbc5f4
         </group>
     </open-files>
 </project-private>

@@ -91,7 +91,16 @@ public class ActividadBO  implements IActividadBO{
         });
         return actividades;
     }
-
+    
+    public HashMap<Integer, ActividadDTO> getAllActividades(){
+        HashMap<Integer, ActividadDTO> actividades = new HashMap<>();
+        Collection<Actividad> acts = actDao.getAllActividades();
+        acts.forEach((Actividad act) -> {
+            actividades.put(act.getId(), act.getDtActividad());
+        });
+        return actividades;
+    }
+    
     @Override
     public HashMap<Integer, ActividadDTO> listarByInstitucion(int idInstitucion) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

@@ -4,47 +4,74 @@
  */
 package Profesor.dtos;
 
+import java.util.Date;
+
 /**
  *
  * @author angel
  */
 public class ProfesorEditDTO {
-      private String nombre;
+
+    private String nombre;
     private String apellido;
     private String nickname;
     private String descripcionGeneral;
     private String biografia;
     private String linkSitioWeb;
-    
-    public ProfesorEditDTO(String nombre,String apellido,String nickname,String descripcionGeneral,String biografia,String linkSitioWeb){
+    private String email;
+    private Date fechaNacimiento;
+
+    public ProfesorEditDTO(String nombre, String apellido, String nickname, String descripcionGeneral, String biografia, String linkSitioWeb) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.nickname = nickname;
         this.descripcionGeneral = descripcionGeneral;
         this.biografia = biografia;
         this.linkSitioWeb = linkSitioWeb;
-       
     }
-    
-    public String getNombre(){
-        return this.nombre;
+
+    public ProfesorEditDTO(String nombre, String apellido, String nickname, String descripcionGeneral, String biografia, String linkSitioWeb, String mail, Date fechaNac) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.nickname = nickname;
+        this.descripcionGeneral = descripcionGeneral;
+        this.biografia = biografia;
+        this.linkSitioWeb = linkSitioWeb;
+        this.email = mail;
+        this.fechaNacimiento = fechaNac;
+
     }
-    public String getApellido(){
-        return this.apellido;
+
+    public String getNombre() {
+        return nombre;
     }
-    public String getNickname(){
-        return this.nickname;
+
+    public String getApellido() {
+        return apellido;
     }
-    public String getdescripcionGeneral(){
-        return this.descripcionGeneral;
+
+    public String getNickname() {
+        return nickname;
     }
-    public String getBiografia(){
-        return this.biografia;
+
+    public String getDescripcionGeneral() {
+        return descripcionGeneral;
     }
-    public String getLinkSitioWeb(){
-        return this.linkSitioWeb;
+
+    public String getBiografia() {
+        return biografia;
     }
-       
-    
-    
+
+    public String getLinkSitioWeb() {
+        return linkSitioWeb;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
 }
