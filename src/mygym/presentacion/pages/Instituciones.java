@@ -76,6 +76,7 @@ public class Instituciones extends javax.swing.JPanel {
         scrollTabla.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         tablaInstituciones.setAutoCreateRowSorter(true);
+        tablaInstituciones.setBackground(new java.awt.Color(233, 233, 233));
         tablaInstituciones.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         tablaInstituciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

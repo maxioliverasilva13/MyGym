@@ -39,7 +39,7 @@ public class AddUsersForm extends javax.swing.JFrame {
      * Creates new form AddUsersForm
      */
     UsuarioBO usr = new UsuarioBO();
-    
+    int xMouse, yMouse;
     
     public AddUsersForm() {
         initComponents();
@@ -73,7 +73,6 @@ public class AddUsersForm extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -90,6 +89,12 @@ public class AddUsersForm extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        headerBar = new javax.swing.JPanel();
+        exitBtnBG = new javax.swing.JPanel();
+        exitBtn = new javax.swing.JLabel();
+        btnMinimizarBG = new javax.swing.JPanel();
+        btnMinimizar = new javax.swing.JLabel();
 
         jOptionPane1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -97,6 +102,7 @@ public class AddUsersForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -181,11 +187,6 @@ public class AddUsersForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 299, 184, 27));
-
-        jLabel1.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(41, 69, 87));
-        jLabel1.setText("Agregar Usuario");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 0, -1, 25));
 
         jTextField5.setToolTipText("");
         jTextField5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
@@ -291,6 +292,81 @@ public class AddUsersForm extends javax.swing.JFrame {
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 154, 328, 86));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 389, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(41, 69, 87));
+        jLabel1.setText("Agregar Usuario");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, 25));
+
+        headerBar.setBackground(new java.awt.Color(255, 255, 255));
+        headerBar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(215, 215, 215)));
+        headerBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                headerBarMouseDragged(evt);
+            }
+        });
+        headerBar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                headerBarMousePressed(evt);
+            }
+        });
+        headerBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        exitBtnBG.setBackground(new java.awt.Color(174, 0, 51));
+
+        exitBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        exitBtn.setForeground(new java.awt.Color(255, 255, 255));
+        exitBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exitBtn.setText("X");
+        exitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exitBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitBtnMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout exitBtnBGLayout = new javax.swing.GroupLayout(exitBtnBG);
+        exitBtnBG.setLayout(exitBtnBGLayout);
+        exitBtnBGLayout.setHorizontalGroup(
+            exitBtnBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(exitBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+        exitBtnBGLayout.setVerticalGroup(
+            exitBtnBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(exitBtnBGLayout.createSequentialGroup()
+                .addComponent(exitBtn)
+                .addGap(0, 18, Short.MAX_VALUE))
+        );
+
+        headerBar.add(exitBtnBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 30, -1));
+
+        btnMinimizarBG.setBackground(java.awt.Color.lightGray);
+
+        btnMinimizar.setFont(new java.awt.Font("Lucida Console", 1, 18)); // NOI18N
+        btnMinimizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnMinimizar.setText("-");
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnMinimizarBGLayout = new javax.swing.GroupLayout(btnMinimizarBG);
+        btnMinimizarBG.setLayout(btnMinimizarBGLayout);
+        btnMinimizarBGLayout.setHorizontalGroup(
+            btnMinimizarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnMinimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+        btnMinimizarBGLayout.setVerticalGroup(
+            btnMinimizarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnMinimizar, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+        );
+
+        headerBar.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 0, 30, -1));
+
+        jPanel1.add(headerBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 880));
 
@@ -419,6 +495,28 @@ public class AddUsersForm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void exitBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitBtnMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitBtnMouseClicked
+
+    private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
+        this.setExtendedState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarMouseClicked
+
+    private void headerBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerBarMouseDragged
+        // TODO add your handling code here:
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xMouse, y - yMouse);
+    }//GEN-LAST:event_headerBarMouseDragged
+
+    private void headerBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerBarMousePressed
+        // TODO add your handling code here:
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_headerBarMousePressed
     private void loadInstituciones(){
          this.jComboBox2.removeAllItems();
          InterfaceInstitucionBO  insBo = new InstitucionBO();
@@ -468,7 +566,12 @@ public class AddUsersForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnMinimizar;
+    private javax.swing.JPanel btnMinimizarBG;
+    private javax.swing.JLabel exitBtn;
+    private javax.swing.JPanel exitBtnBG;
     private com.raven.datechooser.DateChooser fechaNac;
+    private javax.swing.JPanel headerBar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
