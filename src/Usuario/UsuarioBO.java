@@ -45,7 +45,7 @@ public class UsuarioBO implements IUsuarioBO {
     }
 
     @Override
-    public String getTipoById(int id) throws UserNotExist {
+    public String getTipoById(int id) {
          UsuarioDAO userDao = new UsuarioDAO();
          
          if(userDao.getById(id) == null){
