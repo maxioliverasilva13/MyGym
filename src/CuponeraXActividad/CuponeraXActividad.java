@@ -13,8 +13,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import Actividad.Actividad;
+import Actividad.dtos.ActividadDTO;
+import Clase.DtClase;
 import Cuponera.Cuponera;
 import Cuponera.DtCuponera;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 /**
  *
  * @author maximilianooliverasilva
@@ -68,7 +73,26 @@ public class CuponeraXActividad implements Serializable {
     public DtCuponeraXActividad getDtCuponeraXActividad() {
         if (cuponera != null) {
             DtCuponera cup = new DtCuponera(this.cuponera.getId(), this.cuponera.getNombre(), this.cuponera.getDescripcion(), this.cuponera.getPeriodoVigencia(), this.cuponera.getDescuento(), null);
-            return new DtCuponeraXActividad(id, cantClases,  cup);
+            if (actividad != null){
+                Collection<Clase.Clase> clases = this.actividad.getClases();
+                List<DtClase> dtclases = new ArrayList<>();
+                clases.forEach((clase) -> {
+                    dtclases.add(clase.getDtClase());
+                });
+                Collection <CuponeraXActividad> cuxas = this.actividad.getCuponerasXActividad();
+                List<DtCuponeraXActividad> dtCUXAS = new ArrayList<>();
+                
+                cuxas.forEach((cuxa) -> {
+                    dtCUXAS.add(new DtCuponeraXActividad(id, cantClases, cup));
+                });
+                
+                ActividadDTO actividad = new ActividadDTO(
+                    this.actividad.getId(), this.actividad.getNombre() , this.actividad.getDescripcion(), this.actividad.getDuracion(), this.actividad.getCosto(), this.actividad.getFechaRegistro(), this.actividad.getProfesor().getDtProfesor(),
+                        dtclases, this.actividad.getInstitucion().getDtInstitucion(), dtCUXAS);
+                return new DtCuponeraXActividad(id, cantClases,  cup, actividad);
+            }else{
+                return new DtCuponeraXActividad(id, cantClases,  cup);
+            }
         }
         return new DtCuponeraXActividad(id, cantClases, this.cuponera.getDtCuponera());
     }
