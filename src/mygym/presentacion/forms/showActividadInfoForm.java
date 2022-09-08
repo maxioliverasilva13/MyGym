@@ -45,30 +45,19 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         // llenarCBoxClasesAsociadas();   
     }
     
-    public showActividadInfoForm(Integer idactividad) {
+   
+        public showActividadInfoForm(ActividadDTO act) {
         initComponents();
         this.setLocationRelativeTo(null);
-        pintarInfoActividad(idactividad);
-        pintarInfoCuponerasAsociadas(idactividad);
+        pintarInfoActividad(act);
+        pintarInfoCuponerasAsociadas(act);
         // llenarCBoxCuponerasAsociadas();
-        llenarCBoxClasesAsociadas(idactividad); 
-        cmbClases.setSelectedItem(null);
+        llenarCBoxClasesAsociadas(act); 
     }
-    
 
+   
     
-/*      ( TERMINAR DE IMPLEMENTAR AL UNIR CON EL BACK )
-        private void llenarCBoxCuponerasAsociadas(){
-            for (int i = 0; i < cuponerasAsociadas.size(); i++){
-                DtCuponera currentCuponera = cuponerasAsociadas.get(i);
-                cmbCuponeras.addItem(currentCuponera.getNombre());
-            }
-        }
-*/
-    
-    private void llenarCBoxClasesAsociadas(Integer idAct){
-        cmbClases.setSelectedItem(null);
-        ActividadDTO selectedAct = actividades.get(idAct);
+    private void llenarCBoxClasesAsociadas(ActividadDTO selectedAct){
         try {
             clases = selectedAct.getClases();
             clases.forEach((currentDT) -> {
@@ -81,9 +70,13 @@ public class showActividadInfoForm extends javax.swing.JFrame {
     }    
     
     // Pintar los datos de un DataActividad (La actividad que seleccionó en el dashboard)
+<<<<<<< HEAD
     private void pintarInfoActividad(Integer idAct){
         ActividadDTO selectedAct = actividades.get(idAct);
         Datehelper helpDate= new Datehelper();
+=======
+    private void pintarInfoActividad(ActividadDTO selectedAct){
+>>>>>>> 17419923e39186799d13614eb857af709dd435cb
         
         String strFechaRegistro = helpDate.dateToStringFormat(selectedAct.getFechaRegistro());
         nombreActividad.setText(selectedAct.getNombre());
@@ -93,9 +86,8 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         txaDescripcionActividad.setText(selectedAct.getDescripcion());
     }
     
-    private void pintarInfoCuponerasAsociadas(Integer idAct){
+    private void pintarInfoCuponerasAsociadas(ActividadDTO selectedAct){
         this.cmbCuponeras.removeAllItems();
-        ActividadDTO selectedAct = actividades.get(idAct);
         if (selectedAct.getDtCuponeraXActividad() != null) {
             selectedAct.getDtCuponeraXActividad().forEach((DtCuponeraXActividad cuxa) -> {
                 String nombre = cuxa.getCuponera().getNombre();
@@ -111,11 +103,8 @@ public class showActividadInfoForm extends javax.swing.JFrame {
     
     // Pintar información de la Cuponera seleccionada en el COMBOBOX
     private void pintarInfoCuponeraSeleccionada(DtCuponera cup){
-        int selectedIndex = cmbCuponeras.getSelectedIndex(); // Devuelve el número de ítem seleccionado en el combobox, indexado desde el 0 como si fuese un array.
-        // . . .
-        // luego va al hashmap de cuponerasAsociadas local e itera hasta llegar al "selectedIndex", que representa el DtCuponera indicado y pinta los datos abajo.
-        // . . .
-                
+        int selectedIndex = cmbCuponeras.getSelectedIndex();
+        
         nombreCuponera.setText(cup.getNombre());
         descuentoCuponera.setText(Integer.toString(cup.getDescuento()));
         periodoVigenciaCuponera.setText("Fecha lalala");
@@ -505,8 +494,6 @@ public class showActividadInfoForm extends javax.swing.JFrame {
        Object selectedString = cmbCuponeras.getSelectedItem();
        if (selectedString != null) {
            String stringSelectedString = selectedString.toString();
-           System.out.println("asd");
-           System.out.println(cuponeras.size());
            cuponeras.forEach((DtCuponeraXActividad cuxa) -> {
                if (stringSelectedString == cuxa.getCuponera().getNombre()) {
                    selectedCuponera = cuxa;

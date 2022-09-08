@@ -25,6 +25,7 @@ public class DtClase {
     private List<DtRegistro> registros;
     private int idActividad;
     private String actividadName;
+    private int idInstitucion;
     // TODO: Change this for the new DtProfesor and DtActividad
     
     public DtClase(int id, String nombre, Date fecha, String profesor, int ProfesorId, int capMinima, int capMaxima, String urlAcceso, Date fechaRegistro, List<DtRegistro> registros, int idActividad, String actividadName) {
@@ -42,6 +43,23 @@ public class DtClase {
         this.actividadName = actividadName;
     }
     
+    public DtClase(int id, String nombre, Date fecha, String profesor, int ProfesorId, int capMinima, int capMaxima, String urlAcceso, Date fechaRegistro, List<DtRegistro> registros, int idActividad, String actividadName, int idInstitucion) {
+        this.id = id;
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.profesor = profesor;
+        this.ProfesorId = ProfesorId;
+        this.capMinima = capMinima;
+        this.capMaxima = capMaxima;
+        this.urlAcceso = urlAcceso;
+        this.fechaRegistro = fechaRegistro;
+        this.registros = registros;
+        this.idActividad = idActividad;
+        this.actividadName = actividadName;
+        this.idInstitucion = idInstitucion;
+    }
+    
+    
     public DtClase(int id, String nombre, Date fecha, int capMinima, int capMaxima, String urlAcceso, Date fechaRegistro) {
         this.id = id;
         this.nombre = nombre;
@@ -57,6 +75,11 @@ public class DtClase {
        
     }
 
+    public int getIdInstitucion() {
+        return idInstitucion;
+    }
+
+    
 
     public int getId() {
         return id;

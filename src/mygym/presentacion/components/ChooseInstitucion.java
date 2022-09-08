@@ -66,6 +66,21 @@ public class ChooseInstitucion extends javax.swing.JFrame {
         this.loadInstituciones();
     }
     
+    public ChooseInstitucion(DtClase clase) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+        dispose();
+        this.jComboActividades.setVisible(false);
+        this.jComboClases.setVisible(false);
+        this.jComboInstituciones.setVisible(false);
+        this.jLabel13.setVisible(false);
+        this.jLabel14.setVisible(false);
+        this.jLabel15.setVisible(false);
+        this.selectedClase = clase;
+        this.fillClaseData();
+    }
+    
     public void fillEmptyClassData() {
 //        this.labelProfesor.setText("");
 //        this.labelInicio.setText("");
@@ -109,6 +124,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
             this.labelCapMinima.setText(capMin);
             this.labelUrl.setText(urlAcceso);
             this.labelCantAlumnos.setText(cantAlumnos);
+            this.labelNombre.setText(selectedClase.getNombre());
             colocateCorrectResults();
         } else {
             // fillEmptyClassData();
@@ -161,9 +177,11 @@ public class ChooseInstitucion extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         labelCapMaxima = new javax.swing.JLabel();
         labelUrl = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
+        jTextNombre = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         labelCantAlumnos = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        labelNombre = new javax.swing.JLabel();
         panelNotFound = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -175,9 +193,9 @@ public class ChooseInstitucion extends javax.swing.JFrame {
 
         bgPanel.setBackground(new java.awt.Color(255, 255, 255));
         bgPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(215, 215, 215)));
-        bgPanel.setMaximumSize(new java.awt.Dimension(360, 430));
-        bgPanel.setMinimumSize(new java.awt.Dimension(360, 430));
-        bgPanel.setPreferredSize(new java.awt.Dimension(360, 430));
+        bgPanel.setMaximumSize(new java.awt.Dimension(390, 450));
+        bgPanel.setMinimumSize(new java.awt.Dimension(390, 450));
+        bgPanel.setPreferredSize(new java.awt.Dimension(390, 450));
         bgPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dragBar2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -198,7 +216,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
         btnMinimizar.setForeground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnMinimizar.setText("-");
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnMinimizarMouseClicked(evt);
@@ -216,7 +234,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
             .addComponent(btnMinimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
         );
 
-        bgPanel.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 30, 20));
+        bgPanel.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 0, 30, 20));
 
         btnExitBG.setBackground(new java.awt.Color(174, 0, 51));
 
@@ -224,7 +242,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
         btnExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnExit.setText("X");
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnExitMouseClicked(evt);
@@ -244,7 +262,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
             .addComponent(btnExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        bgPanel.add(btnExitBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 30, 20));
+        bgPanel.add(btnExitBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 0, 30, 20));
         bgPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 287, -1, -1));
 
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
@@ -332,7 +350,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
 
         labelProfesor.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         labelProfesor.setText("Nicolas escobar");
-        panelInfo.add(labelProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
+        panelInfo.add(labelProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel17.setText("Fecha y hora de inicio:");
@@ -340,7 +358,11 @@ public class ChooseInstitucion extends javax.swing.JFrame {
 
         labelInicio.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         labelInicio.setText("27/08/2022 17:00");
+<<<<<<< HEAD
         panelInfo.add(labelInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
+=======
+        panelInfo.add(labelInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 160, -1));
+>>>>>>> 17419923e39186799d13614eb857af709dd435cb
 
         jLabel18.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel18.setText("Fecha de creacion:");
@@ -348,7 +370,11 @@ public class ChooseInstitucion extends javax.swing.JFrame {
 
         labelCreacion.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         labelCreacion.setText("19/08/2022 ");
+<<<<<<< HEAD
         panelInfo.add(labelCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, -1, -1));
+=======
+        panelInfo.add(labelCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 180, -1));
+>>>>>>> 17419923e39186799d13614eb857af709dd435cb
 
         jLabel19.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel19.setText("Capacidad minima socios:");
@@ -356,7 +382,11 @@ public class ChooseInstitucion extends javax.swing.JFrame {
 
         labelCapMinima.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         labelCapMinima.setText("2");
+<<<<<<< HEAD
         panelInfo.add(labelCapMinima, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 50, -1));
+=======
+        panelInfo.add(labelCapMinima, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 50, -1));
+>>>>>>> 17419923e39186799d13614eb857af709dd435cb
 
         jLabel20.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel20.setText("Capacidad maxima socios:");
@@ -364,15 +394,19 @@ public class ChooseInstitucion extends javax.swing.JFrame {
 
         labelCapMaxima.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         labelCapMaxima.setText("10");
+<<<<<<< HEAD
         panelInfo.add(labelCapMaxima, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 50, -1));
+=======
+        panelInfo.add(labelCapMaxima, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 50, -1));
+>>>>>>> 17419923e39186799d13614eb857af709dd435cb
 
         labelUrl.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         labelUrl.setText("https://zoom.com/sa2ad");
         panelInfo.add(labelUrl, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 240, -1));
 
-        jLabel21.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel21.setText("Cantidad Alumnos:");
-        panelInfo.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+        jTextNombre.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        jTextNombre.setText("Nombre:");
+        panelInfo.add(jTextNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
 
         jLabel22.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel22.setText("Url de acceso");
@@ -382,7 +416,15 @@ public class ChooseInstitucion extends javax.swing.JFrame {
         labelCantAlumnos.setText("2");
         panelInfo.add(labelCantAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 60, -1));
 
-        bgPanel.add(panelInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 330, 170));
+        jLabel23.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        jLabel23.setText("Cantidad Alumnos:");
+        panelInfo.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+
+        labelNombre.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        labelNombre.setText("2");
+        panelInfo.add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 170, -1));
+
+        bgPanel.add(panelInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 330, 190));
 
         panelNotFound.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 0, 0, new java.awt.Color(0, 0, 0)));
         panelNotFound.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -393,7 +435,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
 
         bgPanel.add(panelNotFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 310, 70));
 
-        getContentPane().add(bgPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 430));
+        getContentPane().add(bgPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -424,9 +466,12 @@ public class ChooseInstitucion extends javax.swing.JFrame {
     if (selected != null) {
         String itemString = selected.toString();
         instituciones.forEach((Integer id, DtInstitucion ins) -> {
-            if (ins.getNombre() == itemString) {
+            if (ins.getNombre() == itemString && selectedIdInstitucion != ins.getId()) {
                 selectedIdInstitucion = ins.getId();
                 this.loadActividades();
+            }
+            if (selectedIdInstitucion == ins.getId()) {
+                this.jComboInstituciones.setSelectedItem(ins.getNombre());
             }
         });
     }
@@ -509,7 +554,14 @@ public class ChooseInstitucion extends javax.swing.JFrame {
     
   private void loadInstituciones(){
        this.jComboInstituciones.removeAllItems();
+       System.out.println("entro 1");
+       System.out.println(selectedIdInstitucion);
        instituciones.forEach((Integer key, DtInstitucion inst) -> {
+                  System.out.println("el id es " + key );
+           if (selectedIdInstitucion == key) {
+               System.out.println("lo seteo bien");
+               this.jComboInstituciones.setSelectedItem(inst.getNombre());
+           }
            jComboInstituciones.addItem(inst.getNombre());
        });
        this.jComboInstituciones.setEnabled(true);
@@ -567,16 +619,18 @@ public class ChooseInstitucion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JOptionPane jOptionPane1;
+    private javax.swing.JLabel jTextNombre;
     private javax.swing.JLabel labelCantAlumnos;
     private javax.swing.JLabel labelCapMaxima;
     private javax.swing.JLabel labelCapMinima;
     private javax.swing.JLabel labelCreacion;
     private javax.swing.JLabel labelInicio;
+    private javax.swing.JLabel labelNombre;
     private javax.swing.JLabel labelProfesor;
     private javax.swing.JLabel labelUrl;
     private javax.swing.JPanel panelInfo;

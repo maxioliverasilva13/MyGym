@@ -5,6 +5,7 @@ package CuponeraXActividad;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+import Actividad.dtos.ActividadDTO;
 import Cuponera.DtCuponera;
 
 /**
@@ -14,7 +15,7 @@ import Cuponera.DtCuponera;
 public class DtCuponeraXActividad {
     private int id;
     private int cantClases;
-    // private DtActividad actividad;
+    private ActividadDTO actividad;
     private DtCuponera cuponera;
 
     public int getId() {
@@ -28,13 +29,24 @@ public class DtCuponeraXActividad {
     public DtCuponera getCuponera() {
         return cuponera;
     }
-    
+
+    public ActividadDTO getActividad() {
+        return actividad;
+    }
     
 
     public DtCuponeraXActividad(int id, int cantClases, DtCuponera cuponera) {
         this.id = id;
         this.cantClases = cantClases;
         this.cuponera = cuponera;
+    }
+    
+    // Para el listado de actividades de x cuponera.
+        public DtCuponeraXActividad(int id, int cantClases, DtCuponera cuponera, ActividadDTO act) {
+        this.id = id;
+        this.cantClases = cantClases;
+        this.cuponera = cuponera;
+        this.actividad = act;
     }
     
     public DtCuponeraXActividad(int cantClases) {

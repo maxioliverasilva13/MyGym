@@ -5,6 +5,7 @@
 package Socio;
 
 import CuponeraXActividad.CuponeraXActividad;
+import Socio.dtos.SocioEditDTO;
 import java.util.List;
 
 /**
@@ -15,4 +16,5 @@ public interface ISocioDAO {
     public List<Socio> listar();
     public Socio getById(int id);
     public void agregarRegistro(int idSocio, int idRegistro);
+    public void editar(int idSocio, SocioEditDTO socio);
 }

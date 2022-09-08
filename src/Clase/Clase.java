@@ -124,6 +124,10 @@ public class Clase implements Serializable {
     }
     
     public DtClase getDtClase() {
+        int idInstitucion = 0;
+        if (actividad.getInstitucion() != null) {
+            idInstitucion = this.actividad.getInstitucion().getId();
+        }
         List<DtRegistro> registrosClase = new ArrayList<DtRegistro>();
         this.getRegistros().forEach((registro) -> {
             registrosClase.add(registro.getDtRegistro());
@@ -143,7 +147,7 @@ public class Clase implements Serializable {
         ? profesorId : null, capMinima, capMaxima, urlAcceso, fechaRegistro, 
          registrosClase, (actividad != null)
         ? this.actividad.getId(): null, (actividad != null)
-        ? this.actividad.getNombre(): null
+        ? this.actividad.getNombre(): null, idInstitucion
        );
         return classParsed;
     }

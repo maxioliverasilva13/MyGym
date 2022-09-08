@@ -50,7 +50,10 @@ public class DtCuponera {
     public int getDescuento() {
         return descuento;
     }
-    
+
+    public List<DtCuponeraXActividad> getCuponerasXActividad() {
+        return cuponerasXActividad;
+    }
     
     
 }

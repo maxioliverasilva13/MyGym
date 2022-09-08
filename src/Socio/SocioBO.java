@@ -26,7 +26,8 @@ public class SocioBO implements ISocioBO {
   
     @Override
     public void editar(int id, SocioEditDTO socioEdit) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ISocioDAO socioDao = new SocioDAO();
+        socioDao.editar(id, socioEdit);
     }
 
  
