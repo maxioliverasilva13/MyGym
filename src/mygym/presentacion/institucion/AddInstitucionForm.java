@@ -53,8 +53,8 @@ public class AddInstitucionForm extends javax.swing.JFrame {
         btnMinimizarBG = new javax.swing.JPanel();
         btnMinimizar = new javax.swing.JLabel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -78,7 +78,6 @@ public class AddInstitucionForm extends javax.swing.JFrame {
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 130, -1, -1));
 
         jTextArea2.setColumns(20);
-        jTextArea2.setLineWrap(true);
         jTextArea2.setRows(5);
         jTextArea2.setBorder(null);
         jScrollPane2.setViewportView(jTextArea2);
@@ -120,7 +119,6 @@ public class AddInstitucionForm extends javax.swing.JFrame {
                 jButton1cancel(evt);
             }
         });
-
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
@@ -180,10 +178,6 @@ public class AddInstitucionForm extends javax.swing.JFrame {
         btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnMinimizarMouseClicked(evt);
-
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
             }
         });
 
@@ -247,10 +241,9 @@ public class AddInstitucionForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1cancel
 
-
     private void exitBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitBtnMouseClicked
         // TODO add your handling code here:
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_exitBtnMouseClicked
 
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
@@ -269,12 +262,6 @@ public class AddInstitucionForm extends javax.swing.JFrame {
         xMouse = evt.getX();
         yMouse = evt.getY();
     }//GEN-LAST:event_headerBarMousePressed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     /**
      * @param args the command line arguments
