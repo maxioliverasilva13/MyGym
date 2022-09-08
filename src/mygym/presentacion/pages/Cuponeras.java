@@ -293,9 +293,18 @@ public class Cuponeras extends javax.swing.JPanel {
         
         addActividadtoCuponera formAgregar = new addActividadtoCuponera(id);
 
+        // Event listener para que cuando se cierra el form de agregar act a cuponera, se actualice la tabla con la colección local instantaneamente.
+        formAgregar.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                llenarTabla();
+            }
+        });
+        
         if (!formAgregar.isVisible()) {
            formAgregar.setVisible(true);
         }
+        
     }//GEN-LAST:event_btnAgregarMouseClicked
 
     // Cambiar de color el botón al presionar.

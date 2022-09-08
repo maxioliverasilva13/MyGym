@@ -7,6 +7,7 @@ package mygym.presentacion.forms;
 import Actividad.dtos.ActividadDTO;
 import Cuponera.DtCuponera;
 import CuponeraXActividad.DtCuponeraXActividad;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -55,9 +56,14 @@ public class showInfoCuponera extends javax.swing.JFrame {
         private void pintarInfoCuponera(DtCuponera cup){
 
         nombreCuponera.setText(cup.getNombre());
-        Date fecha = cup.getPeriodoVigencia();
-        String fechaCompuesta = fecha.getDate()+ "/" + fecha.getMonth() + "/" + fecha.getYear()+1900;
-        pvigenciaCuponera.setText(fechaCompuesta);
+        Date fechadate = cup.getPeriodoVigencia();
+        Calendar fecha = Calendar.getInstance();
+        fecha.setTime(fechadate);
+        int day = fecha.get(Calendar.DAY_OF_MONTH);
+        int month = fecha.get(Calendar.MONTH);
+        int year = fecha.get(Calendar.YEAR);
+
+        pvigenciaCuponera.setText(day + "/" + month + "/"+ year);
         descuentoCuponera.setText(Integer.toString(cup.getDescuento()) + " %");
         txaDescripcionCuponera.setText(cup.getDescripcion());
     }

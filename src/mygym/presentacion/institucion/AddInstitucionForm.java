@@ -46,7 +46,7 @@ public class AddInstitucionForm extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -70,6 +70,7 @@ public class AddInstitucionForm extends javax.swing.JFrame {
         jLabel15.setText("Descripcion");
 
         jTextArea2.setColumns(20);
+        jTextArea2.setLineWrap(true);
         jTextArea2.setRows(5);
         jTextArea2.setBorder(null);
         jScrollPane2.setViewportView(jTextArea2);
@@ -104,6 +105,11 @@ public class AddInstitucionForm extends javax.swing.JFrame {
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1cancel(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -205,6 +211,11 @@ public class AddInstitucionForm extends javax.swing.JFrame {
     private void jButton1cancel(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1cancel
         this.dispose();
     }//GEN-LAST:event_jButton1cancel
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

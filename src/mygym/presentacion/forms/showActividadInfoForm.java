@@ -52,21 +52,11 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         pintarInfoCuponerasAsociadas(act);
         // llenarCBoxCuponerasAsociadas();
         llenarCBoxClasesAsociadas(act); 
-        cmbClases.setSelectedItem(null);
     }
 
-    
-/*      ( TERMINAR DE IMPLEMENTAR AL UNIR CON EL BACK )
-        private void llenarCBoxCuponerasAsociadas(){
-            for (int i = 0; i < cuponerasAsociadas.size(); i++){
-                DtCuponera currentCuponera = cuponerasAsociadas.get(i);
-                cmbCuponeras.addItem(currentCuponera.getNombre());
-            }
-        }
-*/
+   
     
     private void llenarCBoxClasesAsociadas(ActividadDTO selectedAct){
-        cmbClases.setSelectedItem(null);
         try {
             clases = selectedAct.getClases();
             clases.forEach((currentDT) -> {
@@ -105,11 +95,8 @@ public class showActividadInfoForm extends javax.swing.JFrame {
     
     // Pintar información de la Cuponera seleccionada en el COMBOBOX
     private void pintarInfoCuponeraSeleccionada(DtCuponera cup){
-        int selectedIndex = cmbCuponeras.getSelectedIndex(); // Devuelve el número de ítem seleccionado en el combobox, indexado desde el 0 como si fuese un array.
-        // . . .
-        // luego va al hashmap de cuponerasAsociadas local e itera hasta llegar al "selectedIndex", que representa el DtCuponera indicado y pinta los datos abajo.
-        // . . .
-                
+        int selectedIndex = cmbCuponeras.getSelectedIndex();
+        
         nombreCuponera.setText(cup.getNombre());
         descuentoCuponera.setText(Integer.toString(cup.getDescuento()));
         periodoVigenciaCuponera.setText("Fecha lalala");
