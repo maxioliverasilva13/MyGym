@@ -25,6 +25,7 @@ import utils.ParserClassesToDt;
  * @author angel
  */
 public class ProfesorBO implements IProfesorBO {
+    ProfesorDao profDao = new ProfesorDao();
 
     @Override
     public ProfesorDTO getProfesorById(int id) throws ProfesorNotExist  {
@@ -50,7 +51,6 @@ public class ProfesorBO implements IProfesorBO {
   
     @Override
     public boolean existeById(int id) {
-        ProfesorDao profDao = new ProfesorDao();
         if(profDao.getById(id) != null){
             return true;
         } 
@@ -59,7 +59,7 @@ public class ProfesorBO implements IProfesorBO {
 
     @Override
     public void editProfesorById(int id, ProfesorEditDTO profEdit) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        profDao.editById(id, profEdit);
     }
 
     @Override

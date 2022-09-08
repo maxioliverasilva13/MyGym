@@ -11,7 +11,9 @@ import java.awt.Color;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.border.BevelBorder;
+import mygym.presentacion.forms.AddUsersForm;
 import mygym.presentacion.forms.EditUsersForm;
 import mygym.presentacion.forms.VerInfoUsersProfesorForm;
 import mygym.presentacion.forms.VerInfoUsersSocioForm;
@@ -25,10 +27,12 @@ public class UserCard extends javax.swing.JPanel {
     /**
      * Creates new form UserCard
      */
-    private int id;
+    public int id;
     private  String nombre;
     private String apellido;
     private String email;
+    AddUsersForm form;
+
     public UserCard(int id,String nombre,String apellido,String email) {
         initComponents();
         
@@ -52,6 +56,7 @@ public class UserCard extends javax.swing.JPanel {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -65,9 +70,18 @@ public class UserCard extends javax.swing.JPanel {
         });
         jPopupMenu1.add(jMenuItem3);
 
+        jMenuItem4.setText("Editar");
+        jMenuItem4.setActionCommand("Editar");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem4);
+
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         setComponentPopupMenu(jPopupMenu1);
-        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 click(evt);
@@ -141,29 +155,41 @@ public class UserCard extends javax.swing.JPanel {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         IUsuarioBO usuarioBo = new UsuarioBO();
         try{
-            if(usuarioBo.getTipoById(this.id).equals("Socio")){
+            String typeOfUser = usuarioBo.getTipoById(this.id);
+            System.out.println(typeOfUser);
+            if(typeOfUser.equals("Socio")){
                 VerInfoUsersSocioForm newframe = new VerInfoUsersSocioForm(this.id);
                 newframe.setVisible(true);
-                this.dispose();
-            }else{   // es un profesor
+            }else{
+                System.out.println(this.id);
+                // es un profesor
                   VerInfoUsersProfesorForm newframe = new VerInfoUsersProfesorForm(this.id);
                   newframe.setVisible(true);
-                  this.dispose();
             }
-            
-            
-        }catch(UserNotExist ex){
-            System.out.println("Usuario no existe");
+        }catch(Exception ex){
+           JOptionPane.showMessageDialog(new JFrame(), ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-        VerInfoUsersSocioForm newframe = new VerInfoUsersSocioForm(this.id);
-        newframe.setVisible(true);
-        this.dispose();
     }
 
     private void dispose() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        IUsuarioBO usuarioBo = new UsuarioBO();
+        try{
+            String typeOfUser = usuarioBo.getTipoById(this.id);
+            System.out.println(id);
+            form = new AddUsersForm(typeOfUser, this.id);
+            if (form.isVisible() == false) {
+                form.setVisible(true);
+            }
+        }catch(Exception ex){
+           JOptionPane.showMessageDialog(new JFrame(), ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void render(){
         this.jLabel1.setText(this.nombre + " " + this.apellido);
@@ -174,6 +200,7 @@ public class UserCard extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu jPopupMenu1;

@@ -18,5 +18,5 @@ import java.util.HashMap;
 public interface IUsuarioBO {
     public void create(UsuarioCreateDTO userCreate)  throws UserAlreadyEmailExist,UserAlreadyNickExist;
     public HashMap<Integer,UsuarioDTO> listarUsuarios();
-    public String getTipoById(int id) throws UserNotExist;
+    public String getTipoById(int id);
 }
