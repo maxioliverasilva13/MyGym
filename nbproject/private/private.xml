@@ -3,14 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/components/ChooseInstitucion.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/components/ChooseActividad.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/components/AgregarRegistros.java</file>
-            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/mygym/presentacion/forms/showActividadInfoForm.java</file>
-=======
-            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/Actividad/Actividad.java</file>
->>>>>>> 17419923e39186799d13614eb857af709dd435cb
+            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/mygym/presentacion/components/AgregarRegistros.java</file>
+            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/mygymapp/MyGymApp.java</file>
+            <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/EntityManajer/InterfaceEntityManager.java</file>
         </group>
     </open-files>
 </project-private>

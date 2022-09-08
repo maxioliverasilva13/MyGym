@@ -70,14 +70,8 @@ public class showActividadInfoForm extends javax.swing.JFrame {
     }    
     
     // Pintar los datos de un DataActividad (La actividad que seleccionó en el dashboard)
-<<<<<<< HEAD
-    private void pintarInfoActividad(Integer idAct){
-        ActividadDTO selectedAct = actividades.get(idAct);
-        Datehelper helpDate= new Datehelper();
-=======
     private void pintarInfoActividad(ActividadDTO selectedAct){
->>>>>>> 17419923e39186799d13614eb857af709dd435cb
-        
+        Datehelper helpDate= new Datehelper();
         String strFechaRegistro = helpDate.dateToStringFormat(selectedAct.getFechaRegistro());
         nombreActividad.setText(selectedAct.getNombre());
         costoActividad.setText(Float.toString(selectedAct.getCosto()));
