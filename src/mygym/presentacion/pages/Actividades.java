@@ -332,7 +332,7 @@ public class Actividades extends javax.swing.JPanel {
     }//GEN-LAST:event_btnInfoMousePressed
 
     private void btnInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInfoMouseClicked
-
+        System.out.println("Hola!");
         int selectedRowId = tablaActividades.getSelectedRow();
         if(selectedRowId == -1){
             JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una actividad existente.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -351,21 +351,6 @@ public class Actividades extends javax.swing.JPanel {
         }
         
         
-        
-/*
-        int selectedRowId = tablaActividades.getSelectedRow();
-
-        DtActividad selectedActividad = actividadesSistema.get(selectedRowId);
-        // = new DtCuponera(selectedCuponera.getNombre(), selectedCuponera.getDescripcion(), selectedCuponera.getFechaVigencia(), selectedCuponera.getDescuento());
-        if (selectedActividad != null){
-            //JOptionPane.showMessageDialog(new JFrame(), "Actividad seleccionada: " + selectedActividad.getNombre(), "Información de Selección", JOptionPane.INFORMATION_MESSAGE);
-            if (!formInfo.isVisible()) {
-                formInfo.setVisible(true);
-            }
-        }else{
-            JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una actividad existente.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-*/
     }//GEN-LAST:event_btnInfoMouseClicked
 
 

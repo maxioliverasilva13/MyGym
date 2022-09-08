@@ -4,14 +4,19 @@
  */
 package mygym.presentacion.forms;
 
+import Registro.DtRegistro;
+import Registro.InterfaceRegistroBO;
+import Registro.RegistroBO;
 import Socio.ISocioBO;
 import Socio.SocioBO;
 import Socio.dtos.SocioDTO;
 import Socio.exceptions.SocioNotExist;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.WindowConstants;
+import mygym.presentacion.components.InfoClase;
 
 
 /**
@@ -138,6 +143,9 @@ public class VerInfoUsersSocioForm extends javax.swing.JFrame {
         jList1.setToolTipText("");
         jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jList1MouseEntered(evt);
             }
@@ -294,6 +302,10 @@ public class VerInfoUsersSocioForm extends javax.swing.JFrame {
     private void jList1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseEntered
         
     }//GEN-LAST:event_jList1MouseEntered
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+
+    }//GEN-LAST:event_jList1MouseClicked
 
     /**
      * @param args the command line arguments

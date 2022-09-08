@@ -16,6 +16,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import mygym.presentacion.pages.Actividades;
 import utils.ComboItem;
+import utils.Datehelper;
 
 /**
  *
@@ -69,12 +70,19 @@ public class showActividadInfoForm extends javax.swing.JFrame {
     }    
     
     // Pintar los datos de un DataActividad (La actividad que seleccionó en el dashboard)
+<<<<<<< HEAD
+    private void pintarInfoActividad(Integer idAct){
+        ActividadDTO selectedAct = actividades.get(idAct);
+        Datehelper helpDate= new Datehelper();
+=======
     private void pintarInfoActividad(ActividadDTO selectedAct){
+>>>>>>> 17419923e39186799d13614eb857af709dd435cb
         
+        String strFechaRegistro = helpDate.dateToStringFormat(selectedAct.getFechaRegistro());
         nombreActividad.setText(selectedAct.getNombre());
         costoActividad.setText(Float.toString(selectedAct.getCosto()));
         duracionActividad.setText(Integer.toString(selectedAct.getDuracion()));
-        fechaAltaActividad.setText(selectedAct.getFechaRegistro().toString());
+        fechaAltaActividad.setText(strFechaRegistro);
         txaDescripcionActividad.setText(selectedAct.getDescripcion());
     }
     
@@ -106,14 +114,19 @@ public class showActividadInfoForm extends javax.swing.JFrame {
     
     // Pintar información de la Cuponera seleccionada en el COMBOBOX
     private void pintarInfoClaseSeleccionada(DtClase clase){
-
+        
+        Datehelper helperDate = new Datehelper();
+        
+        String fechaAltaClaseStr = helperDate.dateToStringFormat(clase.getFecha());
+        String fechaClaseStr = helperDate.dateToStringFormat(clase.getFecha());
+        
         nombreClase.setText(clase.getNombre());
-        fechaClase.setText(clase.getFecha().toString());
+        fechaClase.setText(fechaClaseStr);
         profesorClase.setText(clase.getProfesor());
         capacidadMinimaClase.setText(Integer.toString(clase.getCapMinima()));
         capacidadMaximaClase.setText(Integer.toString(clase.getCapMaxima()));
         URLClase.setText(clase.getUrlAcceso());
-        fechaAltaClase.setText(clase.getFechaRegistro().toString());
+        fechaAltaClase.setText(fechaAltaClaseStr);
     }
     
     @SuppressWarnings("unchecked")
@@ -530,10 +543,14 @@ public class showActividadInfoForm extends javax.swing.JFrame {
 
     public void fillSelectedCuponera() {
         if (selectedCuponera.getCuponera() != null) {
+            
+            Datehelper helperDate = new Datehelper();
             DtCuponera cup = selectedCuponera.getCuponera();
+            
+            String periodoDeVigenciaStr = helperDate.dateToStringFormat(cup.getPeriodoVigencia());
             this.nombreCuponera.setText(cup.getNombre());
             this.descuentoCuponera.setText(Float.toString(cup.getDescuento()));
-            this.periodoVigenciaCuponera.setText(cup.getPeriodoVigencia().toString());
+            this.periodoVigenciaCuponera.setText(periodoDeVigenciaStr);
             this.cantidadClases.setText(Integer.toString(selectedCuponera.getCantClases()));
             this.txaDescripcionCuponera.setText(cup.getDescripcion());
         }
