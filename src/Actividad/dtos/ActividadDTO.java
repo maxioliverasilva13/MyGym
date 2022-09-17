@@ -5,6 +5,7 @@ package Actividad.dtos;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+import CategoriaXActividad.DtCategoriaXActividad;
 import Clase.DtClase;
 import CuponeraXActividad.DtCuponeraXActividad;
 import Institucion.DtInstitucion;
@@ -24,6 +25,8 @@ public class ActividadDTO {
     ProfesorDTO profesor;
     private List<DtClase> clases = new ArrayList<>();
     private List<DtCuponeraXActividad> cuponerasXActivdad = new ArrayList<>();
+    private List<DtCategoriaXActividad> categoriassXActivdad = new ArrayList<>();
+
     DtInstitucion institucion;
     
 
@@ -64,6 +67,27 @@ public class ActividadDTO {
         this.institucion = ins;
         if (cupsXAct != null) {
            this.cuponerasXActivdad = cupsXAct;
+        }
+    }
+    
+    public ActividadDTO(int id, String nombre, String descripcion, int duracion, float costo, Date fechaRegistro, ProfesorDTO profe, List<DtClase> clases, DtInstitucion ins, List<DtCuponeraXActividad> cupsXAct, List<DtCategoriaXActividad> catsXact) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.duracion = duracion;
+        this.costo = costo;
+        this.fechaRegistro = fechaRegistro;
+        this.profesor = profe;
+        if (clases != null) {
+            this.clases = clases;
+        }
+        this.clases = clases;
+        this.id = id;
+        this.institucion = ins;
+        if (cupsXAct != null) {
+           this.cuponerasXActivdad = cupsXAct;
+        }
+        if (catsXact != null) {
+            this.categoriassXActivdad = catsXact;
         }
     }
     

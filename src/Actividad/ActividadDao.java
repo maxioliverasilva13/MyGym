@@ -4,6 +4,7 @@
  */
 package Actividad;
 import Actividad.dtos.ActividadCreateDTO;
+import CategoriaXActividad.CategoriaXActividad;
 import Clase.Clase;
 import CuponeraXActividad.CuponeraXActividad;
 import Profesor.Profesor;
@@ -15,6 +16,7 @@ import Cuponera.Cuponera;
 import Cuponera.CuponeraDao;
 import EntityManajer.InterfaceEntityManager;
 import Exceptions.ActividadAlreadyExistsException;
+import Exceptions.ActividadNotFoundException;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -67,8 +69,12 @@ public class ActividadDao implements IActividadDao {
     }
 
     @Override
-    public Actividad getById(ActividadCreateDTO act) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Actividad getById(int idAct) {
+        Actividad act = em.find(Actividad.class, idAct);
+        if (act == null) {
+            throw new ActividadNotFoundException("La actividad no existe.");
+        }
+        return act;
     }
 
     @Override
@@ -78,27 +84,31 @@ public class ActividadDao implements IActividadDao {
     
     @Override
     public void agregarCupXActividad(int idActividad, CuponeraXActividad cupXA ){
-        try {
             Actividad act = em.find(Actividad.class, idActividad);
 
             EntityTransaction tr = em.getTransaction();
             tr.begin();
             act.addCuponerasXActividad(cupXA);
             tr.commit();
-        } catch (Exception e) {
-        }
+    }
+    
+    @Override
+    public void agregarCategoriaXActividad(int idActividad, CategoriaXActividad catXAct) {
+            Actividad act = em.find(Actividad.class, idActividad);
+
+            EntityTransaction trn = em.getTransaction();
+            trn.begin();
+            act.addCategoriaXActividad(catXAct);
+            trn.commit();
     }
     
     @Override
     public void agergarClase(int idActividad, Clase clase){
-        try {
             Actividad act = em.find(Actividad.class, idActividad);
             EntityTransaction tr = em.getTransaction();
             tr.begin();
             act.addClase(clase);
             tr.commit();
-        } catch (Exception e) {
-        }
     }
     
     @Override

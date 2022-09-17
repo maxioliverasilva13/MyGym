@@ -12,6 +12,7 @@ import mygym.presentacion.pages.Inicio;
 import mygym.presentacion.pages.Instituciones;
 import mygym.presentacion.pages.Usuarios;
 import mygym.presentacion.enums.PAGE;
+import mygym.presentacion.pages.Categorias;
 
 /**
  *
@@ -47,6 +48,8 @@ public class SideBarContent {
             case INSTITUCION : pagetoReturn = new Instituciones();
                         break;
             case USUARIO : pagetoReturn = new Usuarios();
+                        break;
+            case CATEGORIA : pagetoReturn = new Categorias();
                         break;
             default : pagetoReturn = new Inicio();
         }

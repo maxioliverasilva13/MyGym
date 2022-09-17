@@ -27,6 +27,8 @@ import Clase.DtClase;
 import java.util.ArrayList;
 import Profesor.dtos.ProfesorDTO;
 import Actividad.dtos.ActividadDTO;
+import CategoriaXActividad.CategoriaXActividad;
+import CategoriaXActividad.DtCategoriaXActividad;
 import Institucion.DtInstitucion;
 import utils.ParserClassesToDt;
 import CuponeraXActividad.DtCuponeraXActividad;
@@ -64,6 +66,8 @@ public class Actividad implements Serializable {
     private Collection<Clase> clases;
     @OneToMany(mappedBy = "actividad")
     private Collection<CuponeraXActividad> cuponerasXActividad;
+    @OneToMany(mappedBy = "actividad")
+    private Collection<CategoriaXActividad> categoriasXActividad;
     @Lob
     @Basic(fetch = FetchType.LAZY)
     private byte[] image;
@@ -82,6 +86,10 @@ public class Actividad implements Serializable {
     
     public void addCuponerasXActividad(CuponeraXActividad cuxact){
         cuponerasXActividad.add(cuxact);
+    }
+    
+    public void addCategoriaXActividad(CategoriaXActividad catxact){
+        categoriasXActividad.add(catxact);
     }
     
     public void addClase(Clase clase){
@@ -163,6 +171,10 @@ public class Actividad implements Serializable {
     public Collection<CuponeraXActividad> getCuponerasXActividad() {
         return cuponerasXActividad;
     }
+    
+    public Collection<CategoriaXActividad> getCategoriasXActividad() {
+        return categoriasXActividad;
+    }
 
     public void setCuponerasXActividad(Collection<CuponeraXActividad> cuponerasXActividad) {
         this.cuponerasXActividad = cuponerasXActividad;
@@ -187,8 +199,22 @@ public class Actividad implements Serializable {
         this.getCuponerasXActividad().forEach((cuponera) -> {
             cuponerasXact.add(cuponera.getDtCuponeraXActividad());
         });  
+        
+        // TO DO TO DO TO DO TO DO TO DO TO DO TO DO TO DO 
+        List<DtCategoriaXActividad> categoriasXact = new ArrayList<>(); // Agregar al DTO creado.
+        if(this.getCategoriasXActividad() != null ){
+
+            this.getCategoriasXActividad().forEach((categoria) -> {
+                categoriasXact.add(categoria.getDtCategoriaXActividad());
+            });  
+
+        }
+        
         ActividadDTO dt = new ActividadDTO(
-                this.id, this.nombre , this.descripcion, this.duracion, this.costo, this.fechaRegistro, profe, allClases, dtIns, cuponerasXact);
+                this.id, this.nombre , this.descripcion, this.duracion, this.costo, this.fechaRegistro, profe, allClases, dtIns,
+                !(cuponerasXact.isEmpty()) ? cuponerasXact : null, 
+                !(categoriasXact.isEmpty()) ? categoriasXact : null
+        );
         return dt;
     }
 

@@ -43,10 +43,14 @@ public final class Dashboard extends javax.swing.JFrame {
         buttonInstitucion.setOpaque(true);
         buttonUsuarios.setBackground(new Color(153, 153, 153));
         buttonUsuarios.setOpaque(true);
+        buttonCategorias.setBackground(new Color(153, 153, 153));
+        buttonCategorias.setOpaque(true);
         switch (activePage) {
             case INICIO: buttonToReturn = buttonInicio;
             break;
             case ACTIVIDAD : buttonToReturn = buttonActividades;
+            break;
+            case CATEGORIA : buttonToReturn = buttonCategorias;
             break;
             case CUPONERA : buttonToReturn = buttonCuponera;            
             break;
@@ -101,6 +105,7 @@ public final class Dashboard extends javax.swing.JFrame {
         buttonInstitucion = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         logoDash = new javax.swing.JLabel();
+        buttonCategorias = new javax.swing.JButton();
         headerBar = new javax.swing.JPanel();
         exitBtnBG = new javax.swing.JPanel();
         exitBtn = new javax.swing.JLabel();
@@ -197,7 +202,7 @@ public final class Dashboard extends javax.swing.JFrame {
 
         buttonInstitucion.setBackground(new java.awt.Color(153, 153, 153));
         buttonInstitucion.setForeground(new java.awt.Color(255, 255, 255));
-        buttonInstitucion.setText("Institucion");
+        buttonInstitucion.setText("Instituciones");
         buttonInstitucion.setBorder(null);
         buttonInstitucion.setFocusPainted(false);
         buttonInstitucion.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
@@ -221,6 +226,18 @@ public final class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        buttonCategorias.setBackground(new java.awt.Color(153, 153, 153));
+        buttonCategorias.setForeground(new java.awt.Color(255, 255, 255));
+        buttonCategorias.setText("Categorias");
+        buttonCategorias.setBorder(null);
+        buttonCategorias.setFocusPainted(false);
+        buttonCategorias.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        buttonCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCategoriasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout sidebarPanelLayout = new javax.swing.GroupLayout(sidebarPanel);
         sidebarPanel.setLayout(sidebarPanelLayout);
         sidebarPanelLayout.setHorizontalGroup(
@@ -238,7 +255,8 @@ public final class Dashboard extends javax.swing.JFrame {
                     .addGroup(sidebarPanelLayout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(buttonCategorias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         sidebarPanelLayout.setVerticalGroup(
@@ -252,14 +270,16 @@ public final class Dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buttonInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonClases, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonCuponera, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addComponent(buttonClases, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         backgroundPanel.add(sidebarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 560));
@@ -411,6 +431,11 @@ public final class Dashboard extends javax.swing.JFrame {
         colocatePage();
     }//GEN-LAST:event_logoDashMouseClicked
 
+    private void buttonCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCategoriasActionPerformed
+        contentController.setActivatePage(PAGE.CATEGORIA);    
+        colocatePage();  
+    }//GEN-LAST:event_buttonCategoriasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -454,6 +479,7 @@ public final class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel btnMinimizar;
     private javax.swing.JPanel btnMinimizarBG;
     private javax.swing.JButton buttonActividades;
+    private javax.swing.JButton buttonCategorias;
     private javax.swing.JButton buttonClases;
     private javax.swing.JButton buttonCuponera;
     private javax.swing.JButton buttonInicio;
