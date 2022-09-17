@@ -85,15 +85,9 @@ public class ActividadBO  implements IActividadBO{
     }
     
     @Override
-    public HashMap<Integer, ActividadDTO> listarActividades(int idInstitucion){ 
+    public HashMap<Integer, ActividadDTO> listarActividades(int idInstitucion,String status){ 
         HashMap<Integer, ActividadDTO> actividades = new HashMap<>();
-        System.out.println("la ins id es " + idInstitucion);
-        List<Actividad> acts = actDao.listarActividades(idInstitucion);
-        System.out.println("el size es " + acts.size());
-        acts.forEach((Actividad act) -> {
-            System.out.println("xd");
-            System.out.println(act.getNombre());
-        });
+        List<Actividad> acts = actDao.listarActividades(idInstitucion,status);
         acts.forEach((Actividad act) -> {
             actividades.put(act.getId(), act.getDtActividad());
         });
@@ -110,7 +104,7 @@ public class ActividadBO  implements IActividadBO{
     }
     
     @Override
-    public HashMap<Integer, ActividadDTO> listarByInstitucion(int idInstitucion) {
+    public HashMap<Integer, ActividadDTO> listarByInstitucion(int idInstitucion,String status) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

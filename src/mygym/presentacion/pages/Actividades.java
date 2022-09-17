@@ -77,7 +77,7 @@ public class Actividades extends javax.swing.JPanel {
     public void llenarTabla(Integer idInstitucion){
         try {
             DefaultTableModel modeloDatos = (DefaultTableModel) tablaActividades.getModel();
-            actividadesSistema = actBO.listarActividades(idInstitucion);
+            actividadesSistema = actBO.listarActividades(idInstitucion,"Aceptada");
             modeloDatos.setRowCount(0);
             actividadesSistema.forEach((key, value) -> {
                 ActividadDTO currentActividad = actividadesSistema.get(key);

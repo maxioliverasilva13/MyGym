@@ -101,14 +101,18 @@ public class ActividadDao implements IActividadDao {
         }
     }
     
-    @Override
-    public List<Actividad> listarActividades(int idInstitucion) {
+    /*primer parametro id de institucion, segundo parametro puede ser (Todas,Aceptada,Rechazada,Ingresada)()*/
+   
+    
+    public List<Actividad> listarActividades(int idInstitucion,String status) {
         try {
-            List<Actividad> actividades = em.createNativeQuery("select actividad.ID, actividad.COSTO, actividad.DURACION, actividad.FECHAREGISTRO, actividad.NOMBRE ,actividad.DESCRIPCION from ACTIVIDAD actividad WHERE actividad.INSTITUCION_ID=" + idInstitucion, Actividad.class).getResultList();
-            
-            actividades.forEach((Actividad a) -> {
-                System.out.println("soy " + a.getNombre());
-            });
+            List<Actividad> actividades;
+            if(status.equals("Todas")){
+                actividades = em.createNativeQuery("select actividad.ID, actividad.COSTO, actividad.DURACION, actividad.FECHAREGISTRO, actividad.NOMBRE ,actividad.DESCRIPCION from ACTIVIDAD actividad WHERE  actividad.INSTITUCION_ID=" + idInstitucion, Actividad.class).getResultList();
+            }else{
+                
+                actividades = em.createNativeQuery("select actividad.ID, actividad.COSTO, actividad.DURACION, actividad.FECHAREGISTRO, actividad.NOMBRE ,actividad.DESCRIPCION from ACTIVIDAD actividad WHERE actividad.ESTADO='"+status+"' AND  " + "actividad.INSTITUCION_ID=" + idInstitucion, Actividad.class).getResultList();
+            }            
             return actividades;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -130,4 +134,6 @@ public class ActividadDao implements IActividadDao {
        tx.commit();
         return actividades;
     }
+
+   
 }

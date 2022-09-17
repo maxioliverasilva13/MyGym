@@ -36,6 +36,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 
@@ -54,6 +55,8 @@ public class Actividad implements Serializable {
     private int duracion;
     private float costo;
     private Date fechaRegistro;
+    @Column(columnDefinition = "varchar(255) default 'Ingresada'")
+    private String estado;
     @ManyToOne
     @JoinColumn()
     private Profesor profesor;
@@ -159,6 +162,10 @@ public class Actividad implements Serializable {
     public void setClases(Collection<Clase> clases) {
         this.clases = clases;
     }
+    
+    public void setEstado(String estado){
+        this.estado = estado;
+    }
 
     public Collection<CuponeraXActividad> getCuponerasXActividad() {
         return cuponerasXActividad;
@@ -190,6 +197,10 @@ public class Actividad implements Serializable {
         ActividadDTO dt = new ActividadDTO(
                 this.id, this.nombre , this.descripcion, this.duracion, this.costo, this.fechaRegistro, profe, allClases, dtIns, cuponerasXact);
         return dt;
+    }
+    
+    public String getEstado(){
+        return this.estado;
     }
 
 }

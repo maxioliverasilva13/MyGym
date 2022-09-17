@@ -24,5 +24,5 @@ public interface IActividadDao {
     public void agregarCupXActividad(int idActividad, CuponeraXActividad idCxA );
     public void agergarClase(int idActividad, Clase clase);
     public Collection<Actividad> listarActividadesByInstitucionNotIntCup(int institucionId, int cuponeraId);  // lista las actividades pertenecientes a esa actividad que no tienen esa cuponera
-    public Collection<Actividad> listarActividades(int idInstitucion);
+    public Collection<Actividad> listarActividades(int idInstitucion,String status);
 }
