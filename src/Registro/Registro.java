@@ -15,6 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import Socio.Socio;
 import Clase.Clase;
+import Clase.DtClase;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -81,9 +84,17 @@ public class Registro implements Serializable {
     }
     
     public DtRegistro getDtRegistro() {
+        List<DtRegistro> regsOfClass = new ArrayList<>();
+        
+        this.clase.getRegistros().forEach((Registro r) -> {
+            regsOfClass.add(new DtRegistro(r.getId(), r.getCosto(), r.getFecha(), "", ""));
+        });
+        DtClase clase = new DtClase(
+           this.clase.getId(), this.clase.getNombre(), this.clase.getFecha(), this.clase.getCapMinima(), this.clase.getCapMaxima(), this.clase.getUrlAcceso(), this.clase.getFechaRegistro(), this.clase.getActividad().getNombre(), regsOfClass);
+        
         DtRegistro dtToReturn = new DtRegistro(
           id, costo, fecha, (socio != null) ? socio.getNombre() : null,
-          (clase != null) ? clase.getNombre() : null
+          (clase != null) ? clase.getNombre() : null, clase
         );
         return dtToReturn;
     }

@@ -89,6 +89,8 @@ public class AddUsersForm extends javax.swing.JFrame {
         this.jPanel2.setVisible(false);
         this.jComboBox1.setSelectedItem("Socio/a");
         this.jComboBox1.setEnabled(false);
+        this.jTextField3.setEnabled(false);
+        this.jTextField4.setEnabled(false);
         this.jTextField3.setText(socio.getNickname());
         this.jTextField2.setText(socio.getNombre());
         this.jTextField1.setText(socio.getApellido());
@@ -119,6 +121,8 @@ public class AddUsersForm extends javax.swing.JFrame {
         this.jTextArea2.setText(profe.getdescripcionGeneral());
         this.jTextArea2.setText(profe.getdescripcionGeneral());
         this.jTextField6.setText(profe.getLinkSitioWeb());
+        this.jTextField3.setEnabled(false);
+        this.jTextField4.setEnabled(false);
         if (profe.getInstituciones().size() > 0) {
             String profeNames = "";
             this.jComboBox2.setSelectedItem(profe.getInstituciones().get(0).getNombre());
@@ -538,14 +542,13 @@ public class AddUsersForm extends javax.swing.JFrame {
         }
 
         Object selectedItemInsti = jComboBox2.getSelectedItem();
+        SelectedDate sDate = fechaNac.getSelectedDate();
+        Date fecha = parsed.parseDate(sDate.getYear() + "-" + sDate.getMonth() + "-" + sDate.getDay());
 
         if (!isEditing) {
             try {
                 if (error == false) {
-                    SelectedDate sDate = fechaNac.getSelectedDate();
-
-                    Date fecha = new Date(sDate.getDay(), sDate.getMonth(), sDate.getYear());
-
+                    
                     if (jComboBox1.getItemAt(jComboBox1.getSelectedIndex()).equals("Profesor/a")) {
                         int selectedInstitucionId = Integer.parseInt(((ComboItem) selectedItemInsti).getId());
 
@@ -570,9 +573,6 @@ public class AddUsersForm extends javax.swing.JFrame {
         } else {
             try {
                 if (error == false) {
-                    SelectedDate sDate = fechaNac.getSelectedDate();
-
-                    Date fecha = new Date(sDate.getDay(), sDate.getMonth(), sDate.getYear());
 
                     if (jComboBox1.getItemAt(jComboBox1.getSelectedIndex()).equals("Profesor/a")) {
                         ProfesorEditDTO editSocio = new ProfesorEditDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(), jTextArea2.getText(), jTextArea1.getText(), jTextField6.getText(), jTextField4.getText(), fecha);
@@ -594,7 +594,7 @@ public class AddUsersForm extends javax.swing.JFrame {
 
     private void exitBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitBtnMouseClicked
         // TODO add your handling code here:
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_exitBtnMouseClicked
 
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked

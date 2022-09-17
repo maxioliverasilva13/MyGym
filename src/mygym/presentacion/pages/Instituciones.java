@@ -24,6 +24,7 @@ public class Instituciones extends javax.swing.JPanel {
         initComponents();
         listado();
         
+        
     }
     
     public void listado() {
@@ -164,6 +165,15 @@ public class Instituciones extends javax.swing.JPanel {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         AddInstitucionForm newframe = new AddInstitucionForm();
+        
+        newframe.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                tablaInstituciones.removeAll();
+                iterador = 0;
+                listado();
+            }
+        });
         
         newframe.setVisible(true);
         

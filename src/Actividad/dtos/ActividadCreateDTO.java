@@ -4,6 +4,7 @@
  */
 package Actividad.dtos;
 
+import java.io.File;
 import java.util.Date;
 
 /**
@@ -18,6 +19,7 @@ public class ActividadCreateDTO {
     private int duracion;
     private Date fecha_registro;
     private int profesor_id;
+    File image;
     
     
     public ActividadCreateDTO(int institucion_id,int profesor_id, float costo, String nombre, String descripcion, Date fecha_registro, int duracion){
@@ -30,10 +32,25 @@ public class ActividadCreateDTO {
         this.duracion = duracion;
     }
     
+    public ActividadCreateDTO(int institucion_id,int profesor_id, float costo, String nombre, String descripcion, Date fecha_registro, int duracion, File file){
+        this.institucion_id = institucion_id;
+        this.profesor_id = profesor_id;
+        this.costo = costo;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.fecha_registro = fecha_registro;
+        this.duracion = duracion;
+        this.image = file;
+    }
+
+    public File getImage() {
+        return image;
+    }
     
      public int getInstitucionId(){
          return this.institucion_id;
      }
+     
      public float getCosto(){
          return this.costo;
      }

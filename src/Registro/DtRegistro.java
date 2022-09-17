@@ -1,5 +1,6 @@
 package Registro;
 
+import Clase.DtClase;
 import java.util.Date;
 
 /*
@@ -17,7 +18,7 @@ public class DtRegistro {
     private Date fecha;
     private String socioName;
     private String claseName;
-    
+    private DtClase clase;
 
     public DtRegistro(int id, float costo, Date fecha, String socioName, String claseName) {
         this.id = id;
@@ -26,9 +27,22 @@ public class DtRegistro {
         this.socioName = socioName;
         this.claseName = claseName;
     }
+    
+    public DtRegistro(int id, float costo, Date fecha, String socioName, String claseName, DtClase clase) {
+        this.id = id;
+        this.costo = costo;
+        this.fecha = fecha;
+        this.socioName = socioName;
+        this.claseName = claseName;
+        this.clase = clase;
+    }
 
     public int getId() {
         return id;
+    }
+
+    public DtClase getClase() {
+        return clase;
     }
 
     public float getCosto() {
