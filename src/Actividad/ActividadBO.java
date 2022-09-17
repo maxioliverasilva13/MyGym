@@ -21,6 +21,7 @@ import Exceptions.CuponeraNotFoundException;
 import Exceptions.InstitucionNotFoundException;
 import Institucion.InstitucionDao;
 import Institucion.InterfaceInstitucionDao;
+import java.util.List;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -38,6 +39,7 @@ public class ActividadBO  implements IActividadBO{
     public void crear(ActividadCreateDTO actCreate, int institucionId, int profesorId) {
            IProfesorDao profDao = new ProfesorDao();
            InterfaceInstitucionDao  insDao = new InstitucionDao();
+           System.out.println("llego con " + profesorId);
            Profesor profesorFind = profDao.getById(profesorId);
            if(profesorFind == null){
                throw new Exceptions.ProfesorNotFoundException("Profesor no encontrado.");
@@ -85,7 +87,13 @@ public class ActividadBO  implements IActividadBO{
     @Override
     public HashMap<Integer, ActividadDTO> listarActividades(int idInstitucion){ 
         HashMap<Integer, ActividadDTO> actividades = new HashMap<>();
-        Collection<Actividad> acts = actDao.listarActividades(idInstitucion);
+        System.out.println("la ins id es " + idInstitucion);
+        List<Actividad> acts = actDao.listarActividades(idInstitucion);
+        System.out.println("el size es " + acts.size());
+        acts.forEach((Actividad act) -> {
+            System.out.println("xd");
+            System.out.println(act.getNombre());
+        });
         acts.forEach((Actividad act) -> {
             actividades.put(act.getId(), act.getDtActividad());
         });

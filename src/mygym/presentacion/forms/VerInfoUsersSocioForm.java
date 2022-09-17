@@ -4,6 +4,7 @@
  */
 package mygym.presentacion.forms;
 
+import Clase.DtClase;
 import Registro.DtRegistro;
 import Registro.InterfaceRegistroBO;
 import Registro.RegistroBO;
@@ -11,11 +12,19 @@ import Socio.ISocioBO;
 import Socio.SocioBO;
 import Socio.dtos.SocioDTO;
 import Socio.exceptions.SocioNotExist;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
+import mygym.presentacion.components.ChooseInstitucion;
 import mygym.presentacion.components.InfoClase;
 
 
@@ -29,6 +38,8 @@ public class VerInfoUsersSocioForm extends javax.swing.JFrame {
      * Creates new form AddUsersForm
      */
     private int socioId;
+    ChooseInstitucion claseInfoForm = new ChooseInstitucion();
+
     private SocioDTO socioData = null;
     public VerInfoUsersSocioForm(int socioId) {
         this.socioId = socioId;
@@ -38,6 +49,8 @@ public class VerInfoUsersSocioForm extends javax.swing.JFrame {
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         dispose();
         this.setLocationRelativeTo(null);
+        jList1.addMouseListener(mouseListenerClase);
+
     }
 
     /**
@@ -310,6 +323,45 @@ public class VerInfoUsersSocioForm extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    public  DtClase findClaseByName(String claseName) {
+        List<DtClase> allClases = new ArrayList<>();
+        
+        if (socioData.getRegistros() != null) {
+            socioData.getRegistros().forEach((DtRegistro reg) -> {
+                allClases.add(reg.getClase());
+            });
+        }
+        
+        List<DtClase> claseToReturn = new ArrayList<>();
+        allClases.forEach((DtClase c) -> {
+            if (c.getNombre().equals(claseName)) {
+                 claseToReturn.add(c);
+            }
+        });
+        if (claseToReturn.size() > 0) {
+            return claseToReturn.get(0);
+        }
+        return null;
+    }
+    
+     public MouseListener mouseListenerClase = new MouseAdapter() {
+      public void mouseClicked(MouseEvent mouseEvent) {
+          JList<String> theList = (JList) mouseEvent.getSource();
+        if (mouseEvent.getClickCount() == 2) {
+          int index = theList.locationToIndex(mouseEvent.getPoint());
+          if (index >= 0) {
+            Object o = theList.getModel().getElementAt(index);
+            DtClase clase = findClaseByName(o.toString());
+            if (clase == null) {
+                JOptionPane.showMessageDialog(new JFrame(), "La clase seleccionada es inavlida", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+                claseInfoForm = new ChooseInstitucion(clase);
+                claseInfoForm.setVisible(true);
+          }
+        }
+      }
+    };
+    
     
     
     private void loadSocio(int socioId){
@@ -340,7 +392,6 @@ public class VerInfoUsersSocioForm extends javax.swing.JFrame {
                 listModelRegistros.addElement(registro.getClaseName());
             });
             this.jList1.setModel(listModelRegistros);
-           
     }
   
     

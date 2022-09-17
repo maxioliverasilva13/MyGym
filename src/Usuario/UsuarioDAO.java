@@ -48,6 +48,7 @@ public class UsuarioDAO implements IUsuarioDAO{
             ProfesorCreateDTO profCreate = (ProfesorCreateDTO)userCreate;
             
             Profesor newProfesor = new Profesor();
+            newProfesor.setDTYPE("Profesor");
             newProfesor.setNombre(profCreate.getNombre());
             newProfesor.setApellido(profCreate.getApellido());
             newProfesor.setNickname(profCreate.getNickname());
@@ -70,7 +71,7 @@ public class UsuarioDAO implements IUsuarioDAO{
             newSocio.setNickname(socioCreate.getNombre());
             newSocio.setNacimiento(socioCreate.getNacimiento());
             newSocio.setEmail(socioCreate.getEmail());
-        
+            newSocio.setDTYPE("Socio");
             
             this.em.persist(newSocio);
         }
@@ -127,10 +128,11 @@ public class UsuarioDAO implements IUsuarioDAO{
               tx.begin();
                Usuario find = (Usuario)this.em.find(Usuario.class, id);
                tx.commit();
-               return find;    
+               return find;
           }catch(NoResultException e){
-              return null;
+              System.out.println(e.getMessage());
           }
+         return null;
     }
 
     @Override
@@ -139,11 +141,15 @@ public class UsuarioDAO implements IUsuarioDAO{
          try{
               tx.begin();
                Usuario find = (Usuario)this.em.find(Usuario.class, id);
+               System.out.println("encontre " + find.getId());
+               System.out.println("encontre " + find.getDtype());
                tx.commit();
                return find.getDtype();
-          }catch(NoResultException e){
-              return null;
+          } catch(NoResultException e){
+              // System.out.println(e.getMessage());
           }
+          return null;
+
         
     }
     

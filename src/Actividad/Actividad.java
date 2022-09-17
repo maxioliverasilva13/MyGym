@@ -146,6 +146,8 @@ public class Actividad implements Serializable {
     }
 
     public ActividadDTO getDtActividad() {
+        System.out.println(this.duracion);
+        System.out.println("me consulto");
         List<DtClase> allClases = new ArrayList<>();
         this.getClases().forEach((clase) -> {
             allClases.add(clase.getDtClase());
@@ -153,7 +155,6 @@ public class Actividad implements Serializable {
         ProfesorDTO profe = null;
         if(this.profesor != null){
             profe = new ProfesorDTO(profesor.getId(), profesor.getNombre(), profesor.getApellido(), profesor.getNickname(), profesor.getEmail(), profesor.getNacimiento(), profesor.getDescripcionGeneral(), profesor.getBiografia(), profesor.getLinkSitioWeb());
-            
         }
         DtInstitucion dtIns = null;
         if(this.institucion != null){

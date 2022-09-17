@@ -8,6 +8,7 @@ import Institucion.DtInstitucion;
 import Institucion.InstitucionBO;
 import java.awt.Color;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.border.MatteBorder;
 
 /**
@@ -231,10 +232,14 @@ public class AddInstitucionForm extends javax.swing.JFrame {
         if (jTextField6.getText() .equals("")) {
             jTextField6.setBorder(new MatteBorder(0,0,1,0, Color.red));
         }
-        
-        DtInstitucion indt = new DtInstitucion(0, jTextField2.getText(), jTextArea2.getText(), jTextField6.getText(), null, null);
-        Ins.agregarInstitucion(indt);
-        System.out.println(("Institucion agregada"));
+        try {
+            DtInstitucion indt = new DtInstitucion(0, jTextField2.getText(), jTextArea2.getText(), jTextField6.getText(), null, null);
+            Ins.agregarInstitucion(indt);
+            JOptionPane.showMessageDialog(new JFrame(),  "Institucion insertada con exito.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Informacion", JOptionPane.ERROR_MESSAGE);
+        }        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1cancel(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1cancel

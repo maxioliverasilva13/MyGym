@@ -96,9 +96,14 @@ public class ActividadDao implements IActividadDao {
         }
     }
     
-    public Collection<Actividad> listarActividades(int idInstitucion) {
+    @Override
+    public List<Actividad> listarActividades(int idInstitucion) {
         try {
-            List<Actividad> actividades = em.createNativeQuery("select * from ACTIVIDAD a WHERE a.INSTITUCION_ID=" + idInstitucion, Actividad.class).getResultList();
+            List<Actividad> actividades = em.createNativeQuery("select actividad.ID, actividad.COSTO, actividad.DURACION, actividad.FECHAREGISTRO, actividad.NOMBRE ,actividad.DESCRIPCION from ACTIVIDAD actividad WHERE actividad.INSTITUCION_ID=" + idInstitucion, Actividad.class).getResultList();
+            
+            actividades.forEach((Actividad a) -> {
+                System.out.println("soy " + a.getNombre());
+            });
             return actividades;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -113,8 +118,11 @@ public class ActividadDao implements IActividadDao {
     }
     
 
-    public Collection<Actividad> getAllActividades() {
-       List<Actividad> actividades = this.em.createNativeQuery("SELECT actividad.id FROM actividad", Actividad.class).getResultList();
+    public List<Actividad> getAllActividades() {
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+       List<Actividad> actividades = this.em.createNativeQuery("SELECT * FROM actividad", Actividad.class).getResultList();
+       tx.commit();
         return actividades;
     }
 }
