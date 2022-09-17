@@ -30,6 +30,14 @@ import Actividad.dtos.ActividadDTO;
 import Institucion.DtInstitucion;
 import utils.ParserClassesToDt;
 import CuponeraXActividad.DtCuponeraXActividad;
+import java.awt.Image;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import javax.persistence.Basic;
+import javax.persistence.FetchType;
+import javax.persistence.Lob;
 
 /**
  *
@@ -56,6 +64,21 @@ public class Actividad implements Serializable {
     private Collection<Clase> clases;
     @OneToMany(mappedBy = "actividad")
     private Collection<CuponeraXActividad> cuponerasXActividad;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private byte[] image;
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(File file) throws FileNotFoundException, IOException {
+        byte[] picInBytes = new byte[(int) file.length()];
+        FileInputStream fileInputStream = new FileInputStream(file);
+        fileInputStream.read(picInBytes);
+        fileInputStream.close();
+        this.image = picInBytes;
+    }
     
     public void addCuponerasXActividad(CuponeraXActividad cuxact){
         cuponerasXActividad.add(cuxact);

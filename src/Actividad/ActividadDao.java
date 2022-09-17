@@ -53,7 +53,12 @@ public class ActividadDao implements IActividadDao {
             activity.setCosto(act.getCosto());
             activity.setProfesor(profesor);
             activity.setInstitucion(institucion);
-            
+            try {
+                activity.setImage(act.getImage());
+            } catch (Exception e) {
+                System.out.println("Error al subir el archivo");
+                System.out.println(e.getMessage());
+            }
             
             em.persist(activity);
             
