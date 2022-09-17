@@ -34,7 +34,6 @@ public class Usuarios extends javax.swing.JPanel {
             @Override
             public void windowClosed(java.awt.event.WindowEvent windowEvent) {
                  LoadUsers(panelContent);
-                 System.out.println("Soy yo");
                  revalidate();
                  repaint();
             }
@@ -115,9 +114,8 @@ public class Usuarios extends javax.swing.JPanel {
     private void LoadUsers(JPanel panel){
         panel.removeAll();
         IUsuarioBO usuarioBo = new UsuarioBO();
-        int sizeOfRows = usuarioBo.listarUsuarios().size();;
+        int sizeOfRows = usuarioBo.listarUsuarios().size();
         usuarioBo.listarUsuarios().forEach((key,user) -> {
-            
            UserCard card = new UserCard(key,user.getNombre(),user.getApellido(),user.getEmail());
            card.setSize(120, 90);
            panel.add(card);

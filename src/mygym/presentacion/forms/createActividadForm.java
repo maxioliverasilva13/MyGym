@@ -454,14 +454,17 @@ public class createActividadForm extends javax.swing.JFrame{
             Object selectedItemInsti = cmbInstituciones.getSelectedItem();
             int selectedInstitucionId = Integer.parseInt(((ComboItem)selectedItemInsti).getId());           
             
-            Object selectedItemProf = cmbInstituciones.getSelectedItem();
+            Object selectedItemProf = cmbProfesores.getSelectedItem();
             int selectedProfId = Integer.parseInt(((ComboItem)selectedItemProf).getId());           
+            System.out.println(selectedItemProf);
+
             
             SelectedDate fActual = dateChooserActual.getSelectedDate();
             Date fecha = parse.parseDate(fActual.getYear() + "-" + fActual.getMonth() + "-" + fActual.getDay());
             ActividadCreateDTO act = new ActividadCreateDTO(selectedInstitucionId, selectedProfId, Float.parseFloat(txtCosto.getText()), txtNombre.getText(), txtareaDescripcion.getText(), fecha, Integer.parseInt(txtDuracion.getText()), BrowseFile.globalFile); 
             try {
                 actBO.crear(act, selectedInstitucionId, selectedProfId);
+                JOptionPane.showMessageDialog(new JFrame(),  "Actividad insertada con exito.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 return;

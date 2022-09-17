@@ -4,6 +4,7 @@
  */
 package Socio;
 
+import Clase.DtClase;
 import Profesor.Profesor;
 import Registro.DtRegistro;
 import Registro.Registro;

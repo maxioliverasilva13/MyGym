@@ -74,6 +74,10 @@ public class Profesor extends Usuario {
     public Set<Actividad> getActividades() {
         return actividades;
     }
+
+    public void setDTYPE(String DTYPE) {
+        this.DTYPE = DTYPE;
+    }
     
     public ProfesorDTO getDtProfesor() {
         ParserClassesToDt parseclass = new ParserClassesToDt();

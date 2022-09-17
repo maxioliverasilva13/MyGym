@@ -5,6 +5,7 @@
 package Clase;
 
 import Registro.DtRegistro;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +23,7 @@ public class DtClase {
     private int capMaxima;
     private String urlAcceso;
     private Date fechaRegistro;
-    private List<DtRegistro> registros;
+    private List<DtRegistro> registros = new ArrayList<>();
     private int idActividad;
     private String actividadName;
     private int idInstitucion;
@@ -69,6 +70,18 @@ public class DtClase {
         this.urlAcceso = urlAcceso;
         this.fechaRegistro = fechaRegistro;
         this.profesor = profesor;
+    }
+    
+    public DtClase(int id, String nombre, Date fecha, int capMinima, int capMaxima, String urlAcceso, Date fechaRegistro, String profesor, List<DtRegistro> regs) {
+        this.id = id;
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.capMinima = capMinima;
+        this.capMaxima = capMaxima;
+        this.urlAcceso = urlAcceso;
+        this.fechaRegistro = fechaRegistro;
+        this.profesor = profesor;
+        this.registros = regs;
     }
     
     public DtClase(int id, String nombre, Date fecha, int capMinima, int capMaxima, String urlAcceso, Date fechaRegistro) {

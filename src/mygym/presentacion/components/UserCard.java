@@ -27,20 +27,20 @@ public class UserCard extends javax.swing.JPanel {
     /**
      * Creates new form UserCard
      */
-    public int id;
+    private int id;
     private  String nombre;
     private String apellido;
     private String email;
     AddUsersForm form;
 
     public UserCard(int id,String nombre,String apellido,String email) {
-        initComponents();
-        
         this.id = id;
+        initComponents();
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         
+        System.out.println("mi id es " + id);
         this.render();
         
     }
@@ -156,7 +156,7 @@ public class UserCard extends javax.swing.JPanel {
         IUsuarioBO usuarioBo = new UsuarioBO();
         try{
             String typeOfUser = usuarioBo.getTipoById(this.id);
-            System.out.println(typeOfUser);
+
             if(typeOfUser.equals("Socio")){
                 VerInfoUsersSocioForm newframe = new VerInfoUsersSocioForm(this.id);
                 newframe.setVisible(true);
