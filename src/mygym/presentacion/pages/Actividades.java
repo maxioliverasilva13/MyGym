@@ -21,6 +21,8 @@ import Actividad.ActividadBO;
 import Actividad.dtos.ActividadDTO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.SwingConstants;
+import utils.RenderFoto;
 
 
 /**
@@ -45,9 +47,10 @@ public class Actividades extends javax.swing.JPanel {
     public Actividades() {
         initComponents();
         
-        tablaActividades.getColumnModel().getColumn(0).setMinWidth(0);
-        tablaActividades.getColumnModel().getColumn(0).setMaxWidth(0);
-        tablaActividades.getColumnModel().getColumn(0).setWidth(0);
+        tablaActividades.getColumnModel().getColumn(1).setMinWidth(0);
+        tablaActividades.getColumnModel().getColumn(1).setMaxWidth(0);
+        tablaActividades.getColumnModel().getColumn(1).setWidth(0);
+        tablaActividades.setRowHeight(50);
         tablaActividades.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         llenarCBoxInstituciones();
@@ -81,8 +84,14 @@ public class Actividades extends javax.swing.JPanel {
             modeloDatos.setRowCount(0);
             actividadesSistema.forEach((key, value) -> {
                 ActividadDTO currentActividad = actividadesSistema.get(key);
-
-                modeloDatos.addRow(new Object[]{currentActividad.getId(), currentActividad.getNombre(), currentActividad.getDescripcion(), currentActividad.getCosto()});
+                RenderFoto photoCell = new RenderFoto();
+                photoCell.setHorizontalAlignment(SwingConstants.CENTER);
+                tablaActividades.getColumnModel().getColumn(0).setCellRenderer(photoCell);
+                String filePath = "";
+                if (currentActividad.getImage() != null) {
+                    filePath = currentActividad.getImage().getAbsolutePath();
+                }
+                modeloDatos.addRow(new Object[]{filePath, currentActividad.getId(), currentActividad.getNombre(), currentActividad.getDescripcion(), currentActividad.getCosto()});
             });
             
         } catch (Exception e) {
@@ -156,7 +165,7 @@ public class Actividades extends javax.swing.JPanel {
         btnAlta.setForeground(new java.awt.Color(255, 255, 255));
         btnAlta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnAlta.setText("Alta de Actividad");
-        btnAlta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAlta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAlta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAltaMouseClicked(evt);
@@ -192,48 +201,48 @@ public class Actividades extends javax.swing.JPanel {
         tablaActividades.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         tablaActividades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "id", "Nombre", "Descripción", "Costo"
+                "Foto", "id", "Nombre", "Descripción", "Costo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -243,7 +252,6 @@ public class Actividades extends javax.swing.JPanel {
         tablaActividades.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tablaActividades.setGridColor(new java.awt.Color(255, 255, 255));
         tablaActividades.setSelectionBackground(new java.awt.Color(0, 204, 204));
-        tablaActividades.setShowGrid(false);
         tablaActividades.setUpdateSelectionOnSort(false);
         scrollTabla.setViewportView(tablaActividades);
 
@@ -255,7 +263,7 @@ public class Actividades extends javax.swing.JPanel {
         btnInfo.setForeground(new java.awt.Color(255, 255, 255));
         btnInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnInfo.setText("CONSULTAR INFORMACIÓN");
-        btnInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnInfo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnInfoMouseClicked(evt);

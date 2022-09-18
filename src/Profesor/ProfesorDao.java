@@ -62,6 +62,7 @@ public class ProfesorDao  implements IProfesorDao {
         prof.setDescripcionGeneral(editProf.getDescripcionGeneral());
         prof.setLinkSitioWeb(editProf.getLinkSitioWeb());
         prof.setBiografia(editProf.getBiografia());
+        prof.setImage(editProf.getImage());
         tr.commit();
     }
 

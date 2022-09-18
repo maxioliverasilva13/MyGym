@@ -9,6 +9,7 @@ import Clase.DtClase;
 import CuponeraXActividad.DtCuponeraXActividad;
 import Institucion.DtInstitucion;
 import Profesor.dtos.ProfesorDTO;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +26,11 @@ public class ActividadDTO {
     private List<DtClase> clases = new ArrayList<>();
     private List<DtCuponeraXActividad> cuponerasXActivdad = new ArrayList<>();
     DtInstitucion institucion;
+    File image;
+
+    public File getImage() {
+        return image;
+    }
     
 
     public ActividadDTO(String nombre, String descripcion, int duracion, float costo, Date fechaRegistro) {
@@ -65,6 +71,25 @@ public class ActividadDTO {
         if (cupsXAct != null) {
            this.cuponerasXActivdad = cupsXAct;
         }
+    }
+    
+       public ActividadDTO(int id, String nombre, String descripcion, int duracion, float costo, Date fechaRegistro, ProfesorDTO profe, List<DtClase> clases, DtInstitucion ins, List<DtCuponeraXActividad> cupsXAct, File file) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.duracion = duracion;
+        this.costo = costo;
+        this.fechaRegistro = fechaRegistro;
+        this.profesor = profe;
+        if (clases != null) {
+            this.clases = clases;
+        }
+        this.clases = clases;
+        this.id = id;
+        this.institucion = ins;
+        if (cupsXAct != null) {
+           this.cuponerasXActivdad = cupsXAct;
+        }
+        this.image = file;
     }
     
     public int getId(){

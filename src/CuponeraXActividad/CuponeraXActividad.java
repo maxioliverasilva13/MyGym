@@ -4,6 +4,7 @@
  */
 package CuponeraXActividad;
 
+import java.io.File;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -72,7 +73,11 @@ public class CuponeraXActividad implements Serializable {
     
     public DtCuponeraXActividad getDtCuponeraXActividad() {
         if (cuponera != null) {
-            DtCuponera cup = new DtCuponera(this.cuponera.getId(), this.cuponera.getNombre(), this.cuponera.getDescripcion(), this.cuponera.getPeriodoVigencia(), this.cuponera.getDescuento(), null);
+            File photo = null;
+            if (cuponera.getImage() != null) {
+                photo = cuponera.createTempFile();
+            }
+            DtCuponera cup = new DtCuponera(this.cuponera.getId(), this.cuponera.getNombre(), this.cuponera.getDescripcion(), this.cuponera.getPeriodoVigencia(), this.cuponera.getDescuento(), null, photo);
             if (actividad != null){
                 Collection<Clase.Clase> clases = this.actividad.getClases();
                 List<DtClase> dtclases = new ArrayList<>();

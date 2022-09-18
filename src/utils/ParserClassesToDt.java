@@ -18,6 +18,7 @@ import java.util.Set;
 import CuponeraXActividad.CuponeraXActividad;
 import CuponeraXActividad.DtCuponeraXActividad;
 import Cuponera.Cuponera;
+import java.io.File;
 /**
  *
  * @author maximilianooliverasilva
@@ -45,8 +46,11 @@ public class ParserClassesToDt {
     }
     
     public DtInstitucion getDtInstitucion(Institucion i) {
-
-        DtInstitucion dtToReturn = new DtInstitucion(i.getId(), i.getNombre(), i.getDescripcion(), i.getUrl(), getProfesoresDTO(i.getProfesores()) , getActividadDTO(i.getActividades()));
+        File photo = null;
+        if (i.getImage() != null) {
+            photo = i.createTempFile();
+        }
+        DtInstitucion dtToReturn = new DtInstitucion(i.getId(), i.getNombre(), i.getDescripcion(), i.getUrl(), getProfesoresDTO(i.getProfesores()) , getActividadDTO(i.getActividades()), photo);
         return dtToReturn;
     }
     
@@ -54,22 +58,36 @@ public class ParserClassesToDt {
         List<DtClase> clases = new ArrayList<>();
         actividad.getClases().forEach((Clase.Clase c) -> {
             String profesorName = c.getActividad().getProfesor().getNombre();
-            DtClase cn = new DtClase(c.getId(), c.getNombre(), c.getFecha(), c.getCapMinima(), c.getCapMaxima(), c.getUrlAcceso(), c.getFechaRegistro(), profesorName);
+            File file = null;
+            if (c.getImage() != null) {
+                file = c.createTempFile();
+            }
+            DtClase cn = new DtClase(c.getId(), c.getNombre(), c.getFecha(), c.getCapMinima(), c.getCapMaxima(), c.getUrlAcceso(), c.getFechaRegistro(), profesorName, file);
             clases.add(cn);
         });
         
         List<DtCuponeraXActividad> cuponerasXAct = new ArrayList<>();
         actividad.getCuponerasXActividad().forEach((CuponeraXActividad cuxa) -> {
             Cuponera cup = cuxa.getCuponera();
-            DtCuponera dtCup = new DtCuponera(cup.getId(), cup.getNombre(), cup.getDescripcion(), cup.getPeriodoVigencia(), cup.getDescuento(), null);
+            File photo = null;
+            if (cup.getImage() != null) {
+                photo = cup.createTempFile();
+            }
+            DtCuponera dtCup = new DtCuponera(cup.getId(), cup.getNombre(), cup.getDescripcion(), cup.getPeriodoVigencia(), cup.getDescuento(), null, photo);
             DtCuponeraXActividad cu = new DtCuponeraXActividad(cuxa.getId(), cuxa.getCantClases(), dtCup);
             cuponerasXAct.add(cu);
         });
         
         
-        ActividadDTO dt = new ActividadDTO(
+        if (actividad.getImage() != null) {
+            ActividadDTO dt = new ActividadDTO(
+                actividad.getId(), actividad.getNombre() , actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaRegistro(), null, clases, null, cuponerasXAct, actividad.createTempFile());
+                return dt;
+        } else {
+            ActividadDTO dt = new ActividadDTO(
                 actividad.getId(), actividad.getNombre() , actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaRegistro(), null, clases, null, cuponerasXAct);
-        return dt;
+                return dt;
+        }
     }
     
     public List<DtInstitucion> getInstitucionesDt(List<Institucion> instituciones) {
@@ -90,8 +108,14 @@ public class ParserClassesToDt {
     
     public ProfesorDTO getDtProfesor(Profesor prof) {
         ProfesorDTO profe;
-        profe = new ProfesorDTO(
+        if (prof.getImage() != null ) {
+            profe = new ProfesorDTO(
+                prof.getId(), prof.getNombre(), prof.getApellido(), prof.getNickname(), prof.getEmail(), prof.getNacimiento(), prof.getDescripcionGeneral(), prof.getBiografia(), prof.getLinkSitioWeb(), null, null, prof.createTempFile());
+        return profe;
+        } else {
+            profe = new ProfesorDTO(
                 prof.getId(), prof.getNombre(), prof.getApellido(), prof.getNickname(), prof.getEmail(), prof.getNacimiento(), prof.getDescripcionGeneral(), prof.getBiografia(), prof.getLinkSitioWeb(), null, null);
         return profe;
+        }
     }
 }

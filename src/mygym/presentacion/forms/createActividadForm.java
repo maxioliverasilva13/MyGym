@@ -510,7 +510,6 @@ public class createActividadForm extends javax.swing.JFrame{
     }//GEN-LAST:event_labelSubirImageMouseClicked
 
     private void buttonSubirImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSubirImageMouseClicked
-        System.out.println("xd1");
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonSubirImageMouseClicked
 

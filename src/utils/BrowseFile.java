@@ -51,7 +51,6 @@ public class BrowseFile {
         Image img = myImage.getImage();
         Image newImg = img.getScaledInstance(labelImage.getWidth(), labelImage.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon image = new ImageIcon(newImg);
-       //  labelImage.setBorder(new RoundedBorder(Color.RED, 20));
         return image;
     }
     

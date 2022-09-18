@@ -204,7 +204,6 @@ public class AgregarRegistros extends javax.swing.JFrame {
         addFinal.setVisible(false);
         if (step1.isVisible() && !step2.isVisible() && !step3.isVisible() && !step4.isVisible()) {
             initCalendar();
-            System.out.println("Soy yo");
             step4.setVisible(true);
             step1.setVisible(false);
             return;

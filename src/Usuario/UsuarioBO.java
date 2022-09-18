@@ -39,7 +39,7 @@ public class UsuarioBO implements IUsuarioBO {
          HashMap<Integer,UsuarioDTO> res = new HashMap<Integer,UsuarioDTO>();
          List<Usuario> userList = userDao.listar();
          userList.forEach((user) -> {
-             res.put(user.getId(), new UsuarioDTO(user.getId(),user.getNombre(),user.getApellido(),user.getNickname(),user.getEmail(), user.getNacimiento()));
+             res.put(user.getId(), new UsuarioDTO(user.getId(),user.getNombre(),user.getApellido(),user.getNickname(),user.getEmail(), user.getNacimiento(), user.createTempFile()));
          });
          return res;
     }

@@ -8,6 +8,7 @@ import Actividad.dtos.ActividadDTO;
 import Institucion.DtInstitucion;
 import Institucion.Institucion;
 import Usuario.dtos.UsuarioDTO;
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +29,13 @@ public class ProfesorDTO extends UsuarioDTO {
         this.descripcionGeneral = descripcionGeneral;
         this.biografia = biografia;
         this.linkSitioWeb = linkSitioWeb;
-       
+    }
+    
+    public ProfesorDTO(int id,String nombre,String apellido,String nickname,String email ,Date nacimiento,String descripcionGeneral,String biografia,String linkSitioWeb, File file){
+        super(id, nombre,apellido,nickname,email,nacimiento, file);
+        this.descripcionGeneral = descripcionGeneral;
+        this.biografia = biografia;
+        this.linkSitioWeb = linkSitioWeb;
     }
     
     public ProfesorDTO(int id,String nombre,String apellido,String nickname,String email ,Date nacimiento,String descripcionGeneral,String biografia,String linkSitioWeb, List<ActividadDTO> acts, List<DtInstitucion> instituciones){
@@ -38,7 +45,15 @@ public class ProfesorDTO extends UsuarioDTO {
       this.linkSitioWeb = linkSitioWeb;
       this.actividades = acts;
       this.instituciones = instituciones;
-     
+    }
+    
+    public ProfesorDTO(int id,String nombre,String apellido,String nickname,String email ,Date nacimiento,String descripcionGeneral,String biografia,String linkSitioWeb, List<ActividadDTO> acts, List<DtInstitucion> instituciones, File file){
+      super(id, nombre,apellido,nickname,email,nacimiento, file);
+      this.descripcionGeneral = descripcionGeneral;
+      this.biografia = biografia;
+      this.linkSitioWeb = linkSitioWeb;
+      this.actividades = acts;
+      this.instituciones = instituciones;
     }
 
 

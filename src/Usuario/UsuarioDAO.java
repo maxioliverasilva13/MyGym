@@ -57,6 +57,7 @@ public class UsuarioDAO implements IUsuarioDAO{
             newProfesor.setBiografia(profCreate.getBiografia());
             newProfesor.setLinkSitioWeb(profCreate.getLinkSitioWeb());
             newProfesor.setDescripcionGeneral(profCreate.getdescripcionGeneral());
+            newProfesor.setImage(profCreate.getImage());
             Institucion ins = insDao.existe(profCreate.getIdInstitucion());
             newProfesor.agregarInstitucion(ins);
             
@@ -68,9 +69,10 @@ public class UsuarioDAO implements IUsuarioDAO{
             Socio newSocio = new Socio();
             newSocio.setNombre(socioCreate.getNombre());
             newSocio.setApellido(socioCreate.getApellido());
-            newSocio.setNickname(socioCreate.getNombre());
+            newSocio.setNickname(socioCreate.getNickname());
             newSocio.setNacimiento(socioCreate.getNacimiento());
             newSocio.setEmail(socioCreate.getEmail());
+            newSocio.setImage(socioCreate.getImage());
             newSocio.setDTYPE("Socio");
             
             this.em.persist(newSocio);

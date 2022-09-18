@@ -4,6 +4,7 @@
  */
 package Usuario.dtos;
 
+import java.io.File;
 import java.util.Date;
 
 /**
@@ -17,6 +18,7 @@ public  class UsuarioDTO {
     protected String NICKNAME;
     protected String EMAIL;
     protected Date NACIMIENTO;
+    private File image;
     
     public UsuarioDTO(int id, String nombre,String apellido,String nickname,String email,Date nacimiento){
         this.ID = id;
@@ -25,8 +27,20 @@ public  class UsuarioDTO {
         this.NICKNAME = nickname;
         this.EMAIL = email;
         this.NACIMIENTO = nacimiento;
-       
-        
+    }
+    
+    public UsuarioDTO(int id, String nombre,String apellido,String nickname,String email,Date nacimiento, File file){
+        this.ID = id;
+        this.NOMBRE = nombre;
+        this.APELLIDO = apellido;
+        this.NICKNAME = nickname;
+        this.EMAIL = email;
+        this.NACIMIENTO = nacimiento;
+        this.image = file;
+    }
+
+    public File getImage() {
+        return image;
     }
     
     public int getId(){

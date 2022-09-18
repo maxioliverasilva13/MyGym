@@ -31,7 +31,9 @@ public class InstitucionDao implements InterfaceInstitucionDao {
         ins.setDescripcion(institucion.getDescripcion());
         ins.setNombre(institucion.getNombre());
         ins.setUrl(institucion.getUrl());
-        
+        if (institucion.getImage() != null) {
+            ins.setImage(institucion.getImage());
+        }
         EntityTransaction tr = em.getTransaction();
         tr.begin();
         em.persist(ins);

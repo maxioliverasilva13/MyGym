@@ -4,6 +4,7 @@
  */
 package Socio.dtos;
 
+import java.io.File;
 import java.util.Date;
 
 /**
@@ -16,6 +17,11 @@ public class SocioEditDTO {
     private String nickname;
     private Date nacimiento;
     private String email;
+    private File image;
+
+    public File getImage() {
+        return image;
+    }
     
     public SocioEditDTO(String nombre,String apellido,String nickname,String email,Date nacimiento){
         this.nombre = nombre;
@@ -23,7 +29,15 @@ public class SocioEditDTO {
         this.nickname = nickname;
         this.nacimiento = nacimiento;
         this.email = email;
-       
+    }
+    
+    public SocioEditDTO(String nombre,String apellido,String nickname,String email,Date nacimiento, File file){
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.nickname = nickname;
+        this.nacimiento = nacimiento;
+        this.email = email;
+        this.image = file;
     }
     
     public String getNombre(){

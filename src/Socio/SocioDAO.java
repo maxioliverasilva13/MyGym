@@ -77,6 +77,7 @@ public class SocioDAO implements ISocioDAO {
         soc.setNacimiento(socio.getNacimiento());
         soc.setNombre(socio.getNombre());
         soc.setNickname(soc.getNickname());
+        soc.setImage(socio.getImage());
         tr.commit();
     }
 

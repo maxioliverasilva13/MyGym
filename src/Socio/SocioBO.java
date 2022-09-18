@@ -50,7 +50,8 @@ public class SocioBO implements ISocioBO {
                item.getNickname(),
                item.getEmail(),
                item.getNacimiento(),
-               null
+               null,
+               item.createTempFile()
             ));
         });
         return socios;
@@ -70,8 +71,15 @@ public class SocioBO implements ISocioBO {
             registros.add(registro.getDtRegistro());
         });
         
-        res = new SocioDTO(socioFind.getId(), socioFind.getNombre(),socioFind.getApellido(),socioFind.getNickname(),socioFind.getEmail(),socioFind.getNacimiento(),registros);        
-        return res;
+        if (socioFind.getImage() != null) {
+            res = new SocioDTO(socioFind.getId(), socioFind.getNombre(),socioFind.getApellido(),socioFind.getNickname(),socioFind.getEmail(),socioFind.getNacimiento(),registros, socioFind.createTempFile());        
+            return res;
+        } else {
+            res = new SocioDTO(socioFind.getId(), socioFind.getNombre(),socioFind.getApellido(),socioFind.getNickname(),socioFind.getEmail(),socioFind.getNacimiento(),registros);        
+            return res;
+        }
+        
+        
         
     }
 

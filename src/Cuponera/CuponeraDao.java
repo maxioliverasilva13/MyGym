@@ -34,6 +34,9 @@ public class CuponeraDao implements InterfaceCuponeraDao {
                 cup.setDescripcion(cuponera.getDescripcion());
                 cup.setDescuento(cuponera.getDescuento());
                 cup.setNombre(cuponera.getNombre());
+                if (cuponera.getImage() != null) {
+                    cup.setImage(cuponera.getImage());
+                }
                 cup.setPeriodoVigencia(cuponera.getPeriodoVigencia());
                 EntityTransaction et = em.getTransaction();
                 et.begin();

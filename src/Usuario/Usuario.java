@@ -4,6 +4,11 @@
  */
 package Usuario;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,8 +19,10 @@ import javax.persistence.Table;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Lob;
 
 /**
  *
@@ -43,6 +50,38 @@ public class Usuario implements Serializable {
 
     @Basic(optional = true)
     protected  String DTYPE;
+    
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    protected byte[] image;
+    
+    public byte[] getImage() {
+        return image;
+    }
+    
+    public File createTempFile() {
+        String dir = System.getProperty("java.io.tmpdir");
+        File file = new File(dir + "image-user-" + this.nombre + ".jpg");
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            fos.write(this.image);
+        } catch (Exception e) {
+            System.out.println("Usuario-createTempFile");
+            System.out.println(e.getMessage());
+        }
+        return file;
+    }
+    
+     public void setImage(File file) {
+         try {
+             byte[] picInBytes = new byte[(int) file.length()];
+        FileInputStream fileInputStream = new FileInputStream(file);
+        fileInputStream.read(picInBytes);
+        fileInputStream.close();
+        this.image = picInBytes;
+         } catch (Exception e) {
+             System.out.println("Usuario-SetImage");
+         }
+    }
     
 
     public Usuario(){

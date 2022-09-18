@@ -106,9 +106,6 @@ public class ActividadDao implements IActividadDao {
         try {
             List<Actividad> actividades = em.createNativeQuery("select actividad.ID, actividad.COSTO, actividad.DURACION, actividad.FECHAREGISTRO, actividad.NOMBRE ,actividad.DESCRIPCION from ACTIVIDAD actividad WHERE actividad.INSTITUCION_ID=" + idInstitucion, Actividad.class).getResultList();
             
-            actividades.forEach((Actividad a) -> {
-                System.out.println("soy " + a.getNombre());
-            });
             return actividades;
         } catch (Exception e) {
             System.out.println(e.getMessage());
