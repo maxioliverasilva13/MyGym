@@ -56,7 +56,7 @@ public class Actividad implements Serializable {
     private float costo;
     private Date fechaRegistro;
     @Column(columnDefinition = "varchar(255) default 'Ingresada'")
-    private String estado;
+    private String estado = "Ingresada";
     @ManyToOne
     @JoinColumn()
     private Profesor profesor;

@@ -387,7 +387,7 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         cmbActividades.removeAllItems(); // Primero elimino todos los elems del combobox, para que solo se vean los de la institución seleccionada en el grid.
         //System.out.println("Id de la institucion seleccionada en la tabla: " + selectedInsitucionID);
         try {
-            HashMap<Integer, ActividadDTO> actividades = actBO.listarByInstitucionNotInCuponeras(selectedInsitucionID, idCupSeleccionada);
+            HashMap<Integer, ActividadDTO> actividades = actBO.listarByInstitucionNotInCuponeras(selectedInsitucionID, idCupSeleccionada,"Aceptada");
             actividades.forEach((key, value) -> {
                 ActividadDTO currentActividadDTO = actividades.get(key);
                 model.addElement(new ComboItem(key.toString(), currentActividadDTO.getNombre()));

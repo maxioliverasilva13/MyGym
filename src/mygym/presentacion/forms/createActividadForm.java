@@ -464,7 +464,7 @@ public class createActividadForm extends javax.swing.JFrame{
             ActividadCreateDTO act = new ActividadCreateDTO(selectedInstitucionId, selectedProfId, Float.parseFloat(txtCosto.getText()), txtNombre.getText(), txtareaDescripcion.getText(), fecha, Integer.parseInt(txtDuracion.getText()), BrowseFile.globalFile); 
             try {
                 actBO.crear(act, selectedInstitucionId, selectedProfId);
-                JOptionPane.showMessageDialog(new JFrame(),  "Actividad insertada con exito.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(new JFrame(),  "Actividad insertada con exito.Debes esperar a que esta sea aceptada", "Informacion", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -502,7 +502,7 @@ public class createActividadForm extends javax.swing.JFrame{
     }//GEN-LAST:event_btnExitMouseClicked
 
     private void cmbInstitucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbInstitucionesActionPerformed
-        // TODO add your handling code here:
+        System.out.println("event");
     }//GEN-LAST:event_cmbInstitucionesActionPerformed
 
     private void labelSubirImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSubirImageMouseClicked

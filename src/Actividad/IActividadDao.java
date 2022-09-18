@@ -19,10 +19,12 @@ import java.util.List;
  */
 public interface IActividadDao {
     public void create(ActividadCreateDTO act ,Profesor profesor,Institucion institucion);
-    public Actividad getById(ActividadCreateDTO act);
+    public Actividad getById(int actId);
     public List<Actividad> listAll();
     public void agregarCupXActividad(int idActividad, CuponeraXActividad idCxA );
     public void agergarClase(int idActividad, Clase clase);
-    public Collection<Actividad> listarActividadesByInstitucionNotIntCup(int institucionId, int cuponeraId);  // lista las actividades pertenecientes a esa actividad que no tienen esa cuponera
+    public Collection<Actividad> listarActividadesByInstitucionNotIntCup(int institucionId, int cuponeraId,String status);  // lista las actividades pertenecientes a esa actividad que no tienen esa cuponera
     public Collection<Actividad> listarActividades(int idInstitucion,String status);
+    public List<Actividad> listarAllActividadesPendientes();
+    public void cambiarEstado(Actividad act,String newStatus);
 }

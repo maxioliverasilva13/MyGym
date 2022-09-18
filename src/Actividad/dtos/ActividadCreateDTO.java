@@ -20,9 +20,10 @@ public class ActividadCreateDTO {
     private Date fecha_registro;
     private int profesor_id;
     File image;
+    private String estado;
     
     
-    public ActividadCreateDTO(int institucion_id,int profesor_id, float costo, String nombre, String descripcion, Date fecha_registro, int duracion){
+    public ActividadCreateDTO(int institucion_id,int profesor_id, float costo, String nombre, String descripcion, Date fecha_registro, int duracion,String estado){
         this.institucion_id = institucion_id;
         this.profesor_id = profesor_id;
         this.costo = costo;
@@ -30,6 +31,7 @@ public class ActividadCreateDTO {
         this.descripcion = descripcion;
         this.fecha_registro = fecha_registro;
         this.duracion = duracion;
+        this.estado = estado;
     }
     
     public ActividadCreateDTO(int institucion_id,int profesor_id, float costo, String nombre, String descripcion, Date fecha_registro, int duracion, File file){
@@ -71,6 +73,10 @@ public class ActividadCreateDTO {
     
      public int getProfesorId(){
         return this.profesor_id;   
+     }
+     
+     public String getEstado(){
+        return this.estado;
      }
     
 }

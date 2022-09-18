@@ -4,6 +4,9 @@
  */
 package mygymapp;
 
+import Actividad.ActividadBO;
+import Actividad.IActividadBO;
+import Actividad.dtos.ActividadCreateDTO;
 import EntityManajer.InterfaceEntityManager;
 import javax.persistence.EntityManager;
 import mygym.presentacion.pages.Dashboard;
@@ -18,5 +21,11 @@ public class MyGymApp {
         EntityManager em = InterfaceEntityManager.getInstance();
         Dashboard ds = new Dashboard();
         ds.setVisible(true);
+        
+        IActividadBO actBo = new ActividadBO();
+        
+       // int institucion_id,int profesor_id, float costo, String nombre, String descripcion, Date fecha_registro, int duracion
+       // ActividadCreateDTO actDTO = new ActividadCreateDTO(null,null,);
+     //   actBo.crear(actCreate, 0, 0);
     }
 }

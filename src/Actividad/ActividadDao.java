@@ -67,10 +67,13 @@ public class ActividadDao implements IActividadDao {
     }
 
     @Override
-    public Actividad getById(ActividadCreateDTO act) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Actividad getById(int ActId) {
+       
+        Actividad act = em.find(Actividad.class, ActId);
+        return act;
+           
     }
-
+ 
     @Override
     public List<Actividad> listAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -121,8 +124,8 @@ public class ActividadDao implements IActividadDao {
     }
 
     @Override
-    public Collection<Actividad> listarActividadesByInstitucionNotIntCup(int institucionId, int cuponeraId) {
-         List<Actividad> actividades = this.em.createNativeQuery("SELECT actividad.id, actividad.costo, actividad.duracion, actividad.fecharegistro, actividad.nombre ,actividad.descripcion FROM actividad WHERE actividad.ID NOT IN (SELECT actividad.id FROM actividad LEFT JOIN cuponeraxactividad ON actividad.id = cuponeraxactividad.ACTIVIDAD_ID WHERE cuponeraxactividad.CUPONERA_ID = " + cuponeraId + " AND actividad.INSTITUCION_ID = "+institucionId + ") ", Actividad.class).getResultList();
+    public Collection<Actividad> listarActividadesByInstitucionNotIntCup(int institucionId, int cuponeraId,String status) {
+         List<Actividad> actividades = this.em.createNativeQuery("SELECT actividad.id, actividad.costo, actividad.duracion, actividad.fecharegistro, actividad.nombre ,actividad.descripcion FROM actividad WHERE actividad.ID NOT IN (SELECT actividad.id FROM actividad LEFT JOIN cuponeraxactividad ON actividad.id = cuponeraxactividad.ACTIVIDAD_ID WHERE cuponeraxactividad.CUPONERA_ID = " + cuponeraId + " AND actividad.INSTITUCION_ID = "+institucionId + " ) AND actividad.ESTADO='"+status+"'", Actividad.class).getResultList();
          return actividades;
     }
     
@@ -133,6 +136,23 @@ public class ActividadDao implements IActividadDao {
        List<Actividad> actividades = this.em.createNativeQuery("SELECT * FROM actividad", Actividad.class).getResultList();
        tx.commit();
         return actividades;
+    }
+
+    @Override
+    public List<Actividad> listarAllActividadesPendientes() {
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        List<Actividad> actividades = this.em.createNativeQuery("SELECT * FROM actividad WHERE ESTADO='Ingresada'", Actividad.class).getResultList();
+         tx.commit();
+        return actividades;
+    }
+
+    @Override
+    public void cambiarEstado(Actividad act, String newEstado) {
+         EntityTransaction tx = em.getTransaction();
+         tx.begin();
+         act.setEstado(newEstado);
+         tx.commit(); 
     }
 
    
