@@ -27,8 +27,8 @@ import Clase.DtClase;
 import java.util.ArrayList;
 import Profesor.dtos.ProfesorDTO;
 import Actividad.dtos.ActividadDTO;
-import CategoriaXActividad.CategoriaXActividad;
-import CategoriaXActividad.DtCategoriaXActividad;
+import Categoria.Categoria;
+import Categoria.DtCategoria;
 import Institucion.DtInstitucion;
 import utils.ParserClassesToDt;
 import CuponeraXActividad.DtCuponeraXActividad;
@@ -66,8 +66,8 @@ public class Actividad implements Serializable {
     private Collection<Clase> clases;
     @OneToMany(mappedBy = "actividad")
     private Collection<CuponeraXActividad> cuponerasXActividad;
-    @OneToMany(mappedBy = "actividad")
-    private Collection<CategoriaXActividad> categoriasXActividad;
+    @OneToMany
+    private Collection<Categoria> categorias;
     @Lob
     @Basic(fetch = FetchType.LAZY)
     private byte[] image;
@@ -88,8 +88,8 @@ public class Actividad implements Serializable {
         cuponerasXActividad.add(cuxact);
     }
     
-    public void addCategoriaXActividad(CategoriaXActividad catxact){
-        categoriasXActividad.add(catxact);
+    public void addCategoria(Categoria cat){
+        categorias.add(cat);
     }
     
     public void addClase(Clase clase){
@@ -172,12 +172,16 @@ public class Actividad implements Serializable {
         return cuponerasXActividad;
     }
     
-    public Collection<CategoriaXActividad> getCategoriasXActividad() {
-        return categoriasXActividad;
+    public Collection<Categoria> getCategorias() {
+        return categorias;
     }
 
     public void setCuponerasXActividad(Collection<CuponeraXActividad> cuponerasXActividad) {
         this.cuponerasXActividad = cuponerasXActividad;
+    }
+    
+    public void setCategorias(Collection<Categoria> cats) {
+        this.categorias = cats;
     }
 
     public ActividadDTO getDtActividad() {
@@ -201,11 +205,11 @@ public class Actividad implements Serializable {
         });  
         
         // TO DO TO DO TO DO TO DO TO DO TO DO TO DO TO DO 
-        List<DtCategoriaXActividad> categoriasXact = new ArrayList<>(); // Agregar al DTO creado.
-        if(this.getCategoriasXActividad() != null ){
+        List<DtCategoria> categorias = new ArrayList<>(); // Agregar al DTO creado.
+        if(this.getCategorias() != null ){
 
-            this.getCategoriasXActividad().forEach((categoria) -> {
-                categoriasXact.add(categoria.getDtCategoriaXActividad());
+            this.getCategorias().forEach((categoria) -> {
+                categorias.add(categoria.getDtCategoria());
             });  
 
         }
@@ -213,7 +217,7 @@ public class Actividad implements Serializable {
         ActividadDTO dt = new ActividadDTO(
                 this.id, this.nombre , this.descripcion, this.duracion, this.costo, this.fechaRegistro, profe, allClases, dtIns,
                 !(cuponerasXact.isEmpty()) ? cuponerasXact : null, 
-                !(categoriasXact.isEmpty()) ? categoriasXact : null
+                !(categorias.isEmpty()) ? categorias : null
         );
         return dt;
     }

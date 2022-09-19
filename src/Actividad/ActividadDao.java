@@ -4,7 +4,9 @@
  */
 package Actividad;
 import Actividad.dtos.ActividadCreateDTO;
-import CategoriaXActividad.CategoriaXActividad;
+import Categoria.Categoria;
+import Categoria.CategoriaDao;
+import Categoria.DtCategoria;
 import Clase.Clase;
 import CuponeraXActividad.CuponeraXActividad;
 import Profesor.Profesor;
@@ -34,6 +36,7 @@ import javax.persistence.Persistence;
 public class ActividadDao implements IActividadDao {
     EntityManager em = InterfaceEntityManager.getInstance();
     CuponeraDao cupDao = new CuponeraDao();
+    CategoriaDao catDao = new CategoriaDao();
      
     public ActividadDao(){
        
@@ -41,31 +44,39 @@ public class ActividadDao implements IActividadDao {
 
     @Override
     public void create(ActividadCreateDTO act ,Profesor profesor,Institucion institucion) {
-        List<Cuponera> existe = em.createNativeQuery("select * from ACTIVIDAD where NOMBRE='" + act.getNombre() +"' AND INSTITUCION_ID="+institucion.getId()).getResultList();
+        List<Actividad> existe = em.createNativeQuery("select * from ACTIVIDAD where NOMBRE='" + act.getNombre() +"' AND INSTITUCION_ID="+institucion.getId()).getResultList();
         if (!existe.isEmpty()) {
             throw new ActividadAlreadyExistsException("Ya existe una actividad con ese Nombre, en la institución especificada.");
         }else{
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
-            Actividad activity = new Actividad();
-            activity.setNombre(act.getNombre());
-            activity.setDescripcion(act.getDescripcion());
-            activity.setDuracion(act.getDuracion());
-            activity.setFechaRegistro(act.getFechaRegistro());
-            activity.setCosto(act.getCosto());
-            activity.setProfesor(profesor);
-            activity.setInstitucion(institucion);
-            try {
-                activity.setImage(act.getImage());
-            } catch (Exception e) {
-                System.out.println("Error al subir el archivo");
-                System.out.println(e.getMessage());
-            }
+            Collection<Categoria> categorias = new ArrayList<>();
+            List<DtCategoria> listCats = act.getCategorias();
             
+            listCats.forEach((DtCategoria cat) -> {
+                Categoria c = catDao.existe(cat.getId());
+                categorias.add(c);
+            });
+                        
+            EntityTransaction tx = em.getTransaction();
+            tx.begin();
+                Actividad activity = new Actividad();
+                activity.setNombre(act.getNombre());
+                activity.setDescripcion(act.getDescripcion());
+                activity.setDuracion(act.getDuracion());
+                activity.setFechaRegistro(act.getFechaRegistro());
+                activity.setCosto(act.getCosto());
+                activity.setProfesor(profesor);
+                activity.setInstitucion(institucion);
+                activity.setCategorias(categorias);
+                try {
+                    activity.setImage(act.getImage());
+                    activity.setCategorias(categorias);
+                } catch (Exception e) {
+                    System.out.println("Error al subir el archivo");
+                    System.out.println(e.getMessage());
+                }
             em.persist(activity);
-            
-        tx.commit();
-    }
+            tx.commit();
+        }
     }
 
     @Override
@@ -93,12 +104,12 @@ public class ActividadDao implements IActividadDao {
     }
     
     @Override
-    public void agregarCategoriaXActividad(int idActividad, CategoriaXActividad catXAct) {
+    public void agregarCategoria(int idActividad, Categoria cat) {
             Actividad act = em.find(Actividad.class, idActividad);
 
             EntityTransaction trn = em.getTransaction();
             trn.begin();
-            act.addCategoriaXActividad(catXAct);
+            act.addCategoria(cat);
             trn.commit();
     }
     

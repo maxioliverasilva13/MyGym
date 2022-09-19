@@ -28,7 +28,6 @@ import java.awt.event.ActionListener;
  * @author maximilianooliverasilva
  */
 public class Actividades extends javax.swing.JPanel {
-    createActividadForm formCreate = new createActividadForm();
     //showActividadInfoForm formInfo = new showActividadInfoForm();
     DefaultComboBoxModel model = new DefaultComboBoxModel();
 
@@ -55,16 +54,6 @@ public class Actividades extends javax.swing.JPanel {
     
         cmbInstituciones.addActionListener (new ActionListener () {
             public void actionPerformed(ActionEvent e) {
-                Object selectedItem = cmbInstituciones.getSelectedItem();
-                if (selectedItem != null) {
-                    llenarTabla(Integer.parseInt(((ComboItem)selectedItem).getId()));
-                }
-            }
-        });
-        
-        formCreate.addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
                 Object selectedItem = cmbInstituciones.getSelectedItem();
                 if (selectedItem != null) {
                     llenarTabla(Integer.parseInt(((ComboItem)selectedItem).getId()));
@@ -301,6 +290,18 @@ public class Actividades extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAltaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaMouseClicked
+        createActividadForm formCreate = new createActividadForm();
+        // Window Listener
+        formCreate.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                Object selectedItem = cmbInstituciones.getSelectedItem();
+                if (selectedItem != null) {
+                    llenarTabla(Integer.parseInt(((ComboItem)selectedItem).getId()));
+                }
+            }
+        });
+        
         if (!formCreate.isVisible()) {
             formCreate.setVisible(true);
         }

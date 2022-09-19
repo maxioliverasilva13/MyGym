@@ -4,8 +4,11 @@
  */
 package Actividad.dtos;
 
+import Categoria.DtCategoria;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -20,6 +23,7 @@ public class ActividadCreateDTO {
     private Date fecha_registro;
     private int profesor_id;
     File image;
+    private List<DtCategoria> categorias = new ArrayList<>();
     
     
     public ActividadCreateDTO(int institucion_id,int profesor_id, float costo, String nombre, String descripcion, Date fecha_registro, int duracion){
@@ -42,9 +46,25 @@ public class ActividadCreateDTO {
         this.duracion = duracion;
         this.image = file;
     }
+    
+        public ActividadCreateDTO(int institucion_id,int profesor_id, float costo, String nombre, String descripcion, Date fecha_registro, int duracion, File file, List<DtCategoria> catsInThisActividad){
+        this.institucion_id = institucion_id;
+        this.profesor_id = profesor_id;
+        this.costo = costo;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.fecha_registro = fecha_registro;
+        this.duracion = duracion;
+        this.image = file;
+        this.categorias = catsInThisActividad;
+    }
 
     public File getImage() {
         return image;
+    }
+    
+    public List<DtCategoria> getCategorias() {
+        return categorias;
     }
     
      public int getInstitucionId(){
