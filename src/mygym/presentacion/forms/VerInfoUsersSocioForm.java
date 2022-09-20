@@ -298,7 +298,6 @@ public class VerInfoUsersSocioForm extends javax.swing.JFrame {
         try{
            SocioDTO socio = socioBO.consultarSocio(socioId);
            this.socioData = socio;
-           System.out.println(this.socioData);
         }catch(SocioNotExist s){
             System.out.println(s);
         }

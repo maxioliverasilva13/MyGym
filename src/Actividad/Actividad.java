@@ -192,7 +192,7 @@ public class Actividad implements Serializable {
         });     
         ProfesorDTO profe = null;
         if(this.profesor != null){
-            profe = new ProfesorDTO(profesor.getId(), profesor.getNombre(), profesor.getApellido(), profesor.getNickname(), profesor.getEmail(), profesor.getNacimiento(), profesor.getDescripcionGeneral(), profesor.getBiografia(), profesor.getLinkSitioWeb());
+            profe = new ProfesorDTO(profesor.getId(), profesor.getNombre(), profesor.getApellido(), profesor.getNickname(), profesor.getEmail(), profesor.getNacimiento(), profesor.getDescripcionGeneral(), profesor.getBiografia(), profesor.getLinkSitioWeb(),null, null, null, profesor.getSeguidosDt(), profesor.getSeguidoresDT());
         }
         DtInstitucion dtIns = null;
         if(this.institucion != null){

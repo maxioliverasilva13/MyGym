@@ -72,7 +72,6 @@ public class InstitucionDao implements InterfaceInstitucionDao {
             if (act == null) {
                 throw new ActividadNotFoundException("La Actividad no existe");
             }
-            System.out.println("asd");
             EntityTransaction tr = em.getTransaction();
             tr.begin();
             ins.addActividad(act);

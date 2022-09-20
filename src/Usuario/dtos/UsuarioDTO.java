@@ -5,7 +5,9 @@
 package Usuario.dtos;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -19,6 +21,9 @@ public  class UsuarioDTO {
     protected String EMAIL;
     protected Date NACIMIENTO;
     private File image;
+    List<UsuarioDTO> seguidos = new ArrayList<>();
+    List<UsuarioDTO> seguidores = new ArrayList<>();
+
     
     public UsuarioDTO(int id, String nombre,String apellido,String nickname,String email,Date nacimiento){
         this.ID = id;
@@ -39,6 +44,18 @@ public  class UsuarioDTO {
         this.image = file;
     }
 
+      public UsuarioDTO(int id, String nombre,String apellido,String nickname,String email,Date nacimiento, File file, List<UsuarioDTO> seguidos, List<UsuarioDTO> seguidores){
+        this.ID = id;
+        this.NOMBRE = nombre;
+        this.APELLIDO = apellido;
+        this.NICKNAME = nickname;
+        this.EMAIL = email;
+        this.NACIMIENTO = nacimiento;
+        this.image = file;
+        this.seguidores = seguidores;
+        this.seguidos = seguidos;
+    }
+    
     public File getImage() {
         return image;
     }
@@ -62,7 +79,14 @@ public  class UsuarioDTO {
     public Date getNacimiento(){
         return this.NACIMIENTO;
     }
+
+    public List<UsuarioDTO> getSeguidos() {
+        return seguidos;
+    }
+
+    public List<UsuarioDTO> getSeguidores() {
+        return seguidores;
+    }
     
-  
     
 }

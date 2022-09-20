@@ -370,13 +370,11 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
        try{
            this.profDto = profesorBo.getProfesorById(idProf);
        }catch(ProfesorNotExist ex){
-           System.out.println("Profesor no existe");
        }
         
     }
     
-    private void initialRender(){
-        
+    private void initialRender(){         
         this.jLabel13.setText(this.profDto.getNickname());
         this.jLabel16.setText(this.profDto.getNombre());
         this.jLabel17.setText(this.profDto.getApellido());

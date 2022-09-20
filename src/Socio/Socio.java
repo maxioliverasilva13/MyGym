@@ -4,14 +4,19 @@
  */
 package Socio;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import Registro.Registro;
+import Socio.dtos.SocioDTO;
 import Usuario.Usuario;
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.PrimaryKeyJoinColumn;
+import Registro.DtRegistro;
 
 
 @Entity
@@ -61,6 +66,16 @@ public class Socio extends Usuario{
         this.DTYPE = DTYPE;
     }
     
+
+    public SocioDTO getDtSocio() {
+        List<DtRegistro> registros = new ArrayList();
+        
+        this.getRegistros().forEach((registro) ->{
+            registros.add(registro.getDtRegistro());
+        });
+
+        return new SocioDTO(this.getId(), this.getNombre(),this.getApellido(),this.getNickname(),this.getEmail(),this.getNacimiento(), null, this.createTempFile()); 
+    }
     
     
 }

@@ -19,6 +19,8 @@ public interface IUsuarioDAO {
      public Usuario getByEmail(String email);
      public Usuario getById(int id);
      public String getTipoById(int id);
+     public void seguirAUsuario(int myId, int idUsuario);
+     public void dejarSeguirUsuario(int myId, int idUsuario);
      
    
 }

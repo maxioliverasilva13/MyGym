@@ -56,6 +56,16 @@ public class ProfesorDTO extends UsuarioDTO {
       this.instituciones = instituciones;
     }
 
+    public ProfesorDTO(int id,String nombre,String apellido,String nickname,String email ,Date nacimiento,String descripcionGeneral,String biografia,String linkSitioWeb, List<ActividadDTO> acts, List<DtInstitucion> instituciones, File file, List<UsuarioDTO> seguidos, List<UsuarioDTO> seguidores){
+      super(id, nombre,apellido,nickname,email,nacimiento, file, seguidos, seguidores);
+      this.descripcionGeneral = descripcionGeneral;
+      this.biografia = biografia;
+      this.linkSitioWeb = linkSitioWeb;
+      this.actividades = acts;
+      this.instituciones = instituciones;
+    }
+
+
 
     public List<DtInstitucion> getInstituciones() {
         return this.instituciones;

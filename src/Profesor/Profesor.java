@@ -82,10 +82,10 @@ public class Profesor extends Usuario {
     public ProfesorDTO getDtProfesor() {
         ParserClassesToDt parseclass = new ParserClassesToDt();
         if (this.image != null) {
-            ProfesorDTO profe = new ProfesorDTO(this.id, this.nombre, this.apellido, this.nickname, this.email, this.nacimiento, this.descripcionGeneral, this.biografia, this.linkSitioWeb, parseclass.getActividadDTOs(actividades), parseclass.getInstitucionesDt(instituciones), this.createTempFile());
+            ProfesorDTO profe = new ProfesorDTO(this.id, this.nombre, this.apellido, this.nickname, this.email, this.nacimiento, this.descripcionGeneral, this.biografia, this.linkSitioWeb, parseclass.getActividadDTOs(actividades), parseclass.getInstitucionesDt(instituciones), this.createTempFile(),  this.getSeguidosDt(), this.getSeguidoresDT());
             return profe;
         } else {
-            ProfesorDTO profe = new ProfesorDTO(this.id, this.nombre, this.apellido, this.nickname, this.email, this.nacimiento, this.descripcionGeneral, this.biografia, this.linkSitioWeb, parseclass.getActividadDTOs(actividades), parseclass.getInstitucionesDt(instituciones));
+            ProfesorDTO profe = new ProfesorDTO(this.id, this.nombre, this.apellido, this.nickname, this.email, this.nacimiento, this.descripcionGeneral, this.biografia, this.linkSitioWeb, parseclass.getActividadDTOs(actividades), parseclass.getInstitucionesDt(instituciones), null,  this.getSeguidosDt(), this.getSeguidoresDT());
             return profe;
         }
     }

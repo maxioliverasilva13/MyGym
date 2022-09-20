@@ -110,11 +110,11 @@ public class ParserClassesToDt {
         ProfesorDTO profe;
         if (prof.getImage() != null ) {
             profe = new ProfesorDTO(
-                prof.getId(), prof.getNombre(), prof.getApellido(), prof.getNickname(), prof.getEmail(), prof.getNacimiento(), prof.getDescripcionGeneral(), prof.getBiografia(), prof.getLinkSitioWeb(), null, null, prof.createTempFile());
+                prof.getId(), prof.getNombre(), prof.getApellido(), prof.getNickname(), prof.getEmail(), prof.getNacimiento(), prof.getDescripcionGeneral(), prof.getBiografia(), prof.getLinkSitioWeb(), null, null, prof.createTempFile(), prof.getSeguidosDt(), prof.getSeguidoresDT());
         return profe;
         } else {
             profe = new ProfesorDTO(
-                prof.getId(), prof.getNombre(), prof.getApellido(), prof.getNickname(), prof.getEmail(), prof.getNacimiento(), prof.getDescripcionGeneral(), prof.getBiografia(), prof.getLinkSitioWeb(), null, null);
+                prof.getId(), prof.getNombre(), prof.getApellido(), prof.getNickname(), prof.getEmail(), prof.getNacimiento(), prof.getDescripcionGeneral(), prof.getBiografia(), prof.getLinkSitioWeb(), null, null, null,  prof.getSeguidosDt(), prof.getSeguidoresDT());
         return profe;
         }
     }

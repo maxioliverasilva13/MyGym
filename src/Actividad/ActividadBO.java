@@ -87,7 +87,6 @@ public class ActividadBO  implements IActividadBO{
     public HashMap<Integer, ActividadDTO> listarActividades(int idInstitucion){ 
         HashMap<Integer, ActividadDTO> actividades = new HashMap<>();
         List<Actividad> acts = actDao.listarActividades(idInstitucion);
-        System.out.println("el size es " + acts.size());
         acts.forEach((Actividad act) -> {
             actividades.put(act.getId(), act.getDtActividad());
         });

@@ -27,8 +27,15 @@ public class SocioDTO extends UsuarioDTO{
         this.registros  = registros;
     }
     
+    public SocioDTO(int id,String nombre,String apellido,String nickname,String email,Date nacimiento,List<DtRegistro> registros, File file, List<UsuarioDTO> seguidos, List<UsuarioDTO> seguidores){
+        super(id,nombre,apellido,nickname,email,nacimiento, file, seguidos, seguidores);
+        this.registros  = registros;
+    }
+    
     public List<DtRegistro> getRegistros(){
         return this.registros;
     }
+    
+    
    
 }

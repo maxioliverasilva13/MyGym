@@ -11,6 +11,8 @@ import Registro.Registro;
 import Socio.dtos.SocioDTO;
 import Socio.dtos.SocioEditDTO;
 import Socio.exceptions.SocioNotExist;
+import Usuario.dtos.UsuarioDTO;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,7 +53,9 @@ public class SocioBO implements ISocioBO {
                item.getEmail(),
                item.getNacimiento(),
                null,
-               item.createTempFile()
+               item.createTempFile(),
+               item.getSeguidosDt(),
+               item.getSeguidoresDT()
             ));
         });
         return socios;
@@ -72,10 +76,10 @@ public class SocioBO implements ISocioBO {
         });
         
         if (socioFind.getImage() != null) {
-            res = new SocioDTO(socioFind.getId(), socioFind.getNombre(),socioFind.getApellido(),socioFind.getNickname(),socioFind.getEmail(),socioFind.getNacimiento(),registros, socioFind.createTempFile());        
+            res = new SocioDTO(socioFind.getId(), socioFind.getNombre(),socioFind.getApellido(),socioFind.getNickname(),socioFind.getEmail(),socioFind.getNacimiento(),registros, socioFind.createTempFile(), socioFind.getSeguidosDt(), socioFind.getSeguidoresDT());        
             return res;
         } else {
-            res = new SocioDTO(socioFind.getId(), socioFind.getNombre(),socioFind.getApellido(),socioFind.getNickname(),socioFind.getEmail(),socioFind.getNacimiento(),registros);        
+            res = new SocioDTO(socioFind.getId(), socioFind.getNombre(),socioFind.getApellido(),socioFind.getNickname(),socioFind.getEmail(),socioFind.getNacimiento(),registros, null, socioFind.getSeguidosDt(), socioFind.getSeguidoresDT());        
             return res;
         }
         

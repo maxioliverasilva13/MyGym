@@ -297,7 +297,6 @@ public class Cuponeras extends javax.swing.JPanel {
         }
         Object idObj = tablaCuponeras.getValueAt(selectedRowId, 0);
         int id = (Integer) idObj;
-        //System.out.println("Id de la cuponera seleccionada en el DASHBOARD: "+ id);
         
         addActividadtoCuponera formAgregar = new addActividadtoCuponera(id);
 

@@ -340,7 +340,6 @@ public class Actividades extends javax.swing.JPanel {
     }//GEN-LAST:event_btnInfoMousePressed
 
     private void btnInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInfoMouseClicked
-        System.out.println("Hola!");
         int selectedRowId = tablaActividades.getSelectedRow();
         if(selectedRowId == -1){
             JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una actividad existente.", "Error", JOptionPane.ERROR_MESSAGE);

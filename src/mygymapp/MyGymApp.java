@@ -5,6 +5,7 @@
 package mygymapp;
 
 import EntityManajer.InterfaceEntityManager;
+import Usuario.UsuarioDAO;
 import javax.persistence.EntityManager;
 import mygym.presentacion.pages.Dashboard;
 

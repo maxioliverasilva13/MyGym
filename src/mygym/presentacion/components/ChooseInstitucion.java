@@ -550,12 +550,8 @@ public class ChooseInstitucion extends javax.swing.JFrame {
     
   private void loadInstituciones(){
        this.jComboInstituciones.removeAllItems();
-       System.out.println("entro 1");
-       System.out.println(selectedIdInstitucion);
        instituciones.forEach((Integer key, DtInstitucion inst) -> {
-                  System.out.println("el id es " + key );
            if (selectedIdInstitucion == key) {
-               System.out.println("lo seteo bien");
                this.jComboInstituciones.setSelectedItem(inst.getNombre());
            }
            jComboInstituciones.addItem(inst.getNombre());

@@ -456,7 +456,6 @@ public class createActividadForm extends javax.swing.JFrame{
             
             Object selectedItemProf = cmbProfesores.getSelectedItem();
             int selectedProfId = Integer.parseInt(((ComboItem)selectedItemProf).getId());           
-            System.out.println(selectedItemProf);
 
             
             SelectedDate fActual = dateChooserActual.getSelectedDate();

@@ -73,7 +73,6 @@ public class AddUsersForm extends javax.swing.JFrame {
         dispose();
         this.setLocationRelativeTo(null);
         jPanel2.hide();
-        System.out.println(userType);
         this.isEditing = true;
         this.loadInstituciones();
         this.jLabel1.setText("Guardar Informacion");

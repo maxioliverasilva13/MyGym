@@ -4,7 +4,9 @@
  */
 package Usuario;
 
+import Clase.Clase;
 import EntityManajer.InterfaceEntityManager;
+import Exceptions.UsuarioASeguirNotFoundException;
 import Institucion.Institucion;
 import Institucion.InstitucionDao;
 import Profesor.Profesor;
@@ -21,6 +23,8 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import Exceptions.UsuarioASeguirNotFoundException;
+import Seguidor.Seguidor;
 
 
 
@@ -151,11 +155,56 @@ public class UsuarioDAO implements IUsuarioDAO{
               // System.out.println(e.getMessage());
           }
           return null;
-
-        
     }
     
+    public void existeSeguido(int myId, int idUsuario) {
+        Query querySeguidor = em.createNativeQuery(
+        "SELECT *FROM seguidor s WHERE s.PERSONA_ID=" + myId + " and s.SIGUEA_ID=" + idUsuario, Seguidor.class);
+        Seguidor s = (Seguidor)querySeguidor.getSingleResult();
+        if (s!= null) {
+            throw new UsuarioASeguirNotFoundException("Ya sigues a este usuario");
+        }
+    }
     
+    @Override
+    public void seguirAUsuario(int myId, int idUsuario) {
+        if (myId == idUsuario) {
+            throw new UsuarioASeguirNotFoundException("No te puedes seguir a ti mismo");
+        }
+        existeSeguido(myId, idUsuario);
+        
+        Usuario yo = getById(myId);
+        if (yo == null) {
+            throw new UsuarioASeguirNotFoundException("El usuario que va a seguir no existe");
+        }
+        
+        Usuario personaASeguir = getById(idUsuario);
+        if (personaASeguir == null) {
+            throw new UsuarioASeguirNotFoundException("El usuario que va a seguir no existe");
+        }
+        EntityTransaction tx = this.em.getTransaction();
+        tx.begin();
+        Seguidor seg = new Seguidor();
+        seg.setPersona(yo);
+        seg.setSigueA(personaASeguir);
+        em.persist(seg);
+        tx.commit();
+    }
+    
+    @Override
+    public void dejarSeguirUsuario(int myId, int idUsuario) {
+        Query querySeguidor = em.createNativeQuery(
+        "SELECT *FROM seguidor s WHERE s.PERSONA_ID=" + myId + " and s.SIGUEA_ID=" + idUsuario, Seguidor.class);
+        Seguidor s = (Seguidor)querySeguidor.getSingleResult();
+        if (s!= null) {
+             EntityTransaction tx = this.em.getTransaction();
+            tx.begin();
+            em.remove(s);
+            tx.commit();
+            
+        }
+       
+    }
     
     
 }

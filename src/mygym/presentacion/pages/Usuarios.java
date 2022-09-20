@@ -123,8 +123,6 @@ public class Usuarios extends javax.swing.JPanel {
         
         panel.removeAll();
         IUsuarioBO usuarioBo = new UsuarioBO();
-        int sizeOfRows = usuarioBo.listarUsuarios().size();
-        for (int i = 0; i < 15; i++) {
             usuarioBo.listarUsuarios().forEach((key,user) -> {
            String filePath = null;
            if (user.getImage() != null) {
@@ -141,7 +139,6 @@ public class Usuarios extends javax.swing.JPanel {
            panel.add(card, c);
            counter++;
         });
-        }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
