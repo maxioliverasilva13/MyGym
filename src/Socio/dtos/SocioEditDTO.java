@@ -14,6 +14,7 @@ public class SocioEditDTO {
     private String nombre;
     private String apellido;
     private String nickname;
+    private char[] password;
     private Date nacimiento;
     private String email;
     
@@ -26,6 +27,15 @@ public class SocioEditDTO {
        
     }
     
+    public SocioEditDTO(String nombre,String apellido,String nickname,char[] pass,String email,Date nacimiento){
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.nickname = nickname;
+        this.password = pass;
+        this.nacimiento = nacimiento;
+        this.email = email;
+    }
+    
     public String getNombre(){
         return this.nombre;
     }
@@ -36,6 +46,10 @@ public class SocioEditDTO {
         return this.nickname;
     }
  
+    public char[] getPasswordChar(){
+        return this.password;
+    }
+    
     public Date getNacimiento(){
         return this.nacimiento;
     }

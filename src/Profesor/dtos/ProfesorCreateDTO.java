@@ -20,16 +20,16 @@ public class ProfesorCreateDTO extends UsuarioCreateDTO{
     private int idInstitucion;
   
     
-    public ProfesorCreateDTO(String nombre,String apellido,String nickname,String descripcionGeneral,String biografia,String email, String linkSitioWeb,Date nacimiento){
-        super(nombre,apellido,email,nickname,nacimiento);
+    public ProfesorCreateDTO(String nombre,String apellido,String nickname,char[] pass,String descripcionGeneral,String biografia,String email, String linkSitioWeb,Date nacimiento){
+        super(nombre,apellido,email,nickname,pass,nacimiento);
         
         this.descripcionGeneral = descripcionGeneral;
         this.biografia = biografia;
         this.linkSitioWeb = linkSitioWeb;
     }
     
-    public ProfesorCreateDTO(String nombre,String apellido,String nickname,String descripcionGeneral,String biografia,String email, String linkSitioWeb,Date nacimiento, int idInstitucion){
-        super(nombre,apellido,email,nickname,nacimiento);
+    public ProfesorCreateDTO(String nombre,String apellido,String nickname,char[] pass,String descripcionGeneral,String biografia,String email, String linkSitioWeb,Date nacimiento, int idInstitucion){
+        super(nombre,apellido,email,nickname,pass,nacimiento);
         
         this.descripcionGeneral = descripcionGeneral;
         this.biografia = biografia;

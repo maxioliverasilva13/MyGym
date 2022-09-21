@@ -19,8 +19,8 @@ public class SocioCreateDTO extends UsuarioCreateDTO {
     private Date nacimiento;
     private String email;
     
-    public SocioCreateDTO(String nombre,String apellido,String nickname,String email,Date nacimiento){
-         super(nombre,apellido,email,nickname,nacimiento);
+    public SocioCreateDTO(String nombre,String apellido,String nickname, char[] password,String email,Date nacimiento){
+         super(nombre,apellido,email,nickname,password,nacimiento);
 
        
     }

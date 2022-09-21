@@ -62,6 +62,7 @@ public class AddUsersForm extends javax.swing.JFrame {
         dispose();
         this.setLocationRelativeTo(null);
         jPanel2.hide();
+        btnHabilitarModificarPass.setVisible(false);
         this.loadInstituciones();
     }
 
@@ -76,6 +77,11 @@ public class AddUsersForm extends javax.swing.JFrame {
         this.loadInstituciones();
         this.jLabel1.setText("Guardar Informacion");
         idToEdit = id;
+        
+        passField.setEnabled(false);
+        passRepeatField.setEnabled(false);
+        passField.setText("passwordtext");
+        passRepeatField.setText("passwordtext");
         if ("Socio".equals(userType)) {
             SocioDTO socioInfo = socioBO.consultarSocio(id);
             fillSocioInfo(socioInfo);
@@ -148,7 +154,6 @@ public class AddUsersForm extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -157,7 +162,6 @@ public class AddUsersForm extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -169,6 +173,11 @@ public class AddUsersForm extends javax.swing.JFrame {
         exitBtn = new javax.swing.JLabel();
         btnMinimizarBG = new javax.swing.JPanel();
         btnMinimizar = new javax.swing.JLabel();
+        lblPass = new javax.swing.JLabel();
+        lblConfirmPass = new javax.swing.JLabel();
+        passField = new javax.swing.JPasswordField();
+        passRepeatField = new javax.swing.JPasswordField();
+        btnHabilitarModificarPass = new javax.swing.JButton();
 
         jOptionPane1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -176,19 +185,24 @@ public class AddUsersForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(540, 830));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
+        jPanel1.setMaximumSize(new java.awt.Dimension(540, 830));
+        jPanel1.setMinimumSize(new java.awt.Dimension(540, 830));
+        jPanel1.setPreferredSize(new java.awt.Dimension(540, 830));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jLabel6.setText("Fecha de Nacimiento");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 346, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jLabel7.setText("Nombre");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 212, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
 
         jComboBox1.setBackground(new java.awt.Color(255, 255, 254));
         jComboBox1.setFont(new java.awt.Font("Dubai Medium", 0, 12)); // NOI18N
@@ -196,7 +210,6 @@ public class AddUsersForm extends javax.swing.JFrame {
         jComboBox1.setToolTipText("");
         jComboBox1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jComboBox1.setFocusable(false);
-        jComboBox1.setOpaque(true);
         jComboBox1.setVerifyInputWhenFocusTarget(false);
         jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -208,15 +221,15 @@ public class AddUsersForm extends javax.swing.JFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 129, 120, -1));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 120, -1));
 
         jLabel2.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jLabel2.setText("Tipo de Usuario");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 129, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jLabel3.setText("Apellido");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 256, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, -1, -1));
 
         jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jTextField1.setMargin(new java.awt.Insets(2, 10, 2, 10));
@@ -225,7 +238,7 @@ public class AddUsersForm extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 254, 186, 27));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 186, 27));
 
         jTextField2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jTextField2.setMargin(new java.awt.Insets(2, 10, 2, 10));
@@ -234,15 +247,15 @@ public class AddUsersForm extends javax.swing.JFrame {
                 jTextField2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 204, 184, 30));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 184, 30));
 
         jLabel4.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jLabel4.setText("Email");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 301, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jLabel5.setText("NickName");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 169, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 140, -1));
 
         jTextField3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jTextField3.setMargin(new java.awt.Insets(2, 10, 2, 10));
@@ -251,7 +264,7 @@ public class AddUsersForm extends javax.swing.JFrame {
                 jTextField3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 167, 186, 27));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 186, 30));
 
         jTextField4.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jTextField4.setMargin(new java.awt.Insets(2, 10, 2, 10));
@@ -260,7 +273,7 @@ public class AddUsersForm extends javax.swing.JFrame {
                 jTextField4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 299, 184, 27));
+        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 184, 27));
 
         jTextField5.setToolTipText("");
         jTextField5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
@@ -270,28 +283,24 @@ public class AddUsersForm extends javax.swing.JFrame {
                 jTextField5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 344, 184, 27));
-
-        jLabel8.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
-        jLabel8.setText("Informacion Personal");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 79, -1, -1));
+        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 184, 27));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 254));
         jButton1.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CancelarButton.jpg"))); // NOI18N
         jButton1.setBorder(null);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cancel(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 820, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 770, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AceptarButton.jpg"))); // NOI18N
         jButton2.setBorder(null);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
@@ -302,7 +311,7 @@ public class AddUsersForm extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(433, 820, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 770, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -333,25 +342,21 @@ public class AddUsersForm extends javax.swing.JFrame {
         });
         jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 184, 27));
 
-        jLabel11.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
-        jLabel11.setText("Institucion");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 362, -1, -1));
-
         jComboBox2.setBackground(new java.awt.Color(255, 255, 254));
         jComboBox2.setFont(new java.awt.Font("Dubai Medium", 0, 12)); // NOI18N
         jComboBox2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jComboBox2.setFocusable(false);
-        jComboBox2.setOpaque(true);
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 362, 120, -1));
+        jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 170, -1));
 
         jLabel9.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Institucion");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 318, -1, -1));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 350, 40));
 
         jLabel13.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jLabel13.setText("Descripcion");
@@ -372,7 +377,7 @@ public class AddUsersForm extends javax.swing.JFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, 25));
 
         headerBar.setBackground(new java.awt.Color(255, 255, 255));
-        headerBar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(215, 215, 215)));
+        headerBar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 0, new java.awt.Color(215, 215, 215)));
         headerBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 headerBarMouseDragged(evt);
@@ -441,7 +446,43 @@ public class AddUsersForm extends javax.swing.JFrame {
 
         jPanel1.add(headerBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 20));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 880));
+        lblPass.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
+        lblPass.setText("Contraseña");
+        jPanel1.add(lblPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 140, -1));
+
+        lblConfirmPass.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
+        lblConfirmPass.setText("Confirmar Contraseña");
+        jPanel1.add(lblConfirmPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 140, -1));
+
+        passField.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        passField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        passField.setEchoChar('*');
+        jPanel1.add(passField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 186, 30));
+
+        passRepeatField.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        passRepeatField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        passRepeatField.setEchoChar('*');
+        jPanel1.add(passRepeatField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 186, 30));
+
+        btnHabilitarModificarPass.setBackground(new java.awt.Color(76, 131, 122));
+        btnHabilitarModificarPass.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        btnHabilitarModificarPass.setForeground(new java.awt.Color(255, 255, 255));
+        btnHabilitarModificarPass.setText("Modificar");
+        btnHabilitarModificarPass.setBorder(null);
+        btnHabilitarModificarPass.setFocusPainted(false);
+        btnHabilitarModificarPass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHabilitarModificarPassMouseClicked(evt);
+            }
+        });
+        btnHabilitarModificarPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHabilitarModificarPassActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnHabilitarModificarPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 70, 20));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 830));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -528,6 +569,11 @@ public class AddUsersForm extends javax.swing.JFrame {
             error = true;
         }
 
+        if (passField.getText().equals("") || passRepeatField.getText().equals("")) {
+            JOptionPane.showMessageDialog(new JFrame(), "Los campos de contraseña no deben estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
+            error = true;
+        }
+
         if (jComboBox1.getItemAt(jComboBox1.getSelectedIndex()).equals("Profesor/a")) {
             if (jTextArea1.getText().equals("")) {
                 jTextArea1.setBorder(new MatteBorder(1, 1, 1, 1, Color.red));
@@ -548,21 +594,33 @@ public class AddUsersForm extends javax.swing.JFrame {
         if (!isEditing) {
             try {
                 if (error == false) {
-                    
-                    if (jComboBox1.getItemAt(jComboBox1.getSelectedIndex()).equals("Profesor/a")) {
-                        int selectedInstitucionId = Integer.parseInt(((ComboItem) selectedItemInsti).getId());
 
-                        if (selectedInstitucionId == 0) {
-                            JOptionPane.showMessageDialog(new JFrame(), "Por favor seleccione una institucion", "Error", JOptionPane.INFORMATION_MESSAGE);
+                    if (jComboBox1.getItemAt(jComboBox1.getSelectedIndex()).equals("Profesor/a")) {
+
+                        if (selectedItemInsti == null) {
+                            JOptionPane.showMessageDialog(new JFrame(), "Por favor seleccione una institucion", "Error", JOptionPane.ERROR_MESSAGE);
+                            return;
                         }
-                        ProfesorCreateDTO prof = new ProfesorCreateDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(), jTextArea2.getText(), jTextArea1.getText(), jTextField4.getText(), jTextField6.getText(), fecha, selectedInstitucionId);
-                        usr.create(prof);
-                        this.dispose();
+                        int selectedInstitucionId = Integer.parseInt(((ComboItem) selectedItemInsti).getId());
+                        
+                        if(passField.getText().equals(passRepeatField.getText())){
+                            ProfesorCreateDTO prof = new ProfesorCreateDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(), passRepeatField.getPassword(), jTextArea2.getText(), jTextArea1.getText(), jTextField4.getText(), jTextField6.getText(), fecha, selectedInstitucionId);
+                            usr.create(prof);
+                            this.dispose();
+                        }else{
+                            JOptionPane.showMessageDialog(new JFrame(), "Los campos de contraseña deben coincidir.", "Error", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
                     }
                     if (jComboBox1.getItemAt(jComboBox1.getSelectedIndex()).equals("Socio/a")) {
-                        SocioCreateDTO usu = new SocioCreateDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(), jTextField4.getText(), fecha);
-                        usr.create(usu);
-                        this.dispose();
+                        if(passField.getText().equals(passRepeatField.getText())){
+                            SocioCreateDTO usu = new SocioCreateDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(), passRepeatField.getPassword(), jTextField4.getText(), fecha);
+                            usr.create(usu);
+                            this.dispose();
+                        }else{
+                            JOptionPane.showMessageDialog(new JFrame(), "Los campos de contraseña deben coincidir.", "Error", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
                     }
                     JOptionPane.showMessageDialog(new JFrame(), "Usuario agregado correctamente", "Usuario Agregado", JOptionPane.INFORMATION_MESSAGE);
 
@@ -573,16 +631,38 @@ public class AddUsersForm extends javax.swing.JFrame {
         } else {
             try {
                 if (error == false) {
-
+                    
                     if (jComboBox1.getItemAt(jComboBox1.getSelectedIndex()).equals("Profesor/a")) {
-                        ProfesorEditDTO editSocio = new ProfesorEditDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(), jTextArea2.getText(), jTextArea1.getText(), jTextField6.getText(), jTextField4.getText(), fecha);
-                        profeBO.editProfesorById(idToEdit, editSocio);
-                        this.dispose();
+                        if (passField.isEnabled()){ // Modifica datos y password.
+                            if(passField.getText().equals(passRepeatField.getText())){
+                                ProfesorEditDTO editSocio = new ProfesorEditDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(),passRepeatField.getPassword(), jTextArea2.getText(), jTextArea1.getText(), jTextField6.getText(), jTextField4.getText(), fecha);
+                                profeBO.editProfesorById(idToEdit, editSocio);
+                                this.dispose();
+                            }else{
+                                JOptionPane.showMessageDialog(new JFrame(), "Los campos de contraseña deben coincidir.", "Error", JOptionPane.ERROR_MESSAGE);
+                                return;
+                            }
+                        }else{ // Modifica otros datos, pero no la password.
+                            ProfesorEditDTO editSocio = new ProfesorEditDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(), jTextArea2.getText(), jTextArea1.getText(), jTextField6.getText(), jTextField4.getText(), fecha);
+                            profeBO.editProfesorById(idToEdit, editSocio);
+                            this.dispose();
+                        }
                     }
                     if (jComboBox1.getItemAt(jComboBox1.getSelectedIndex()).equals("Socio/a")) {
-                        SocioEditDTO editSocio = new SocioEditDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(), jTextField4.getText(), fecha);
-                        socioBO.editar(idToEdit, editSocio);
-                        this.dispose();
+                        if (passField.isEnabled()){
+                            if(passField.getText().equals(passRepeatField.getText())){
+                                SocioEditDTO editSocio = new SocioEditDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(),passRepeatField.getPassword(), jTextField4.getText(), fecha);
+                                socioBO.editar(idToEdit, editSocio);
+                                this.dispose();
+                            }else{
+                                JOptionPane.showMessageDialog(new JFrame(), "Los campos de contraseña deben coincidir.", "Error", JOptionPane.ERROR_MESSAGE);
+                                return;
+                            }
+                        }else{ // No modifica password
+                            SocioEditDTO editSocio = new SocioEditDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(), jTextField4.getText(), fecha);
+                            socioBO.editar(idToEdit, editSocio);
+                            this.dispose();
+                        }
                     }
                     JOptionPane.showMessageDialog(new JFrame(), "Usuario Editado correctamente", "Usuario Editado", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -613,6 +693,24 @@ public class AddUsersForm extends javax.swing.JFrame {
         xMouse = evt.getX();
         yMouse = evt.getY();
     }//GEN-LAST:event_headerBarMousePressed
+
+    private void btnHabilitarModificarPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHabilitarModificarPassMouseClicked
+        if (!passField.isEnabled()){
+            passField.setEnabled(true);
+            passRepeatField.setEnabled(true);
+            passField.setText("");
+            passRepeatField.setText("");
+        }else{
+            passField.setEnabled(false);
+            passRepeatField.setEnabled(false);
+            passField.setText("passwordtext");
+            passRepeatField.setText("passwordtext");
+        }
+    }//GEN-LAST:event_btnHabilitarModificarPassMouseClicked
+
+    private void btnHabilitarModificarPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHabilitarModificarPassActionPerformed
+
+    }//GEN-LAST:event_btnHabilitarModificarPassActionPerformed
 
     private void loadInstituciones() {
         this.jComboBox2.removeAllItems();
@@ -663,6 +761,8 @@ public class AddUsersForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnHabilitarModificarPass;
     private javax.swing.JLabel btnMinimizar;
     private javax.swing.JPanel btnMinimizarBG;
     private javax.swing.JLabel exitBtn;
@@ -675,7 +775,6 @@ public class AddUsersForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
@@ -684,7 +783,6 @@ public class AddUsersForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
@@ -699,5 +797,9 @@ public class AddUsersForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel lblConfirmPass;
+    private javax.swing.JLabel lblPass;
+    private javax.swing.JPasswordField passField;
+    private javax.swing.JPasswordField passRepeatField;
     // End of variables declaration//GEN-END:variables
 }

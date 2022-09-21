@@ -31,6 +31,8 @@ public class Usuario implements Serializable {
     public int id;
     @Column()
     protected  String nickname;
+    @Column()
+    protected String password;
     @Column
     protected  String nombre;
     @Column
@@ -57,6 +59,10 @@ public class Usuario implements Serializable {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
+    
+    public void setPassword(String pass) {
+        this.password = pass;
+    }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -80,6 +86,10 @@ public class Usuario implements Serializable {
 
     public String getNickname() {
         return nickname;
+    }
+    
+    public String getPassword() {
+        return password;
     }
 
     public String getNombre() {
