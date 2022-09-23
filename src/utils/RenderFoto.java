@@ -29,13 +29,13 @@ import org.netbeans.lib.awtextra.AbsoluteLayout;
  * @author Maximiliano Olivera
  */
 public class RenderFoto extends DefaultTableCellRenderer {
-    JLabel lbl = new JLabel();
+ JLabel lbl = new JLabel();
     
  public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
   boolean hasFocus, int row, int column) {
      try {
-             String filePath = (String)value;
-    if (filePath == null ){        
+     String filePath = (String)value;
+    if (filePath == null || filePath == "" ){        
         return null;
     }
     //lbl.setIcon(icon);

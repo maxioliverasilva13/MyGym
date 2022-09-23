@@ -688,7 +688,7 @@ public class AddClaseForm extends javax.swing.JFrame {
     
       private void loadActividades(){
        this.jComboBox3.removeAllItems();
-       actividades = actBO.listarActividades(selectedInstitucionId);
+       actividades = actBO.listarActividades(selectedInstitucionId,"Aceptada");
        actividades.forEach((Integer key, ActividadDTO data) -> {
            this.jComboBox3.addItem(data.getNombre());
        });

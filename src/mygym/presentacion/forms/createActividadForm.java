@@ -233,7 +233,7 @@ public class createActividadForm extends javax.swing.JFrame{
         btnMinimizar.setForeground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnMinimizar.setText("-");
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnMinimizarMouseClicked(evt);
@@ -259,7 +259,7 @@ public class createActividadForm extends javax.swing.JFrame{
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
         btnExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnExit.setText("X");
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnExitMouseClicked(evt);
@@ -561,10 +561,10 @@ public class createActividadForm extends javax.swing.JFrame{
                 catsInThisAct.add(cat);
             });
 
-            ActividadCreateDTO act = new ActividadCreateDTO(selectedInstitucionId, selectedProfId, Float.parseFloat(txtCosto.getText()), txtNombre.getText(), txtareaDescripcion.getText(), fecha, Integer.parseInt(txtDuracion.getText()), BrowseFile.globalFile, catsInThisAct); 
+            ActividadCreateDTO act = new ActividadCreateDTO(selectedInstitucionId, selectedProfId, Float.parseFloat(txtCosto.getText()), txtNombre.getText(), txtareaDescripcion.getText(), fecha, Integer.parseInt(txtDuracion.getText()), BrowseFile.globalFile, catsInThisAct, ""); 
             try {
                 actBO.crear(act, selectedInstitucionId, selectedProfId);
-                JOptionPane.showMessageDialog(new JFrame(),  "Actividad insertada con exito.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(new JFrame(),  "Actividad insertada con exito.Debes esperar a que esta sea aceptada", "Informacion", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -602,7 +602,7 @@ public class createActividadForm extends javax.swing.JFrame{
     }//GEN-LAST:event_btnExitMouseClicked
 
     private void cmbInstitucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbInstitucionesActionPerformed
-        // TODO add your handling code here:
+        System.out.println("event");
     }//GEN-LAST:event_cmbInstitucionesActionPerformed
 
     private void labelSubirImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSubirImageMouseClicked

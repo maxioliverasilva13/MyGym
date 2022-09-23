@@ -103,7 +103,9 @@ public class ParserClassesToDt {
     public List<ActividadDTO> getActividadDTOs(Set<Actividad> actividades) {
         List<ActividadDTO> acts = new ArrayList<>();
         actividades.forEach((Actividad a) -> {
-           acts.add(getDtActividad(a));
+            if(a.getEstado().equals("Aceptada")){
+                acts.add(getDtActividad(a));
+            }
         });
         return acts;
     }

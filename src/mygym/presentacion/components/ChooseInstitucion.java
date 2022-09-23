@@ -561,7 +561,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
   
   public void loadActividades() {
       this.jComboActividades.removeAllItems();
-      actividades = actBO.listarActividades(this.selectedIdInstitucion);
+      actividades = actBO.listarActividades(this.selectedIdInstitucion,"Aceptada");
       if (actividades.size() == 0) {
           this.jComboClases.removeAllItems();
           fillEmptyClassData();

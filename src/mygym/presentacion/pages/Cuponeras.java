@@ -29,9 +29,9 @@ public class Cuponeras extends javax.swing.JPanel {
 
     public Cuponeras() {
         initComponents();
-        tablaCuponeras.getColumnModel().getColumn(1).setMinWidth(0);
-        tablaCuponeras.getColumnModel().getColumn(1).setMaxWidth(0);
-        tablaCuponeras.getColumnModel().getColumn(1).setWidth(0);
+        tablaCuponeras.getColumnModel().getColumn(1).setMinWidth(1);
+        tablaCuponeras.getColumnModel().getColumn(1).setMaxWidth(1);
+        tablaCuponeras.getColumnModel().getColumn(1).setWidth(1);
         tablaCuponeras.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tablaCuponeras.setRowHeight(50);
         llenarTabla();
@@ -80,7 +80,7 @@ public class Cuponeras extends javax.swing.JPanel {
         lblHeader.setForeground(new java.awt.Color(41, 69, 87));
         lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHeader.setText("Cuponeras");
-        bgPanel.add(lblHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, -1));
+        bgPanel.add(lblHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 0));
 
         btnCrearBG.setBackground(new java.awt.Color(76, 131, 122));
 
@@ -114,7 +114,7 @@ public class Cuponeras extends javax.swing.JPanel {
                 .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        bgPanel.add(btnCrearBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 160, -1));
+        bgPanel.add(btnCrearBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 160, 0));
 
         scrollTabla.setBackground(new java.awt.Color(255, 255, 255));
         scrollTabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -219,7 +219,7 @@ public class Cuponeras extends javax.swing.JPanel {
                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        bgPanel.add(btnAgregarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 470, 310, -1));
+        bgPanel.add(btnAgregarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 470, 310, 0));
 
         btnConsultar.setBackground(new java.awt.Color(76, 131, 122));
         btnConsultar.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
@@ -295,7 +295,7 @@ public class Cuponeras extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una cuponera existente.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        Object idObj = tablaCuponeras.getValueAt(selectedRowId, 0);
+        Object idObj = tablaCuponeras.getValueAt(selectedRowId, 1);
         int id = (Integer) idObj;
         
         addActividadtoCuponera formAgregar = new addActividadtoCuponera(id);

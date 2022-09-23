@@ -17,6 +17,7 @@ import java.util.HashMap;
 import Actividad.Actividad;
 import Cuponera.CuponeraDao;
 import Cuponera.InterfaceCuponeraDao;
+import Exceptions.ActividadNotFoundException;
 import Exceptions.CuponeraNotFoundException;
 import Exceptions.InstitucionNotFoundException;
 import Institucion.InstitucionDao;
@@ -61,7 +62,7 @@ public class ActividadBO  implements IActividadBO{
    
 
     @Override
-    public HashMap<Integer, ActividadDTO> listarByInstitucionNotInCuponeras(int institucionId, int cuponeraId) throws InstitucionNotFoundException,CuponeraNotFoundException{
+    public HashMap<Integer, ActividadDTO> listarByInstitucionNotInCuponeras(int institucionId, int cuponeraId,String status) throws InstitucionNotFoundException,CuponeraNotFoundException{
         InterfaceInstitucionDao insDao = new InstitucionDao();
         InterfaceCuponeraDao cupDao = new CuponeraDao();
         if(insDao.existe(institucionId) == null){
@@ -72,7 +73,7 @@ public class ActividadBO  implements IActividadBO{
         }
         
         HashMap<Integer,ActividadDTO> res = new HashMap<Integer,ActividadDTO>();
-        this.actDao.listarActividadesByInstitucionNotIntCup(institucionId, cuponeraId).forEach((actividad) ->{
+        this.actDao.listarActividadesByInstitucionNotIntCup(institucionId, cuponeraId,status).forEach((actividad) ->{
              res.put(actividad.getId(), actividad.getDtActividad());
         });
         return res;
@@ -84,9 +85,9 @@ public class ActividadBO  implements IActividadBO{
     }
     
     @Override
-    public HashMap<Integer, ActividadDTO> listarActividades(int idInstitucion){ 
+    public HashMap<Integer, ActividadDTO> listarActividades(int idInstitucion,String status){ 
         HashMap<Integer, ActividadDTO> actividades = new HashMap<>();
-        List<Actividad> acts = actDao.listarActividades(idInstitucion);
+        List<Actividad> acts = actDao.listarActividades(idInstitucion,status);
         acts.forEach((Actividad act) -> {
             actividades.put(act.getId(), act.getDtActividad());
         });
@@ -103,8 +104,28 @@ public class ActividadBO  implements IActividadBO{
     }
     
     @Override
-    public HashMap<Integer, ActividadDTO> listarByInstitucion(int idInstitucion) {
+    public HashMap<Integer, ActividadDTO> listarByInstitucion(int idInstitucion,String status) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @Override
+    public HashMap<Integer, ActividadDTO> listarAllActividadesPendientes() {
+        HashMap<Integer, ActividadDTO> actividades = new HashMap<>();
+        List<Actividad> acts = actDao.listarAllActividadesPendientes();
+        acts.forEach((Actividad act) -> {
+            actividades.put(act.getId(), act.getDtActividad());
+        });
+        return actividades;    
+    }
+
+    @Override
+    public void cambiarEstado(int idActividad, String newStatus) throws ActividadNotFoundException {
+        IActividadDao actDao = new ActividadDao();
+        Actividad actFind = actDao.getById(idActividad);
+        if(actFind  == null){
+            throw new ActividadNotFoundException("Actividad no existe!");
+        }
+        actDao.cambiarEstado(actFind, newStatus);
+         
+    }
 }

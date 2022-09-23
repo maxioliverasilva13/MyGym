@@ -630,7 +630,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
     
     private void llenarActividades() {
         this.jComboActividad.removeAllItems();
-        actividades = actBo.listarActividades(this.selectedInstitucionId);
+        actividades = actBo.listarActividades(this.selectedInstitucionId,"Aceptada");
         actividades.forEach((Integer key, ActividadDTO actividad) -> {
             this.jComboActividad.addItem(actividad.getNombre());
         });

@@ -42,9 +42,9 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
-import org.apache.commons.io.FileUtils;
 
 /**
  *
@@ -61,6 +61,8 @@ public class Actividad implements Serializable {
     private int duracion;
     private float costo;
     private Date fechaRegistro;
+    @Column(columnDefinition = "varchar(255) default 'Ingresada'")
+    private String estado = "Ingresada";
     @ManyToOne
     @JoinColumn()
     private Profesor profesor;
@@ -184,6 +186,10 @@ public class Actividad implements Serializable {
     public void setClases(Collection<Clase> clases) {
         this.clases = clases;
     }
+    
+    public void setEstado(String estado){
+        this.estado = estado;
+    }
 
     public Collection<CuponeraXActividad> getCuponerasXActividad() {
         return cuponerasXActividad;
@@ -240,6 +246,10 @@ public class Actividad implements Serializable {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+    
+    public String getEstado(){
+        return this.estado;
     }
 
 }

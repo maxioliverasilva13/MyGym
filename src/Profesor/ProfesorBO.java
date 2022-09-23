@@ -35,13 +35,6 @@ public class ProfesorBO implements IProfesorBO {
          if(profFind == null){
              throw new ProfesorNotExist("El profesor no existe");
          }
-         List<DtInstitucion> instituciones = new ArrayList();
-         List<ActividadDTO> actividades = new ArrayList();
-         
-          profFind.getActividades().forEach((actividad) ->{
-               actividades.add(actividad.getDtActividad());
-          });
-         
          res = profFind.getDtProfesor();
          return res;
     }
