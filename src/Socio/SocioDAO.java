@@ -84,6 +84,7 @@ public class SocioDAO implements ISocioDAO {
             String encryptedPassword = ep.encryptPass(new String(socio.getPasswordChar()));
             soc.setPassword(encryptedPassword);
         }
+        soc.setImage(socio.getImage());
         tr.commit();
     }
 

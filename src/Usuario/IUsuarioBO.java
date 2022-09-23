@@ -19,4 +19,6 @@ public interface IUsuarioBO {
     public void create(UsuarioCreateDTO userCreate)  throws UserAlreadyEmailExist,UserAlreadyNickExist;
     public HashMap<Integer,UsuarioDTO> listarUsuarios();
     public String getTipoById(int id);
+    public void seguirAUsuario(int myId, int idUsuario);
+    public void dejarSeguirUsuario(int myId, int idUsuario);
 }

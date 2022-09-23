@@ -10,6 +10,7 @@ import Clase.DtClase;
 import CuponeraXActividad.DtCuponeraXActividad;
 import Institucion.DtInstitucion;
 import Profesor.dtos.ProfesorDTO;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,49 +29,13 @@ public class ActividadDTO {
     private List<DtCategoria> categorias = new ArrayList<>();
 
     DtInstitucion institucion;
-    
+    File image;
 
-    public ActividadDTO(String nombre, String descripcion, int duracion, float costo, Date fechaRegistro) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.duracion = duracion;
-        this.costo = costo;
-        this.fechaRegistro = fechaRegistro;
+    public File getImage() {
+        return image;
     }
     
-    public ActividadDTO(int id, String nombre, String descripcion, int duracion, float costo, Date fechaRegistro, ProfesorDTO profe, List<DtClase> clases, DtInstitucion ins) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.duracion = duracion;
-        this.costo = costo;
-        this.fechaRegistro = fechaRegistro;
-        this.profesor = profe;
-        if (clases != null) {
-            this.clases = clases;
-        }
-        this.id = id;
-        this.institucion = ins;
-    }
-    
-    public ActividadDTO(int id, String nombre, String descripcion, int duracion, float costo, Date fechaRegistro, ProfesorDTO profe, List<DtClase> clases, DtInstitucion ins, List<DtCuponeraXActividad> cupsXAct) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.duracion = duracion;
-        this.costo = costo;
-        this.fechaRegistro = fechaRegistro;
-        this.profesor = profe;
-        if (clases != null) {
-            this.clases = clases;
-        }
-        this.clases = clases;
-        this.id = id;
-        this.institucion = ins;
-        if (cupsXAct != null) {
-           this.cuponerasXActivdad = cupsXAct;
-        }
-    }
-    
-    public ActividadDTO(int id, String nombre, String descripcion, int duracion, float costo, Date fechaRegistro, ProfesorDTO profe, List<DtClase> clases, DtInstitucion ins, List<DtCuponeraXActividad> cupsXAct, List<DtCategoria> cats) {
+    public ActividadDTO(int id, String nombre, String descripcion, int duracion, float costo, Date fechaRegistro, ProfesorDTO profe, List<DtClase> clases, DtInstitucion ins, List<DtCuponeraXActividad> cupsXAct, File file, List<DtCategoria> cats) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
@@ -89,6 +54,7 @@ public class ActividadDTO {
         if (cats != null) {
             this.categorias = cats;
         }
+        this.image = file;
     }
     
     public int getId(){

@@ -13,7 +13,9 @@ import javax.swing.table.DefaultTableModel;
 import Cuponera.CuponeraBo;
 import Cuponera.DtCuponera;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import mygym.presentacion.forms.showInfoCuponera;
+import utils.RenderFoto;
 
 /**
  *
@@ -27,10 +29,11 @@ public class Cuponeras extends javax.swing.JPanel {
 
     public Cuponeras() {
         initComponents();
-        tablaCuponeras.getColumnModel().getColumn(0).setMinWidth(0);
-        tablaCuponeras.getColumnModel().getColumn(0).setMaxWidth(0);
-        tablaCuponeras.getColumnModel().getColumn(0).setWidth(0);
+        tablaCuponeras.getColumnModel().getColumn(1).setMinWidth(0);
+        tablaCuponeras.getColumnModel().getColumn(1).setMaxWidth(0);
+        tablaCuponeras.getColumnModel().getColumn(1).setWidth(0);
         tablaCuponeras.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        tablaCuponeras.setRowHeight(50);
         llenarTabla();
         formCrear.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -85,7 +88,7 @@ public class Cuponeras extends javax.swing.JPanel {
         btnCrear.setForeground(new java.awt.Color(255, 255, 255));
         btnCrear.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnCrear.setText("Alta de Cuponera");
-        btnCrear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCrear.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCrear.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCrearMouseClicked(evt);
@@ -121,48 +124,48 @@ public class Cuponeras extends javax.swing.JPanel {
         tablaCuponeras.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         tablaCuponeras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "id", "Nombre", "Descripción", "Descuento"
+                "Foto", "id", "Nombre", "Descripción", "Descuento"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                true, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -172,7 +175,6 @@ public class Cuponeras extends javax.swing.JPanel {
         tablaCuponeras.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tablaCuponeras.setGridColor(new java.awt.Color(255, 255, 255));
         tablaCuponeras.setSelectionBackground(new java.awt.Color(0, 204, 204));
-        tablaCuponeras.setShowGrid(false);
         tablaCuponeras.setUpdateSelectionOnSort(false);
         scrollTabla.setViewportView(tablaCuponeras);
         if (tablaCuponeras.getColumnModel().getColumnCount() > 0) {
@@ -191,7 +193,7 @@ public class Cuponeras extends javax.swing.JPanel {
         btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnAgregar.setText("Agregar Actividad a la Cuponera");
-        btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAgregarMouseClicked(evt);
@@ -258,8 +260,14 @@ public class Cuponeras extends javax.swing.JPanel {
         modeloDatos.setRowCount(0);
         cuponeras.forEach((key, value) -> {
             DtCuponera currentCuponera = cuponeras.get(key);
-
-            modeloDatos.addRow(new Object[]{currentCuponera.getId(), currentCuponera.getNombre(), currentCuponera.getDescripcion(), currentCuponera.getDescuento()});
+            RenderFoto photoCell = new RenderFoto();
+            photoCell.setHorizontalAlignment(SwingConstants.CENTER);
+            tablaCuponeras.getColumnModel().getColumn(0).setCellRenderer(photoCell);
+            String filePath = "";
+            if (value.getImage() != null) {
+                filePath = value.getImage().getAbsolutePath();
+            }
+            modeloDatos.addRow(new Object[]{filePath, currentCuponera.getId(), currentCuponera.getNombre(), currentCuponera.getDescripcion(), currentCuponera.getDescuento()});
         });
     }
 
@@ -289,7 +297,6 @@ public class Cuponeras extends javax.swing.JPanel {
         }
         Object idObj = tablaCuponeras.getValueAt(selectedRowId, 0);
         int id = (Integer) idObj;
-        //System.out.println("Id de la cuponera seleccionada en el DASHBOARD: "+ id);
         
         addActividadtoCuponera formAgregar = new addActividadtoCuponera(id);
 

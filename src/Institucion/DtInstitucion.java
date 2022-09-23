@@ -8,6 +8,7 @@ import Actividad.dtos.ActividadDTO;
 import java.util.List;
 import Profesor.dtos.ProfesorDTO;
 import Actividad.dtos.ActividadDetalleDTO;
+import java.io.File;
 
 /**
  *
@@ -20,7 +21,12 @@ public class DtInstitucion {
     private String url;
     private List<ProfesorDTO> profesores;
     private List<ActividadDTO> actividades;
+    private File image;
 
+    public File getImage() {
+        return image;
+    }
+    
     public DtInstitucion(int id, String nombre, String descripcion, String url, List<ProfesorDTO> profesores, List<ActividadDTO> actividades) {
         this.id = id;
         this.nombre = nombre;
@@ -28,6 +34,16 @@ public class DtInstitucion {
         this.url = url;
         this.profesores = profesores;
         this.actividades = actividades;
+    }
+    
+    public DtInstitucion(int id, String nombre, String descripcion, String url, List<ProfesorDTO> profesores, List<ActividadDTO> actividades, File file) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.url = url;
+        this.profesores = profesores;
+        this.actividades = actividades;
+        this.image = file;
     }
     
     public int getId() {

@@ -36,10 +36,15 @@ import java.awt.Image;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import javax.persistence.Basic;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
+import org.apache.commons.io.FileUtils;
 
 /**
  *
@@ -74,6 +79,18 @@ public class Actividad implements Serializable {
 
     public byte[] getImage() {
         return image;
+    }
+    
+    public File createTempFile() {
+        String dir = System.getProperty("java.io.tmpdir");
+        File file = new File(dir + "image-" + this.nombre + ".jpg");
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            fos.write(this.image);
+        } catch (Exception e) {
+            System.out.println("Actividad-createTempFile");
+            System.out.println(e.getMessage());
+        }
+        return file;
     }
 
     public void setImage(File file) throws FileNotFoundException, IOException {
@@ -185,41 +202,44 @@ public class Actividad implements Serializable {
     }
 
     public ActividadDTO getDtActividad() {
-        System.out.println(this.duracion);
-        System.out.println("me consulto");
         List<DtClase> allClases = new ArrayList<>();
         this.getClases().forEach((clase) -> {
             allClases.add(clase.getDtClase());
         });     
         ProfesorDTO profe = null;
         if(this.profesor != null){
-            profe = new ProfesorDTO(profesor.getId(), profesor.getNombre(), profesor.getApellido(), profesor.getNickname(), profesor.getEmail(), profesor.getNacimiento(), profesor.getDescripcionGeneral(), profesor.getBiografia(), profesor.getLinkSitioWeb());
+            profe = new ProfesorDTO(profesor.getId(), profesor.getNombre(), profesor.getApellido(), profesor.getNickname(), profesor.getEmail(), profesor.getNacimiento(), profesor.getDescripcionGeneral(), profesor.getBiografia(), profesor.getLinkSitioWeb(),null, null, null, profesor.getSeguidosDt(), profesor.getSeguidoresDT());
         }
         DtInstitucion dtIns = null;
         if(this.institucion != null){
-              dtIns = new DtInstitucion(institucion.getId(), institucion.getNombre(), institucion.getDescripcion(), institucion.getUrl(), null, null);
+              File photo = null;
+              if (this.institucion.getImage() != null) {
+                  photo = this.institucion.createTempFile();
+              }
+              dtIns = new DtInstitucion(institucion.getId(), institucion.getNombre(), institucion.getDescripcion(), institucion.getUrl(), null, null, photo);
         }
         List<DtCuponeraXActividad> cuponerasXact = new ArrayList<>();
         this.getCuponerasXActividad().forEach((cuponera) -> {
             cuponerasXact.add(cuponera.getDtCuponeraXActividad());
-        });  
-        
+        });
         // TO DO TO DO TO DO TO DO TO DO TO DO TO DO TO DO 
         List<DtCategoria> categorias = new ArrayList<>(); // Agregar al DTO creado.
         if(this.getCategorias() != null ){
-
+ 
             this.getCategorias().forEach((categoria) -> {
                 categorias.add(categoria.getDtCategoria());
             });  
-
+ 
         }
         
-        ActividadDTO dt = new ActividadDTO(
-                this.id, this.nombre , this.descripcion, this.duracion, this.costo, this.fechaRegistro, profe, allClases, dtIns,
-                !(cuponerasXact.isEmpty()) ? cuponerasXact : null, 
-                !(categorias.isEmpty()) ? categorias : null
-        );
-        return dt;
+        try {
+            ActividadDTO dt = new ActividadDTO(
+                this.id, this.nombre , this.descripcion, this.duracion, this.costo, this.fechaRegistro, profe, allClases, dtIns, cuponerasXact, this.image != null ? createTempFile() : null, categorias);
+                return dt;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
 }

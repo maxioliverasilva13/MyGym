@@ -1,6 +1,7 @@
 package Socio.dtos;
 
 import Usuario.dtos.UsuarioCreateDTO;
+import java.io.File;
 import java.util.Date;
 
 /*
@@ -19,13 +20,10 @@ public class SocioCreateDTO extends UsuarioCreateDTO {
     private Date nacimiento;
     private String email;
     
-    public SocioCreateDTO(String nombre,String apellido,String nickname, char[] password,String email,Date nacimiento){
-         super(nombre,apellido,email,nickname,password,nacimiento);
+    public SocioCreateDTO(String nombre,String apellido,String nickname, char[] password,String email,Date nacimiento, File file){
+         super(nombre,apellido,email,nickname,nacimiento,password, file);
 
        
     }
-    
-    
-    
     
 }

@@ -4,6 +4,7 @@
  */
 package Usuario.dtos;
 
+import java.io.File;
 import java.util.Date;
 
 /**
@@ -18,7 +19,13 @@ public abstract class UsuarioCreateDTO {
     protected char[] password;
     protected Date nacimiento;
     
-    public UsuarioCreateDTO(String nombre,String apellido,String email,String nickname, char[] pass, Date nacimiento){
+    File image;
+
+    public File getImage() {
+        return image;
+    }
+
+    public UsuarioCreateDTO(String nombre,String apellido,String email,String nickname,Date nacimiento, char[] pass, File file){
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;

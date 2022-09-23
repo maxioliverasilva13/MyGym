@@ -23,6 +23,7 @@ import Usuario.exceptions.UserAlreadyEmailExist;
 import Usuario.exceptions.UserAlreadyNickExist;
 import com.raven.datechooser.SelectedDate;
 import java.awt.Color;
+import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -31,9 +32,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import javax.swing.border.MatteBorder;
+import utils.BrowseFile;
 import utils.ComboItem;
 
 /**
@@ -72,7 +75,6 @@ public class AddUsersForm extends javax.swing.JFrame {
         dispose();
         this.setLocationRelativeTo(null);
         jPanel2.hide();
-        System.out.println(userType);
         this.isEditing = true;
         this.loadInstituciones();
         this.jLabel1.setText("Guardar Informacion");
@@ -106,6 +108,12 @@ public class AddUsersForm extends javax.swing.JFrame {
         String formattedFecha = c.get(Calendar.DAY_OF_MONTH) + "-" + c.get(Calendar.MONTH) + "-" + c.get(Calendar.YEAR);
         this.jTextField5.setText(formattedFecha);
         this.jTextField3.setText(socio.getNickname());
+        File tempFile = socio.getImage();
+        if (tempFile != null) {
+             labelImage.setIcon(BrowseFile.RezizeImage(tempFile.getAbsolutePath(), labelImage));
+             this.revalidate();
+             this.repaint();
+        }
 
     }
 
@@ -133,6 +141,12 @@ public class AddUsersForm extends javax.swing.JFrame {
             String profeNames = "";
             this.jComboBox2.setSelectedItem(profe.getInstituciones().get(0).getNombre());
         }
+        File tempFile = profe.getImage();
+        if (tempFile != null) {
+             labelImage.setIcon(BrowseFile.RezizeImage(tempFile.getAbsolutePath(), labelImage));
+             this.revalidate();
+             this.repaint();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -154,6 +168,8 @@ public class AddUsersForm extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -178,6 +194,7 @@ public class AddUsersForm extends javax.swing.JFrame {
         passField = new javax.swing.JPasswordField();
         passRepeatField = new javax.swing.JPasswordField();
         btnHabilitarModificarPass = new javax.swing.JButton();
+        labelImage = new javax.swing.JLabel();
 
         jOptionPane1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -221,11 +238,11 @@ public class AddUsersForm extends javax.swing.JFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 120, -1));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 120, -1));
 
         jLabel2.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jLabel2.setText("Tipo de Usuario");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jLabel3.setText("Apellido");
@@ -254,7 +271,7 @@ public class AddUsersForm extends javax.swing.JFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
-        jLabel5.setText("NickName");
+        jLabel5.setText("Tipo de usuario");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 140, -1));
 
         jTextField3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
@@ -283,16 +300,29 @@ public class AddUsersForm extends javax.swing.JFrame {
                 jTextField5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 184, 27));
+        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 344, 184, 27));
+
+        jLabel8.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
+        jLabel8.setText("Informacion Personal");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, -1, -1));
+
+        jLabel11.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel11.setOpaque(true);
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 100, 4));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 254));
         jButton1.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CancelarButton.jpg"))); // NOI18N
         jButton1.setBorder(null);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cancel(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 770, -1, -1));
@@ -300,7 +330,7 @@ public class AddUsersForm extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AceptarButton.jpg"))); // NOI18N
         jButton2.setBorder(null);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
@@ -351,7 +381,7 @@ public class AddUsersForm extends javax.swing.JFrame {
                 jComboBox2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 170, -1));
+        jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 170, -1));
 
         jLabel9.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -396,7 +426,7 @@ public class AddUsersForm extends javax.swing.JFrame {
         exitBtn.setForeground(new java.awt.Color(255, 255, 255));
         exitBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         exitBtn.setText("X");
-        exitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         exitBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exitBtnMouseClicked(evt);
@@ -424,7 +454,7 @@ public class AddUsersForm extends javax.swing.JFrame {
         btnMinimizar.setForeground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnMinimizar.setText("-");
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnMinimizarMouseClicked(evt);
@@ -456,12 +486,10 @@ public class AddUsersForm extends javax.swing.JFrame {
 
         passField.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         passField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        passField.setEchoChar('*');
         jPanel1.add(passField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 186, 30));
 
         passRepeatField.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         passRepeatField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        passRepeatField.setEchoChar('*');
         jPanel1.add(passRepeatField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 186, 30));
 
         btnHabilitarModificarPass.setBackground(new java.awt.Color(76, 131, 122));
@@ -481,6 +509,14 @@ public class AddUsersForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnHabilitarModificarPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 70, 20));
+
+        labelImage.setText("labelImage");
+        labelImage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelImageMouseClicked(evt);
+            }
+        });
+        jPanel1.add(labelImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 100, 60));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 830));
 
@@ -604,7 +640,7 @@ public class AddUsersForm extends javax.swing.JFrame {
                         int selectedInstitucionId = Integer.parseInt(((ComboItem) selectedItemInsti).getId());
                         
                         if(passField.getText().equals(passRepeatField.getText())){
-                            ProfesorCreateDTO prof = new ProfesorCreateDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(), passRepeatField.getPassword(), jTextArea2.getText(), jTextArea1.getText(), jTextField4.getText(), jTextField6.getText(), fecha, selectedInstitucionId);
+                            ProfesorCreateDTO prof = new ProfesorCreateDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(), passRepeatField.getPassword(), jTextArea2.getText(), jTextArea1.getText(), jTextField4.getText(), jTextField6.getText(), fecha, selectedInstitucionId,  BrowseFile.globalFile);
                             usr.create(prof);
                             this.dispose();
                         }else{
@@ -614,7 +650,7 @@ public class AddUsersForm extends javax.swing.JFrame {
                     }
                     if (jComboBox1.getItemAt(jComboBox1.getSelectedIndex()).equals("Socio/a")) {
                         if(passField.getText().equals(passRepeatField.getText())){
-                            SocioCreateDTO usu = new SocioCreateDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(), passRepeatField.getPassword(), jTextField4.getText(), fecha);
+                            SocioCreateDTO usu = new SocioCreateDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(), passRepeatField.getPassword(), jTextField4.getText(), fecha,  BrowseFile.globalFile);
                             usr.create(usu);
                             this.dispose();
                         }else{
@@ -635,7 +671,7 @@ public class AddUsersForm extends javax.swing.JFrame {
                     if (jComboBox1.getItemAt(jComboBox1.getSelectedIndex()).equals("Profesor/a")) {
                         if (passField.isEnabled()){ // Modifica datos y password.
                             if(passField.getText().equals(passRepeatField.getText())){
-                                ProfesorEditDTO editSocio = new ProfesorEditDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(),passRepeatField.getPassword(), jTextArea2.getText(), jTextArea1.getText(), jTextField6.getText(), jTextField4.getText(), fecha);
+                                ProfesorEditDTO editSocio = new ProfesorEditDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(),passRepeatField.getPassword(), jTextArea2.getText(), jTextArea1.getText(), jTextField6.getText(), jTextField4.getText(), fecha,  BrowseFile.globalFile);
                                 profeBO.editProfesorById(idToEdit, editSocio);
                                 this.dispose();
                             }else{
@@ -643,7 +679,7 @@ public class AddUsersForm extends javax.swing.JFrame {
                                 return;
                             }
                         }else{ // Modifica otros datos, pero no la password.
-                            ProfesorEditDTO editSocio = new ProfesorEditDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(), jTextArea2.getText(), jTextArea1.getText(), jTextField6.getText(), jTextField4.getText(), fecha);
+                            ProfesorEditDTO editSocio = new ProfesorEditDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(), null, jTextArea2.getText(), jTextArea1.getText(), jTextField6.getText(), jTextField4.getText(), fecha,  BrowseFile.globalFile);
                             profeBO.editProfesorById(idToEdit, editSocio);
                             this.dispose();
                         }
@@ -651,7 +687,7 @@ public class AddUsersForm extends javax.swing.JFrame {
                     if (jComboBox1.getItemAt(jComboBox1.getSelectedIndex()).equals("Socio/a")) {
                         if (passField.isEnabled()){
                             if(passField.getText().equals(passRepeatField.getText())){
-                                SocioEditDTO editSocio = new SocioEditDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(),passRepeatField.getPassword(), jTextField4.getText(), fecha);
+                                SocioEditDTO editSocio = new SocioEditDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(),passRepeatField.getPassword(), jTextField4.getText(), fecha, BrowseFile.globalFile);
                                 socioBO.editar(idToEdit, editSocio);
                                 this.dispose();
                             }else{
@@ -659,7 +695,7 @@ public class AddUsersForm extends javax.swing.JFrame {
                                 return;
                             }
                         }else{ // No modifica password
-                            SocioEditDTO editSocio = new SocioEditDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(), jTextField4.getText(), fecha);
+                            SocioEditDTO editSocio = new SocioEditDTO(jTextField2.getText(), jTextField1.getText(), jTextField3.getText(), null, jTextField4.getText(), fecha,  BrowseFile.globalFile);
                             socioBO.editar(idToEdit, editSocio);
                             this.dispose();
                         }
@@ -711,6 +747,14 @@ public class AddUsersForm extends javax.swing.JFrame {
     private void btnHabilitarModificarPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHabilitarModificarPassActionPerformed
 
     }//GEN-LAST:event_btnHabilitarModificarPassActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void labelImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelImageMouseClicked
+        BrowseFile.browseClickEvent(labelImage);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelImageMouseClicked
 
     private void loadInstituciones() {
         this.jComboBox2.removeAllItems();
@@ -761,7 +805,6 @@ public class AddUsersForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnHabilitarModificarPass;
     private javax.swing.JLabel btnMinimizar;
     private javax.swing.JPanel btnMinimizarBG;
@@ -775,6 +818,7 @@ public class AddUsersForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
@@ -783,6 +827,7 @@ public class AddUsersForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
@@ -797,6 +842,7 @@ public class AddUsersForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel labelImage;
     private javax.swing.JLabel lblConfirmPass;
     private javax.swing.JLabel lblPass;
     private javax.swing.JPasswordField passField;

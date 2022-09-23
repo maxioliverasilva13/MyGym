@@ -11,15 +11,18 @@ import java.awt.Image;
 import Cuponera.DtCuponera;
 import CuponeraXActividad.DtCuponeraXActividad;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import mygym.presentacion.pages.Actividades;
+import utils.BrowseFile;
 import utils.ComboItem;
 import utils.Datehelper;
 
@@ -83,6 +86,12 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         duracionActividad.setText(Integer.toString(selectedAct.getDuracion()));
         fechaAltaActividad.setText(strFechaRegistro);
         txaDescripcionActividad.setText(selectedAct.getDescripcion());
+        File tempFile = selectedAct.getImage();
+        if (tempFile != null) {
+             labelImage.setIcon(BrowseFile.RezizeImage(tempFile.getAbsolutePath(), labelImage));
+             this.revalidate();
+             this.repaint();
+        }
     }
     
     private void pintarInfoCuponerasAsociadas(ActividadDTO selectedAct){
@@ -133,6 +142,7 @@ public class showActividadInfoForm extends javax.swing.JFrame {
     private void initComponents() {
 
         bgPanel = new javax.swing.JPanel();
+        labelImage = new javax.swing.JLabel();
         lblHeader = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -189,6 +199,9 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         bgPanel.setBackground(new java.awt.Color(255, 255, 255));
         bgPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(215, 215, 215)));
         bgPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelImage.setText("Test");
+        bgPanel.add(labelImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 160, 120));
 
         lblHeader.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
         lblHeader.setForeground(new java.awt.Color(4, 37, 58));
@@ -626,6 +639,7 @@ public class showActividadInfoForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel labelImage;
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel nombreActividad;
     private javax.swing.JLabel nombreClase;

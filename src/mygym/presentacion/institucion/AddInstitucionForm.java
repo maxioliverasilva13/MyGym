@@ -7,9 +7,14 @@ package mygym.presentacion.institucion;
 import Institucion.DtInstitucion;
 import Institucion.InstitucionBO;
 import java.awt.Color;
+import java.awt.Event;
+import java.awt.event.ActionEvent;
+import java.io.File;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.border.MatteBorder;
+import utils.BrowseFile;
 
 /**
  *
@@ -26,6 +31,10 @@ public class AddInstitucionForm extends javax.swing.JFrame {
     public AddInstitucionForm() {
         initComponents();
         this.setLocationRelativeTo(null);
+    }
+    
+    public void jButton1ActionPerformed(ActionEvent e) {
+        this.setVisible(false);
     }
 
     /**
@@ -53,8 +62,9 @@ public class AddInstitucionForm extends javax.swing.JFrame {
         exitBtn = new javax.swing.JLabel();
         btnMinimizarBG = new javax.swing.JPanel();
         btnMinimizar = new javax.swing.JLabel();
+        labelImage = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -62,7 +72,7 @@ public class AddInstitucionForm extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jLabel7.setText("Nombre");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 88, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, -1, -1));
 
         jTextField2.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jTextField2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
@@ -72,22 +82,23 @@ public class AddInstitucionForm extends javax.swing.JFrame {
                 jTextField2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 90, 184, 21));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 184, 21));
 
         jLabel15.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jLabel15.setText("Descripcion");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 130, -1, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
 
         jTextArea2.setColumns(20);
+        jTextArea2.setLineWrap(true);
         jTextArea2.setRows(5);
         jTextArea2.setBorder(null);
         jScrollPane2.setViewportView(jTextArea2);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 160, 287, 60));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 287, 60));
 
         jLabel12.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jLabel12.setText("Sitio web");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 240, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, -1, -1));
 
         jTextField6.setToolTipText("");
         jTextField6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
@@ -97,30 +108,40 @@ public class AddInstitucionForm extends javax.swing.JFrame {
                 jTextField6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 238, 184, 27));
+        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 184, 27));
 
         jButton2.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AceptarButton.jpg"))); // NOI18N
         jButton2.setBorder(null);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 254));
         jButton1.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CancelarButton.jpg"))); // NOI18N
         jButton1.setBorder(null);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1cancel(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(41, 69, 87));
@@ -147,7 +168,7 @@ public class AddInstitucionForm extends javax.swing.JFrame {
         exitBtn.setForeground(new java.awt.Color(255, 255, 255));
         exitBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         exitBtn.setText("X");
-        exitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         exitBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exitBtnMouseClicked(evt);
@@ -175,7 +196,7 @@ public class AddInstitucionForm extends javax.swing.JFrame {
         btnMinimizar.setForeground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnMinimizar.setText("-");
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnMinimizarMouseClicked(evt);
@@ -196,6 +217,14 @@ public class AddInstitucionForm extends javax.swing.JFrame {
         headerBar.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 30, -1));
 
         jPanel1.add(headerBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 20));
+
+        labelImage.setText("Seleccionar Imagen");
+        labelImage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelImageMouseClicked(evt);
+            }
+        });
+        jPanel1.add(labelImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 130, 80));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -233,7 +262,7 @@ public class AddInstitucionForm extends javax.swing.JFrame {
             jTextField6.setBorder(new MatteBorder(0,0,1,0, Color.red));
         }
         try {
-            DtInstitucion indt = new DtInstitucion(0, jTextField2.getText(), jTextArea2.getText(), jTextField6.getText(), null, null);
+            DtInstitucion indt = new DtInstitucion(0, jTextField2.getText(), jTextArea2.getText(), jTextField6.getText(), null, null, BrowseFile.globalFile);
             Ins.agregarInstitucion(indt);
             JOptionPane.showMessageDialog(new JFrame(),  "Institucion insertada con exito.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
             dispose();
@@ -267,6 +296,15 @@ public class AddInstitucionForm extends javax.swing.JFrame {
         xMouse = evt.getX();
         yMouse = evt.getY();
     }//GEN-LAST:event_headerBarMousePressed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void labelImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelImageMouseClicked
+        BrowseFile.browseClickEvent(labelImage);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelImageMouseClicked
 
     /**
      * @param args the command line arguments
@@ -321,5 +359,6 @@ public class AddInstitucionForm extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel labelImage;
     // End of variables declaration//GEN-END:variables
 }

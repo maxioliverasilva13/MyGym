@@ -4,10 +4,15 @@
  */
 package mygym.presentacion.pages;
 
+import java.io.File;
+
 import Institucion.DtInstitucion;
 import Institucion.InstitucionBO;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 import mygym.presentacion.institucion.AddInstitucionForm;
-
+import utils.BrowseFile;
+import utils.RenderFoto;
 
 /**
  *
@@ -28,11 +33,18 @@ public class Instituciones extends javax.swing.JPanel {
     }
     
     public void listado() {
+        RenderFoto photoCell = new RenderFoto();
+        photoCell.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaInstituciones.getColumnModel().getColumn(0).setCellRenderer(photoCell);
+        tablaInstituciones.setRowHeight(50);
         inst.listarInstituciones().forEach((Integer key, DtInstitucion ins)->{
-            DtInstitucion indt = new DtInstitucion(ins.getId(), ins.getNombre(), ins.getDescripcion(), ins.getUrl(), null, null);
-            tablaInstituciones.setValueAt(indt.getNombre(), iterador, 0);
-            tablaInstituciones.setValueAt(indt.getDescripcion(), iterador, 1);
-            tablaInstituciones.setValueAt(indt.getUrl(), iterador, 2);
+            DtInstitucion indt = new DtInstitucion(ins.getId(), ins.getNombre(), ins.getDescripcion(), ins.getUrl(), null, null, ins.getImage());
+            tablaInstituciones.setValueAt(indt.getNombre(), iterador, 1);
+            tablaInstituciones.setValueAt(indt.getDescripcion(), iterador, 2);
+            tablaInstituciones.setValueAt(indt.getUrl(), iterador, 3);
+            if (indt.getImage() != null) {
+                tablaInstituciones.setValueAt(indt.getImage().getAbsolutePath(), iterador, 0);
+            }
             iterador++;
         });  
     }
@@ -81,48 +93,48 @@ public class Instituciones extends javax.swing.JPanel {
         tablaInstituciones.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         tablaInstituciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nombre de Institucion", "Descripcion", "Url"
+                "Foto", "Nombre de Institucion", "Descripcion", "Url"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -132,7 +144,6 @@ public class Instituciones extends javax.swing.JPanel {
         tablaInstituciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tablaInstituciones.setGridColor(new java.awt.Color(255, 255, 255));
         tablaInstituciones.setSelectionBackground(new java.awt.Color(0, 204, 204));
-        tablaInstituciones.setShowGrid(false);
         tablaInstituciones.setUpdateSelectionOnSort(false);
         scrollTabla.setViewportView(tablaInstituciones);
 
@@ -141,7 +152,7 @@ public class Instituciones extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(284, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(247, 247, 247)
                 .addComponent(addButton)
@@ -149,7 +160,7 @@ public class Instituciones extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(scrollTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
