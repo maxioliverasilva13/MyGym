@@ -93,7 +93,7 @@ public class CuponeraXActividad implements Serializable {
                 
                 ActividadDTO actividad = new ActividadDTO(
                     this.actividad.getId(), this.actividad.getNombre() , this.actividad.getDescripcion(), this.actividad.getDuracion(), this.actividad.getCosto(), this.actividad.getFechaRegistro(), this.actividad.getProfesor().getDtProfesor(),
-                        dtclases, this.actividad.getInstitucion().getDtInstitucion(), dtCUXAS);
+                        dtclases, this.actividad.getInstitucion().getDtInstitucion(), dtCUXAS, null, null);
                 return new DtCuponeraXActividad(id, cantClases,  cup, actividad);
             }else{
                 return new DtCuponeraXActividad(id, cantClases,  cup);

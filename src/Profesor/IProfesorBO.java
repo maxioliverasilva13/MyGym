@@ -5,11 +5,9 @@
 package Profesor;
 
 import Actividad.Actividad;
-import Profesor.dtos.ProfesorCreateDTO;
 import Profesor.dtos.ProfesorDTO;
 import Profesor.dtos.ProfesorEditDTO;
 import Profesor.exceptions.ProfesorNotExist;
-import java.util.HashMap;
 
 /**
  *

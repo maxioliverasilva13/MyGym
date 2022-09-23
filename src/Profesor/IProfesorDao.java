@@ -4,12 +4,7 @@
  */
 package Profesor;
 
-import Profesor.dtos.ProfesorCreateDTO;
-import Profesor.dtos.ProfesorDTO;
 import Profesor.dtos.ProfesorEditDTO;
-import java.util.HashMap;
-import java.util.List;
-
 /**
  *
  * @author angel

@@ -3,6 +3,7 @@
   <persistence-unit name="myConnection" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>Actividad.Actividad</class>
+    <class>Categoria.Categoria</class>
     <class>Clase.Clase</class>
     <class>Cuponera.Cuponera</class>
     <class>CuponeraXActividad.CuponeraXActividad</class>

@@ -27,6 +27,8 @@ import Clase.DtClase;
 import java.util.ArrayList;
 import Profesor.dtos.ProfesorDTO;
 import Actividad.dtos.ActividadDTO;
+import Categoria.Categoria;
+import Categoria.DtCategoria;
 import Institucion.DtInstitucion;
 import utils.ParserClassesToDt;
 import CuponeraXActividad.DtCuponeraXActividad;
@@ -69,6 +71,8 @@ public class Actividad implements Serializable {
     private Collection<Clase> clases;
     @OneToMany(mappedBy = "actividad")
     private Collection<CuponeraXActividad> cuponerasXActividad;
+    @OneToMany
+    private Collection<Categoria> categorias;
     @Lob
     @Basic(fetch = FetchType.LAZY)
     private byte[] image;
@@ -99,6 +103,10 @@ public class Actividad implements Serializable {
     
     public void addCuponerasXActividad(CuponeraXActividad cuxact){
         cuponerasXActividad.add(cuxact);
+    }
+    
+    public void addCategoria(Categoria cat){
+        categorias.add(cat);
     }
     
     public void addClase(Clase clase){
@@ -180,9 +188,17 @@ public class Actividad implements Serializable {
     public Collection<CuponeraXActividad> getCuponerasXActividad() {
         return cuponerasXActividad;
     }
+    
+    public Collection<Categoria> getCategorias() {
+        return categorias;
+    }
 
     public void setCuponerasXActividad(Collection<CuponeraXActividad> cuponerasXActividad) {
         this.cuponerasXActividad = cuponerasXActividad;
+    }
+    
+    public void setCategorias(Collection<Categoria> cats) {
+        this.categorias = cats;
     }
 
     public ActividadDTO getDtActividad() {
@@ -205,18 +221,21 @@ public class Actividad implements Serializable {
         List<DtCuponeraXActividad> cuponerasXact = new ArrayList<>();
         this.getCuponerasXActividad().forEach((cuponera) -> {
             cuponerasXact.add(cuponera.getDtCuponeraXActividad());
-        });  
+        });
+        // TO DO TO DO TO DO TO DO TO DO TO DO TO DO TO DO 
+        List<DtCategoria> categorias = new ArrayList<>(); // Agregar al DTO creado.
+        if(this.getCategorias() != null ){
+ 
+            this.getCategorias().forEach((categoria) -> {
+                categorias.add(categoria.getDtCategoria());
+            });  
+ 
+        }
+        
         try {
-            if (this.image != null) {
             ActividadDTO dt = new ActividadDTO(
-                this.id, this.nombre , this.descripcion, this.duracion, this.costo, this.fechaRegistro, profe, allClases, dtIns, cuponerasXact, createTempFile());
+                this.id, this.nombre , this.descripcion, this.duracion, this.costo, this.fechaRegistro, profe, allClases, dtIns, cuponerasXact, this.image != null ? createTempFile() : null, categorias);
                 return dt;
-        }
-        else {
-            ActividadDTO dt = new ActividadDTO(
-                this.id, this.nombre , this.descripcion, this.duracion, this.costo, this.fechaRegistro, profe, allClases, dtIns, cuponerasXact);
-            return dt;
-        }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

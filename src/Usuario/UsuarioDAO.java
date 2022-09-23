@@ -15,6 +15,7 @@ import Socio.Socio;
 import Socio.dtos.SocioCreateDTO;
 import Usuario.dtos.UsuarioCreateDTO;
 import Usuario.dtos.UsuarioDTO;
+import utils.EncryptPass;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityExistsException;
@@ -44,18 +45,21 @@ public class UsuarioDAO implements IUsuarioDAO{
     @Override
     public void create(UsuarioCreateDTO userCreate) {
          
+        EncryptPass ep = new EncryptPass();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
       
          if(userCreate instanceof ProfesorCreateDTO){
             
             ProfesorCreateDTO profCreate = (ProfesorCreateDTO)userCreate;
-            
+            String encryptedPassword = ep.encryptPass(new String(userCreate.getPasswordChar()));
+        
             Profesor newProfesor = new Profesor();
             newProfesor.setDTYPE("Profesor");
             newProfesor.setNombre(profCreate.getNombre());
             newProfesor.setApellido(profCreate.getApellido());
             newProfesor.setNickname(profCreate.getNickname());
+            newProfesor.setPassword(encryptedPassword);
             newProfesor.setNacimiento(profCreate.getNacimiento());
             newProfesor.setEmail(profCreate.getEmail());
             newProfesor.setBiografia(profCreate.getBiografia());
@@ -70,10 +74,13 @@ public class UsuarioDAO implements IUsuarioDAO{
         }else{  // es un socio
             SocioCreateDTO socioCreate = (SocioCreateDTO)userCreate;
             
+            String encryptedPassword = ep.encryptPass(new String(userCreate.getPasswordChar()));
+            
             Socio newSocio = new Socio();
             newSocio.setNombre(socioCreate.getNombre());
             newSocio.setApellido(socioCreate.getApellido());
             newSocio.setNickname(socioCreate.getNickname());
+            newSocio.setPassword(encryptedPassword);
             newSocio.setNacimiento(socioCreate.getNacimiento());
             newSocio.setEmail(socioCreate.getEmail());
             newSocio.setImage(socioCreate.getImage());
@@ -205,6 +212,4 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
        
     }
-    
-    
 }

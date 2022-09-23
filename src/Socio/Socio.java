@@ -45,7 +45,11 @@ public class Socio extends Usuario{
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
-
+    
+    public void setPassword(String pass) {
+        this.password = pass;
+    }
+    
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

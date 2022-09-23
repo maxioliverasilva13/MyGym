@@ -11,9 +11,7 @@ import Actividad.Actividad;
 import Exceptions.ActividadNotFoundException;
 import Exceptions.ClaseNotFoundException;
 import Exceptions.RegistroNotFoundException;
-import Registro.DtRegistro;
 import Registro.Registro;
-import java.util.Collection;
 import java.util.List;
 import Actividad.ActividadDao;
 

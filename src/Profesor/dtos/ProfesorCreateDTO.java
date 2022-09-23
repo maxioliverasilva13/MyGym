@@ -20,16 +20,8 @@ public class ProfesorCreateDTO extends UsuarioCreateDTO{
     private String linkSitioWeb;
     private int idInstitucion;
     
-    public ProfesorCreateDTO(String nombre,String apellido,String nickname,String descripcionGeneral,String biografia,String email, String linkSitioWeb,Date nacimiento){
-        super(nombre,apellido,email,nickname,nacimiento);
-        
-        this.descripcionGeneral = descripcionGeneral;
-        this.biografia = biografia;
-        this.linkSitioWeb = linkSitioWeb;
-    }
-    
-    public ProfesorCreateDTO(String nombre,String apellido,String nickname,String descripcionGeneral,String biografia,String email, String linkSitioWeb,Date nacimiento, int idInstitucion){
-        super(nombre,apellido,email,nickname,nacimiento);
+    public ProfesorCreateDTO(String nombre,String apellido,String nickname,char[] pass,String descripcionGeneral,String biografia,String email, String linkSitioWeb,Date nacimiento, int idInstitucion, File file){
+        super(nombre,apellido,email,nickname,nacimiento, pass, file);
         
         this.descripcionGeneral = descripcionGeneral;
         this.biografia = biografia;
@@ -37,15 +29,6 @@ public class ProfesorCreateDTO extends UsuarioCreateDTO{
         this.idInstitucion = idInstitucion;
     }
     
-    public ProfesorCreateDTO(String nombre,String apellido,String nickname,String descripcionGeneral,String biografia,String email, String linkSitioWeb,Date nacimiento, int idInstitucion, File file){
-        super(nombre,apellido,email,nickname,nacimiento,file);
-        
-        this.descripcionGeneral = descripcionGeneral;
-        this.biografia = biografia;
-        this.linkSitioWeb = linkSitioWeb;
-        this.idInstitucion = idInstitucion;
-    }
-
     public int getIdInstitucion() {
         return idInstitucion;
     }

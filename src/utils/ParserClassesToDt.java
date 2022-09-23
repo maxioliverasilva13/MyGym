@@ -6,6 +6,7 @@ package utils;
 
 import Actividad.Actividad;
 import Actividad.dtos.ActividadDTO;
+import Categoria.DtCategoria;
 import Clase.DtClase;
 import Cuponera.DtCuponera;
 import Institucion.DtInstitucion;
@@ -78,16 +79,17 @@ public class ParserClassesToDt {
             cuponerasXAct.add(cu);
         });
         
-        
-        if (actividad.getImage() != null) {
-            ActividadDTO dt = new ActividadDTO(
-                actividad.getId(), actividad.getNombre() , actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaRegistro(), null, clases, null, cuponerasXAct, actividad.createTempFile());
-                return dt;
-        } else {
-            ActividadDTO dt = new ActividadDTO(
-                actividad.getId(), actividad.getNombre() , actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaRegistro(), null, clases, null, cuponerasXAct);
-                return dt;
+        List<DtCategoria> categorias = new ArrayList<>(); // Agregar al DTO creado.
+        if(actividad.getCategorias() != null ){
+            actividad.getCategorias().forEach((categoria) -> {
+                categorias.add(categoria.getDtCategoria());
+            });  
+ 
         }
+
+        ActividadDTO dt = new ActividadDTO(
+                actividad.getId(), actividad.getNombre() , actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaRegistro(), null, clases, null, cuponerasXAct, actividad.getImage() != null ? actividad.createTempFile() : null, categorias);
+                return dt;
     }
     
     public List<DtInstitucion> getInstitucionesDt(List<Institucion> instituciones) {
