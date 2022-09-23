@@ -4,6 +4,7 @@
  */
 package Profesor.dtos;
 
+import java.io.File;
 import java.util.Date;
 
 /**
@@ -15,31 +16,29 @@ public class ProfesorEditDTO {
     private String nombre;
     private String apellido;
     private String nickname;
+    private char[] password;
     private String descripcionGeneral;
     private String biografia;
     private String linkSitioWeb;
     private String email;
     private Date fechaNacimiento;
+    private File image;
 
-    public ProfesorEditDTO(String nombre, String apellido, String nickname, String descripcionGeneral, String biografia, String linkSitioWeb) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.nickname = nickname;
-        this.descripcionGeneral = descripcionGeneral;
-        this.biografia = biografia;
-        this.linkSitioWeb = linkSitioWeb;
+    public File getImage() {
+        return image;
     }
-
-    public ProfesorEditDTO(String nombre, String apellido, String nickname, String descripcionGeneral, String biografia, String linkSitioWeb, String mail, Date fechaNac) {
+    
+    public ProfesorEditDTO(String nombre, String apellido, String nickname, char[] pass, String descripcionGeneral, String biografia, String linkSitioWeb, String mail, Date fechaNac, File file) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.nickname = nickname;
+        this.password = pass;
         this.descripcionGeneral = descripcionGeneral;
         this.biografia = biografia;
         this.linkSitioWeb = linkSitioWeb;
         this.email = mail;
         this.fechaNacimiento = fechaNac;
-
+        this.image = file;
     }
 
     public String getNombre() {
@@ -52,6 +51,10 @@ public class ProfesorEditDTO {
 
     public String getNickname() {
         return nickname;
+    }
+    
+    public char[] getPasswordChar() {
+        return password;
     }
 
     public String getDescripcionGeneral() {

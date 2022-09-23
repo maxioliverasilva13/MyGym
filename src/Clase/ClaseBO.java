@@ -26,6 +26,9 @@ public class ClaseBO implements InterfaceClaseBO {
         cl.setFechaRegistro(clase.getFechaRegistro());
         cl.setNombre(clase.getNombre());
         cl.setUrlAcceso(clase.getUrlAcceso());
+        if (clase.getImage() != null) {
+            cl.setImage(clase.getImage());
+        }
         claseDao.insertar(idActividad, cl);
     }
     

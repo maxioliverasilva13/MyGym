@@ -5,10 +5,12 @@ package Actividad.dtos;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+import Categoria.DtCategoria;
 import Clase.DtClase;
 import CuponeraXActividad.DtCuponeraXActividad;
 import Institucion.DtInstitucion;
 import Profesor.dtos.ProfesorDTO;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,32 +26,16 @@ public class ActividadDTO {
     ProfesorDTO profesor;
     private List<DtClase> clases = new ArrayList<>();
     private List<DtCuponeraXActividad> cuponerasXActivdad = new ArrayList<>();
-    DtInstitucion institucion;
-    
+    private List<DtCategoria> categorias = new ArrayList<>();
 
-    public ActividadDTO(String nombre, String descripcion, int duracion, float costo, Date fechaRegistro) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.duracion = duracion;
-        this.costo = costo;
-        this.fechaRegistro = fechaRegistro;
+    DtInstitucion institucion;
+    File image;
+
+    public File getImage() {
+        return image;
     }
     
-    public ActividadDTO(int id, String nombre, String descripcion, int duracion, float costo, Date fechaRegistro, ProfesorDTO profe, List<DtClase> clases, DtInstitucion ins) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.duracion = duracion;
-        this.costo = costo;
-        this.fechaRegistro = fechaRegistro;
-        this.profesor = profe;
-        if (clases != null) {
-            this.clases = clases;
-        }
-        this.id = id;
-        this.institucion = ins;
-    }
-    
-    public ActividadDTO(int id, String nombre, String descripcion, int duracion, float costo, Date fechaRegistro, ProfesorDTO profe, List<DtClase> clases, DtInstitucion ins, List<DtCuponeraXActividad> cupsXAct) {
+    public ActividadDTO(int id, String nombre, String descripcion, int duracion, float costo, Date fechaRegistro, ProfesorDTO profe, List<DtClase> clases, DtInstitucion ins, List<DtCuponeraXActividad> cupsXAct, File file, List<DtCategoria> cats) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
@@ -65,6 +51,10 @@ public class ActividadDTO {
         if (cupsXAct != null) {
            this.cuponerasXActivdad = cupsXAct;
         }
+        if (cats != null) {
+            this.categorias = cats;
+        }
+        this.image = file;
     }
     
     public int getId(){

@@ -40,9 +40,6 @@ public class ActividadBO  implements IActividadBO{
     public void crear(ActividadCreateDTO actCreate, int institucionId, int profesorId) {
            IProfesorDao profDao = new ProfesorDao();
            InterfaceInstitucionDao  insDao = new InstitucionDao();
-       
-           
-           
            Profesor profesorFind = profDao.getById(profesorId);
            if(profesorFind == null){
                throw new Exceptions.ProfesorNotFoundException("Profesor no encontrado.");

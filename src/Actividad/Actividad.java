@@ -27,6 +27,8 @@ import Clase.DtClase;
 import java.util.ArrayList;
 import Profesor.dtos.ProfesorDTO;
 import Actividad.dtos.ActividadDTO;
+import Categoria.Categoria;
+import Categoria.DtCategoria;
 import Institucion.DtInstitucion;
 import utils.ParserClassesToDt;
 import CuponeraXActividad.DtCuponeraXActividad;
@@ -34,7 +36,11 @@ import java.awt.Image;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
@@ -67,12 +73,26 @@ public class Actividad implements Serializable {
     private Collection<Clase> clases;
     @OneToMany(mappedBy = "actividad")
     private Collection<CuponeraXActividad> cuponerasXActividad;
+    @OneToMany
+    private Collection<Categoria> categorias;
     @Lob
     @Basic(fetch = FetchType.LAZY)
     private byte[] image;
 
     public byte[] getImage() {
         return image;
+    }
+    
+    public File createTempFile() {
+        String dir = System.getProperty("java.io.tmpdir");
+        File file = new File(dir + "image-" + this.nombre + ".jpg");
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            fos.write(this.image);
+        } catch (Exception e) {
+            System.out.println("Actividad-createTempFile");
+            System.out.println(e.getMessage());
+        }
+        return file;
     }
 
     public void setImage(File file) throws FileNotFoundException, IOException {
@@ -85,6 +105,10 @@ public class Actividad implements Serializable {
     
     public void addCuponerasXActividad(CuponeraXActividad cuxact){
         cuponerasXActividad.add(cuxact);
+    }
+    
+    public void addCategoria(Categoria cat){
+        categorias.add(cat);
     }
     
     public void addClase(Clase clase){
@@ -170,33 +194,58 @@ public class Actividad implements Serializable {
     public Collection<CuponeraXActividad> getCuponerasXActividad() {
         return cuponerasXActividad;
     }
+    
+    public Collection<Categoria> getCategorias() {
+        return categorias;
+    }
 
     public void setCuponerasXActividad(Collection<CuponeraXActividad> cuponerasXActividad) {
         this.cuponerasXActividad = cuponerasXActividad;
     }
+    
+    public void setCategorias(Collection<Categoria> cats) {
+        this.categorias = cats;
+    }
 
     public ActividadDTO getDtActividad() {
-        System.out.println(this.duracion);
-        System.out.println("me consulto");
         List<DtClase> allClases = new ArrayList<>();
         this.getClases().forEach((clase) -> {
             allClases.add(clase.getDtClase());
         });     
         ProfesorDTO profe = null;
         if(this.profesor != null){
-            profe = new ProfesorDTO(profesor.getId(), profesor.getNombre(), profesor.getApellido(), profesor.getNickname(), profesor.getEmail(), profesor.getNacimiento(), profesor.getDescripcionGeneral(), profesor.getBiografia(), profesor.getLinkSitioWeb());
+            profe = new ProfesorDTO(profesor.getId(), profesor.getNombre(), profesor.getApellido(), profesor.getNickname(), profesor.getEmail(), profesor.getNacimiento(), profesor.getDescripcionGeneral(), profesor.getBiografia(), profesor.getLinkSitioWeb(),null, null, null, profesor.getSeguidosDt(), profesor.getSeguidoresDT());
         }
         DtInstitucion dtIns = null;
         if(this.institucion != null){
-              dtIns = new DtInstitucion(institucion.getId(), institucion.getNombre(), institucion.getDescripcion(), institucion.getUrl(), null, null);
+              File photo = null;
+              if (this.institucion.getImage() != null) {
+                  photo = this.institucion.createTempFile();
+              }
+              dtIns = new DtInstitucion(institucion.getId(), institucion.getNombre(), institucion.getDescripcion(), institucion.getUrl(), null, null, photo);
         }
         List<DtCuponeraXActividad> cuponerasXact = new ArrayList<>();
         this.getCuponerasXActividad().forEach((cuponera) -> {
             cuponerasXact.add(cuponera.getDtCuponeraXActividad());
-        });  
-        ActividadDTO dt = new ActividadDTO(
-                this.id, this.nombre , this.descripcion, this.duracion, this.costo, this.fechaRegistro, profe, allClases, dtIns, cuponerasXact);
-        return dt;
+        });
+        // TO DO TO DO TO DO TO DO TO DO TO DO TO DO TO DO 
+        List<DtCategoria> categorias = new ArrayList<>(); // Agregar al DTO creado.
+        if(this.getCategorias() != null ){
+ 
+            this.getCategorias().forEach((categoria) -> {
+                categorias.add(categoria.getDtCategoria());
+            });  
+ 
+        }
+        
+        try {
+            ActividadDTO dt = new ActividadDTO(
+                this.id, this.nombre , this.descripcion, this.duracion, this.costo, this.fechaRegistro, profe, allClases, dtIns, cuponerasXact, this.image != null ? createTempFile() : null, categorias);
+                return dt;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
     
     public String getEstado(){

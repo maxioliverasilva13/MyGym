@@ -22,6 +22,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import Usuario.UsuarioDAO;
+import utils.EncryptPass;
 
 /**
  *
@@ -51,6 +52,9 @@ public class ProfesorDao  implements IProfesorDao {
         if(!prof.getEmail().equals(editProf.getEmail()) && userDao.getByEmail(editProf.getEmail()) != null){
               throw new UserAlreadyEmailExist("ya existe un usuario con este email");
         }
+        
+        EncryptPass ep = new EncryptPass();
+
         EntityTransaction tr = em.getTransaction();
         tr.begin();
         System.out.println(editProf.getEmail());
@@ -59,9 +63,14 @@ public class ProfesorDao  implements IProfesorDao {
         prof.setNacimiento(editProf.getFechaNacimiento());
         prof.setNombre(editProf.getNombre());
         prof.setNickname(editProf.getNickname());
+        if (editProf.getPasswordChar() != null){
+            String encryptedPassword = ep.encryptPass(new String(editProf.getPasswordChar()));
+            prof.setPassword(encryptedPassword);
+        }
         prof.setDescripcionGeneral(editProf.getDescripcionGeneral());
         prof.setLinkSitioWeb(editProf.getLinkSitioWeb());
         prof.setBiografia(editProf.getBiografia());
+        prof.setImage(editProf.getImage());
         tr.commit();
     }
 

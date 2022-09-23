@@ -8,6 +8,7 @@ import Actividad.ActividadBO;
 import Actividad.IActividadBO;
 import Actividad.dtos.ActividadCreateDTO;
 import EntityManajer.InterfaceEntityManager;
+import Usuario.UsuarioDAO;
 import javax.persistence.EntityManager;
 import mygym.presentacion.pages.Dashboard;
 

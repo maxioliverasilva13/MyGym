@@ -17,8 +17,14 @@ import java.util.Collection;
 import javax.persistence.OneToMany;
 import CuponeraXActividad.CuponeraXActividad;
 import CuponeraXActividad.DtCuponeraXActividad;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.FetchType;
+import javax.persistence.Lob;
 
 /**
  *
@@ -36,6 +42,40 @@ public class Cuponera implements Serializable {
     private int descuento;
     @OneToMany(mappedBy = "cuponera")
     private List<CuponeraXActividad> cuponerasXActividad;
+    
+        @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private byte[] image;
+
+    public byte[] getImage() {
+        return image;
+    }
+    
+    public File createTempFile() {
+        String dir = System.getProperty("java.io.tmpdir");
+        File file = new File(dir + "image-cuponera-" + this.nombre + ".jpg");
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            fos.write(this.image);
+        } catch (Exception e) {
+            System.out.println("Cuponera-createTempFile");
+            System.out.println(e.getMessage());
+        }
+        return file;
+    }
+
+    public void setImage(File file) {
+        try {
+            byte[] picInBytes = new byte[(int) file.length()];
+        FileInputStream fileInputStream = new FileInputStream(file);
+        fileInputStream.read(picInBytes);
+        fileInputStream.close();
+        this.image = picInBytes;
+        } catch (Exception e) {
+            System.out.println("Clase - setImage");
+            System.out.println(e.getMessage());
+        }
+    }
+    
     
     public void addCuponeraXActividad(CuponeraXActividad cupXAct) {
         cuponerasXActividad.add(cupXAct);
@@ -88,9 +128,18 @@ public class Cuponera implements Serializable {
                 cups.add(cup.getDtCuponeraXActividad());
             });
         }
-        
-        DtCuponera dtCup = new DtCuponera(id, nombre, descripcion, periodoVigencia, descuento, cups);
+        File photo = null;
+        if (this.image != null) {
+            photo = createTempFile();
+        }
+        if (photo == null) {
+              DtCuponera dtCup = new DtCuponera(id, nombre, descripcion, periodoVigencia, descuento, cups);
         return dtCup;
+        } else {
+              DtCuponera dtCup = new DtCuponera(id, nombre, descripcion, periodoVigencia, descuento, cups, photo);
+        return dtCup;
+        }
+      
     }
     
     

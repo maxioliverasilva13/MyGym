@@ -6,6 +6,7 @@ package Socio.dtos;
 
 import Registro.DtRegistro;
 import Usuario.dtos.UsuarioDTO;
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
@@ -21,8 +22,20 @@ public class SocioDTO extends UsuarioDTO{
         this.registros  = registros;
     }
     
+    public SocioDTO(int id,String nombre,String apellido,String nickname,String email,Date nacimiento,List<DtRegistro> registros, File file){
+        super(id,nombre,apellido,nickname,email,nacimiento, file);
+        this.registros  = registros;
+    }
+    
+    public SocioDTO(int id,String nombre,String apellido,String nickname,String email,Date nacimiento,List<DtRegistro> registros, File file, List<UsuarioDTO> seguidos, List<UsuarioDTO> seguidores){
+        super(id,nombre,apellido,nickname,email,nacimiento, file, seguidos, seguidores);
+        this.registros  = registros;
+    }
+    
     public List<DtRegistro> getRegistros(){
         return this.registros;
     }
+    
+    
    
 }

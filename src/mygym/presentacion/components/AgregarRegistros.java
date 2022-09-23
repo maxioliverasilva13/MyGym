@@ -204,7 +204,6 @@ public class AgregarRegistros extends javax.swing.JFrame {
         addFinal.setVisible(false);
         if (step1.isVisible() && !step2.isVisible() && !step3.isVisible() && !step4.isVisible()) {
             initCalendar();
-            System.out.println("Soy yo");
             step4.setVisible(true);
             step1.setVisible(false);
             return;
@@ -509,12 +508,10 @@ public class AgregarRegistros extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void step1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_step1FocusGained
-        System.out.println("I am focus");
         // TODO add your handling code here:
     }//GEN-LAST:event_step1FocusGained
 
     private void step1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_step1FocusLost
-        System.out.println("I am focus 2");
         // TODO add your handling code here:
     }//GEN-LAST:event_step1FocusLost
 

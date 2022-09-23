@@ -28,6 +28,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import javax.swing.plaf.IconUIResource;
+import utils.BrowseFile;
 
 
 /**
@@ -102,6 +103,7 @@ public class AddClaseForm extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         fecha = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
+        labelImage = new javax.swing.JLabel();
 
         dateChooserFechaRegistro.setForeground(new java.awt.Color(76, 131, 122));
         dateChooserFechaRegistro.setToolTipText("");
@@ -109,16 +111,16 @@ public class AddClaseForm extends javax.swing.JFrame {
         dateChooserFechaRegistro.setTextRefernce(fecha);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(400, 680));
-        setMinimumSize(new java.awt.Dimension(400, 680));
+        setMaximumSize(new java.awt.Dimension(480, 680));
+        setMinimumSize(new java.awt.Dimension(480, 680));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(215, 215, 215)));
-        jPanel1.setMaximumSize(new java.awt.Dimension(400, 680));
-        jPanel1.setMinimumSize(new java.awt.Dimension(400, 680));
-        jPanel1.setPreferredSize(new java.awt.Dimension(400, 680));
+        jPanel1.setMaximumSize(new java.awt.Dimension(480, 680));
+        jPanel1.setMinimumSize(new java.awt.Dimension(480, 680));
+        jPanel1.setPreferredSize(new java.awt.Dimension(480, 678));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dragBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -131,7 +133,7 @@ public class AddClaseForm extends javax.swing.JFrame {
                 dragBarMousePressed(evt);
             }
         });
-        jPanel1.add(dragBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 20));
+        jPanel1.add(dragBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 20));
 
         btnMinimizarBG.setBackground(java.awt.Color.lightGray);
 
@@ -139,7 +141,7 @@ public class AddClaseForm extends javax.swing.JFrame {
         btnMinimizar.setForeground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnMinimizar.setText("-");
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnMinimizarMouseClicked(evt);
@@ -157,7 +159,7 @@ public class AddClaseForm extends javax.swing.JFrame {
             .addComponent(btnMinimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
         );
 
-        jPanel1.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 30, 20));
+        jPanel1.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 30, 20));
 
         btnExitBG.setBackground(new java.awt.Color(174, 0, 51));
 
@@ -165,7 +167,7 @@ public class AddClaseForm extends javax.swing.JFrame {
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
         btnExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnExit.setText("X");
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnExitMouseClicked(evt);
@@ -185,21 +187,21 @@ public class AddClaseForm extends javax.swing.JFrame {
             .addComponent(btnExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel1.add(btnExitBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 30, 20));
+        jPanel1.add(btnExitBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 30, 20));
 
         jLabel1.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Alta de Clase");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 40));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, -10, 120, 40));
 
         jComboBox1.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jComboBox1.setEnabled(false);
         jComboBox1.setFocusable(false);
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 229, 344, 34));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 344, 34));
 
         jLabel7.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel7.setText("Elige una institucion");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 35, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
 
         jComboBox2.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jComboBox2.setEnabled(false);
@@ -209,15 +211,20 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jComboBox2ItemStateChanged(evt);
             }
         });
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 58, 344, 34));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 180, 34));
 
         jLabel8.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel8.setText("Elige una actividad deportiva ");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 119, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel9.setText("Elija un profesor");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 206, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
         jComboBox3.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jComboBox3.setEnabled(false);
@@ -227,7 +234,7 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jComboBox3ItemStateChanged(evt);
             }
         });
-        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 142, 344, 34));
+        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 344, 34));
 
         jTextField5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(160, 160, 160)));
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
@@ -235,12 +242,12 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jTextField5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 315, 344, 35));
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 286, -1, -1));
+        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 344, 35));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel2.setText("Ingresa un nombre");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 292, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
 
         jTextField6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(160, 160, 160)));
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
@@ -256,19 +263,19 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jTextField6KeyReleased(evt);
             }
         });
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 471, 348, 36));
+        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 348, 36));
 
         jLabel3.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel3.setText("Minimo Socios");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 356, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
 
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 368, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, -1, -1));
         jLabel4.getAccessibleContext().setAccessibleName("labelErrorCapacidad");
 
         errorCapacidadLbl.setForeground(new java.awt.Color(255, 0, 0));
         errorCapacidadLbl.setName("errorCapacidad"); // NOI18N
-        jPanel1.add(errorCapacidadLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 368, -1, -1));
+        jPanel1.add(errorCapacidadLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, -1, -1));
 
         jTextField7.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(160, 160, 160)));
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
@@ -287,11 +294,11 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jTextField7KeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 379, 95, 35));
+        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 95, 35));
 
         jLabel5.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel5.setText("Url Acceso");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 448, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(76, 131, 122));
         jButton1.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
@@ -309,7 +316,7 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 600, 340, 47));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, 420, 47));
 
         jTextField8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(160, 160, 160)));
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
@@ -328,11 +335,11 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jTextField8KeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(276, 379, 95, 35));
+        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 95, 35));
 
         jLabel6.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel6.setText("Maximo Socios");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 356, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, -1, -1));
 
         jLabel11.setBackground(new java.awt.Color(255, 0, 102));
         jLabel11.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
@@ -340,28 +347,28 @@ public class AddClaseForm extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel11.setName("errorLblMinSocios"); // NOI18N
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, 190, 16));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, 190, 16));
 
         jLabel12.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 0, 51));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel12.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 180, 16));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 180, 16));
         jLabel12.getAccessibleContext().setAccessibleName("errorMaxSociosLbl");
 
         jLabel13.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 51, 0));
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 210, 30));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 210, 30));
 
         jLabel14.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 0, 51));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel14.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 450, 260, 20));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, 260, 20));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 0, 51));
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 379, -1, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, -1, -1));
 
         fecha.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         fecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -371,13 +378,21 @@ public class AddClaseForm extends javax.swing.JFrame {
                 fechaActionPerformed(evt);
             }
         });
-        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 561, 140, 20));
+        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 140, 20));
 
         jLabel16.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel16.setText("Fecha de clase");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 530, -1, -1));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 680));
+        labelImage.setText("Imagen");
+        labelImage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelImageMouseClicked(evt);
+            }
+        });
+        jPanel1.add(labelImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 100, 70));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 678));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -490,12 +505,14 @@ public class AddClaseForm extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(new JFrame(), "Debes elegir una actividad", "Actividad no seleccionada", JOptionPane.ERROR_MESSAGE);
              return;
         }
-        DtClase dt = new DtClase(0, nombre, fechaClase, capMinima, capMaxima, urlAcceso, fechaRegistro);
+        DtClase dt = new DtClase(0, nombre, fechaClase, capMinima, capMaxima, urlAcceso, fechaRegistro, BrowseFile.globalFile);
    
         try {
             claseBO.insertarClase(selectedActividadId, dt);
             JOptionPane.showMessageDialog(new JFrame(), "La clase se insertó correctamente", "Agregado Correctamente", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
+            System.out.println("AddClaseForm - Crear Clase");
+            System.out.println(e.getMessage());
         }
          
         
@@ -592,6 +609,15 @@ public class AddClaseForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnExitMouseClicked
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void labelImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelImageMouseClicked
+        BrowseFile.browseClickEvent(labelImage);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelImageMouseClicked
 
     /**
      * @param args the command line arguments
@@ -714,5 +740,6 @@ public class AddClaseForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JLabel labelImage;
     // End of variables declaration//GEN-END:variables
 }

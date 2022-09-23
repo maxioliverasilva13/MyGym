@@ -24,6 +24,13 @@ import javax.persistence.Basic;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import Registro.DtRegistro;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import javax.persistence.FetchType;
+import javax.persistence.Lob;
 
 /**
  *
@@ -50,6 +57,39 @@ public class Clase implements Serializable {
     private Actividad actividad;
     @OneToMany(mappedBy = "clase")
     private List<Registro> registros;
+    
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private byte[] image;
+
+    public byte[] getImage() {
+        return image;
+    }
+    
+    public File createTempFile() {
+        String dir = System.getProperty("java.io.tmpdir");
+        File file = new File(dir + "image-clase-" + this.nombre + ".jpg");
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            fos.write(this.image);
+        } catch (Exception e) {
+            System.out.println("Clase-createTempFile");
+            System.out.println(e.getMessage());
+        }
+        return file;
+    }
+
+    public void setImage(File file) {
+        try {
+            byte[] picInBytes = new byte[(int) file.length()];
+        FileInputStream fileInputStream = new FileInputStream(file);
+        fileInputStream.read(picInBytes);
+        fileInputStream.close();
+        this.image = picInBytes;
+        } catch (Exception e) {
+            System.out.println("Clase - setImage");
+            System.out.println(e.getMessage());
+        }
+    }
     
     public int getId() {
         return id;
@@ -140,14 +180,19 @@ public class Clase implements Serializable {
             profeApellido = this.actividad.getProfesor().getApellido();
             profesorId = this.actividad.getProfesor().getId();
         }
+        File file = null;
         
+        if (this.image != null) {
+            file = this.createTempFile();
+        }
         
         DtClase classParsed = new DtClase(id,nombre, fecha, (actividad != null)
         ? profeNombre + " " + profeApellido : null, (actividad != null)
         ? profesorId : null, capMinima, capMaxima, urlAcceso, fechaRegistro, 
          registrosClase, (actividad != null)
         ? this.actividad.getId(): null, (actividad != null)
-        ? this.actividad.getNombre(): null, idInstitucion
+        ? this.actividad.getNombre(): null, idInstitucion,
+        file
        );
         return classParsed;
     }

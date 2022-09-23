@@ -10,12 +10,14 @@ import Clase.ClaseBO;
 import Clase.DtClase;
 import Institucion.DtInstitucion;
 import Institucion.InstitucionBO;
+import java.io.File;
 import java.util.HashMap;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import mygym.presentacion.forms.*;
 import javax.swing.WindowConstants;
+import utils.BrowseFile;
 import utils.Datehelper;
 
 
@@ -126,7 +128,13 @@ public class ChooseInstitucion extends javax.swing.JFrame {
             this.labelCantAlumnos.setText(cantAlumnos);
             this.labelNombre.setText(selectedClase.getNombre());
             colocateCorrectResults();
-        } else {
+              File tempFile = selectedClase.getImage();
+            if (tempFile != null) {
+               labelImage.setIcon(BrowseFile.RezizeImage(tempFile.getAbsolutePath(), labelImage));
+               this.revalidate();
+               this.repaint();
+            }
+          } else {
             // fillEmptyClassData();
             colocateEmptyResults();
         }
@@ -184,6 +192,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
         labelNombre = new javax.swing.JLabel();
         panelNotFound = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        labelImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(360, 430));
@@ -234,7 +243,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
             .addComponent(btnMinimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
         );
 
-        bgPanel.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 0, 30, 20));
+        bgPanel.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 30, 20));
 
         btnExitBG.setBackground(new java.awt.Color(174, 0, 51));
 
@@ -262,7 +271,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
             .addComponent(btnExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        bgPanel.add(btnExitBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 0, 30, 20));
+        bgPanel.add(btnExitBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 30, 20));
         bgPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 287, -1, -1));
 
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
@@ -294,15 +303,15 @@ public class ChooseInstitucion extends javax.swing.JFrame {
                 jComboClasesActionPerformed(evt);
             }
         });
-        bgPanel.add(jComboClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 290, 30));
+        bgPanel.add(jComboClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 340, 30));
 
         jLabel13.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jLabel13.setText("Elija una clase");
-        bgPanel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+        bgPanel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 170, -1));
 
         jLabel14.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jLabel14.setText("Elije una institucion");
-        bgPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 23, -1, -1));
+        bgPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 200, -1));
 
         jComboInstituciones.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jComboInstituciones.setFocusable(false);
@@ -316,11 +325,11 @@ public class ChooseInstitucion extends javax.swing.JFrame {
                 jComboInstitucionesActionPerformed(evt);
             }
         });
-        bgPanel.add(jComboInstituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 290, 30));
+        bgPanel.add(jComboInstituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 340, 30));
 
         jLabel15.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jLabel15.setText("Elija una Actividad");
-        bgPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        bgPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 200, -1));
 
         jComboActividades.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jComboActividades.setFocusable(false);
@@ -334,7 +343,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
                 jComboActividadesActionPerformed(evt);
             }
         });
-        bgPanel.add(jComboActividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 290, 30));
+        bgPanel.add(jComboActividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 340, 30));
 
         panelInfo.setBackground(new java.awt.Color(255, 255, 255));
         panelInfo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 0, 0, new java.awt.Color(0, 0, 0)));
@@ -408,7 +417,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
         labelNombre.setText("2");
         panelInfo.add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 170, -1));
 
-        bgPanel.add(panelInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 330, 190));
+        bgPanel.add(panelInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 330, 190));
 
         panelNotFound.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 0, 0, new java.awt.Color(0, 0, 0)));
         panelNotFound.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -417,9 +426,12 @@ public class ChooseInstitucion extends javax.swing.JFrame {
         jLabel1.setText("Lo sentimos, no encontramos ninguna clase !");
         panelNotFound.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        bgPanel.add(panelNotFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 310, 70));
+        bgPanel.add(panelNotFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 310, 70));
 
-        getContentPane().add(bgPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 450));
+        labelImage.setText("Imagen");
+        bgPanel.add(labelImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 110, 80));
+
+        getContentPane().add(bgPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -538,12 +550,8 @@ public class ChooseInstitucion extends javax.swing.JFrame {
     
   private void loadInstituciones(){
        this.jComboInstituciones.removeAllItems();
-       System.out.println("entro 1");
-       System.out.println(selectedIdInstitucion);
        instituciones.forEach((Integer key, DtInstitucion inst) -> {
-                  System.out.println("el id es " + key );
            if (selectedIdInstitucion == key) {
-               System.out.println("lo seteo bien");
                this.jComboInstituciones.setSelectedItem(inst.getNombre());
            }
            jComboInstituciones.addItem(inst.getNombre());
@@ -613,6 +621,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
     private javax.swing.JLabel labelCapMaxima;
     private javax.swing.JLabel labelCapMinima;
     private javax.swing.JLabel labelCreacion;
+    private javax.swing.JLabel labelImage;
     private javax.swing.JLabel labelInicio;
     private javax.swing.JLabel labelNombre;
     private javax.swing.JLabel labelProfesor;

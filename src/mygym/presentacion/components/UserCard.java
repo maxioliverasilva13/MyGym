@@ -8,15 +8,21 @@ import Usuario.IUsuarioBO;
 import Usuario.UsuarioBO;
 import Usuario.exceptions.UserNotExist;
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import mygym.presentacion.forms.AddUsersForm;
 import mygym.presentacion.forms.EditUsersForm;
 import mygym.presentacion.forms.VerInfoUsersProfesorForm;
 import mygym.presentacion.forms.VerInfoUsersSocioForm;
+import utils.ImageAvatar;
+import utils.RenderFoto;
 
 /**
  *
@@ -31,16 +37,16 @@ public class UserCard extends javax.swing.JPanel {
     private  String nombre;
     private String apellido;
     private String email;
+    private String filePath;
     AddUsersForm form;
 
-    public UserCard(int id,String nombre,String apellido,String email) {
+    public UserCard(int id,String nombre,String apellido,String email, String filePath) {
         this.id = id;
         initComponents();
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
-        
-        System.out.println("mi id es " + id);
+        this.filePath = filePath;
         this.render();
         
     }
@@ -57,10 +63,10 @@ public class UserCard extends javax.swing.JPanel {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        labelImage = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
 
         jMenuItem3.setText("Ver Informacion");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -71,7 +77,6 @@ public class UserCard extends javax.swing.JPanel {
         jPopupMenu1.add(jMenuItem3);
 
         jMenuItem4.setText("Editar");
-        jMenuItem4.setActionCommand("Editar");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -87,6 +92,22 @@ public class UserCard extends javax.swing.JPanel {
                 click(evt);
             }
         });
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelImage.setAutoscrolls(true);
+
+        javax.swing.GroupLayout labelImageLayout = new javax.swing.GroupLayout(labelImage);
+        labelImage.setLayout(labelImageLayout);
+        labelImageLayout.setHorizontalGroup(
+            labelImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 65, Short.MAX_VALUE)
+        );
+        labelImageLayout.setVerticalGroup(
+            labelImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 60, Short.MAX_VALUE)
+        );
+
+        add(labelImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 65, 60));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(204, 204, 204)));
 
@@ -117,35 +138,7 @@ public class UserCard extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 75, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 58, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 110, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void click(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_click
@@ -179,7 +172,6 @@ public class UserCard extends javax.swing.JPanel {
         IUsuarioBO usuarioBo = new UsuarioBO();
         try{
             String typeOfUser = usuarioBo.getTipoById(this.id);
-            System.out.println(id);
             form = new AddUsersForm(typeOfUser, this.id);
             if (form.isVisible() == false) {
                 form.setVisible(true);
@@ -192,6 +184,23 @@ public class UserCard extends javax.swing.JPanel {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void render(){
+        RenderFoto photoCell = new RenderFoto();
+        photoCell.setHorizontalAlignment(SwingConstants.CENTER);
+        if (this.filePath != null) {
+            labelImage.setAlignmentY(CENTER_ALIGNMENT);
+            ImageAvatar imgA = new ImageAvatar();
+            imgA.setAlignmentY(CENTER_ALIGNMENT);
+            ImageIcon imageIcon = new ImageIcon(filePath);
+            Image image = imageIcon.getImage(); // transform it 
+            Image newimg = image.getScaledInstance(1451, 1451,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+            imageIcon = new ImageIcon(newimg);  // transform it back
+            imgA.setImage(imageIcon);
+            imgA.setBorderSize(0);
+            imgA.setSizes(65, 60);
+            imgA.setBounds(0, 0, 65, 60);
+            labelImage.add(imgA);
+        }
+        
         this.jLabel1.setText(this.nombre + " " + this.apellido);
         this.jLabel2.setText(this.email);
     }
@@ -202,8 +211,8 @@ public class UserCard extends javax.swing.JPanel {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPanel labelImage;
     // End of variables declaration//GEN-END:variables
 
 }

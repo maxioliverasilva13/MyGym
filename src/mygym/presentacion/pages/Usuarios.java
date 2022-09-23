@@ -8,7 +8,11 @@ import Usuario.IUsuarioBO;
 import Usuario.UsuarioBO;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import mygym.presentacion.components.UserCard;
@@ -21,12 +25,13 @@ import mygym.presentacion.forms.AddUsersForm;
  */
 public class Usuarios extends javax.swing.JPanel {
     AddUsersForm form = new AddUsersForm();
+    int counter;
     /**
      * Creates new form Usuarios
      */
     public Usuarios() {
         initComponents();
-        JPanel panelContent = new JPanel(new GridLayout(3, 3, 10,10));
+        JPanel panelContent = new JPanel(new GridBagLayout());
         panelContent.setBorder(new EmptyBorder(0,0,0,0));
         panelContent.setBackground(Color.white); 
         //panelContent.setLayout(new BoxLayout(panelContent, BoxLayout.Y_AXIS));
@@ -43,7 +48,6 @@ public class Usuarios extends javax.swing.JPanel {
           JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         js.setBounds(0,35,720,540);
         js.setBorder(new EmptyBorder(0,0,0,0));
-        js.getVerticalScrollBar().setUnitIncrement(16);
         add(js);
         revalidate();
         repaint();
@@ -112,15 +116,29 @@ public class Usuarios extends javax.swing.JPanel {
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void LoadUsers(JPanel panel){
+        counter = 0;
+        GridBagConstraints c = new GridBagConstraints();
+        c.anchor = GridBagConstraints.NORTHWEST;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        
         panel.removeAll();
         IUsuarioBO usuarioBo = new UsuarioBO();
-        int sizeOfRows = usuarioBo.listarUsuarios().size();
-        usuarioBo.listarUsuarios().forEach((key,user) -> {
-           UserCard card = new UserCard(key,user.getNombre(),user.getApellido(),user.getEmail());
+            usuarioBo.listarUsuarios().forEach((key,user) -> {
+           String filePath = null;
+           if (user.getImage() != null) {
+               filePath = user.getImage().getAbsolutePath();
+           }
+           UserCard card = new UserCard(key,user.getNombre(),user.getApellido(),user.getEmail(), filePath);
            card.setSize(120, 90);
-           panel.add(card);
+            c.gridx = counter % 3;
+            c.gridy = counter / 3;
+            c.weighty = 1;
+            c.weightx = 1;
+
+            c.insets = new Insets(4, 4, 4, 4);
+           panel.add(card, c);
+           counter++;
         });
-        new GridLayout((sizeOfRows / 3) + 1, 3, 10,10);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;

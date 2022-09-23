@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import Socio.Socio;
 import Clase.Clase;
 import Clase.DtClase;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
@@ -89,8 +90,12 @@ public class Registro implements Serializable {
         this.clase.getRegistros().forEach((Registro r) -> {
             regsOfClass.add(new DtRegistro(r.getId(), r.getCosto(), r.getFecha(), "", ""));
         });
+        File file = null;
+        if (this.clase.getImage() != null) {
+            file = this.clase.createTempFile();
+        }
         DtClase clase = new DtClase(
-           this.clase.getId(), this.clase.getNombre(), this.clase.getFecha(), this.clase.getCapMinima(), this.clase.getCapMaxima(), this.clase.getUrlAcceso(), this.clase.getFechaRegistro(), this.clase.getActividad().getNombre(), regsOfClass);
+           this.clase.getId(), this.clase.getNombre(), this.clase.getFecha(), this.clase.getCapMinima(), this.clase.getCapMaxima(), this.clase.getUrlAcceso(), this.clase.getFechaRegistro(), this.clase.getActividad().getNombre(), regsOfClass, file);
         
         DtRegistro dtToReturn = new DtRegistro(
           id, costo, fecha, (socio != null) ? socio.getNombre() : null,

@@ -107,7 +107,6 @@ public class ChooseActividad extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ChooseActividad().setVisible(true);
-                System.out.println("Hola!!");
             }
         });
     }

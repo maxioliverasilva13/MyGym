@@ -20,10 +20,10 @@ import javax.persistence.NoResultException;
  * @author angel
  */
 public class UsuarioBO implements IUsuarioBO {
+    UsuarioDAO userDao = new UsuarioDAO();
 
     @Override
     public void create(UsuarioCreateDTO userCreate) throws UserAlreadyEmailExist,UserAlreadyNickExist {
-        UsuarioDAO userDao = new UsuarioDAO();
         if(userDao.getByNickname(userCreate.getNickname()) != null){
               throw new UserAlreadyNickExist("ya existe un usuario con este nickname");
         }
@@ -35,19 +35,16 @@ public class UsuarioBO implements IUsuarioBO {
 
     @Override
     public HashMap<Integer, UsuarioDTO> listarUsuarios() {
-         UsuarioDAO userDao = new UsuarioDAO();
          HashMap<Integer,UsuarioDTO> res = new HashMap<Integer,UsuarioDTO>();
          List<Usuario> userList = userDao.listar();
          userList.forEach((user) -> {
-             res.put(user.getId(), new UsuarioDTO(user.getId(),user.getNombre(),user.getApellido(),user.getNickname(),user.getEmail(), user.getNacimiento()));
+             res.put(user.getId(), new UsuarioDTO(user.getId(),user.getNombre(),user.getApellido(),user.getNickname(),user.getEmail(), user.getNacimiento(), user.createTempFile()));
          });
          return res;
     }
 
     @Override
     public String getTipoById(int id) {
-         UsuarioDAO userDao = new UsuarioDAO();
-         
          if(userDao.getById(id) == null){
              throw new UserNotExist("Usuario no existe");
          }
@@ -56,6 +53,16 @@ public class UsuarioBO implements IUsuarioBO {
          
     }
     
+     @Override
+     public void seguirAUsuario(int myId, int idUsuario){
+         userDao.seguirAUsuario(myId, idUsuario);
+         
+     }
+     
+     @Override
+     public void dejarSeguirUsuario(int myId, int idUsuario){
+         userDao.dejarSeguirUsuario(myId, idUsuario);
+     }
  
     
     

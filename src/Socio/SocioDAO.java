@@ -21,6 +21,7 @@ import Usuario.UsuarioDAO;
 import Usuario.exceptions.UserAlreadyEmailExist;
 import Usuario.exceptions.UserAlreadyNickExist;
 import ParseDate.ParseDate;
+import utils.EncryptPass;
 /**
  *
  * @author angel
@@ -69,6 +70,8 @@ public class SocioDAO implements ISocioDAO {
         if(!socio.getEmail().equals(soc.getEmail()) && userDao.getByEmail(socio.getEmail()) != null){
               throw new UserAlreadyEmailExist("ya existe un usuario con este email");
         }
+
+        EncryptPass ep = new EncryptPass();
         EntityTransaction tr = em.getTransaction();
         tr.begin();
         System.out.println(socio.getNickname());
@@ -77,6 +80,11 @@ public class SocioDAO implements ISocioDAO {
         soc.setNacimiento(socio.getNacimiento());
         soc.setNombre(socio.getNombre());
         soc.setNickname(soc.getNickname());
+        if (socio.getPasswordChar() != null){
+            String encryptedPassword = ep.encryptPass(new String(socio.getPasswordChar()));
+            soc.setPassword(encryptedPassword);
+        }
+        soc.setImage(socio.getImage());
         tr.commit();
     }
 
