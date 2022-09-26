@@ -76,6 +76,10 @@ public class ActividadDTO {
     public List<DtClase> getClases() {
         return clases;
     }
+    
+    public List<DtCategoria> getCategorias() {
+        return categorias;
+    }
 
     public int getDuracion() {
         return duracion;
