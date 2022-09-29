@@ -24,7 +24,6 @@ public class MyGymApp {
         ds.setVisible(true);
         
         IActividadBO actBo = new ActividadBO();
-        
        // int institucion_id,int profesor_id, float costo, String nombre, String descripcion, Date fecha_registro, int duracion
        // ActividadCreateDTO actDTO = new ActividadCreateDTO(null,null,);
      //   actBo.crear(actCreate, 0, 0);
