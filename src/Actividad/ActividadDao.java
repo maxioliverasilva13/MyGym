@@ -167,6 +167,8 @@ public class ActividadDao implements IActividadDao {
     }
    
     public List<Actividad> listarActividadesByCategoria(int InstId, String[] cat, String estado) {
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
         try {
             List<Actividad> actividades = null;
             for (int i = 0;i < cat.length; i++) {
@@ -176,6 +178,7 @@ public class ActividadDao implements IActividadDao {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        tx.commit();
         return null;
     }
     
