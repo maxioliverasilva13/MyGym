@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import Actividad.Actividad;
 import Actividad.dtos.ActividadDTO;
+import Categoria.DtCategoria;
 import Clase.DtClase;
 import Cuponera.Cuponera;
 import Cuponera.DtCuponera;
@@ -91,9 +92,15 @@ public class CuponeraXActividad implements Serializable {
                     dtCUXAS.add(new DtCuponeraXActividad(id, cantClases, cup));
                 });
                 
+                Collection<Categoria.Categoria> categorias = this.actividad.getCategorias();
+                List<DtCategoria> dtcats = new ArrayList<>();
+                categorias.forEach((cat) -> {
+                    dtcats.add(cat.getDtCategoria());
+                });
+                
                 ActividadDTO actividad = new ActividadDTO(
                     this.actividad.getId(), this.actividad.getNombre() , this.actividad.getDescripcion(), this.actividad.getDuracion(), this.actividad.getCosto(), this.actividad.getFechaRegistro(), this.actividad.getProfesor().getDtProfesor(),
-                        dtclases, this.actividad.getInstitucion().getDtInstitucion(), dtCUXAS, null, null);
+                        dtclases, this.actividad.getInstitucion().getDtInstitucion(), dtCUXAS, null, dtcats);
                 return new DtCuponeraXActividad(id, cantClases,  cup, actividad);
             }else{
                 return new DtCuponeraXActividad(id, cantClases,  cup);
