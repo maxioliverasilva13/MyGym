@@ -6,6 +6,7 @@ package mygym.presentacion.forms;
 
 import javax.swing.JFrame;
 import Actividad.dtos.ActividadDTO;
+import Categoria.DtCategoria;
 import Clase.DtClase;
 import java.awt.Image;
 import Cuponera.DtCuponera;
@@ -17,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -39,7 +41,7 @@ public class showActividadInfoForm extends javax.swing.JFrame {
     
     DefaultComboBoxModel modelClases = new DefaultComboBoxModel();
     DefaultComboBoxModel modelCuponeras = new DefaultComboBoxModel();
-
+    DefaultListModel listModelCategorias = new DefaultListModel();
     
     int xMouse, yMouse;
 
@@ -92,6 +94,22 @@ public class showActividadInfoForm extends javax.swing.JFrame {
              this.revalidate();
              this.repaint();
         }
+        
+        
+        List<DtCategoria> catsInThisAct = new ArrayList<>();
+        catsInThisAct = selectedAct.getCategorias();
+        
+        if (catsInThisAct.size() > 0){
+            listModelCategorias.removeAllElements();
+            catsInThisAct.forEach((currentCat) -> { 
+                listModelCategorias.addElement(currentCat.getNombre());
+            });
+            this.listCategorias.setModel(listModelCategorias);        
+        }else{
+            
+            System.out.println("No hay categorias en esta actividad.");
+        }
+        
     }
     
     private void pintarInfoCuponerasAsociadas(ActividadDTO selectedAct){
@@ -192,16 +210,25 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         btnMinimizar = new javax.swing.JLabel();
         btnExitBG = new javax.swing.JPanel();
         btnExit = new javax.swing.JLabel();
+        panelCategorias = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listCategorias = new javax.swing.JList<>();
+        jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(870, 600));
+        setMinimumSize(new java.awt.Dimension(870, 600));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(870, 600));
+        setSize(new java.awt.Dimension(870, 600));
 
         bgPanel.setBackground(new java.awt.Color(255, 255, 255));
         bgPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(215, 215, 215)));
         bgPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelImage.setText("Test");
-        bgPanel.add(labelImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 160, 120));
+        bgPanel.add(labelImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 160, 120));
 
         lblHeader.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
         lblHeader.setForeground(new java.awt.Color(4, 37, 58));
@@ -237,28 +264,28 @@ public class showActividadInfoForm extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("Fecha de Alta al Sistema:");
-        bgPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
+        jLabel3.setText("Fecha de Alta:");
+        bgPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 130, -1));
 
         jLabel4.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Nombre:");
-        bgPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 130, -1));
+        bgPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 130, -1));
 
         jLabel5.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Descripción:");
-        bgPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 130, -1));
+        bgPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 130, -1));
 
         jLabel6.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Duración en Minutos:");
-        bgPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 130, -1));
+        bgPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 130, -1));
 
         jLabel7.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Costo:");
-        bgPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 130, -1));
+        bgPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 130, -1));
         bgPanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 870, 10));
 
         txaDescripcionActividad.setEditable(false);
@@ -267,29 +294,30 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         txaDescripcionActividad.setRows(5);
         scrollActividad.setViewportView(txaDescripcionActividad);
 
-        bgPanel.add(scrollActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 230, -1));
+        bgPanel.add(scrollActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, 230, -1));
 
         nombreActividad.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         nombreActividad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nombreActividad.setText("xxxxxxxxxxxxxxx");
-        bgPanel.add(nombreActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 260, 20));
+        bgPanel.add(nombreActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 260, 20));
 
         costoActividad.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         costoActividad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         costoActividad.setText("xxxxxxxxxxxxxxx");
-        bgPanel.add(costoActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 260, 20));
+        bgPanel.add(costoActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 260, 20));
 
         duracionActividad.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         duracionActividad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         duracionActividad.setText("xxxxxxxxxxxxxxx");
-        bgPanel.add(duracionActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 260, 20));
+        bgPanel.add(duracionActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 260, 20));
 
         fechaAltaActividad.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         fechaAltaActividad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fechaAltaActividad.setText("xxxxxxxxxxxxxxx");
-        bgPanel.add(fechaAltaActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 260, 20));
+        bgPanel.add(fechaAltaActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 260, 20));
 
-        panelCuponeras.setBackground(new java.awt.Color(236, 236, 236));
+        panelCuponeras.setBackground(new java.awt.Color(249, 249, 249));
+        panelCuponeras.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 3, 0, 0, new java.awt.Color(76, 131, 122)));
         panelCuponeras.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txaDescripcionCuponera.setEditable(false);
@@ -347,7 +375,8 @@ public class showActividadInfoForm extends javax.swing.JFrame {
 
         bgPanel.add(panelCuponeras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 400, 230));
 
-        panelClases.setBackground(new java.awt.Color(236, 236, 236));
+        panelClases.setBackground(new java.awt.Color(249, 249, 249));
+        panelClases.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 3, 0, 0, new java.awt.Color(76, 131, 122)));
         panelClases.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
@@ -488,6 +517,33 @@ public class showActividadInfoForm extends javax.swing.JFrame {
 
         bgPanel.add(btnExitBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, 30, 20));
 
+        panelCategorias.setBackground(new java.awt.Color(255, 255, 255));
+        panelCategorias.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 3, 0, 0, new java.awt.Color(76, 131, 122)));
+        panelCategorias.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel20.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel20.setText("Categorías Asociadas");
+        panelCategorias.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 30));
+
+        jScrollPane1.setBorder(null);
+
+        listCategorias.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        listCategorias.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listCategorias.setFocusable(false);
+        listCategorias.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        listCategorias.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setViewportView(listCategorias);
+
+        panelCategorias.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 200, 160));
+
+        bgPanel.add(panelCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 50, 230, 205));
+
+        jLabel21.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel21.setText("Imagen");
+        bgPanel.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 160, 20));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -496,7 +552,7 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -631,6 +687,8 @@ public class showActividadInfoForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -638,12 +696,15 @@ public class showActividadInfoForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelImage;
     private javax.swing.JLabel lblHeader;
+    private javax.swing.JList<String> listCategorias;
     private javax.swing.JLabel nombreActividad;
     private javax.swing.JLabel nombreClase;
     private javax.swing.JLabel nombreCuponera;
+    private javax.swing.JPanel panelCategorias;
     private javax.swing.JPanel panelClases;
     private javax.swing.JPanel panelCuponeras;
     private javax.swing.JLabel periodoVigenciaCuponera;

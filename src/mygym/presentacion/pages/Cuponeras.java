@@ -80,7 +80,7 @@ public class Cuponeras extends javax.swing.JPanel {
         lblHeader.setForeground(new java.awt.Color(41, 69, 87));
         lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHeader.setText("Cuponeras");
-        bgPanel.add(lblHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 0));
+        bgPanel.add(lblHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, -1));
 
         btnCrearBG.setBackground(new java.awt.Color(76, 131, 122));
 
@@ -114,7 +114,7 @@ public class Cuponeras extends javax.swing.JPanel {
                 .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        bgPanel.add(btnCrearBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 160, 0));
+        bgPanel.add(btnCrearBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 160, -1));
 
         scrollTabla.setBackground(new java.awt.Color(255, 255, 255));
         scrollTabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -219,7 +219,7 @@ public class Cuponeras extends javax.swing.JPanel {
                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        bgPanel.add(btnAgregarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 470, 310, 0));
+        bgPanel.add(btnAgregarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 470, 310, -1));
 
         btnConsultar.setBackground(new java.awt.Color(76, 131, 122));
         btnConsultar.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
@@ -343,7 +343,7 @@ public class Cuponeras extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una cuponera existente.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        Object idObj = tablaCuponeras.getValueAt(selectedRowId, 0);
+        Object idObj = tablaCuponeras.getValueAt(selectedRowId, 1);
         int selectedCuponeraID = (Integer) idObj;
         DtCuponera selectedCup = cuponeras.get(selectedCuponeraID); // PASARLE ESTE DT POR EL CONSTRUCTOR DEL FORM
         if (selectedCup != null){
