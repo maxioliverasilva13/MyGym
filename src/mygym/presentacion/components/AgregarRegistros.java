@@ -259,7 +259,6 @@ public class AgregarRegistros extends javax.swing.JFrame {
         btnExit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(780, 830));
         setMinimumSize(new java.awt.Dimension(780, 830));
         setUndecorated(true);
         setResizable(false);

@@ -7,6 +7,8 @@ package mygymapp;
 import Actividad.ActividadBO;
 import Actividad.IActividadBO;
 import Actividad.dtos.ActividadCreateDTO;
+import Cuponera.CuponeraBo;
+import Cuponera.InterfaceCuponeraBo;
 import EntityManajer.InterfaceEntityManager;
 import Usuario.UsuarioDAO;
 import javax.persistence.EntityManager;
@@ -23,7 +25,14 @@ public class MyGymApp {
         Dashboard ds = new Dashboard();
         ds.setVisible(true);
         
-        IActividadBO actBo = new ActividadBO();
+        InterfaceCuponeraBo actBo = new CuponeraBo();
+        
+        try{
+            actBo.comprarCuponera(4,1 );
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+       
         
        // int institucion_id,int profesor_id, float costo, String nombre, String descripcion, Date fecha_registro, int duracion
        // ActividadCreateDTO actDTO = new ActividadCreateDTO(null,null,);

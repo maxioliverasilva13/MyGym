@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import java.util.Date;
 import javax.persistence.ManyToMany;
 import Actividad.Actividad;
+import CompraCuponera.CompraCuponera;
 import java.util.Collection;
 import javax.persistence.OneToMany;
 import CuponeraXActividad.CuponeraXActividad;
@@ -39,9 +40,16 @@ public class Cuponera implements Serializable {
     private String nombre;
     private String descripcion;
     private Date periodoVigencia;
+    private float precio;
     private int descuento;
+ 
     @OneToMany(mappedBy = "cuponera")
     private List<CuponeraXActividad> cuponerasXActividad;
+    
+    
+    @OneToMany(mappedBy = "cuponera")
+    private List<CompraCuponera> compras;
+    
     
         @Lob
     @Basic(fetch = FetchType.LAZY)
@@ -120,6 +128,14 @@ public class Cuponera implements Serializable {
     public void setDescuento(int descuento) {
         this.descuento = descuento;
     }
+    public float getPrecio(){
+        return this.precio;
+    }
+    public void setPrecio(float precio){
+         this.precio = precio;
+    }
+    
+    
     
     public DtCuponera getDtCuponera() {
         List<DtCuponeraXActividad> cups = new ArrayList<>();
@@ -133,14 +149,16 @@ public class Cuponera implements Serializable {
             photo = createTempFile();
         }
         if (photo == null) {
-              DtCuponera dtCup = new DtCuponera(id, nombre, descripcion, periodoVigencia, descuento, cups);
+              DtCuponera dtCup = new DtCuponera(id, nombre, descripcion, periodoVigencia, descuento,precio, cups);
         return dtCup;
         } else {
-              DtCuponera dtCup = new DtCuponera(id, nombre, descripcion, periodoVigencia, descuento, cups, photo);
+              DtCuponera dtCup = new DtCuponera(id, nombre, descripcion, periodoVigencia, descuento,precio, cups, photo);
         return dtCup;
         }
       
     }
+    
+   
     
     
 }

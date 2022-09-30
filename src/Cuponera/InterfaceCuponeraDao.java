@@ -8,6 +8,7 @@ import CuponeraXActividad.DtCuponeraXActividad;
 import java.util.List;
 import java.util.Set;
 import CuponeraXActividad.CuponeraXActividad;
+import Socio.Socio;
 
 /**
  *
@@ -18,4 +19,6 @@ public interface InterfaceCuponeraDao {
     public List<Cuponera> listar();
     public Cuponera existe(int idCup);
     public void agregarCupXActividad(int idCuponera, CuponeraXActividad cupXA);
+    public List<Cuponera> listarVigentes();
+    public void comprarCuponera(Socio socio,Cuponera cuponera);
 }

@@ -77,7 +77,7 @@ public class CuponeraXActividad implements Serializable {
             if (cuponera.getImage() != null) {
                 photo = cuponera.createTempFile();
             }
-            DtCuponera cup = new DtCuponera(this.cuponera.getId(), this.cuponera.getNombre(), this.cuponera.getDescripcion(), this.cuponera.getPeriodoVigencia(), this.cuponera.getDescuento(), null, photo);
+            DtCuponera cup = new DtCuponera(this.cuponera.getId(), this.cuponera.getNombre(), this.cuponera.getDescripcion(), this.cuponera.getPeriodoVigencia(), this.cuponera.getDescuento(),this.cuponera.getPrecio(), null, photo);
             if (actividad != null){
                 Collection<Clase.Clase> clases = this.actividad.getClases();
                 List<DtClase> dtclases = new ArrayList<>();
