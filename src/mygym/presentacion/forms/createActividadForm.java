@@ -475,7 +475,6 @@ public class createActividadForm extends javax.swing.JFrame{
         listCategorias.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listCategorias.setFocusable(false);
         listCategorias.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        listCategorias.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(listCategorias);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 480, 210, 140));

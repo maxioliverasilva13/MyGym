@@ -117,6 +117,16 @@ public class ActividadBO  implements IActividadBO{
         });
         return actividades;    
     }
+    
+    @Override
+    public HashMap<Integer, ActividadDTO> listarActividadesByCategoria(int InstId, String[] cat, String estado){ 
+        HashMap<Integer, ActividadDTO> actividades = new HashMap<>();
+        List<Actividad> acts = actDao.listarActividadesByCategoria(InstId,cat,estado);
+        acts.forEach((Actividad act) -> {
+            actividades.put(act.getId(), act.getDtActividad());
+        });
+        return actividades;
+    }
 
     @Override
     public void cambiarEstado(int idActividad, String newStatus) throws ActividadNotFoundException {
