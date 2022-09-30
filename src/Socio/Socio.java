@@ -4,6 +4,7 @@
  */
 package Socio;
 
+import CompraCuponera.CompraCuponera;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Entity;
@@ -26,12 +27,19 @@ public class Socio extends Usuario{
     @OneToMany(mappedBy = "socio")
     private Collection<Registro> registros;
     
+    @OneToMany(mappedBy = "socio")
+    private Collection<CompraCuponera> comprasCuponeras;
+    
     public void addRegistro(Registro r) {
         this.registros.add(r);
     }
 
     public Collection<Registro> getRegistros() {
         return registros;
+    }
+    
+    public Collection<CompraCuponera> getCuponerasCompradas(){
+        return this.comprasCuponeras;
     }
 
     public void setRegistros(Collection<Registro> registros) {

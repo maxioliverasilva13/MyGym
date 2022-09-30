@@ -4,7 +4,18 @@
  */
 package Cuponera;
 
+import CompraCuponera.CompraCuponera;
+import Exceptions.CuponeraAlreadyPurchaseBySocio;
+import Exceptions.CuponeraNotFoundException;
+import Socio.ISocioBO;
+import Socio.ISocioDAO;
+import Socio.Socio;
+import Socio.SocioBO;
+import Socio.SocioDAO;
+import Socio.exceptions.SocioNotExist;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -35,6 +46,45 @@ public class CuponeraBo implements InterfaceCuponeraBo {
             return null;
         }
         return cup.getDtCuponera();
+    }
+
+    @Override
+    public HashMap<Integer, DtCuponera> listarCuponerasVigentes() {
+        HashMap<Integer, DtCuponera> res = new HashMap<Integer, DtCuponera>();
+        cuponeradao.listarVigentes().forEach(cuponera ->{
+            res.put(cuponera.getId(), cuponera.getDtCuponera());
+        });
+        return res;
+    }
+
+    @Override
+    public void comprarCuponera(int socioID,int IdCuponera) throws CuponeraAlreadyPurchaseBySocio {
+        ISocioDAO socioDao = new SocioDAO();
+        Socio socioFind = socioDao.getById(socioID);
+        if(socioFind == null) {
+            throw new SocioNotExist("El socio no existe");
+        }       
+        Cuponera cuponeraFind = this.cuponeradao.existe(IdCuponera);
+        if(cuponeraFind == null){
+            throw new CuponeraNotFoundException("La cuponera no existe");
+        }
+        
+        Collection<CompraCuponera> comprasCuponerasBySocio = socioFind.getCuponerasCompradas();
+        Iterator<CompraCuponera> it = comprasCuponerasBySocio.iterator();
+        CompraCuponera curr;
+        boolean alreadyPurchase = false;
+        while(it.hasNext()){
+           curr  = it.next();
+           if(curr.getCuponera().getId() == IdCuponera){
+               alreadyPurchase = true;
+               break;  
+           }
+        }
+        if(alreadyPurchase){
+           throw new CuponeraAlreadyPurchaseBySocio("El socio ya tiene esta cuponera"); 
+        }
+        cuponeradao.comprarCuponera(socioFind, cuponeraFind);
+        
     }
 
 }

@@ -4,13 +4,16 @@
  */
 package Cuponera;
 
+import CompraCuponera.CompraCuponera;
 import CuponeraXActividad.CuponeraXActividadDao;
 import CuponeraXActividad.CuponeraXActividad;
 import CuponeraXActividad.DtCuponeraXActividad;
 import EntityManajer.InterfaceEntityManager;
 import Exceptions.CuponeraNotFoundException;
 import Exceptions.CuponeraAlreadyExistsException;
+import Socio.Socio;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -34,6 +37,7 @@ public class CuponeraDao implements InterfaceCuponeraDao {
                 cup.setDescripcion(cuponera.getDescripcion());
                 cup.setDescuento(cuponera.getDescuento());
                 cup.setNombre(cuponera.getNombre());
+                cup.setPrecio(cuponera.getPrecio());
                 if (cuponera.getImage() != null) {
                     cup.setImage(cuponera.getImage());
                 }
@@ -83,5 +87,28 @@ public class CuponeraDao implements InterfaceCuponeraDao {
         }
     }
 
+    @Override
+    public List<Cuponera> listarVigentes() {
+       List<Cuponera> cuponeras = em.createNativeQuery(
+            "SELECT * FROM CUPONERA WHERE PERIODOVIGENCIA > NOW()", Cuponera.class)
+            .getResultList();
+       return cuponeras;
+    }
+
+    @Override
+    public void comprarCuponera(Socio socio, Cuponera cuponera) {
+                CompraCuponera newPurchase = new CompraCuponera();
+                newPurchase.setCosto(cuponera.getPrecio());
+                newPurchase.setCuponera(cuponera);
+                newPurchase.setSocio(socio);
+                newPurchase.setFecha(new Date());
+                EntityTransaction et = em.getTransaction();
+                et.begin();
+                em.persist(newPurchase);
+                et.commit();
+    }      
+    
+    
+    
 
 }

@@ -13,6 +13,7 @@
     <class>Socio.Socio</class>
     <class>Usuario.Usuario</class>
     <class>Seguidor.Seguidor</class>
+    <class>CompraCuponera.CompraCuponera</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/my_gym?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

@@ -74,7 +74,7 @@ public class ParserClassesToDt {
             if (cup.getImage() != null) {
                 photo = cup.createTempFile();
             }
-            DtCuponera dtCup = new DtCuponera(cup.getId(), cup.getNombre(), cup.getDescripcion(), cup.getPeriodoVigencia(), cup.getDescuento(), null, photo);
+            DtCuponera dtCup = new DtCuponera(cup.getId(), cup.getNombre(), cup.getDescripcion(), cup.getPeriodoVigencia(), cup.getDescuento(),cup.getPrecio(), null, photo);
             DtCuponeraXActividad cu = new DtCuponeraXActividad(cuxa.getId(), cuxa.getCantClases(), dtCup);
             cuponerasXAct.add(cu);
         });

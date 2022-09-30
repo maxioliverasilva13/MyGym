@@ -7,6 +7,8 @@ package mygymapp;
 import Actividad.ActividadBO;
 import Actividad.IActividadBO;
 import Actividad.dtos.ActividadCreateDTO;
+import Cuponera.CuponeraBo;
+import Cuponera.InterfaceCuponeraBo;
 import EntityManajer.InterfaceEntityManager;
 import Usuario.UsuarioDAO;
 import javax.persistence.EntityManager;

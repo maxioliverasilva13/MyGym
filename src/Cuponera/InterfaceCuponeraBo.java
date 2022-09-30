@@ -4,6 +4,7 @@
  */
 package Cuponera;
 
+import Exceptions.CuponeraAlreadyPurchaseBySocio;
 import java.util.HashMap;
 
 /**
@@ -14,4 +15,6 @@ public interface InterfaceCuponeraBo {
     public void agregarCuponera(DtCuponera cuponera);
     public HashMap<Integer, DtCuponera> listarCuponeras();
     public DtCuponera consultarCuponera(int idCuponera);
+    public HashMap<Integer, DtCuponera> listarCuponerasVigentes();
+    public void comprarCuponera(int socioID,int idCuponera) throws CuponeraAlreadyPurchaseBySocio;
 }

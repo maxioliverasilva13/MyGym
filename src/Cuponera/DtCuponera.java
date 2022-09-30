@@ -23,17 +23,21 @@ public class DtCuponera {
     private int descuento;
     private List<DtCuponeraXActividad> cuponerasXActividad;
     private File image;
+    private float precio;
+  
 
-    public DtCuponera(int id, String nombre, String descripcion, Date periodoVigencia, int descuento, List<DtCuponeraXActividad> cupsXActs) {
+    public DtCuponera(int id, String nombre, String descripcion, Date periodoVigencia, int descuento,float precio, List<DtCuponeraXActividad> cupsXActs) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.periodoVigencia = periodoVigencia;
         this.descuento = descuento;
         this.cuponerasXActividad = cupsXActs;
+        this.precio = precio;
+        
     }
     
-    public DtCuponera(int id, String nombre, String descripcion, Date periodoVigencia, int descuento, List<DtCuponeraXActividad> cupsXActs, File file) {
+    public DtCuponera(int id, String nombre, String descripcion, Date periodoVigencia, int descuento,float precio, List<DtCuponeraXActividad> cupsXActs, File file) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -41,6 +45,7 @@ public class DtCuponera {
         this.descuento = descuento;
         this.cuponerasXActividad = cupsXActs;
         this.image = file;
+        this.precio = precio;
     }
 
     public File getImage() {
@@ -69,6 +74,10 @@ public class DtCuponera {
 
     public List<DtCuponeraXActividad> getCuponerasXActividad() {
         return cuponerasXActividad;
+    }
+    
+    public float getPrecio(){
+        return this.precio;
     }
     
     
