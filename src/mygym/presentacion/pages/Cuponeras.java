@@ -346,7 +346,7 @@ public class Cuponeras extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una cuponera existente.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        Object idObj = tablaCuponeras.getValueAt(selectedRowId, 0);
+        Object idObj = tablaCuponeras.getValueAt(selectedRowId, 1);
         int selectedCuponeraID = (Integer) idObj;
         DtCuponera selectedCup = cuponeras.get(selectedCuponeraID); // PASARLE ESTE DT POR EL CONSTRUCTOR DEL FORM
         if (selectedCup != null){

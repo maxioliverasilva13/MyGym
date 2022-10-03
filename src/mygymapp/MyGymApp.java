@@ -25,15 +25,7 @@ public class MyGymApp {
         Dashboard ds = new Dashboard();
         ds.setVisible(true);
         
-        InterfaceCuponeraBo actBo = new CuponeraBo();
-        
-        try{
-            actBo.comprarCuponera(4,1 );
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-       
-        
+        IActividadBO actBo = new ActividadBO();
        // int institucion_id,int profesor_id, float costo, String nombre, String descripcion, Date fecha_registro, int duracion
        // ActividadCreateDTO actDTO = new ActividadCreateDTO(null,null,);
      //   actBo.crear(actCreate, 0, 0);

@@ -155,6 +155,7 @@ public class ActividadDao implements IActividadDao {
        tx.commit();
         return actividades;
     }
+    
 
     @Override
     public List<Actividad> listarAllActividadesPendientes() {
@@ -164,7 +165,23 @@ public class ActividadDao implements IActividadDao {
          tx.commit();
         return actividades;
     }
-
+   
+    public List<Actividad> listarActividadesByCategoria(int InstId, String[] cat, String estado) {
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        try {
+            List<Actividad> actividades = null;
+            for (int i = 0;i < cat.length; i++) {
+                actividades = em.createNativeQuery("select actividad.ID, actividad.COSTO, actividad.DURACION, actividad.FECHAREGISTRO, actividad.NOMBRE ,actividad.DESCRIPCION from ACTIVIDAD actividad join actividad_categoria on actividad_categoria.Actividad_ID = actividad.ID join categoria on categoria.ID = actividad_categoria.categorias_ID WHERE actividad.ESTADO='"+ estado +"' AND actividad.INSTITUCION_ID="+ InstId +" and categoria.NOMBRE = '"+ cat[i] + "'", Actividad.class).getResultList();
+            }
+            return actividades; 
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        tx.commit();
+        return null;
+    }
+    
     @Override
     public void cambiarEstado(Actividad act, String newEstado) {
          EntityTransaction tx = em.getTransaction();
