@@ -4,14 +4,22 @@
  */
 package Institucion;
 
+import EntityManajer.InterfaceEntityManager;
 import java.util.HashMap;
 import java.util.List;
+import javax.persistence.EntityManager;
 
 /**
  *
  * @author maximilianooliverasilva
  */
 public class InstitucionBO implements InterfaceInstitucionBO {
+        
+    public InstitucionBO() {
+        // this is for the frontend servelets because by default the entity manager is not instanced
+        InterfaceEntityManager.getInstance();
+    }
+    
     InstitucionDao insDao = new InstitucionDao();
     
     @Override

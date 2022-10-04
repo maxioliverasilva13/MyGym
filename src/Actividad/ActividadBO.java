@@ -17,6 +17,7 @@ import java.util.HashMap;
 import Actividad.Actividad;
 import Cuponera.CuponeraDao;
 import Cuponera.InterfaceCuponeraDao;
+import EntityManajer.InterfaceEntityManager;
 import Exceptions.ActividadNotFoundException;
 import Exceptions.CuponeraNotFoundException;
 import Exceptions.InstitucionNotFoundException;
@@ -35,6 +36,11 @@ import java.util.List;
  */
 public class ActividadBO  implements IActividadBO{
     ActividadDao actDao = new ActividadDao();
+    
+    public ActividadBO() {
+        // this is for the frontend servelets because by default the entity manager is not instanced
+        // InterfaceEntityManager.getInstance();
+    }
 
     @Override
     public void crear(ActividadCreateDTO actCreate, int institucionId, int profesorId) {
@@ -50,13 +56,12 @@ public class ActividadBO  implements IActividadBO{
     }
 
     @Override
-    public HashMap<Integer, ActividadDetalleDTO> consultarById(int id) {
-        ActividadDetalleDTO res = null;
-        ActividadDao actDao = new ActividadDao();
-        
-        // Actividad act = actDao.getById(actDao)
+    public ActividadDTO consultarById(int id) {
+        Actividad act = actDao.getById(id);
+        if (act != null) {
+            return act.getDtActividad();
+        }
         return null;
-        
     }
 
    

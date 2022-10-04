@@ -42,6 +42,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
@@ -69,7 +70,7 @@ public class Actividad implements Serializable {
     @ManyToOne
     @JoinColumn()
     private Institucion institucion;
-    @OneToMany(mappedBy = "actividad")
+    @OneToMany(mappedBy = "actividad", cascade = CascadeType.ALL)
     private Collection<Clase> clases;
     @OneToMany(mappedBy = "actividad")
     private Collection<CuponeraXActividad> cuponerasXActividad;
@@ -225,8 +226,9 @@ public class Actividad implements Serializable {
               dtIns = new DtInstitucion(institucion.getId(), institucion.getNombre(), institucion.getDescripcion(), institucion.getUrl(), null, null, photo);
         }
         List<DtCuponeraXActividad> cuponerasXact = new ArrayList<>();
-        this.getCuponerasXActividad().forEach((cuponera) -> {
+        cuponerasXActividad.forEach((cuponera) -> {
             cuponerasXact.add(cuponera.getDtCuponeraXActividad());
+            System.out.println("yeeeees");
         });
         // TO DO TO DO TO DO TO DO TO DO TO DO TO DO TO DO 
         List<DtCategoria> categorias = new ArrayList<>(); // Agregar al DTO creado.
@@ -240,7 +242,7 @@ public class Actividad implements Serializable {
         
         try {
             ActividadDTO dt = new ActividadDTO(
-                this.id, this.nombre , this.descripcion, this.duracion, this.costo, this.fechaRegistro, profe, allClases, dtIns, cuponerasXact, this.image != null ? createTempFile() : null, categorias);
+                this.id, this.nombre , this.descripcion, this.duracion, this.costo, this.fechaRegistro, profe, allClases, dtIns, cuponerasXact, this.image != null ? createTempFile() : null, categorias, this.getImage());
                 return dt;
         } catch (Exception e) {
             System.out.println(e.getMessage());
