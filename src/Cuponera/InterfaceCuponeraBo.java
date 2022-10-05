@@ -4,7 +4,9 @@
  */
 package Cuponera;
 
+import Exceptions.ActividadNotFoundException;
 import Exceptions.CuponeraAlreadyPurchaseBySocio;
+import Socio.exceptions.SocioNotExist;
 import java.util.HashMap;
 
 /**
@@ -16,5 +18,6 @@ public interface InterfaceCuponeraBo {
     public HashMap<Integer, DtCuponera> listarCuponeras();
     public DtCuponera consultarCuponera(int idCuponera);
     public HashMap<Integer, DtCuponera> listarCuponerasVigentes();
-    public void comprarCuponera(int socioID,int idCuponera) throws CuponeraAlreadyPurchaseBySocio;
+    public void comprarCuponera(int socioID,int idCuponera,int idActividad) throws CuponeraAlreadyPurchaseBySocio;
+    public HashMap<Integer, DtCuponera> listarCuponerasDisponiblesBySocio(int socioID,int actividadId) throws SocioNotExist, ActividadNotFoundException;
 }

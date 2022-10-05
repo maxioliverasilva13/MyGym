@@ -34,6 +34,7 @@ public class Registro implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private float costo;
+    private int cantClases;
     @Basic
     @Temporal(TemporalType.DATE)
     private Date fecha;

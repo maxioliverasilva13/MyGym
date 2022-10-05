@@ -96,17 +96,28 @@ public class CuponeraDao implements InterfaceCuponeraDao {
     }
 
     @Override
-    public void comprarCuponera(Socio socio, Cuponera cuponera) {
+    public void comprarCuponera(Socio socio, Cuponera cuponera,int cantClases) {
                 CompraCuponera newPurchase = new CompraCuponera();
                 newPurchase.setCosto(cuponera.getPrecio());
                 newPurchase.setCuponera(cuponera);
                 newPurchase.setSocio(socio);
                 newPurchase.setFecha(new Date());
+                newPurchase.setCantClase(cantClases);
                 EntityTransaction et = em.getTransaction();
                 et.begin();
                 em.persist(newPurchase);
                 et.commit();
     }      
+
+    @Override
+    public List<Cuponera> listarDisponiblesBySocioAndActividad(int socioID,int actId) {
+        List<Cuponera> cuponeras = em.createNativeQuery(
+            "SELECT * FROM CUPONERA cup WHERE  EXISTS (SELECT * FROM compracuponera cp WHERE cp.CUPONERA_ID = cup.ID AND cp.SOCIO_ID = "+socioID +") AND EXISTS (SELECT * FROM cuponeraxactividad ca WHERE ca.CUPONERA_ID = cup.ID AND ca.ACTIVIDAD_ID = "+actId+"); "
+, Cuponera.class)
+            .getResultList();
+
+       return cuponeras;
+    }
     
     
     

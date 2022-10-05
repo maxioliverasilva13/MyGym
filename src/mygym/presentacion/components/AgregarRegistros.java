@@ -8,6 +8,9 @@ import Actividad.ActividadBO;
 import Actividad.dtos.ActividadDTO;
 import Clase.ClaseBO;
 import Clase.DtClase;
+import Cuponera.CuponeraBo;
+import Cuponera.DtCuponera;
+import Cuponera.InterfaceCuponeraBo;
 import CustomCalendar.main.CalendarCustom;
 import Institucion.DtInstitucion;
 import Institucion.InstitucionBO;
@@ -28,6 +31,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -51,16 +55,20 @@ public class AgregarRegistros extends javax.swing.JFrame {
     SocioBO socBo = new SocioBO();
     ClaseBO claseBO = new ClaseBO();
     RegistroBO regBO = new RegistroBO();
+    InterfaceCuponeraBo cupBO  = new CuponeraBo();
+
 
     HashMap<Integer, ActividadDTO> actividades = new HashMap<>();
     HashMap<Integer, DtInstitucion> instituciones = new HashMap<>();
     HashMap<Integer, SocioDTO> socios = new HashMap<>();
     HashMap<Integer, DtClase> clases = new HashMap<>();
+    HashMap<Integer, DtCuponera> cuponerasDisponibles = new HashMap<>();
     
     int selectedInstitucionId;
     int selectedActividadId;
     int selectedSocioId;
     int selectedClaseId;
+    Integer selectedCuponeraId = null;
     int xMouse, yMouse;
     
     private void llenarComboboxInstituciones() {
@@ -76,26 +84,23 @@ public class AgregarRegistros extends javax.swing.JFrame {
         jComboSocios.removeAllItems();
         socios = socBo.listar();
         socios.forEach((Integer key, SocioDTO soc) -> {
-            jComboSocios.addItem(soc.getNombre());
+            jComboSocios.addItem(soc.getNickname());
         });
         jComboSocios.setEnabled(true);
     }
-    
+   
     public void initSteps() {
         addFinal.setVisible(false);
         step1.setVisible(false);
         step2.setVisible(false);
         step4.setVisible(false);
         step3.setVisible(false);
+        step5.setVisible(false);
     }
     
     public void fillSelectedClases() {
         this.selectedClases.setText("Clases Seleccionadas: " + CustomClick.selectedClaseId.size());
-        if (CustomClick.selectedClaseId.size() > 0) {
-            addFinal.setVisible(true);
-        } else {
-            addFinal.setVisible(false);
-        }
+       
     }
     
     ActionListener autoFillSelectedClasses = new ActionListener() {
@@ -146,28 +151,35 @@ public class AgregarRegistros extends javax.swing.JFrame {
     
     public void nextStep() {
         addFinal.setVisible(false);
-        if (!step1.isVisible() && !step2.isVisible() && !step4.isVisible() && !step3.isVisible()) {
+        if (!step1.isVisible() && !step2.isVisible() && !step4.isVisible() && !step3.isVisible() && !step5.isVisible()) {
             initSteps();
             step1.setVisible(true);
             return;
         }
-        if (!step2.isVisible() && step1.isVisible() && !step4.isVisible() && !step3.isVisible()) {
+        if (!step2.isVisible() && step1.isVisible() && !step4.isVisible() && !step3.isVisible() && !step5.isVisible()) {
             initSteps();
             step2.setVisible(true);
             return;
         }
-        if (!step1.isVisible() && step2.isVisible() && !step4.isVisible() && !step3.isVisible()) {
+        if (!step1.isVisible() && step2.isVisible() && !step4.isVisible() && !step3.isVisible() && !step5.isVisible()) {
             initSteps();
             step3.setVisible(true);
             return;
         }
-        if (!step1.isVisible() && !step2.isVisible() && step3.isVisible() && !step4.isVisible()) {
+        if (!step1.isVisible() && !step2.isVisible() && step3.isVisible() && !step4.isVisible()  && !step5.isVisible()) {
             initSteps();
             initCalendar();
             step4.setVisible(true);
             return;
         }
-        if (!step1.isVisible() && !step2.isVisible() && !step3.isVisible() && step4.isVisible()) {
+        if (!step1.isVisible() && !step2.isVisible() && !step3.isVisible() && step4.isVisible() && !step5.isVisible()) {
+            initSteps();
+            addFinal.setVisible(true);
+            step5.setVisible(true);
+            return;
+        }
+        
+         if (!step1.isVisible() && !step2.isVisible() && !step3.isVisible() && !step4.isVisible() && step5.isVisible()) {
             initSteps();
             step1.setVisible(true);
             return;
@@ -202,25 +214,35 @@ public class AgregarRegistros extends javax.swing.JFrame {
     
     public void backStep() {
         addFinal.setVisible(false);
-        if (step1.isVisible() && !step2.isVisible() && !step3.isVisible() && !step4.isVisible()) {
+        if (step5.isVisible() && !step2.isVisible() && !step3.isVisible() && !step4.isVisible() &&  !step1.isVisible()) {
             initCalendar();
             step4.setVisible(true);
-            step1.setVisible(false);
+            step5.setVisible(false);
             return;
         }
-        if (step2.isVisible() && !step1.isVisible() && !step4.isVisible() && !step3.isVisible()) {
-            initSteps();
-            step1.setVisible(true);
+        if (step4.isVisible() && !step1.isVisible() && !step2.isVisible() && !step3.isVisible() &&  !step5.isVisible()) {
+            step3.setVisible(true);
+            step4.setVisible(false);
             return;
         }
-        if (step3.isVisible() && !step1.isVisible() && !step4.isVisible() && !step2.isVisible()) {
+        if (step3.isVisible() && !step1.isVisible() && !step4.isVisible() && !step2.isVisible() &&  !step5.isVisible()) {
             initSteps();
             step2.setVisible(true);
+            step3.setVisible(false);
             return;
         }
-        if (step4.isVisible() && !step1.isVisible() && !step2.isVisible() && !step3.isVisible()) {
+        if (step2.isVisible() && !step1.isVisible() && !step4.isVisible() && !step3.isVisible() &&  !step5.isVisible()) {
             initSteps();
-            step3.setVisible(true);
+            step1.setVisible(true);
+            step2.setVisible(false);
+            
+            return;
+        }
+        
+        if (step5.isVisible() && !step1.isVisible() && !step2.isVisible() && !step3.isVisible() &&  !step4.isVisible()) {
+            initSteps();
+            step5.setVisible(true);
+            
             return;
         }
     }
@@ -257,6 +279,9 @@ public class AgregarRegistros extends javax.swing.JFrame {
         btnExitBG = new javax.swing.JPanel();
         btnExit = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        step5 = new javax.swing.JPanel();
+        jComboBoxCupo = new javax.swing.JComboBox<>();
+        jCheckBoxCuponera = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(780, 830));
@@ -429,7 +454,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
 
         selectedClases.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         selectedClases.setText("Clases Seleccionadas: ");
-        bgPanel.add(selectedClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
+        bgPanel.add(selectedClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
 
         dragBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -504,6 +529,49 @@ public class AgregarRegistros extends javax.swing.JFrame {
         jLabel2.setText("Seleccione una Clase Disponible");
         bgPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, -1, -1));
 
+        step5.setBackground(new java.awt.Color(255, 255, 255));
+        step5.setForeground(new java.awt.Color(255, 255, 255));
+
+        jComboBoxCupo.setEnabled(false);
+        jComboBoxCupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCupoActionPerformed(evt);
+            }
+        });
+
+        jCheckBoxCuponera.setActionCommand("jCheckBoxAplicarCup");
+        jCheckBoxCuponera.setLabel("Aplicar cuponera?");
+        jCheckBoxCuponera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxCuponeraActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout step5Layout = new javax.swing.GroupLayout(step5);
+        step5.setLayout(step5Layout);
+        step5Layout.setHorizontalGroup(
+            step5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(step5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(step5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBoxCuponera)
+                    .addComponent(jComboBoxCupo, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(7, Short.MAX_VALUE))
+        );
+        step5Layout.setVerticalGroup(
+            step5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, step5Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jCheckBoxCuponera)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxCupo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
+        jCheckBoxCuponera.getAccessibleContext().setAccessibleName("ds");
+
+        bgPanel.add(step5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 320, -1));
+
         getContentPane().add(bgPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 560));
 
         pack();
@@ -551,6 +619,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
             });
             // this.llenarActividades();
         }
+        this.resetSelectedCuponeras();
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboActividadActionPerformed
 
@@ -565,6 +634,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
             });
             this.llenarActividades();
         }
+        this.resetSelectedCuponeras();
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboInstitucionActionPerformed
 
@@ -579,6 +649,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
             });
             // this.llenarActividades();
         }
+        this.resetSelectedCuponeras();
 // TODO add your handling code here:
     }//GEN-LAST:event_jComboSociosActionPerformed
 
@@ -594,7 +665,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
             }
             // TODO GET PRECIO
             DtRegistro reg = new DtRegistro(0, 155, new Date(), "", "");
-            regBO.agregarRegistro(selectedSocioId, CustomClick.selectedClaseId, reg);
+            regBO.agregarRegistro(selectedSocioId, CustomClick.selectedClaseId, reg,this.selectedCuponeraId);
             JOptionPane.showMessageDialog(new JFrame(), "Se registo correctamente el socio a las clases seleccionadas" , "Registro completado", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } catch (Exception e) {
@@ -626,6 +697,44 @@ public class AgregarRegistros extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnExitMouseClicked
 
+    private void jCheckBoxCuponeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxCuponeraActionPerformed
+       boolean isSelected = this.jCheckBoxCuponera.isSelected();
+       if(isSelected)  {   
+           this.cuponerasDisponibles = this.cupBO.listarCuponerasDisponiblesBySocio(this.selectedSocioId,this.selectedActividadId);
+           this.renderListCuponerasDisp();
+           this.jComboBoxCupo.setEnabled(true);
+           
+           return;
+       }
+       this.jComboBoxCupo.setEnabled(true);
+       this.jComboBoxCupo.removeAllItems();
+       this.selectedCuponeraId = null;
+       
+    }//GEN-LAST:event_jCheckBoxCuponeraActionPerformed
+
+    
+    private void renderListCuponerasDisp(){
+        this.jComboBoxCupo.removeAllItems();
+        Iterator<DtCuponera> it = this.cuponerasDisponibles.values().iterator();
+        DtCuponera curr;
+        if(it.hasNext()){
+           curr = it.next();
+           this.selectedCuponeraId = curr.getId();  //asignamos el primer elemento al valor del checkbox
+            this.jComboBoxCupo.addItem(curr.getNombre());
+        }
+
+        while(it.hasNext()){
+            curr = it.next();
+            this.jComboBoxCupo.addItem(curr.getNombre()); 
+        
+            
+        }
+        
+    }
+    private void jComboBoxCupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCupoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxCupoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -637,6 +746,13 @@ public class AgregarRegistros extends javax.swing.JFrame {
             this.jComboActividad.addItem(actividad.getNombre());
         });
         this.jComboActividad.setEnabled(true);
+    }
+    
+    private void resetSelectedCuponeras(){
+        this.jCheckBoxCuponera.setSelected(false);
+        this.jComboBoxCupo.removeAllItems();
+        this.cuponerasDisponibles.clear();
+        this.selectedCuponeraId = null;
     }
     
     public static void main(String args[]) {
@@ -670,6 +786,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Header;
@@ -682,7 +799,9 @@ public class AgregarRegistros extends javax.swing.JFrame {
     private javax.swing.JPanel btnMinimizarBG;
     private javax.swing.JPanel calendarContent;
     private javax.swing.JLabel dragBar;
+    private javax.swing.JCheckBox jCheckBoxCuponera;
     private javax.swing.JComboBox<String> jComboActividad;
+    private javax.swing.JComboBox<String> jComboBoxCupo;
     private javax.swing.JComboBox<String> jComboInstitucion;
     private javax.swing.JComboBox<String> jComboSocios;
     private javax.swing.JLabel jLabel2;
@@ -695,5 +814,6 @@ public class AgregarRegistros extends javax.swing.JFrame {
     private javax.swing.JPanel step2;
     private javax.swing.JPanel step3;
     private javax.swing.JPanel step4;
+    private javax.swing.JPanel step5;
     // End of variables declaration//GEN-END:variables
 }
