@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ActividadesPendientes extends javax.swing.JFrame {
 
+    int xMouse, yMouse;
    
     HashMap<Integer, ActividadDTO> actividades = null;
     public ActividadesPendientes() {
@@ -27,7 +28,7 @@ public class ActividadesPendientes extends javax.swing.JFrame {
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         dispose();
         this.loadActividadesPendientes(); 
-        
+        this.setLocationRelativeTo(null);
     }
 
    
@@ -80,18 +81,18 @@ public class ActividadesPendientes extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CancelarButton.jpg"))); // NOI18N
         jButton1.setBorder(null);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cancel(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AceptarButton.jpg"))); // NOI18N
         jButton2.setBorder(null);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
@@ -102,12 +103,12 @@ public class ActividadesPendientes extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(41, 69, 87));
         jLabel1.setText("Actividades pendientes ");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, 25));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, 25));
 
         headerBar.setBackground(new java.awt.Color(255, 255, 255));
         headerBar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(215, 215, 215)));
@@ -149,7 +150,7 @@ public class ActividadesPendientes extends javax.swing.JFrame {
                 .addGap(0, 18, Short.MAX_VALUE))
         );
 
-        headerBar.add(exitBtnBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 30, -1));
+        headerBar.add(exitBtnBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 30, -1));
 
         btnMinimizarBG.setBackground(java.awt.Color.lightGray);
 
@@ -162,13 +163,16 @@ public class ActividadesPendientes extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnMinimizarMouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnMinimizarMousePressed(evt);
+            }
         });
 
         javax.swing.GroupLayout btnMinimizarBGLayout = new javax.swing.GroupLayout(btnMinimizarBG);
         btnMinimizarBG.setLayout(btnMinimizarBGLayout);
         btnMinimizarBGLayout.setHorizontalGroup(
             btnMinimizarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnMinimizarBGLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnMinimizarBGLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnMinimizar, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
                 .addContainerGap())
@@ -178,9 +182,9 @@ public class ActividadesPendientes extends javax.swing.JFrame {
             .addComponent(btnMinimizar, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
         );
 
-        headerBar.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 0, 30, -1));
+        headerBar.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 0, 30, -1));
 
-        jPanel1.add(headerBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 20));
+        jPanel1.add(headerBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 20));
 
         scrollTabla.setBackground(new java.awt.Color(255, 255, 255));
         scrollTabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -245,9 +249,9 @@ public class ActividadesPendientes extends javax.swing.JFrame {
         tablaActividades.setUpdateSelectionOnSort(false);
         scrollTabla.setViewportView(tablaActividades);
 
-        jPanel1.add(scrollTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 490, 250));
+        jPanel1.add(scrollTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 490, 250));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 880));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -266,12 +270,14 @@ public class ActividadesPendientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMinimizarMouseClicked
 
     private void headerBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerBarMouseDragged
-        
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_headerBarMouseDragged
 
     private void headerBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerBarMousePressed
-        // TODO add your handling code here:
-      
+        xMouse = evt.getX();
+        yMouse = evt.getY();
     }//GEN-LAST:event_headerBarMousePressed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -282,6 +288,10 @@ public class ActividadesPendientes extends javax.swing.JFrame {
          this.updateEstado("Aceptada");
         
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void btnMinimizarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMousePressed
+        this.setExtendedState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarMousePressed
 
     private void updateEstado(String newEstado){  
         

@@ -193,7 +193,7 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         lblHeader.setForeground(new java.awt.Color(4, 37, 58));
         lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHeader.setText("Agregar Actividad Deportiva a Cuponera");
-        jPanel1.add(lblHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 670, 29));
+        jPanel1.add(lblHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 670, 29));
 
         scrollTabla.setBackground(new java.awt.Color(255, 255, 255));
         scrollTabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -255,7 +255,7 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         });
         scrollTabla.setViewportView(tablaInstituciones);
 
-        jPanel1.add(scrollTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 630, 290));
+        jPanel1.add(scrollTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 630, 290));
 
         btnSeleccionarActividadBG.setBackground(new java.awt.Color(76, 131, 122));
 
@@ -298,7 +298,7 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         lblInfo.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblInfo.setText("Actividades disponibles: (que no están en esta Cuponera)");
-        jPanel1.add(lblInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 670, -1));
+        jPanel1.add(lblInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 670, -1));
 
         lblHeader1.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         lblHeader1.setForeground(new java.awt.Color(4, 37, 58));

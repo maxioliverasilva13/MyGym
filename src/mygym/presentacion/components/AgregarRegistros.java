@@ -276,7 +276,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
         Header.setForeground(new java.awt.Color(41, 69, 87));
         Header.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Header.setText("Agregar Registro a Clase");
-        bgPanel.add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 2, 780, 40));
+        bgPanel.add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 460, 40));
 
         step1.setBackground(new java.awt.Color(255, 255, 255));
         step1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
@@ -371,6 +371,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
         next.setToolTipText("");
         next.setActionCommand("");
         next.setBorder(null);
+        next.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         next.setFocusPainted(false);
         next.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         next.setName(""); // NOI18N
@@ -393,6 +394,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
         back.setText("Back");
         back.setToolTipText("");
         back.setBorder(null);
+        back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         back.setFocusPainted(false);
         back.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         back.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -419,6 +421,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
         addFinal.setToolTipText("");
         addFinal.setActionCommand("");
         addFinal.setBorder(null);
+        addFinal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addFinal.setFocusPainted(false);
         addFinal.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         addFinal.setName(""); // NOI18N
@@ -453,7 +456,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
         btnMinimizar.setForeground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnMinimizar.setText("-");
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnMinimizarMouseClicked(evt);
@@ -479,7 +482,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
         btnExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnExit.setText("X");
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnExitMouseClicked(evt);

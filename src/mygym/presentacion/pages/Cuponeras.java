@@ -88,7 +88,7 @@ public class Cuponeras extends javax.swing.JPanel {
         btnCrear.setForeground(new java.awt.Color(255, 255, 255));
         btnCrear.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnCrear.setText("Alta de Cuponera");
-        btnCrear.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCrear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCrear.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCrearMouseClicked(evt);
@@ -107,8 +107,8 @@ public class Cuponeras extends javax.swing.JPanel {
             btnCrearBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btnCrearBGLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(19, 19, 19))
+                .addComponent(btnCrear, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                .addContainerGap())
         );
         btnCrearBGLayout.setVerticalGroup(
             btnCrearBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +196,7 @@ public class Cuponeras extends javax.swing.JPanel {
         btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnAgregar.setText("Agregar Actividad a la Cuponera");
-        btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAgregarMouseClicked(evt);
@@ -230,6 +230,7 @@ public class Cuponeras extends javax.swing.JPanel {
         btnConsultar.setText("Consultar Información");
         btnConsultar.setToolTipText("");
         btnConsultar.setBorder(null);
+        btnConsultar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnConsultar.setFocusPainted(false);
         btnConsultar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         btnConsultar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

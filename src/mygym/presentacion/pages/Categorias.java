@@ -72,7 +72,7 @@ public class Categorias extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(41, 69, 87));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Categorias");
-        pnlHeader.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, -1));
+        pnlHeader.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 720, -1));
 
         btnAltaCategoria.setBackground(new java.awt.Color(76, 131, 122));
         btnAltaCategoria.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
@@ -80,6 +80,7 @@ public class Categorias extends javax.swing.JPanel {
         btnAltaCategoria.setText("Alta de Categoria");
         btnAltaCategoria.setToolTipText("");
         btnAltaCategoria.setBorder(null);
+        btnAltaCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAltaCategoria.setFocusPainted(false);
         btnAltaCategoria.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         btnAltaCategoria.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

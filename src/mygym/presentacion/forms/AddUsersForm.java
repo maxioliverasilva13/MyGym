@@ -169,7 +169,6 @@ public class AddUsersForm extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -179,10 +178,10 @@ public class AddUsersForm extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel9 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
+        jLabel14 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         headerBar = new javax.swing.JPanel();
         exitBtnBG = new javax.swing.JPanel();
@@ -195,6 +194,7 @@ public class AddUsersForm extends javax.swing.JFrame {
         passRepeatField = new javax.swing.JPasswordField();
         btnHabilitarModificarPass = new javax.swing.JButton();
         labelImage = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         jOptionPane1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -215,11 +215,11 @@ public class AddUsersForm extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jLabel6.setText("Fecha de Nacimiento");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jLabel7.setText("Nombre");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, -1, -1));
 
         jComboBox1.setBackground(new java.awt.Color(255, 255, 254));
         jComboBox1.setFont(new java.awt.Font("Dubai Medium", 0, 12)); // NOI18N
@@ -238,15 +238,15 @@ public class AddUsersForm extends javax.swing.JFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 120, -1));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 120, -1));
 
-        jLabel2.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
-        jLabel2.setText("Tipo de Usuario");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, -1, -1));
+        jLabel2.setFont(new java.awt.Font("Dubai Light", 0, 14)); // NOI18N
+        jLabel2.setText("Foto");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jLabel3.setText("Apellido");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, -1, -1));
 
         jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jTextField1.setMargin(new java.awt.Insets(2, 10, 2, 10));
@@ -255,7 +255,7 @@ public class AddUsersForm extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 186, 27));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 186, 27));
 
         jTextField2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jTextField2.setMargin(new java.awt.Insets(2, 10, 2, 10));
@@ -264,15 +264,15 @@ public class AddUsersForm extends javax.swing.JFrame {
                 jTextField2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 184, 30));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 184, 30));
 
         jLabel4.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jLabel4.setText("Email");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
-        jLabel5.setText("Tipo de usuario");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 140, -1));
+        jLabel5.setText("Nickname");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 140, -1));
 
         jTextField3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jTextField3.setMargin(new java.awt.Insets(2, 10, 2, 10));
@@ -281,7 +281,7 @@ public class AddUsersForm extends javax.swing.JFrame {
                 jTextField3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 186, 30));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 186, 30));
 
         jTextField4.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jTextField4.setMargin(new java.awt.Insets(2, 10, 2, 10));
@@ -290,7 +290,7 @@ public class AddUsersForm extends javax.swing.JFrame {
                 jTextField4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 184, 27));
+        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 184, 27));
 
         jTextField5.setToolTipText("");
         jTextField5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
@@ -300,21 +300,17 @@ public class AddUsersForm extends javax.swing.JFrame {
                 jTextField5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 344, 184, 27));
+        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, 184, 27));
 
         jLabel8.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
         jLabel8.setText("Informacion Personal");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, -1, -1));
-
-        jLabel11.setBackground(new java.awt.Color(0, 204, 204));
-        jLabel11.setOpaque(true);
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 100, 4));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 254));
         jButton1.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CancelarButton.jpg"))); // NOI18N
         jButton1.setBorder(null);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cancel(evt);
@@ -325,12 +321,12 @@ public class AddUsersForm extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 770, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 810, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AceptarButton.jpg"))); // NOI18N
         jButton2.setBorder(null);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
@@ -341,7 +337,7 @@ public class AddUsersForm extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 770, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 810, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -359,8 +355,8 @@ public class AddUsersForm extends javax.swing.JFrame {
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 6, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
-        jLabel12.setText("Sitio web");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 260, -1, -1));
+        jLabel12.setText("Institución");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
 
         jTextField6.setToolTipText("");
         jTextField6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
@@ -381,12 +377,7 @@ public class AddUsersForm extends javax.swing.JFrame {
                 jComboBox2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 170, -1));
-
-        jLabel9.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Institucion");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 350, 40));
+        jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, 170, -1));
 
         jLabel13.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         jLabel13.setText("Descripcion");
@@ -399,7 +390,11 @@ public class AddUsersForm extends javax.swing.JFrame {
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 154, 328, 86));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 389, -1, -1));
+        jLabel14.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
+        jLabel14.setText("Sitio web");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(41, 69, 87));
@@ -426,7 +421,7 @@ public class AddUsersForm extends javax.swing.JFrame {
         exitBtn.setForeground(new java.awt.Color(255, 255, 255));
         exitBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         exitBtn.setText("X");
-        exitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        exitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         exitBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exitBtnMouseClicked(evt);
@@ -454,7 +449,7 @@ public class AddUsersForm extends javax.swing.JFrame {
         btnMinimizar.setForeground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnMinimizar.setText("-");
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnMinimizarMouseClicked(evt);
@@ -478,25 +473,26 @@ public class AddUsersForm extends javax.swing.JFrame {
 
         lblPass.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         lblPass.setText("Contraseña");
-        jPanel1.add(lblPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 140, -1));
+        jPanel1.add(lblPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 140, -1));
 
         lblConfirmPass.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         lblConfirmPass.setText("Confirmar Contraseña");
-        jPanel1.add(lblConfirmPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 140, -1));
+        jPanel1.add(lblConfirmPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 140, -1));
 
         passField.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         passField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(passField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 186, 30));
+        jPanel1.add(passField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 186, 30));
 
         passRepeatField.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         passRepeatField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(passRepeatField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 186, 30));
+        jPanel1.add(passRepeatField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 186, 30));
 
         btnHabilitarModificarPass.setBackground(new java.awt.Color(76, 131, 122));
         btnHabilitarModificarPass.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         btnHabilitarModificarPass.setForeground(new java.awt.Color(255, 255, 255));
         btnHabilitarModificarPass.setText("Modificar");
         btnHabilitarModificarPass.setBorder(null);
+        btnHabilitarModificarPass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnHabilitarModificarPass.setFocusPainted(false);
         btnHabilitarModificarPass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -508,17 +504,23 @@ public class AddUsersForm extends javax.swing.JFrame {
                 btnHabilitarModificarPassActionPerformed(evt);
             }
         });
-        jPanel1.add(btnHabilitarModificarPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 70, 20));
+        jPanel1.add(btnHabilitarModificarPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, 70, 20));
 
+        labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mygym/presentacion/forms/AddPhoto.png"))); // NOI18N
         labelImage.setText("labelImage");
+        labelImage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelImage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelImageMouseClicked(evt);
             }
         });
-        jPanel1.add(labelImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 100, 60));
+        jPanel1.add(labelImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 100, 60));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 830));
+        jLabel9.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
+        jLabel9.setText("Tipo de Usuario");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 860));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -818,9 +820,9 @@ public class AddUsersForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
