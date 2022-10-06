@@ -505,7 +505,7 @@ public class AddClaseForm extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(new JFrame(), "Debes elegir una actividad", "Actividad no seleccionada", JOptionPane.ERROR_MESSAGE);
              return;
         }
-        DtClase dt = new DtClase(0, nombre, fechaClase, capMinima, capMaxima, urlAcceso, fechaRegistro, BrowseFile.globalFile);
+        DtClase dt = new DtClase(0, nombre, fechaClase,null, null, capMinima, capMaxima, urlAcceso, fechaRegistro, null, null, null, null, BrowseFile.globalFile, null);
    
         try {
             claseBO.insertarClase(selectedActividadId, dt);

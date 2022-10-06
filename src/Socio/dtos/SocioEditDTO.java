@@ -31,6 +31,7 @@ public class SocioEditDTO {
         this.password = pass;
         this.nacimiento = nacimiento;
         this.email = email;
+        this.image = image;
     }
     
     public String getNombre(){

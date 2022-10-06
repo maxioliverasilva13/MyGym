@@ -22,8 +22,6 @@ public class SocioCreateDTO extends UsuarioCreateDTO {
     
     public SocioCreateDTO(String nombre,String apellido,String nickname, char[] password,String email,Date nacimiento, File file){
          super(nombre,apellido,email,nickname,nacimiento,password, file);
-
-       
     }
     
 }

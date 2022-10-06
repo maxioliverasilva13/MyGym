@@ -119,6 +119,7 @@ public class Usuario implements Serializable {
     
      public void setImage(File file) {
          try {
+    System.out.println(file);
              byte[] picInBytes = new byte[(int) file.length()];
         FileInputStream fileInputStream = new FileInputStream(file);
         fileInputStream.read(picInBytes);
@@ -126,6 +127,7 @@ public class Usuario implements Serializable {
         this.image = picInBytes;
          } catch (Exception e) {
              System.out.println("Usuario-SetImage");
+             System.out.println(e.getMessage());
          }
     }
     

@@ -39,7 +39,7 @@ public class ActividadBO  implements IActividadBO{
     
     public ActividadBO() {
         // this is for the frontend servelets because by default the entity manager is not instanced
-        // InterfaceEntityManager.getInstance();
+        InterfaceEntityManager.getInstance();
     }
 
     @Override
@@ -107,6 +107,22 @@ public class ActividadBO  implements IActividadBO{
         });
         return actividades;
     }
+    
+    @Override
+    public HashMap<Integer, ActividadDTO> getActividadesWithLimitAndAccepted(int limite){
+        HashMap<Integer, ActividadDTO> actividades = new HashMap<>();
+        Collection<Actividad> acts = actDao.getAllActividadesWithLimitAndAccepted(limite);
+        acts.forEach((Actividad act) -> {
+            actividades.put(act.getId(), act.getDtActividad());
+        });
+        return actividades;
+    }
+    
+    @Override
+    public int getActividadesAceptadasSize(){
+        return actDao.getActividadesAceptadasSize();
+    }
+    
     
     @Override
     public HashMap<Integer, ActividadDTO> listarByInstitucion(int idInstitucion,String status) {

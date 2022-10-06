@@ -223,7 +223,7 @@ public class Actividad implements Serializable {
               if (this.institucion.getImage() != null) {
                   photo = this.institucion.createTempFile();
               }
-              dtIns = new DtInstitucion(institucion.getId(), institucion.getNombre(), institucion.getDescripcion(), institucion.getUrl(), null, null, photo);
+              dtIns = new DtInstitucion(institucion.getId(), institucion.getNombre(), institucion.getDescripcion(), institucion.getUrl(), null, null, photo, null);
         }
         List<DtCuponeraXActividad> cuponerasXact = new ArrayList<>();
         cuponerasXActividad.forEach((cuponera) -> {

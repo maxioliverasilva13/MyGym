@@ -29,4 +29,6 @@ public interface IActividadDao {
     public Collection<Actividad> listarActividades(int idInstitucion,String status);
     public List<Actividad> listarAllActividadesPendientes();
     public void cambiarEstado(Actividad act,String newStatus);
+    public List<Actividad> getAllActividadesWithLimitAndAccepted(int limite);
+    public int getActividadesAceptadasSize();
 }

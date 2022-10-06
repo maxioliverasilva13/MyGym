@@ -29,5 +29,6 @@ public interface IActividadBO {
     public HashMap<Integer, ActividadDTO> listarActividadesByCategoria(int InstId, String[] cat, String estado);
     public HashMap<Integer, ActividadDTO> listarAllActividadesPendientes();
     public void cambiarEstado(int idActividad, String newStatus) throws ActividadNotFoundException ;
-    
+    public HashMap<Integer, ActividadDTO> getActividadesWithLimitAndAccepted(int limite);
+    public int getActividadesAceptadasSize();
 }
