@@ -4,12 +4,14 @@ import EntityManajer.InterfaceEntityManager;
 import Profesor.dtos.ProfesorCreateDTO;
 import Usuario.dtos.UsuarioCreateDTO;
 import Usuario.dtos.UsuarioDTO;
+import Usuario.exceptions.UnauthorizedException;
 import Usuario.exceptions.UserAlreadyEmailExist;
 import Usuario.exceptions.UserAlreadyNickExist;
 import Usuario.exceptions.UserNotExist;
 import java.util.HashMap;
 import java.util.List;
 import javax.persistence.NoResultException;
+import utils.EncryptPass;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -69,7 +71,27 @@ public class UsuarioBO implements IUsuarioBO {
      public void dejarSeguirUsuario(int myId, int idUsuario){
          userDao.dejarSeguirUsuario(myId, idUsuario);
      }
- 
+
+    @Override
+    public UsuarioDTO authenticarse(String email, String pass) throws UnauthorizedException{
+        Usuario usu = userDao.getByEmail(email);
+        if(usu == null){
+           throw new UnauthorizedException("Correo o contraseña incorrecta");
+        }
+        EncryptPass ep = new EncryptPass();
+        String passwordEncrypted = ep.encryptPass(pass);
+        if(!(usu.getPassword().equals(passwordEncrypted))){
+          throw new UnauthorizedException("Correo o contraseña incorrecta");
+        }
+         //   public UsuarioDTO(int id, String nombre,String apellido,String nickname,String email,Date nacimiento){
+
+        UsuarioDTO res = new UsuarioDTO(usu.getId(),usu.getNombre(),usu.getApellido(),usu.getNickname(),usu.getEmail(),usu.getNacimiento());
+        return res;   
+    }
+
+  
+
+    
     
     
     

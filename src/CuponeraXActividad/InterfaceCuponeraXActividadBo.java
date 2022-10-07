@@ -10,5 +10,5 @@ package CuponeraXActividad;
  */
 public interface InterfaceCuponeraXActividadBo {
     public void agregarCupXAct(int idActividad, int idCuponera, DtCuponeraXActividad cupXact);
-    
+    public int getCantClass(int idActividad,int idCuponera);
 }

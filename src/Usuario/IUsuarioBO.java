@@ -6,6 +6,7 @@ package Usuario;
 
 import Usuario.dtos.UsuarioCreateDTO;
 import Usuario.dtos.UsuarioDTO;
+import Usuario.exceptions.UnauthorizedException;
 import Usuario.exceptions.UserAlreadyEmailExist;
 import Usuario.exceptions.UserAlreadyNickExist;
 import Usuario.exceptions.UserNotExist;
@@ -21,4 +22,5 @@ public interface IUsuarioBO {
     public String getTipoById(int id);
     public void seguirAUsuario(int myId, int idUsuario);
     public void dejarSeguirUsuario(int myId, int idUsuario);
+    public UsuarioDTO authenticarse(String email,String password) throws UnauthorizedException;
 }

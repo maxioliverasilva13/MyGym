@@ -79,4 +79,7 @@ public class ClaseDao implements InterfaceClaseDao {
         }
         return clase;
     }
+
+    
+   
 }

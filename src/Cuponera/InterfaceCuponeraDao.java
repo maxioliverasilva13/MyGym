@@ -20,5 +20,6 @@ public interface InterfaceCuponeraDao {
     public Cuponera existe(int idCup);
     public void agregarCupXActividad(int idCuponera, CuponeraXActividad cupXA);
     public List<Cuponera> listarVigentes();
-    public void comprarCuponera(Socio socio,Cuponera cuponera);
+    public void comprarCuponera(Socio socio,Cuponera cuponera,int cantClases);
+    public List<Cuponera> listarDisponiblesBySocioAndActividad(int socioID,int actId);
 }

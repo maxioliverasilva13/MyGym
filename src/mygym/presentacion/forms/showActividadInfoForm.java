@@ -532,7 +532,6 @@ public class showActividadInfoForm extends javax.swing.JFrame {
         listCategorias.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listCategorias.setFocusable(false);
         listCategorias.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        listCategorias.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(listCategorias);
 
         panelCategorias.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 200, 160));
