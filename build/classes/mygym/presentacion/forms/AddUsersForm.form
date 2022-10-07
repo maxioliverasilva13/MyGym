@@ -323,7 +323,11 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+<<<<<<< HEAD
+              <Color id="Default Cursor"/>
+=======
               <Color id="Hand Cursor"/>
+>>>>>>> 54dee3db72da35f10a3f0ff878b673463f6648b3
             </Property>
           </Properties>
           <Events>
@@ -348,7 +352,11 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+<<<<<<< HEAD
+              <Color id="Default Cursor"/>
+=======
               <Color id="Hand Cursor"/>
+>>>>>>> 54dee3db72da35f10a3f0ff878b673463f6648b3
             </Property>
           </Properties>
           <Events>
@@ -613,7 +621,11 @@
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" value="X"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+<<<<<<< HEAD
+                      <Color id="Default Cursor"/>
+=======
                       <Color id="Hand Cursor"/>
+>>>>>>> 54dee3db72da35f10a3f0ff878b673463f6648b3
                     </Property>
                   </Properties>
                   <Events>
@@ -658,7 +670,11 @@
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" value="-"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+<<<<<<< HEAD
+                      <Color id="Default Cursor"/>
+=======
                       <Color id="Hand Cursor"/>
+>>>>>>> 54dee3db72da35f10a3f0ff878b673463f6648b3
                     </Property>
                   </Properties>
                   <Events>
