@@ -2,38 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group>
-            <file>file:/C:/Users/rodrigo/MyGym/src/Actividad/ActividadBO.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/CuponeraXActividad/CuponeraXActividad.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/Actividad/IActividadDao.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/mygym/presentacion/pages/Actividades.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/Profesor/ProfesorBO.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/Usuario/UsuarioBO.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/mygym/presentacion/forms/crearCuponeraForm.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/Cuponera/DtCuponera.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/Seguidor/Seguidor.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/Actividad/Actividad.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/Clase/Clase.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/Cuponera/InterfaceCuponeraBo.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/Cuponera/InterfaceCuponeraDao.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/Actividad/ActividadDao.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/mygym/presentacion/components/AgregarRegistros.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/Cuponera/CuponeraDao.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/Cuponera/Cuponera.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/Cuponera/CuponeraBo.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/META-INF/persistence.xml</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/mygym/presentacion/pages/Cuponeras.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/CompraCuponera/CompraCuponera.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/mygymapp/MyGymApp.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/mygym/presentacion/components/ActividadesPendientes.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/Profesor/Profesor.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/Profesor/ProfesorDao.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/Actividad/IActividadBO.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/Usuario/UsuarioDAO.java</file>
-        </group>
-=======
         <group/>
->>>>>>> e9b7eb3c11dd8f30ef118540d14680cad9f5c4a9
     </open-files>
 </project-private>

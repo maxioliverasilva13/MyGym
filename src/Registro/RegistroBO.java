@@ -4,6 +4,7 @@
  */
 package Registro;
 
+import Exceptions.CompraCuponeraNotFoundException;
 import Exceptions.CuponeraNotFoundException;
 import Exceptions.MaxClasesForCuponera;
 import Exceptions.SocioNotFoundException;
@@ -19,7 +20,7 @@ public class RegistroBO implements InterfaceRegistroBO {
     RegistroDao registrodao = new RegistroDao();
     
     @Override
-    public void agregarRegistro(int idSocio,  List<Integer> clases, DtRegistro registro,Integer cuponeraId) throws MaxClasesForCuponera{
+    public void agregarRegistro(int idSocio,  List<Integer> clases, DtRegistro registro,Integer cuponeraId) throws MaxClasesForCuponera,CompraCuponeraNotFoundException{
        
             registrodao.insertar(idSocio, clases, registro,cuponeraId);
         

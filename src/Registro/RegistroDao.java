@@ -12,6 +12,7 @@ import Cuponera.Cuponera;
 import Socio.Socio;
 import EntityManajer.InterfaceEntityManager;
 import Exceptions.ClassHasMaxOfReg;
+import Exceptions.CompraCuponeraNotFoundException;
 import Exceptions.CuponeraNotFoundException;
 import Exceptions.MaxClasesForCuponera;
 import Exceptions.RegistroNotFoundException;
@@ -45,7 +46,7 @@ public class RegistroDao implements InterfaceRegistroDao {
     }
     
     @Override
-    public void insertar(int idSocio, List<Integer> clases, DtRegistro registro,Integer cuponeraId) throws SocioNotFoundException,CuponeraNotFoundException, MaxClasesForCuponera{
+    public void insertar(int idSocio, List<Integer> clases, DtRegistro registro,Integer cuponeraId) throws SocioNotFoundException,CuponeraNotFoundException, MaxClasesForCuponera,CompraCuponeraNotFoundException{
         
         Socio socio = em.find(Socio.class, idSocio);
         if (socio == null) {
