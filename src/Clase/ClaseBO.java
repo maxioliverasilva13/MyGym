@@ -4,6 +4,7 @@
  */
 package Clase;
 
+import EntityManajer.InterfaceEntityManager;
 import Registro.DtRegistro;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,6 +17,12 @@ import java.util.List;
  */
 public class ClaseBO implements InterfaceClaseBO {
     ClaseDao claseDao = new ClaseDao();
+    
+        
+    public ClaseBO() {
+        // this is for the frontend servelets because by default the entity manager is not instanced
+        InterfaceEntityManager.getInstance();
+    }
     
     @Override
     public void insertarClase(int idActividad, DtClase clase){

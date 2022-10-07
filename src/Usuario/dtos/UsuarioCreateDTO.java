@@ -32,6 +32,7 @@ public abstract class UsuarioCreateDTO {
         this.nickname = nickname;
         this.password = pass;
         this.nacimiento = nacimiento;
+        this.image = file;
     }
     
     public String getNombre(){
