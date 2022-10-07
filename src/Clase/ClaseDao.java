@@ -33,12 +33,10 @@ public class ClaseDao implements InterfaceClaseDao {
         if (act == null) {
             throw new ActividadNotFoundException("Actividad no encontrada");
         }
-        EntityTransaction tr = em.getTransaction();
-        tr.begin();
+        System.out.println(idActividad);
         clase.setActividad(act);
         actdao.agergarClase(idActividad, clase);
         em.persist(clase);
-        tr.commit();
     }
     
     @Override

@@ -21,7 +21,7 @@ import mygym.logica.usuario.dataTypes.DtActividad;
  */
 public interface IActividadBO {
     public void crear(ActividadCreateDTO actCreate,int institucionId, int profesorId);
-    public HashMap<Integer,ActividadDetalleDTO> consultarById(int id);
+    public ActividadDTO consultarById(int id);
     public HashMap<Integer,ActividadDTO> listarByInstitucion(int idInstitucion,String status);
     public HashMap<Integer,ActividadDTO> listarByInstitucionNotInCuponeras(int institucionId, int cuponeraId,String status) throws InstitucionNotFoundException,CuponeraNotFoundException;
     public void addCupXAct(CuponeraXActividad cupXAct);
@@ -29,5 +29,6 @@ public interface IActividadBO {
     public HashMap<Integer, ActividadDTO> listarActividadesByCategoria(int InstId, String[] cat, String estado);
     public HashMap<Integer, ActividadDTO> listarAllActividadesPendientes();
     public void cambiarEstado(int idActividad, String newStatus) throws ActividadNotFoundException ;
-    
+    public HashMap<Integer, ActividadDTO> getActividadesWithLimitAndAccepted(int limite);
+    public int getActividadesAceptadasSize();
 }

@@ -57,7 +57,7 @@ public class Clase implements Serializable {
     private Actividad actividad;
     @OneToMany(mappedBy = "clase")
     private List<Registro> registros;
-    
+
     @Lob
     @Basic(fetch = FetchType.LAZY)
     private byte[] image;
@@ -65,7 +65,7 @@ public class Clase implements Serializable {
     public byte[] getImage() {
         return image;
     }
-    
+
     public File createTempFile() {
         String dir = System.getProperty("java.io.tmpdir");
         File file = new File(dir + "image-clase-" + this.nombre + ".jpg");
@@ -81,20 +81,20 @@ public class Clase implements Serializable {
     public void setImage(File file) {
         try {
             byte[] picInBytes = new byte[(int) file.length()];
-        FileInputStream fileInputStream = new FileInputStream(file);
-        fileInputStream.read(picInBytes);
-        fileInputStream.close();
-        this.image = picInBytes;
+            FileInputStream fileInputStream = new FileInputStream(file);
+            fileInputStream.read(picInBytes);
+            fileInputStream.close();
+            this.image = picInBytes;
         } catch (Exception e) {
             System.out.println("Clase - setImage");
             System.out.println(e.getMessage());
         }
     }
-    
+
     public int getId() {
         return id;
     }
-    
+
     public void setActividad(Actividad act) {
         this.actividad = act;
     }
@@ -106,7 +106,7 @@ public class Clase implements Serializable {
     public void addRegistro(Registro registr) {
         this.registros.add(registr);
     }
-    
+
     public Actividad getActividad() {
         return actividad;
     }
@@ -162,7 +162,7 @@ public class Clase implements Serializable {
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
-    
+
     public DtClase getDtClase() {
         int idInstitucion = 0;
         if (actividad.getInstitucion() != null) {
@@ -181,21 +181,27 @@ public class Clase implements Serializable {
             profesorId = this.actividad.getProfesor().getId();
         }
         File file = null;
-        
+
         if (this.image != null) {
             file = this.createTempFile();
         }
-        
-        DtClase classParsed = new DtClase(id,nombre, fecha, (actividad != null)
-        ? profeNombre + " " + profeApellido : null, (actividad != null)
-        ? profesorId : null, capMinima, capMaxima, urlAcceso, fechaRegistro, 
-         registrosClase, (actividad != null)
-        ? this.actividad.getId(): null, (actividad != null)
-        ? this.actividad.getNombre(): null, idInstitucion,
-        file
-       );
+
+        DtClase classParsed = new DtClase(id, nombre, fecha, (actividad != null)
+                ? profeNombre + " " + profeApellido
+                : null,
+                (actividad != null)
+                        ? profesorId
+                        : null,
+                capMinima, capMaxima, urlAcceso, fechaRegistro,
+                registrosClase, (actividad != null)
+                        ? this.actividad.getId()
+                        : null,
+                (actividad != null)
+                        ? this.actividad.getNombre()
+                        : null,
+                idInstitucion,
+                file, this.image);
         return classParsed;
     }
-    
-    
+
 }

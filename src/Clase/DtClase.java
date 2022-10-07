@@ -29,141 +29,35 @@ public class DtClase {
     private String actividadName;
     private int idInstitucion;
     File image;
+    byte [] imageBlob;
     // TODO: Change this for the new DtProfesor and DtActividad
     
-    public DtClase(int id, String nombre, Date fecha, String profesor, int ProfesorId, int capMinima, int capMaxima, String urlAcceso, Date fechaRegistro, List<DtRegistro> registros, int idActividad, String actividadName) {
+    public DtClase(int id, String nombre, Date fecha, String profesor, Integer ProfesorId , Integer capMinima, Integer capMaxima, String urlAcceso, Date fechaRegistro, List<DtRegistro> registros, Integer idActividad, String actividadName, Integer idInstitucion, File imageFile, byte[] imageBlob) {
         this.id = id;
         this.nombre = nombre;
         this.fecha = fecha;
         this.profesor = profesor;
-        this.ProfesorId = ProfesorId;
-        this.capMinima = capMinima;
-        this.capMaxima = capMaxima;
+        if (ProfesorId != null) {
+            this.ProfesorId = ProfesorId;
+        }
+        if (capMinima != null) {
+           this.capMinima = capMinima;
+        }
+        if (capMaxima != null) {
+           this.capMaxima = capMaxima;
+        }
         this.urlAcceso = urlAcceso;
         this.fechaRegistro = fechaRegistro;
         this.registros = registros;
-        this.idActividad = idActividad;
+        if (idActividad != null) {
+           this.idActividad = idActividad;
+        }
         this.actividadName = actividadName;
-    }
-    
-    public DtClase(int id, String nombre, Date fecha, String profesor, int ProfesorId, int capMinima, int capMaxima, String urlAcceso, Date fechaRegistro, List<DtRegistro> registros, int idActividad, String actividadName, File clase) {
-        this.id = id;
-        this.nombre = nombre;
-        this.fecha = fecha;
-        this.profesor = profesor;
-        this.ProfesorId = ProfesorId;
-        this.capMinima = capMinima;
-        this.capMaxima = capMaxima;
-        this.urlAcceso = urlAcceso;
-        this.fechaRegistro = fechaRegistro;
-        this.registros = registros;
-        this.idActividad = idActividad;
-        this.actividadName = actividadName;
-        this.image = clase;
-    }
-    
-    
-    public DtClase(int id, String nombre, Date fecha, String profesor, int ProfesorId, int capMinima, int capMaxima, String urlAcceso, Date fechaRegistro, List<DtRegistro> registros, int idActividad, String actividadName, int idInstitucion) {
-        this.id = id;
-        this.nombre = nombre;
-        this.fecha = fecha;
-        this.profesor = profesor;
-        this.ProfesorId = ProfesorId;
-        this.capMinima = capMinima;
-        this.capMaxima = capMaxima;
-        this.urlAcceso = urlAcceso;
-        this.fechaRegistro = fechaRegistro;
-        this.registros = registros;
-        this.idActividad = idActividad;
-        this.actividadName = actividadName;
-        this.idInstitucion = idInstitucion;
-    }
-    
-    public DtClase(int id, String nombre, Date fecha, String profesor, int ProfesorId, int capMinima, int capMaxima, String urlAcceso, Date fechaRegistro, List<DtRegistro> registros, int idActividad, String actividadName, int idInstitucion, File file) {
-        this.id = id;
-        this.nombre = nombre;
-        this.fecha = fecha;
-        this.profesor = profesor;
-        this.ProfesorId = ProfesorId;
-        this.capMinima = capMinima;
-        this.capMaxima = capMaxima;
-        this.urlAcceso = urlAcceso;
-        this.fechaRegistro = fechaRegistro;
-        this.registros = registros;
-        this.idActividad = idActividad;
-        this.actividadName = actividadName;
-        this.idInstitucion = idInstitucion;
-        this.image = file;
-    }
-    
-    
-    
-    public DtClase(int id, String nombre, Date fecha, int capMinima, int capMaxima, String urlAcceso, Date fechaRegistro, String profesor) {
-        this.id = id;
-        this.nombre = nombre;
-        this.fecha = fecha;
-        this.capMinima = capMinima;
-        this.capMaxima = capMaxima;
-        this.urlAcceso = urlAcceso;
-        this.fechaRegistro = fechaRegistro;
-        this.profesor = profesor;
-    }
-    
-    public DtClase(int id, String nombre, Date fecha, int capMinima, int capMaxima, String urlAcceso, Date fechaRegistro, String profesor, File image) {
-        this.id = id;
-        this.nombre = nombre;
-        this.fecha = fecha;
-        this.capMinima = capMinima;
-        this.capMaxima = capMaxima;
-        this.urlAcceso = urlAcceso;
-        this.fechaRegistro = fechaRegistro;
-        this.profesor = profesor;
-        this.image = image;
-    }
-    
-    public DtClase(int id, String nombre, Date fecha, int capMinima, int capMaxima, String urlAcceso, Date fechaRegistro, String profesor, List<DtRegistro> regs) {
-        this.id = id;
-        this.nombre = nombre;
-        this.fecha = fecha;
-        this.capMinima = capMinima;
-        this.capMaxima = capMaxima;
-        this.urlAcceso = urlAcceso;
-        this.fechaRegistro = fechaRegistro;
-        this.profesor = profesor;
-        this.registros = regs;
-    }
-    
-    public DtClase(int id, String nombre, Date fecha, int capMinima, int capMaxima, String urlAcceso, Date fechaRegistro, String profesor, List<DtRegistro> regs, File image) {
-        this.id = id;
-        this.nombre = nombre;
-        this.fecha = fecha;
-        this.capMinima = capMinima;
-        this.capMaxima = capMaxima;
-        this.urlAcceso = urlAcceso;
-        this.fechaRegistro = fechaRegistro;
-        this.profesor = profesor;
-        this.registros = regs;
-        this.image = image;
-    }
-    
-    public DtClase(int id, String nombre, Date fecha, int capMinima, int capMaxima, String urlAcceso, Date fechaRegistro) {
-        this.id = id;
-        this.nombre = nombre;
-        this.fecha = fecha;
-        this.capMinima = capMinima;
-        this.capMaxima = capMaxima;
-        this.urlAcceso = urlAcceso;
-        this.fechaRegistro = fechaRegistro;
-    }
-    public DtClase(int id, String nombre, Date fecha, int capMinima, int capMaxima, String urlAcceso, Date fechaRegistro, File image) {
-        this.id = id;
-        this.nombre = nombre;
-        this.fecha = fecha;
-        this.capMinima = capMinima;
-        this.capMaxima = capMaxima;
-        this.urlAcceso = urlAcceso;
-        this.fechaRegistro = fechaRegistro;
-        this.image = image;
+        if (idInstitucion != null) {
+            this.idInstitucion = idInstitucion;
+        }
+        this.image = imageFile;
+        this.imageBlob = imageBlob;
     }
     
     public DtClase() {
@@ -226,5 +120,9 @@ public class DtClase {
 
     public File getImage() {
         return image;
+    }
+    
+    public byte [] getImageBlob() {
+       return this.imageBlob; 
     }
 }

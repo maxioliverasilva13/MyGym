@@ -27,16 +27,13 @@ public class DtInstitucion {
         return image;
     }
     
-    public DtInstitucion(int id, String nombre, String descripcion, String url, List<ProfesorDTO> profesores, List<ActividadDTO> actividades) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.url = url;
-        this.profesores = profesores;
-        this.actividades = actividades;
+    byte [] imageBlob;
+
+    public byte[] getImageBlob() {
+        return imageBlob;
     }
     
-    public DtInstitucion(int id, String nombre, String descripcion, String url, List<ProfesorDTO> profesores, List<ActividadDTO> actividades, File file) {
+    public DtInstitucion(int id, String nombre, String descripcion, String url, List<ProfesorDTO> profesores, List<ActividadDTO> actividades, File file, byte[] imageBlob) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -44,6 +41,9 @@ public class DtInstitucion {
         this.profesores = profesores;
         this.actividades = actividades;
         this.image = file;
+        if (imageBlob != null) {
+            this.imageBlob = imageBlob;
+        }
     }
     
     public int getId() {
