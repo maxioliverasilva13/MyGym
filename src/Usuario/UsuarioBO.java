@@ -1,5 +1,6 @@
 package Usuario;
 
+import EntityManajer.InterfaceEntityManager;
 import Profesor.dtos.ProfesorCreateDTO;
 import Usuario.dtos.UsuarioCreateDTO;
 import Usuario.dtos.UsuarioDTO;
@@ -23,6 +24,11 @@ import utils.EncryptPass;
  */
 public class UsuarioBO implements IUsuarioBO {
     UsuarioDAO userDao = new UsuarioDAO();
+    
+     public UsuarioBO() {
+        // this is for the frontend servelets because by default the entity manager is not instanced
+        InterfaceEntityManager.getInstance();
+    }
 
     @Override
     public void create(UsuarioCreateDTO userCreate) throws UserAlreadyEmailExist,UserAlreadyNickExist {

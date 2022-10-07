@@ -301,6 +301,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
         Header.setForeground(new java.awt.Color(41, 69, 87));
         Header.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Header.setText("Agregar Registro a Clase");
+<<<<<<< HEAD
         bgPanel.add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 2, 910, 40));
 
         next.setBackground(new java.awt.Color(76, 131, 122));
@@ -369,6 +370,9 @@ public class AgregarRegistros extends javax.swing.JFrame {
             }
         });
         bgPanel.add(addFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 110, 40));
+=======
+        bgPanel.add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 460, 40));
+>>>>>>> 54dee3db72da35f10a3f0ff878b673463f6648b3
 
         step1.setBackground(new java.awt.Color(255, 255, 255));
         step1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
@@ -450,11 +454,89 @@ public class AgregarRegistros extends javax.swing.JFrame {
         calendarContent.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         step4.add(calendarContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 320));
 
+<<<<<<< HEAD
         bgPanel.add(step4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 560, 320));
 
         selectedClases.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         selectedClases.setText("Clases Seleccionadas: ");
         bgPanel.add(selectedClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
+=======
+        bgPanel.add(step4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 740, 390));
+
+        next.setBackground(new java.awt.Color(76, 131, 122));
+        next.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        next.setForeground(new java.awt.Color(255, 255, 255));
+        next.setText("Next");
+        next.setToolTipText("");
+        next.setActionCommand("");
+        next.setBorder(null);
+        next.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        next.setFocusPainted(false);
+        next.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        next.setName(""); // NOI18N
+        next.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        next.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nextMouseClicked(evt);
+            }
+        });
+        next.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextActionPerformed(evt);
+            }
+        });
+        bgPanel.add(next, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 770, 110, 40));
+
+        back.setBackground(new java.awt.Color(76, 131, 122));
+        back.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        back.setForeground(new java.awt.Color(255, 255, 255));
+        back.setText("Back");
+        back.setToolTipText("");
+        back.setBorder(null);
+        back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        back.setFocusPainted(false);
+        back.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        back.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backMouseClicked(evt);
+            }
+        });
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+        bgPanel.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 770, 110, 40));
+
+        selectedClases.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        selectedClases.setText("Clases Seleccionadas: ");
+        bgPanel.add(selectedClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 730, -1, -1));
+
+        addFinal.setBackground(new java.awt.Color(76, 131, 122));
+        addFinal.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        addFinal.setForeground(new java.awt.Color(255, 255, 255));
+        addFinal.setText("Agregar");
+        addFinal.setToolTipText("");
+        addFinal.setActionCommand("");
+        addFinal.setBorder(null);
+        addFinal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addFinal.setFocusPainted(false);
+        addFinal.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        addFinal.setName(""); // NOI18N
+        addFinal.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        addFinal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addFinalMouseClicked(evt);
+            }
+        });
+        addFinal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addFinalActionPerformed(evt);
+            }
+        });
+        bgPanel.add(addFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 770, 110, 40));
+>>>>>>> 54dee3db72da35f10a3f0ff878b673463f6648b3
 
         dragBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -474,7 +556,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
         btnMinimizar.setForeground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnMinimizar.setText("-");
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnMinimizarMouseClicked(evt);
@@ -503,7 +585,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
         btnExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnExit.setText("X");
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnExitMouseClicked(evt);

@@ -143,13 +143,13 @@ public class Actividades extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(41, 69, 87));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Actividades");
-        bgPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, -1));
+        bgPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 720, 20));
 
         cmbInstituciones.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         cmbInstituciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Instituciones" }));
         cmbInstituciones.setBorder(null);
         cmbInstituciones.setFocusable(false);
-        bgPanel.add(cmbInstituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 240, 40));
+        bgPanel.add(cmbInstituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 210, 40));
 
         btnAltaBG.setBackground(new java.awt.Color(76, 131, 122));
 
@@ -174,20 +174,14 @@ public class Actividades extends javax.swing.JPanel {
         btnAltaBG.setLayout(btnAltaBGLayout);
         btnAltaBGLayout.setHorizontalGroup(
             btnAltaBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnAltaBGLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(btnAlta1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(btnAlta1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
         );
         btnAltaBGLayout.setVerticalGroup(
             btnAltaBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnAltaBGLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnAlta1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(btnAlta1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        bgPanel.add(btnAltaBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, 160, 50));
+        bgPanel.add(btnAltaBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 160, 50));
 
         scrollTabla.setBackground(new java.awt.Color(255, 255, 255));
         scrollTabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -259,7 +253,7 @@ public class Actividades extends javax.swing.JPanel {
         btnInfo.setForeground(new java.awt.Color(255, 255, 255));
         btnInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnInfo.setText("CONSULTAR INFORMACIÓN");
-        btnInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInfo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnInfoMouseClicked(evt);
@@ -315,20 +309,14 @@ public class Actividades extends javax.swing.JPanel {
         btnAltaBG1.setLayout(btnAltaBG1Layout);
         btnAltaBG1Layout.setHorizontalGroup(
             btnAltaBG1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnAltaBG1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnAlta2, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(btnAlta2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
         );
         btnAltaBG1Layout.setVerticalGroup(
             btnAltaBG1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnAltaBG1Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
-                .addComponent(btnAlta2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(btnAlta2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        bgPanel.add(btnAltaBG1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 200, 50));
+        bgPanel.add(btnAltaBG1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, 200, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

@@ -136,7 +136,7 @@ public class Institucion implements Serializable {
         if (this.image != null) {
             photo = this.createTempFile();
         }
-        DtInstitucion res = new DtInstitucion(this.id,this.nombre,this.descripcion,this.url,null,null, photo);
+        DtInstitucion res = new DtInstitucion(this.id,this.nombre,this.descripcion,this.url,null,null, photo, this.image);
         return res;
     }
     

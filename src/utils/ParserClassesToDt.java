@@ -51,7 +51,7 @@ public class ParserClassesToDt {
         if (i.getImage() != null) {
             photo = i.createTempFile();
         }
-        DtInstitucion dtToReturn = new DtInstitucion(i.getId(), i.getNombre(), i.getDescripcion(), i.getUrl(), getProfesoresDTO(i.getProfesores()) , getActividadDTO(i.getActividades()), photo);
+        DtInstitucion dtToReturn = new DtInstitucion(i.getId(), i.getNombre(), i.getDescripcion(), i.getUrl(), getProfesoresDTO(i.getProfesores()) , getActividadDTO(i.getActividades()), photo, i.getImage());
         return dtToReturn;
     }
     
@@ -63,7 +63,7 @@ public class ParserClassesToDt {
             if (c.getImage() != null) {
                 file = c.createTempFile();
             }
-            DtClase cn = new DtClase(c.getId(), c.getNombre(), c.getFecha(), c.getCapMinima(), c.getCapMaxima(), c.getUrlAcceso(), c.getFechaRegistro(), profesorName, file);
+            DtClase cn = new DtClase(c.getId(), c.getNombre(), c.getFecha(),profesorName,null, c.getCapMinima(), c.getCapMaxima(), c.getUrlAcceso(), c.getFechaRegistro(),null,null,null, null, file, null);
             clases.add(cn);
         });
         
@@ -88,7 +88,7 @@ public class ParserClassesToDt {
         }
 
         ActividadDTO dt = new ActividadDTO(
-                actividad.getId(), actividad.getNombre() , actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaRegistro(), null, clases, null, cuponerasXAct, actividad.getImage() != null ? actividad.createTempFile() : null, categorias);
+                actividad.getId(), actividad.getNombre() , actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaRegistro(), null, clases, null, cuponerasXAct, actividad.getImage() != null ? actividad.createTempFile() : null, categorias, actividad.getImage());
                 return dt;
     }
     

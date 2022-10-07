@@ -72,7 +72,6 @@ public class AddClaseForm extends javax.swing.JFrame {
 
         dateChooserFechaRegistro = new com.raven.datechooser.DateChooser();
         jPanel1 = new javax.swing.JPanel();
-        dragBar = new javax.swing.JLabel();
         btnMinimizarBG = new javax.swing.JPanel();
         btnMinimizar = new javax.swing.JLabel();
         btnExitBG = new javax.swing.JPanel();
@@ -122,18 +121,6 @@ public class AddClaseForm extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(480, 680));
         jPanel1.setPreferredSize(new java.awt.Dimension(480, 678));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        dragBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                dragBarMouseDragged(evt);
-            }
-        });
-        dragBar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                dragBarMousePressed(evt);
-            }
-        });
-        jPanel1.add(dragBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 20));
 
         btnMinimizarBG.setBackground(java.awt.Color.lightGray);
 
@@ -190,18 +177,19 @@ public class AddClaseForm extends javax.swing.JFrame {
         jPanel1.add(btnExitBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 30, 20));
 
         jLabel1.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(41, 69, 87));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Alta de Clase");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, -10, 120, 40));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 120, 30));
 
         jComboBox1.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jComboBox1.setEnabled(false);
         jComboBox1.setFocusable(false);
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 344, 34));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 344, 34));
 
         jLabel7.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel7.setText("Elige una institucion");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
         jComboBox2.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jComboBox2.setEnabled(false);
@@ -216,15 +204,15 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jComboBox2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 180, 34));
+        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 180, 34));
 
         jLabel8.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel8.setText("Elige una actividad deportiva ");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel9.setText("Elija un profesor");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
 
         jComboBox3.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jComboBox3.setEnabled(false);
@@ -234,7 +222,7 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jComboBox3ItemStateChanged(evt);
             }
         });
-        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 344, 34));
+        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 344, 34));
 
         jTextField5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(160, 160, 160)));
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
@@ -242,12 +230,12 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jTextField5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 344, 35));
+        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 344, 35));
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel2.setText("Ingresa un nombre");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
 
         jTextField6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(160, 160, 160)));
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
@@ -263,11 +251,11 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jTextField6KeyReleased(evt);
             }
         });
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 348, 36));
+        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 348, 36));
 
         jLabel3.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel3.setText("Minimo Socios");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, -1));
 
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, -1, -1));
@@ -294,17 +282,18 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jTextField7KeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 95, 35));
+        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 95, 35));
 
         jLabel5.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel5.setText("Url Acceso");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(76, 131, 122));
         jButton1.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Agregar");
         jButton1.setBorder(null);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setFocusPainted(false);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -316,7 +305,7 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, 420, 47));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 600, 180, 47));
 
         jTextField8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(160, 160, 160)));
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
@@ -335,11 +324,11 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jTextField8KeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 95, 35));
+        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 350, 95, 35));
 
         jLabel6.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel6.setText("Maximo Socios");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, -1, -1));
 
         jLabel11.setBackground(new java.awt.Color(255, 0, 102));
         jLabel11.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
@@ -347,24 +336,24 @@ public class AddClaseForm extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel11.setName("errorLblMinSocios"); // NOI18N
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, 190, 16));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, 190, 16));
 
         jLabel12.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 0, 51));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel12.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 180, 16));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 180, 16));
         jLabel12.getAccessibleContext().setAccessibleName("errorMaxSociosLbl");
 
         jLabel13.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 51, 0));
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 210, 30));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 210, 30));
 
         jLabel14.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 0, 51));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel14.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, 260, 20));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 260, 20));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 0, 51));
@@ -378,19 +367,21 @@ public class AddClaseForm extends javax.swing.JFrame {
                 fechaActionPerformed(evt);
             }
         });
-        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 140, 20));
+        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 530, 140, 20));
 
         jLabel16.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel16.setText("Fecha de clase");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, -1, -1));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 500, -1, -1));
 
+        labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mygym/presentacion/institucion/AddInstitucion.png"))); // NOI18N
         labelImage.setText("Imagen");
+        labelImage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelImage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelImageMouseClicked(evt);
             }
         });
-        jPanel1.add(labelImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 100, 70));
+        jPanel1.add(labelImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 100, 70));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 678));
 
@@ -505,7 +496,7 @@ public class AddClaseForm extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(new JFrame(), "Debes elegir una actividad", "Actividad no seleccionada", JOptionPane.ERROR_MESSAGE);
              return;
         }
-        DtClase dt = new DtClase(0, nombre, fechaClase, capMinima, capMaxima, urlAcceso, fechaRegistro, BrowseFile.globalFile);
+        DtClase dt = new DtClase(0, nombre, fechaClase,null, null, capMinima, capMaxima, urlAcceso, fechaRegistro, null, null, null, null, BrowseFile.globalFile, null);
    
         try {
             claseBO.insertarClase(selectedActividadId, dt);
@@ -589,17 +580,6 @@ public class AddClaseForm extends javax.swing.JFrame {
     }
     // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7KeyTyped
-
-    private void dragBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dragBarMouseDragged
-        int x = evt.getXOnScreen();
-        int y = evt.getYOnScreen();
-        this.setLocation(x - xMouse, y - yMouse);
-    }//GEN-LAST:event_dragBarMouseDragged
-
-    private void dragBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dragBarMousePressed
-        xMouse = evt.getX();
-        yMouse = evt.getY();
-    }//GEN-LAST:event_dragBarMousePressed
 
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
         this.setExtendedState(JFrame.ICONIFIED);
@@ -712,7 +692,6 @@ public class AddClaseForm extends javax.swing.JFrame {
     private javax.swing.JLabel btnMinimizar;
     private javax.swing.JPanel btnMinimizarBG;
     private com.raven.datechooser.DateChooser dateChooserFechaRegistro;
-    private javax.swing.JLabel dragBar;
     private javax.swing.JLabel errorCapacidadLbl;
     private javax.swing.JTextField fecha;
     private javax.swing.JButton jButton1;
