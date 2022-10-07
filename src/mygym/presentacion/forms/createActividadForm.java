@@ -293,7 +293,7 @@ public class createActividadForm extends javax.swing.JFrame{
         labelSubirImage.setForeground(new java.awt.Color(255, 255, 255));
         labelSubirImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelSubirImage.setText("Subir Imagen");
-        labelSubirImage.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        labelSubirImage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelSubirImage.setMaximumSize(new java.awt.Dimension(100, 19));
         labelSubirImage.setMinimumSize(new java.awt.Dimension(100, 19));
         labelSubirImage.setPreferredSize(new java.awt.Dimension(100, 19));
@@ -422,7 +422,7 @@ public class createActividadForm extends javax.swing.JFrame{
         btnCrear.setForeground(new java.awt.Color(255, 255, 255));
         btnCrear.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnCrear.setText("Crear");
-        btnCrear.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCrear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCrear.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCrearMouseClicked(evt);
@@ -433,9 +433,10 @@ public class createActividadForm extends javax.swing.JFrame{
         btnCrearBG.setLayout(btnCrearBGLayout);
         btnCrearBGLayout.setHorizontalGroup(
             btnCrearBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnCrearBGLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(btnCrearBGLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         btnCrearBGLayout.setVerticalGroup(
             btnCrearBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -444,8 +445,9 @@ public class createActividadForm extends javax.swing.JFrame{
                 .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel2.add(btnCrearBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 640, -1, -1));
+        jPanel2.add(btnCrearBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 650, -1, -1));
 
+        labelImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         labelImage.setMaximumSize(new java.awt.Dimension(90, 90));
         labelImage.setMinimumSize(new java.awt.Dimension(90, 90));
         labelImage.setPreferredSize(new java.awt.Dimension(90, 90));
@@ -456,6 +458,7 @@ public class createActividadForm extends javax.swing.JFrame{
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Agregar/Eliminar");
         jButton3.setBorder(null);
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setFocusPainted(false);
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -471,6 +474,7 @@ public class createActividadForm extends javax.swing.JFrame{
 
         jScrollPane1.setBorder(null);
 
+        listCategorias.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         listCategorias.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         listCategorias.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listCategorias.setFocusable(false);

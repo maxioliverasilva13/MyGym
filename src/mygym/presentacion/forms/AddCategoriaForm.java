@@ -71,7 +71,7 @@ public class AddCategoriaForm extends javax.swing.JFrame {
         header.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         header.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         header.setText("Alta de Categoría");
-        bgPanel.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 40));
+        bgPanel.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 200, 40));
 
         txtNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(160, 160, 160)));
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +90,7 @@ public class AddCategoriaForm extends javax.swing.JFrame {
         btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregar.setText("Agregar");
         btnAgregar.setBorder(null);
+        btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAgregar.setFocusPainted(false);
         btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
