@@ -3,7 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/rodrigo/MyGym/src/mygym/presentacion/components/ActividadesPendientes.java</file>
+            <file>file:/C:/Users/rodrigo/MyGym/src/Usuario/IUsuarioBO.java</file>
             <file>file:/C:/Users/rodrigo/MyGym/src/mygym/presentacion/components/AgregarRegistros.java</file>
+            <file>file:/C:/Users/rodrigo/MyGym/src/EntityManajer/InterfaceEntityManager.java</file>
+            <file>file:/C:/Users/rodrigo/MyGym/src/Institucion/InstitucionDao.java</file>
+            <file>file:/C:/Users/rodrigo/MyGym/src/Usuario/dtos/UsuarioDTO.java</file>
+            <file>file:/C:/Users/rodrigo/MyGym/src/Profesor/Profesor.java</file>
+            <file>file:/C:/Users/rodrigo/MyGym/src/Usuario/UsuarioBO.java</file>
+            <file>file:/C:/Users/rodrigo/MyGym/src/Institucion/Institucion.java</file>
+            <file>file:/C:/Users/rodrigo/MyGym/src/mygymapp/MyGymApp.java</file>
+            <file>file:/C:/Users/rodrigo/MyGym/src/Usuario/UsuarioDAO.java</file>
+            <file>file:/C:/Users/rodrigo/MyGym/src/mygym/presentacion/components/ChooseActividad.java</file>
         </group>
     </open-files>
 </project-private>
