@@ -52,5 +52,10 @@ public class CategoriaDao implements ICategoriaDao {
         return categorias;
     }
     
+    public int getCantidadActividadesDeCategoria(int idCategoria) {
+        List<Categoria> categorias = em.createNativeQuery("SELECT * FROM actividad_categoria WHERE categorias_ID=" + idCategoria).getResultList();
+        return categorias.size();
+    }
+    
     
 }

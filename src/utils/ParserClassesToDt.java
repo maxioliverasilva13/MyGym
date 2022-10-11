@@ -20,6 +20,7 @@ import CuponeraXActividad.CuponeraXActividad;
 import CuponeraXActividad.DtCuponeraXActividad;
 import Cuponera.Cuponera;
 import java.io.File;
+import javafx.beans.property.SimpleIntegerProperty;
 /**
  *
  * @author maximilianooliverasilva
@@ -51,7 +52,13 @@ public class ParserClassesToDt {
         if (i.getImage() != null) {
             photo = i.createTempFile();
         }
-        DtInstitucion dtToReturn = new DtInstitucion(i.getId(), i.getNombre(), i.getDescripcion(), i.getUrl(), getProfesoresDTO(i.getProfesores()) , getActividadDTO(i.getActividades()), photo, i.getImage());
+        SimpleIntegerProperty totalActividadesAceptadas = new SimpleIntegerProperty();
+        i.getActividades().forEach((Actividad act) -> {
+            if (act.getEstado().equals("Aceptada")) {
+                totalActividadesAceptadas.set(totalActividadesAceptadas.get() + 1);
+            }
+        });
+        DtInstitucion dtToReturn = new DtInstitucion(i.getId(), i.getNombre(), i.getDescripcion(), i.getUrl(), getProfesoresDTO(i.getProfesores()) , getActividadDTO(i.getActividades()), photo, i.getImage(), totalActividadesAceptadas.get());
         return dtToReturn;
     }
     
@@ -114,11 +121,11 @@ public class ParserClassesToDt {
         ProfesorDTO profe;
         if (prof.getImage() != null ) {
             profe = new ProfesorDTO(
-                prof.getId(), prof.getNombre(), prof.getApellido(), prof.getNickname(), prof.getEmail(), prof.getNacimiento(), prof.getDescripcionGeneral(), prof.getBiografia(), prof.getLinkSitioWeb(), null, null, prof.createTempFile(), prof.getSeguidosDt(), prof.getSeguidoresDT());
+                prof.getId(), prof.getNombre(), prof.getApellido(), prof.getNickname(), prof.getEmail(), prof.getNacimiento(), prof.getDescripcionGeneral(), prof.getBiografia(), prof.getLinkSitioWeb(), null, null, prof.createTempFile(), prof.getSeguidosDt(), prof.getSeguidoresDT(), prof.getImage());
         return profe;
         } else {
             profe = new ProfesorDTO(
-                prof.getId(), prof.getNombre(), prof.getApellido(), prof.getNickname(), prof.getEmail(), prof.getNacimiento(), prof.getDescripcionGeneral(), prof.getBiografia(), prof.getLinkSitioWeb(), null, null, null,  prof.getSeguidosDt(), prof.getSeguidoresDT());
+                prof.getId(), prof.getNombre(), prof.getApellido(), prof.getNickname(), prof.getEmail(), prof.getNacimiento(), prof.getDescripcionGeneral(), prof.getBiografia(), prof.getLinkSitioWeb(), null, null, null,  prof.getSeguidosDt(), prof.getSeguidoresDT(), prof.getImage());
         return profe;
         }
     }

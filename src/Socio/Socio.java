@@ -86,7 +86,7 @@ public class Socio extends Usuario{
             registros.add(registro.getDtRegistro());
         });
 
-        return new SocioDTO(this.getId(), this.getNombre(),this.getApellido(),this.getNickname(),this.getEmail(),this.getNacimiento(), null, this.createTempFile()); 
+        return new SocioDTO(this.getId(), this.getNombre(),this.getApellido(),this.getNickname(),this.getEmail(),this.getNacimiento(), null, this.createTempFile(), null,null, this.getImage()); 
     }
     
     

@@ -23,28 +23,10 @@ public  class UsuarioDTO {
     private File image;
     List<UsuarioDTO> seguidos = new ArrayList<>();
     List<UsuarioDTO> seguidores = new ArrayList<>();
+    private byte[] blobImage;
 
     
-    public UsuarioDTO(int id, String nombre,String apellido,String nickname,String email,Date nacimiento){
-        this.ID = id;
-        this.NOMBRE = nombre;
-        this.APELLIDO = apellido;
-        this.NICKNAME = nickname;
-        this.EMAIL = email;
-        this.NACIMIENTO = nacimiento;
-    }
-    
-    public UsuarioDTO(int id, String nombre,String apellido,String nickname,String email,Date nacimiento, File file){
-        this.ID = id;
-        this.NOMBRE = nombre;
-        this.APELLIDO = apellido;
-        this.NICKNAME = nickname;
-        this.EMAIL = email;
-        this.NACIMIENTO = nacimiento;
-        this.image = file;
-    }
-
-      public UsuarioDTO(int id, String nombre,String apellido,String nickname,String email,Date nacimiento, File file, List<UsuarioDTO> seguidos, List<UsuarioDTO> seguidores){
+    public UsuarioDTO(int id, String nombre,String apellido,String nickname,String email,Date nacimiento, File file, List<UsuarioDTO> seguidos, List<UsuarioDTO> seguidores, byte[] blobImage){
         this.ID = id;
         this.NOMBRE = nombre;
         this.APELLIDO = apellido;
@@ -54,10 +36,16 @@ public  class UsuarioDTO {
         this.image = file;
         this.seguidores = seguidores;
         this.seguidos = seguidos;
+        this.blobImage = blobImage;
+
     }
     
     public File getImage() {
         return image;
+    }
+
+    public byte[] getBlobImage() {
+        return blobImage;
     }
     
     public int getId(){

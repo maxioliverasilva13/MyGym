@@ -24,40 +24,8 @@ public class ProfesorDTO extends UsuarioDTO {
     private List<DtInstitucion> instituciones;
     private List<ActividadDTO> actividades;
     
-    public ProfesorDTO(int id,String nombre,String apellido,String nickname,String email ,Date nacimiento,String descripcionGeneral,String biografia,String linkSitioWeb){
-        super(id, nombre,apellido,nickname,email,nacimiento);
-        this.descripcionGeneral = descripcionGeneral;
-        this.biografia = biografia;
-        this.linkSitioWeb = linkSitioWeb;
-    }
-    
-    public ProfesorDTO(int id,String nombre,String apellido,String nickname,String email ,Date nacimiento,String descripcionGeneral,String biografia,String linkSitioWeb, File file){
-        super(id, nombre,apellido,nickname,email,nacimiento, file);
-        this.descripcionGeneral = descripcionGeneral;
-        this.biografia = biografia;
-        this.linkSitioWeb = linkSitioWeb;
-    }
-    
-    public ProfesorDTO(int id,String nombre,String apellido,String nickname,String email ,Date nacimiento,String descripcionGeneral,String biografia,String linkSitioWeb, List<ActividadDTO> acts, List<DtInstitucion> instituciones){
-      super(id, nombre,apellido,nickname,email,nacimiento);
-      this.descripcionGeneral = descripcionGeneral;
-      this.biografia = biografia;
-      this.linkSitioWeb = linkSitioWeb;
-      this.actividades = acts;
-      this.instituciones = instituciones;
-    }
-    
-    public ProfesorDTO(int id,String nombre,String apellido,String nickname,String email ,Date nacimiento,String descripcionGeneral,String biografia,String linkSitioWeb, List<ActividadDTO> acts, List<DtInstitucion> instituciones, File file){
-      super(id, nombre,apellido,nickname,email,nacimiento, file);
-      this.descripcionGeneral = descripcionGeneral;
-      this.biografia = biografia;
-      this.linkSitioWeb = linkSitioWeb;
-      this.actividades = acts;
-      this.instituciones = instituciones;
-    }
-
-    public ProfesorDTO(int id,String nombre,String apellido,String nickname,String email ,Date nacimiento,String descripcionGeneral,String biografia,String linkSitioWeb, List<ActividadDTO> acts, List<DtInstitucion> instituciones, File file, List<UsuarioDTO> seguidos, List<UsuarioDTO> seguidores){
-      super(id, nombre,apellido,nickname,email,nacimiento, file, seguidos, seguidores);
+    public ProfesorDTO(int id,String nombre,String apellido,String nickname,String email ,Date nacimiento,String descripcionGeneral,String biografia,String linkSitioWeb, List<ActividadDTO> acts, List<DtInstitucion> instituciones, File file, List<UsuarioDTO> seguidos, List<UsuarioDTO> seguidores, byte[] blobImage){
+      super(id, nombre,apellido,nickname,email,nacimiento, file, seguidos, seguidores, blobImage);
       this.descripcionGeneral = descripcionGeneral;
       this.biografia = biografia;
       this.linkSitioWeb = linkSitioWeb;

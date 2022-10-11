@@ -4,6 +4,7 @@
  */
 package Categoria;
 
+import EntityManajer.InterfaceEntityManager;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,6 +14,12 @@ import java.util.List;
  */
 public class CategoriaBO implements ICategoriaBO {
     CategoriaDao catDao = new CategoriaDao();
+    
+            
+    public CategoriaBO() {
+        // this is for the frontend servelets because by default the entity manager is not instanced
+        InterfaceEntityManager.getInstance();
+    }
 
     public void agregarCategoria(DtCategoria cat){
         catDao.create(cat);
@@ -35,6 +42,11 @@ public class CategoriaBO implements ICategoriaBO {
         });
         
         return dtcategorias;
+    }
+    
+    
+    public int totalActividades(int idCategoria) {
+        return catDao.getCantidadActividadesDeCategoria(idCategoria);
     }
     
 }

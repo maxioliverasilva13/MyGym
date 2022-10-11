@@ -14,21 +14,12 @@ import java.util.List;
  *
  * @author angel
  */
-public class SocioDTO extends UsuarioDTO{
+public class SocioDTO extends UsuarioDTO {
 
     private List<DtRegistro> registros;
-    public SocioDTO(int id,String nombre,String apellido,String nickname,String email,Date nacimiento,List<DtRegistro> registros){
-        super(id,nombre,apellido,nickname,email,nacimiento);
-        this.registros  = registros;
-    }
     
-    public SocioDTO(int id,String nombre,String apellido,String nickname,String email,Date nacimiento,List<DtRegistro> registros, File file){
-        super(id,nombre,apellido,nickname,email,nacimiento, file);
-        this.registros  = registros;
-    }
-    
-    public SocioDTO(int id,String nombre,String apellido,String nickname,String email,Date nacimiento,List<DtRegistro> registros, File file, List<UsuarioDTO> seguidos, List<UsuarioDTO> seguidores){
-        super(id,nombre,apellido,nickname,email,nacimiento, file, seguidos, seguidores);
+    public SocioDTO(int id,String nombre,String apellido,String nickname,String email,Date nacimiento,List<DtRegistro> registros, File file, List<UsuarioDTO> seguidos, List<UsuarioDTO> seguidores, byte[] blobImage){
+        super(id,nombre,apellido,nickname,email,nacimiento, file, seguidos, seguidores, blobImage);
         this.registros  = registros;
     }
     

@@ -24,6 +24,7 @@ import Actividad.dtos.ActividadDTO;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import javafx.beans.property.SimpleIntegerProperty;
 import javax.persistence.Basic;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
@@ -136,7 +137,13 @@ public class Institucion implements Serializable {
         if (this.image != null) {
             photo = this.createTempFile();
         }
-        DtInstitucion res = new DtInstitucion(this.id,this.nombre,this.descripcion,this.url,null,null, photo, this.image);
+        SimpleIntegerProperty totalActividadesAceptadas = new SimpleIntegerProperty();
+        this.actividades.forEach((Actividad act) -> {
+            if (act.getEstado().equals("Aceptada")) {
+                totalActividadesAceptadas.set(totalActividadesAceptadas.get() + 1);
+            }
+        });
+        DtInstitucion res = new DtInstitucion(this.id,this.nombre,this.descripcion,this.url,null,null, photo, this.image, totalActividadesAceptadas.get());
         return res;
     }
     
