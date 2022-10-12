@@ -53,5 +53,9 @@ public class ProfesorDTO extends UsuarioDTO {
     public String getLinkSitioWeb(){
         return this.linkSitioWeb;
     }
+    
+    public String getType(){
+        return "Profesor";
+    }
        
 }

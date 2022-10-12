@@ -248,7 +248,7 @@ public class Actividad implements Serializable {
             ActividadDTO dt = new ActividadDTO(
                     this.id, this.nombre, this.descripcion, this.duracion, this.costo, this.fechaRegistro, profe,
                     allClases, dtIns, cuponerasXact, this.image != null ? createTempFile() : null, categorias,
-                    this.getImage());
+                    this.getImage(), this.estado);
             return dt;
         } catch (Exception e) {
             System.out.println(e.getMessage());

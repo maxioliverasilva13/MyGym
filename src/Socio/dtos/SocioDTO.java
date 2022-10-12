@@ -27,6 +27,10 @@ public class SocioDTO extends UsuarioDTO {
         return this.registros;
     }
     
+    public String getType(){
+        return "Socio";
+    }
+    
     
    
 }

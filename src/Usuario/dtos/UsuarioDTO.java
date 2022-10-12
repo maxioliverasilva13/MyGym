@@ -76,5 +76,16 @@ public  class UsuarioDTO {
         return seguidores;
     }
     
+    public Integer getCantSeguidores(){
+        return seguidores.size();
+    }
+    
+    public Integer getCantSeguidos(){
+        return seguidos.size();
+    }
+    
+    public String getType() {
+        return "Usuario";
+    }
     
 }

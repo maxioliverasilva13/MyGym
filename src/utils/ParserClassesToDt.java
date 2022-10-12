@@ -95,7 +95,7 @@ public class ParserClassesToDt {
         }
 
         ActividadDTO dt = new ActividadDTO(
-                actividad.getId(), actividad.getNombre() , actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaRegistro(), null, clases, null, cuponerasXAct, actividad.getImage() != null ? actividad.createTempFile() : null, categorias, actividad.getImage());
+                actividad.getId(), actividad.getNombre() , actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaRegistro(), null, clases, null, cuponerasXAct, actividad.getImage() != null ? actividad.createTempFile() : null, categorias, actividad.getImage(), actividad.getEstado());
                 return dt;
     }
     
