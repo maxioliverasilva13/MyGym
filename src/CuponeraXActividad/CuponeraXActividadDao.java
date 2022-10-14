@@ -40,6 +40,7 @@ public class CuponeraXActividadDao implements InterfaceCuponeraXActividadDao {
         CuponeraXActividad cuxa = new CuponeraXActividad();
         cuxa.setActividad(act);
         cuxa.setCuponera(cup);
+        cuxa.setCantClases(cupXact.getCantClases());
         EntityTransaction et = em.getTransaction();
         et.begin();
         em.persist(cuxa);
