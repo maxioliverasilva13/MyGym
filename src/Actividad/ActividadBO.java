@@ -159,4 +159,14 @@ public class ActividadBO  implements IActividadBO{
         actDao.cambiarEstado(actFind, newStatus);
          
     }
+    
+    @Override
+    public HashMap<Integer, ActividadDTO> listarActividadesByProfesor(int idProf) {
+        HashMap<Integer, ActividadDTO> actividades = new HashMap<>();
+        List<Actividad> acts = actDao.listarActividadesByProfesor(idProf);
+        acts.forEach((Actividad act) -> {
+            actividades.put(act.getId(), act.getDtActividad());
+        });
+        return actividades;    
+    }
 }

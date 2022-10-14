@@ -165,10 +165,11 @@ public class UsuarioDAO implements IUsuarioDAO{
     }
     
     public void existeSeguido(int myId, int idUsuario) {
+        List<Seguidor> seguido;
         Query querySeguidor = em.createNativeQuery(
-        "SELECT *FROM seguidor s WHERE s.PERSONA_ID=" + myId + " and s.SIGUEA_ID=" + idUsuario, Seguidor.class);
-        Seguidor s = (Seguidor)querySeguidor.getSingleResult();
-        if (s!= null) {
+        "SELECT * FROM seguidor s WHERE s.PERSONA_ID=" + myId + " and s.SIGUEA_ID=" + idUsuario, Seguidor.class);
+        seguido = querySeguidor.getResultList();
+        if (!seguido.isEmpty()) {
             throw new UsuarioASeguirNotFoundException("Ya sigues a este usuario");
         }
     }

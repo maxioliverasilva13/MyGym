@@ -124,10 +124,7 @@ public class CuponeraDao implements InterfaceCuponeraDao {
             "SELECT * FROM CUPONERA cup WHERE NOT EXISTS (SELECT * FROM compracuponera cp WHERE cp.CUPONERA_ID = cup.ID AND cp.SOCIO_ID = "+socioID +"); "
             , Cuponera.class)
             .getResultList();
-
        return cuponeras;
     }
-    
-    
 
 }

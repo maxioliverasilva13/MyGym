@@ -134,4 +134,18 @@ public class CuponeraBo implements InterfaceCuponeraBo {
         return res;
     }
 
+    public HashMap<Integer, DtCuponera> listarCuponerasBySocio(int socioID) throws SocioNotExist {
+      
+        ISocioBO socioBo = new SocioBO();
+        if (socioBo.consultarSocio(socioID) == null){
+            throw new SocioNotExist("El socio no existe");   
+        }
+               
+        HashMap<Integer, DtCuponera> res = new HashMap<Integer, DtCuponera>();
+        this.cuponeradao.listarDisponiblesBySocio(socioID).forEach(cup -> {
+            res.put(cup.getId(), cup.getDtCuponera());
+        });
+       
+        return res;
+    }
 }

@@ -211,4 +211,13 @@ public class ActividadDao implements IActividadDao {
         tx.commit();
     }
 
+    @Override
+    // Lista todas las actividades de un Profe, en todos sus estados. (Necesario para el listado de la web).
+    public List<Actividad> listarActividadesByProfesor(int profID) {
+        List<Actividad> actividades = em.createNativeQuery(
+            "SELECT * FROM ACTIVIDAD WHERE PROFESOR_ID = "+profID +";", Actividad.class).getResultList();
+       return actividades;
+    }
+    
+    
 }

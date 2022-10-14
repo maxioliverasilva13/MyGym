@@ -23,4 +23,5 @@ public interface IUsuarioBO {
     public void seguirAUsuario(int myId, int idUsuario);
     public void dejarSeguirUsuario(int myId, int idUsuario);
     public UsuarioDTO authenticarse(String email,String password) throws UnauthorizedException;
+    public boolean consultarSigueUsuario(int myId, int idUsuario);
 }
