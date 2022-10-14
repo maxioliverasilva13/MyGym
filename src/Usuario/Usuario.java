@@ -104,27 +104,28 @@ public class Usuario implements Serializable {
     public File createTempFile() {
         if (this.image != null) {
              String dir = System.getProperty("java.io.tmpdir");
-        File file = new File(dir + "image-user-" + this.nombre + ".jpg");
+            File file = new File(dir + "image-user-" + this.nombre + ".jpg");
         try (FileOutputStream fos = new FileOutputStream(file)) {
             fos.write(this.image);
         } catch (Exception e) {
             System.out.println("Usuario-createTempFile");
             System.out.println(e.getMessage());
         }
-                return file;
+        return file;
 
         }
        return null;
     }
     
      public void setImage(File file) {
+        
          try {
-    System.out.println(file);
-             byte[] picInBytes = new byte[(int) file.length()];
-        FileInputStream fileInputStream = new FileInputStream(file);
-        fileInputStream.read(picInBytes);
-        fileInputStream.close();
-        this.image = picInBytes;
+             
+            byte[] picInBytes = new byte[(int) file.length()];
+            FileInputStream fileInputStream = new FileInputStream(file);
+            fileInputStream.read(picInBytes);
+            fileInputStream.close();
+            this.image = picInBytes;
          } catch (Exception e) {
              System.out.println("Usuario-SetImage");
              System.out.println(e.getMessage());
