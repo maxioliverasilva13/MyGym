@@ -83,8 +83,6 @@ public class UsuarioBO implements IUsuarioBO {
         if(!(usu.getPassword().equals(passwordEncrypted))){
           throw new UnauthorizedException("Correo o contraseña incorrecta");
         }
-         //   public UsuarioDTO(int id, String nombre,String apellido,String nickname,String email,Date nacimiento){
-
         UsuarioDTO res = new UsuarioDTO(usu.getId(),usu.getNombre(),usu.getApellido(),usu.getNickname(),usu.getEmail(),usu.getNacimiento());
         return res;   
     }
