@@ -22,4 +22,5 @@ public interface InterfaceCuponeraDao {
     public List<Cuponera> listarVigentes();
     public void comprarCuponera(Socio socio,Cuponera cuponera,int cantClases);
     public List<Cuponera> listarDisponiblesBySocioAndActividad(int socioID,int actId);
+    public List<Cuponera> listarDisponiblesBySocio(int socioID);
 }

@@ -89,10 +89,14 @@ public class UsuarioBO implements IUsuarioBO {
         return res;   
     }
 
-  
-
-    
-    
-    
-    
+    @Override
+     public boolean consultarSigueUsuario(int myId, int idUsuario){
+         try {
+            userDao.existeSeguido(myId, idUsuario);
+            return false;
+        } catch (Exception e) {
+            // Si entra al catch es porque ya lo sigue.
+            return true;
+        }
+     }
 }

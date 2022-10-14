@@ -31,4 +31,5 @@ public interface IActividadDao {
     public void cambiarEstado(Actividad act,String newStatus);
     public List<Actividad> getAllActividadesWithLimitAndAccepted(int limite);
     public int getActividadesAceptadasSize();
+    public List<Actividad> listarActividadesByProfesor(int profID);
 }

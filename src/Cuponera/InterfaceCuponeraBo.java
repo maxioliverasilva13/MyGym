@@ -20,4 +20,5 @@ public interface InterfaceCuponeraBo {
     public HashMap<Integer, DtCuponera> listarCuponerasVigentes();
     public void comprarCuponera(int socioID,int idCuponera,int idActividad) throws CuponeraAlreadyPurchaseBySocio;
     public HashMap<Integer, DtCuponera> listarCuponerasDisponiblesBySocio(int socioID,int actividadId) throws SocioNotExist, ActividadNotFoundException;
+    public HashMap<Integer, DtCuponera> listarCuponerasBySocio(int socioID) throws SocioNotExist;
 }

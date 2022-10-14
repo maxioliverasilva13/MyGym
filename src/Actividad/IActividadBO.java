@@ -31,4 +31,5 @@ public interface IActividadBO {
     public void cambiarEstado(int idActividad, String newStatus) throws ActividadNotFoundException ;
     public HashMap<Integer, ActividadDTO> getActividadesWithLimitAndAccepted(int limite);
     public int getActividadesAceptadasSize();
+    public HashMap<Integer, ActividadDTO> listarActividadesByProfesor(int idProf);
 }
