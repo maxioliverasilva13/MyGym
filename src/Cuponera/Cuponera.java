@@ -149,10 +149,10 @@ public class Cuponera implements Serializable {
             photo = createTempFile();
         }
         if (photo == null) {
-              DtCuponera dtCup = new DtCuponera(id, nombre, descripcion, periodoVigencia, descuento,precio, cups);
+              DtCuponera dtCup = new DtCuponera(id, nombre, descripcion, periodoVigencia, descuento,precio, cups, null, this.image);
         return dtCup;
         } else {
-              DtCuponera dtCup = new DtCuponera(id, nombre, descripcion, periodoVigencia, descuento,precio, cups, photo);
+              DtCuponera dtCup = new DtCuponera(id, nombre, descripcion, periodoVigencia, descuento,precio, cups, photo, this.image);
         return dtCup;
         }
       

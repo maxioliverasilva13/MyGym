@@ -11,10 +11,17 @@ package Categoria;
 public class DtCategoria {
     private int id;
     private String nombre;
+    int totalActividades;
 
     public DtCategoria(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
+    }
+    
+    public DtCategoria(int id, String nombre, int totalActividades) {
+        this.id = id;
+        this.nombre = nombre;
+        this.totalActividades = totalActividades;
     }
 
     public DtCategoria(String nombre) {
@@ -28,6 +35,10 @@ public class DtCategoria {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public int getTotalActividades() {
+        return totalActividades;
     }
 
 }

@@ -357,6 +357,7 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         if (!error){
             try {
                 DtCuponeraXActividad dt = new DtCuponeraXActividad(Integer.parseInt(txtClases.getText()));
+                System.out.println("tengo clases: " + dt.getCantClases());
                 cupxactBO.agregarCupXAct(idActSeleccionada, idCupSeleccionada, dt);
                 JOptionPane.showMessageDialog(new JFrame(), "¡Actividad insertada a la cuponera con exito!", "Actividad Insertada", JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();

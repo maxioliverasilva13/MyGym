@@ -55,7 +55,8 @@ public class SocioBO implements ISocioBO {
                null,
                item.createTempFile(),
                item.getSeguidosDt(),
-               item.getSeguidoresDT()
+               item.getSeguidoresDT(),
+               item.getImage()
             ));
         });
         return socios;
@@ -76,10 +77,10 @@ public class SocioBO implements ISocioBO {
         });
         
         if (socioFind.getImage() != null) {
-            res = new SocioDTO(socioFind.getId(), socioFind.getNombre(),socioFind.getApellido(),socioFind.getNickname(),socioFind.getEmail(),socioFind.getNacimiento(),registros, socioFind.createTempFile(), socioFind.getSeguidosDt(), socioFind.getSeguidoresDT());        
+            res = new SocioDTO(socioFind.getId(), socioFind.getNombre(),socioFind.getApellido(),socioFind.getNickname(),socioFind.getEmail(),socioFind.getNacimiento(),registros, socioFind.createTempFile(), socioFind.getSeguidosDt(), socioFind.getSeguidoresDT(), socioFind.getImage());        
             return res;
         } else {
-            res = new SocioDTO(socioFind.getId(), socioFind.getNombre(),socioFind.getApellido(),socioFind.getNickname(),socioFind.getEmail(),socioFind.getNacimiento(),registros, null, socioFind.getSeguidosDt(), socioFind.getSeguidoresDT());        
+            res = new SocioDTO(socioFind.getId(), socioFind.getNombre(),socioFind.getApellido(),socioFind.getNickname(),socioFind.getEmail(),socioFind.getNacimiento(),registros, null, socioFind.getSeguidosDt(), socioFind.getSeguidoresDT(), socioFind.getImage());        
             return res;
         }
         

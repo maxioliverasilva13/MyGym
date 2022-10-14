@@ -26,6 +26,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import Actividad.dtos.ActividadDTO;
 
 /**
  *
@@ -179,19 +180,26 @@ public class ActividadDao implements IActividadDao {
         return actividades;
     }
 
-    public List<Actividad> listarActividadesByCategoria(int InstId, String[] cat, String estado) {
+    public List<ActividadDTO> listarActividadesByCategoria(List<String> cats, String estado) {
         EntityTransaction tx = em.getTransaction();
-        tx.begin();
         try {
-            List<Actividad> actividades = null;
-            for (int i = 0; i < cat.length; i++) {
-                actividades = em.createNativeQuery("select actividad.ID, actividad.COSTO, actividad.DURACION, actividad.FECHAREGISTRO, actividad.NOMBRE ,actividad.DESCRIPCION from ACTIVIDAD actividad join actividad_categoria on actividad_categoria.Actividad_ID = actividad.ID join categoria on categoria.ID = actividad_categoria.categorias_ID WHERE actividad.ESTADO='" + estado + "' AND actividad.INSTITUCION_ID=" + InstId + " and categoria.NOMBRE = '" + cat[i] + "'", Actividad.class).getResultList();
-            }
+            List<ActividadDTO> actividades = new ArrayList();
+            
+            cats.forEach(cat -> {
+                List<Actividad> actividadesFilter = new ArrayList<>();
+                actividadesFilter = em.createNativeQuery("select actividad.ID, actividad.COSTO, actividad.DURACION, actividad.FECHAREGISTRO, actividad.NOMBRE ,actividad.DESCRIPCION from ACTIVIDAD actividad join actividad_categoria on actividad_categoria.Actividad_ID = actividad.ID join categoria on categoria.ID = actividad_categoria.categorias_ID WHERE actividad.ESTADO='" + estado + "' and categoria.NOMBRE = '" + cat + "'", Actividad.class).getResultList();
+                actividadesFilter.forEach((Actividad act) -> {
+                    if (!actividades.contains(act.getDtActividad())) {
+                        actividades.add(act.getDtActividad());
+                    }
+                });
+            });
+            
+          
             return actividades;
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        tx.commit();
         return null;
     }
 
