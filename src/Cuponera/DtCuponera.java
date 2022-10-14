@@ -24,20 +24,9 @@ public class DtCuponera {
     private List<DtCuponeraXActividad> cuponerasXActividad;
     private File image;
     private float precio;
+    private byte[] blobImage;
   
-
-    public DtCuponera(int id, String nombre, String descripcion, Date periodoVigencia, int descuento,float precio, List<DtCuponeraXActividad> cupsXActs) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.periodoVigencia = periodoVigencia;
-        this.descuento = descuento;
-        this.cuponerasXActividad = cupsXActs;
-        this.precio = precio;
-        
-    }
-    
-    public DtCuponera(int id, String nombre, String descripcion, Date periodoVigencia, int descuento,float precio, List<DtCuponeraXActividad> cupsXActs, File file) {
+    public DtCuponera(int id, String nombre, String descripcion, Date periodoVigencia, int descuento,float precio, List<DtCuponeraXActividad> cupsXActs, File file, byte[] blobImage) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -46,6 +35,7 @@ public class DtCuponera {
         this.cuponerasXActividad = cupsXActs;
         this.image = file;
         this.precio = precio;
+        this.blobImage = blobImage;
     }
 
     public File getImage() {
@@ -80,5 +70,8 @@ public class DtCuponera {
         return this.precio;
     }
     
+    public byte[] getBlobImage(){
+        return this.blobImage;
+    }
     
 }

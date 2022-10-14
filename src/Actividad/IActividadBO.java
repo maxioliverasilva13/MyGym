@@ -12,6 +12,7 @@ import Exceptions.ActividadNotFoundException;
 import Exceptions.CuponeraNotFoundException;
 import Exceptions.InstitucionNotFoundException;
 import java.util.HashMap;
+import java.util.List;
 import mygym.logica.usuario.dataTypes.DtActividad;
 
 
@@ -26,7 +27,7 @@ public interface IActividadBO {
     public HashMap<Integer,ActividadDTO> listarByInstitucionNotInCuponeras(int institucionId, int cuponeraId,String status) throws InstitucionNotFoundException,CuponeraNotFoundException;
     public void addCupXAct(CuponeraXActividad cupXAct);
     public HashMap<Integer, ActividadDTO> listarActividades(int idInstitucion,String status);
-    public HashMap<Integer, ActividadDTO> listarActividadesByCategoria(int InstId, String[] cat, String estado);
+    public HashMap<Integer, ActividadDTO> listarActividadesByCategoria(List<String> cat, String estado);
     public HashMap<Integer, ActividadDTO> listarAllActividadesPendientes();
     public void cambiarEstado(int idActividad, String newStatus) throws ActividadNotFoundException ;
     public HashMap<Integer, ActividadDTO> getActividadesWithLimitAndAccepted(int limite);

@@ -140,11 +140,11 @@ public class ActividadBO  implements IActividadBO{
     }
     
     @Override
-    public HashMap<Integer, ActividadDTO> listarActividadesByCategoria(int InstId, String[] cat, String estado){ 
+    public HashMap<Integer, ActividadDTO> listarActividadesByCategoria(List<String> cat, String estado){ 
         HashMap<Integer, ActividadDTO> actividades = new HashMap<>();
-        List<Actividad> acts = actDao.listarActividadesByCategoria(InstId,cat,estado);
-        acts.forEach((Actividad act) -> {
-            actividades.put(act.getId(), act.getDtActividad());
+        List<ActividadDTO> acts = actDao.listarActividadesByCategoria(cat,estado);
+        acts.forEach((ActividadDTO act) -> {
+            actividades.put(act.getId(), act);
         });
         return actividades;
     }

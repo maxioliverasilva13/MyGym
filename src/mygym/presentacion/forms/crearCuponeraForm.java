@@ -388,7 +388,7 @@ public class crearCuponeraForm extends javax.swing.JFrame{
             // Parseo al formato de la BD:
             Date ffin = parse.parseDate(fechafin.getYear() + "-" + fechafin.getMonth() + "-" + fechafin.getDay());
             
-            DtCuponera cup = new DtCuponera(0, txtNombre.getText(), txtareaDescripcion.getText(), ffin, Integer.parseInt(txtDescuento.getText()),Float.parseFloat(txtPrecio.getText()),null, BrowseFile.globalFile);
+            DtCuponera cup = new DtCuponera(0, txtNombre.getText(), txtareaDescripcion.getText(), ffin, Integer.parseInt(txtDescuento.getText()),Float.parseFloat(txtPrecio.getText()),null, BrowseFile.globalFile, null);
             
             try{
                 cupBo.agregarCuponera(cup);

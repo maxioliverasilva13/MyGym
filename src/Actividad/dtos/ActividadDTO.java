@@ -28,6 +28,7 @@ public class ActividadDTO {
     private List<DtCuponeraXActividad> cuponerasXActivdad = new ArrayList<>();
     private List<DtCategoria> categorias = new ArrayList<>();
     public byte[] imageBlob = null;
+    private String estado;
 
     DtInstitucion institucion;
     File image;
@@ -58,6 +59,34 @@ public class ActividadDTO {
         this.image = file;
         if (imageBlob != null) {
             this.imageBlob = imageBlob;
+        }
+    }
+    
+    public ActividadDTO(int id, String nombre, String descripcion, int duracion, float costo, Date fechaRegistro, ProfesorDTO profe, List<DtClase> clases, DtInstitucion ins, List<DtCuponeraXActividad> cupsXAct, File file, List<DtCategoria> cats, byte[] imageBlob, String estado) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.duracion = duracion;
+        this.costo = costo;
+        this.fechaRegistro = fechaRegistro;
+        this.profesor = profe;
+        if (clases != null) {
+            this.clases = clases;
+        }
+        this.clases = clases;
+        this.id = id;
+        this.institucion = ins;
+        if (cupsXAct != null) {
+           this.cuponerasXActivdad = cupsXAct;
+        }
+        if (cats != null) {
+            this.categorias = cats;
+        }
+        this.image = file;
+        if (imageBlob != null) {
+            this.imageBlob = imageBlob;
+        }
+        if (estado != null) {
+            this.estado = estado;
         }
     }
 
@@ -111,6 +140,10 @@ public class ActividadDTO {
 
     public byte[] getImageBlob() {
         return imageBlob;
+    }
+    
+    public String getEstado() {
+        return estado;
     }
     
 }

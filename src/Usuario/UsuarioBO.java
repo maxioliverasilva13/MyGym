@@ -46,7 +46,7 @@ public class UsuarioBO implements IUsuarioBO {
          HashMap<Integer,UsuarioDTO> res = new HashMap<Integer,UsuarioDTO>();
          List<Usuario> userList = userDao.listar();
          userList.forEach((user) -> {
-             res.put(user.getId(), new UsuarioDTO(user.getId(),user.getNombre(),user.getApellido(),user.getNickname(),user.getEmail(), user.getNacimiento(), user.createTempFile()));
+             res.put(user.getId(), new UsuarioDTO(user.getId(),user.getNombre(),user.getApellido(),user.getNickname(),user.getEmail(), user.getNacimiento(), user.createTempFile(), null, null, user.getImage()));
          });
          return res;
     }
@@ -85,7 +85,7 @@ public class UsuarioBO implements IUsuarioBO {
         }
          //   public UsuarioDTO(int id, String nombre,String apellido,String nickname,String email,Date nacimiento){
 
-        UsuarioDTO res = new UsuarioDTO(usu.getId(),usu.getNombre(),usu.getApellido(),usu.getNickname(),usu.getEmail(),usu.getNacimiento());
+        UsuarioDTO res = new UsuarioDTO(usu.getId(),usu.getNombre(),usu.getApellido(),usu.getNickname(),usu.getEmail(),usu.getNacimiento(), null, null, null, usu.getImage());
         return res;   
     }
 

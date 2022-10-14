@@ -38,7 +38,7 @@ public class Instituciones extends javax.swing.JPanel {
         tablaInstituciones.getColumnModel().getColumn(0).setCellRenderer(photoCell);
         tablaInstituciones.setRowHeight(50);
         inst.listarInstituciones().forEach((Integer key, DtInstitucion ins)->{
-            DtInstitucion indt = new DtInstitucion(ins.getId(), ins.getNombre(), ins.getDescripcion(), ins.getUrl(), null, null, ins.getImage(), null);
+            DtInstitucion indt = new DtInstitucion(ins.getId(), ins.getNombre(), ins.getDescripcion(), ins.getUrl(), null, null, ins.getImage(), null, 0);
             tablaInstituciones.setValueAt(indt.getNombre(), iterador, 1);
             tablaInstituciones.setValueAt(indt.getDescripcion(), iterador, 2);
             tablaInstituciones.setValueAt(indt.getUrl(), iterador, 3);

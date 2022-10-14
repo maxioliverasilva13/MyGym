@@ -264,7 +264,7 @@ public class AddInstitucionForm extends javax.swing.JFrame {
             jTextField6.setBorder(new MatteBorder(0,0,1,0, Color.red));
         }
         try {
-            DtInstitucion indt = new DtInstitucion(0, jTextField2.getText(), jTextArea2.getText(), jTextField6.getText(), null, null, BrowseFile.globalFile, null);
+            DtInstitucion indt = new DtInstitucion(0, jTextField2.getText(), jTextArea2.getText(), jTextField6.getText(), null, null, BrowseFile.globalFile, null, 0);
             Ins.agregarInstitucion(indt);
             JOptionPane.showMessageDialog(new JFrame(),  "Institucion insertada con exito.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
             dispose();
