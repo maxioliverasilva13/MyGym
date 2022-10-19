@@ -213,4 +213,20 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
        
     }
+    
+    @Override
+    public int getSeguidos(int idUsuario) {
+        Query querySeguidos = em.createNativeQuery(
+        "SELECT COUNT(*) FROM seguidor s WHERE s.PERSONA_ID=" + idUsuario + ";"/*, Seguidor.class*/);
+        int s = Math.toIntExact((Long)querySeguidos.getSingleResult());
+        return s;
+    }
+    
+    @Override
+    public int getSeguidores(int idUsuario) {
+        Query querySeguidores = em.createNativeQuery(
+        "SELECT COUNT(*) FROM seguidor s WHERE s.SIGUEA_ID=" + idUsuario + ";"/*, Seguidor.class*/);
+        int s = Math.toIntExact((Long)querySeguidores.getSingleResult());
+        return s;
+    }
 }

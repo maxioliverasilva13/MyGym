@@ -13,15 +13,15 @@ import java.util.Date;
  */
 public class ProfesorEditDTO {
 
-    private String nombre;
-    private String apellido;
-    private String nickname;
+    private String nombre; //
+    private String apellido; //
+    private String nickname; //
     private char[] password;
-    private String descripcionGeneral;
-    private String biografia;
-    private String linkSitioWeb;
-    private String email;
-    private Date fechaNacimiento;
+    private String descripcionGeneral; //
+    private String biografia; //
+    private String linkSitioWeb; //
+    private String email; //
+    private Date fechaNacimiento; //
     private File image;
 
     public File getImage() {
