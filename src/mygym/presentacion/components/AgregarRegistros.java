@@ -64,10 +64,10 @@ public class AgregarRegistros extends javax.swing.JFrame {
     HashMap<Integer, DtClase> clases = new HashMap<>();
     HashMap<Integer, DtCuponera> cuponerasDisponibles = new HashMap<>();
     
-    int selectedInstitucionId;
-    int selectedActividadId;
-    int selectedSocioId;
-    int selectedClaseId;
+    int selectedInstitucionId = -1;
+    int selectedActividadId = -1;
+    int selectedSocioId = -1;
+    int selectedClaseId ;
     Integer selectedCuponeraId = null;
     int xMouse, yMouse;
     
@@ -700,7 +700,10 @@ public class AgregarRegistros extends javax.swing.JFrame {
 
     private void jCheckBoxCuponeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxCuponeraActionPerformed
        boolean isSelected = this.jCheckBoxCuponera.isSelected();
-       if(isSelected)  {   
+       if(isSelected)  { 
+           if(this.selectedSocioId == -1 || this.selectedActividadId == -1){ 
+               return;
+           }
            this.cuponerasDisponibles = this.cupBO.listarCuponerasDisponiblesBySocio(this.selectedSocioId,this.selectedActividadId);
            this.renderListCuponerasDisp();
            this.jComboBoxCupo.setEnabled(true);

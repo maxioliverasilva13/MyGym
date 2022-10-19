@@ -90,6 +90,10 @@ public class Clase implements Serializable {
             System.out.println(e.getMessage());
         }
     }
+    
+    public void setByteImage(byte[] bytes) {
+        this.image = bytes;
+    }
 
     public int getId() {
         return id;

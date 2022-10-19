@@ -36,7 +36,11 @@ public class ClaseBO implements InterfaceClaseBO {
         if (clase.getImage() != null) {
             cl.setImage(clase.getImage());
         }
-        claseDao.insertar(idActividad, cl);
+        if (clase.imageBlob != null) {
+            cl.setByteImage(clase.getImageBlob());
+            System.out.println("voy a setear" + clase.getImageBlob());
+        }
+        claseDao.insertar(idActividad, cl, clase);
     }
     
     @Override

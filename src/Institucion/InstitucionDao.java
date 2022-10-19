@@ -19,10 +19,11 @@ import java.util.List;
  * @author maximilianooliverasilva
  */
 public class InstitucionDao implements InterfaceInstitucionDao {
-    EntityManager em = InterfaceEntityManager.getInstance();
+    EntityManager em = null;
     
     public InstitucionDao(){
-        
+        this.em = InterfaceEntityManager.getInstance();
+
     }
     
     @Override
