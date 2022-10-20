@@ -59,10 +59,14 @@ public class ProfesorDao  implements IProfesorDao {
         tr.begin();
         System.out.println(editProf.getEmail());
         prof.setApellido(editProf.getApellido());
-        prof.setEmail(editProf.getEmail());
+        if (editProf.getEmail() != null){
+            prof.setEmail(editProf.getEmail());
+        }
         prof.setNacimiento(editProf.getFechaNacimiento());
         prof.setNombre(editProf.getNombre());
-        prof.setNickname(editProf.getNickname());
+        if (editProf.getNickname() != null){
+            prof.setNickname(editProf.getNickname());
+        }
         if (editProf.getPasswordChar() != null){
             String encryptedPassword = ep.encryptPass(new String(editProf.getPasswordChar()));
             prof.setPassword(encryptedPassword);
