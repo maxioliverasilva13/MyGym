@@ -70,7 +70,7 @@ public class ParserClassesToDt {
             if (c.getImage() != null) {
                 file = c.createTempFile();
             }
-            DtClase cn = new DtClase(c.getId(), c.getNombre(), c.getFecha(),profesorName,null, c.getCapMinima(), c.getCapMaxima(), c.getUrlAcceso(), c.getFechaRegistro(),null,null,null, null, file, null);
+            DtClase cn = new DtClase(c.getId(), c.getNombre(), c.getFecha(),profesorName,null, c.getCapMinima(), c.getCapMaxima(), c.getUrlAcceso(), c.getFechaRegistro(),null,c.getActividad().getId(),null, null, file, null);
             clases.add(cn);
         });
         

@@ -21,5 +21,6 @@ public interface IUsuarioDAO {
      public String getTipoById(int id);
      public void seguirAUsuario(int myId, int idUsuario);
      public void dejarSeguirUsuario(int myId, int idUsuario);
-   
+     public int getSeguidos(int idUsuario);
+     public int getSeguidores(int idUsuario);
 }

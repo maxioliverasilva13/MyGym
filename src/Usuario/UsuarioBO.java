@@ -98,4 +98,12 @@ public class UsuarioBO implements IUsuarioBO {
             return true;
         }
      }
+     
+    public int getSeguidos(int idUsuario) {
+        return userDao.getSeguidos(idUsuario);
+    }
+    
+    public int getSeguidores(int idUsuario) {
+        return userDao.getSeguidores(idUsuario);
+    }
 }

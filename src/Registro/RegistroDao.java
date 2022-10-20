@@ -47,7 +47,7 @@ public class RegistroDao implements InterfaceRegistroDao {
     
     @Override
     public void insertar(int idSocio, List<Integer> clases, DtRegistro registro,Integer cuponeraId) throws SocioNotFoundException,CuponeraNotFoundException, MaxClasesForCuponera,CompraCuponeraNotFoundException{
-        
+        System.out.println("voy a buscar a el id" + idSocio);
         Socio socio = em.find(Socio.class, idSocio);
         if (socio == null) {
             throw new SocioNotFoundException("Socio no encontrado");
