@@ -68,4 +68,13 @@ public class ProfesorBO implements IProfesorBO {
         
         return profesDTO;
     }   
+
+    @Override
+    public DtInstitucion getInstitucion(int idProf) {
+        Profesor profe = profDao.getById(idProf);
+        if(profe == null){
+             throw new ProfesorNotExist("El profesor no existe");
+        }
+        return profe.getInstituciones().get(0).getDtInstitucion();
+    }
 }
