@@ -5,6 +5,7 @@
 package Profesor;
 
 import Actividad.Actividad;
+import Institucion.DtInstitucion;
 import Profesor.dtos.ProfesorDTO;
 import Profesor.dtos.ProfesorEditDTO;
 import Profesor.exceptions.ProfesorNotExist;
@@ -18,5 +19,6 @@ public interface IProfesorBO  {
     public void editProfesorById(int id,ProfesorEditDTO profEdit);
     public boolean existeById(int id);
     public void agregarActividad(Actividad act);
+    public DtInstitucion getInstitucion(int idProf);
    
 }
