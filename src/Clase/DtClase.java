@@ -60,6 +60,10 @@ public class DtClase {
         this.imageBlob = imageBlob;
     }
     
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public DtClase() {
        
     }

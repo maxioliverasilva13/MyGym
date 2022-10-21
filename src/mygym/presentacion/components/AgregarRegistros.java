@@ -644,7 +644,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
         if (selectedItem != null) {
             String selectedSocName = selectedItem.toString();
             socios.forEach((Integer key, SocioDTO soc) -> {
-                if (soc.getNombre().equals(selectedSocName) && selectedActividadId != soc.getId()) {
+                if (soc.getNickname().equals(selectedSocName)) {
                     this.selectedSocioId = soc.getId();
                 }
             });

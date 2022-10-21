@@ -96,7 +96,7 @@ public class Registro implements Serializable {
             file = this.clase.createTempFile();
         }
         DtClase clase = new DtClase(
-           this.clase.getId(), this.clase.getNombre(), this.clase.getFecha(),null, null, this.clase.getCapMinima(), this.clase.getCapMaxima(), this.clase.getUrlAcceso(), this.clase.getFechaRegistro(), regsOfClass, null, this.clase.getActividad().getNombre(), null, file, null);
+           this.clase.getId(), this.clase.getNombre(), this.clase.getFecha(),null, null, this.clase.getCapMinima(), this.clase.getCapMaxima(), this.clase.getUrlAcceso(), this.clase.getFechaRegistro(), regsOfClass, this.clase.getActividad().getId(), this.clase.getActividad().getNombre(), null, file, null);
         
         DtRegistro dtToReturn = new DtRegistro(
           id, costo, fecha, (socio != null) ? socio.getNombre() : null,
