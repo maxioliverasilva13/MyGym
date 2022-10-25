@@ -69,7 +69,7 @@ public class CuponeraXActividadDao implements InterfaceCuponeraXActividadDao {
     
     @Override
     public CuponeraXActividad get(Cuponera cup, Actividad act) {
-        List<CuponeraXActividad> res  = em.createNativeQuery("SELECT * from CUPONERAXACTIVIDAD where ACTIVIDAD_ID=" + act.getId() + " AND CUPONERA_ID=" + cup.getId()).getResultList();
+        List<CuponeraXActividad> res  = em.createNativeQuery("SELECT * from CUPONERAXACTIVIDAD where ACTIVIDAD_ID=" + act.getId() + " AND CUPONERA_ID=" + cup.getId(),CuponeraXActividad.class).getResultList();
         if(res.size() <= 0){
           throw new CuponeraXActividadNotFoundException("Cuponera X Actividad no encontrada");
         }
