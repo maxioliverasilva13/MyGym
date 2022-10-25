@@ -16,6 +16,6 @@ import java.util.List;
  * @author maximilianooliverasilva
  */
 public interface InterfaceRegistroDao {
-    public void insertar(int idSocio, List<Integer> clases, DtRegistro registro,Integer cuponeraId) throws SocioNotFoundException,CuponeraNotFoundException, MaxClasesForCuponera,CompraCuponeraNotFoundException;
+    public void insertar(int idSocio, int claseID, DtRegistro registro,Integer cuponeraId) throws SocioNotFoundException,CuponeraNotFoundException, MaxClasesForCuponera,CompraCuponeraNotFoundException;
     public Registro existe(int idRegistro);
 }
