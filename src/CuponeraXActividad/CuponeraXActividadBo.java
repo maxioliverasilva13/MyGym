@@ -44,5 +44,21 @@ public class CuponeraXActividadBo implements InterfaceCuponeraXActividadBo {
         return this.cupxactdao.getCantClass(cup, act);
     }
     
+     @Override
+    public CuponeraXActividad get(int idActividad, int idCuponera) {
+        InterfaceCuponeraDao  cupDao = new CuponeraDao();
+        Cuponera cup = cupDao.existe(idCuponera);
+        if(cup == null){
+            throw new CuponeraNotFoundException("La cuponera no existe");
+        }
+        IActividadDao actBo = new ActividadDao();
+        Actividad act = actBo.getById(idActividad);
+        if(act  == null){
+            throw new ActividadNotFoundException("Actividad no existe");
+        }
+        CuponeraXActividad res = this.cupxactdao.get(cup,act);
+        return res;
+    }
+    
     
 }

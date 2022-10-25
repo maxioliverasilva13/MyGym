@@ -118,7 +118,6 @@ public class CuponeraDao implements InterfaceCuponeraDao {
                 newPurchase.setCuponera(cuponera);
                 newPurchase.setSocio(socio);
                 newPurchase.setFecha(new Date());
-                newPurchase.setCantClase(cantClases);
                 EntityTransaction et = em.getTransaction();
                 et.begin();
                 em.persist(newPurchase);

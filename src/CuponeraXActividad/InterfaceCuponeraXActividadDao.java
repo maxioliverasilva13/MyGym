@@ -15,5 +15,5 @@ public interface InterfaceCuponeraXActividadDao {
     public void insertar(int idActividad, int idCuponera, DtCuponeraXActividad cupXA);
     public CuponeraXActividad existe(int idCuXAc);
     public int getCantClass(Cuponera cup , Actividad act);
-
+    public CuponeraXActividad get(Cuponera cup , Actividad act);
 }

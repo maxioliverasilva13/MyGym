@@ -35,9 +35,13 @@ import java.util.Iterator;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
 import mygym.presentacion.pages.Instituciones;
 import sun.security.pkcs.ContentInfo;
 import utils.CustomClick;
+import utils.RenderFoto;
 
 /**
  *
@@ -111,30 +115,37 @@ public class AgregarRegistros extends javax.swing.JFrame {
     };
 
     
-    public void initCalendar() {
-        CustomClick.selectedClaseId = new ArrayList<>();
-        fillSelectedClases();
-        calendarContent.removeAll();
-        HashMap<Integer, DtClase> allClasses = claseBO.listarClasesByAct(this.selectedActividadId);
-        if (allClasses.size() == 0) {
-            clases = allClasses;
-            JLabel j = new JLabel();
-            j.setText("No encontramos clases disponibles para esta actividad");
-            j.setForeground(new Color(0,0,0));
-            j.setAlignmentX(CENTER_ALIGNMENT);
-            j.setAlignmentY(CENTER_ALIGNMENT);
-            calendarContent.add(j);
-        } else {
-            CalendarCustom c = new CalendarCustom();
-            calendarContent.add(c);
-            List<CustomClick> lista = new ArrayList<>();
-            allClasses.forEach((Integer key, DtClase clase) -> {
-                CustomClick event = new CustomClick(clase);
-                event.setAditionalEvent(autoFillSelectedClasses);
-                lista.add(event);
-            });
-            c.setList(lista);
+    public void initTableClases() {
+        if(this.selectedActividadId < 0){
+            
+            return;
         }
+        
+     
+        try {
+             DefaultTableModel modeloDatos = (DefaultTableModel) this.tablaClases.getModel(); 
+             HashMap<Integer, DtClase> allClasses = claseBO.listarClasesByAct(this.selectedActividadId);
+             modeloDatos.setRowCount(0);
+             allClasses.forEach((Integer key, DtClase clase) -> {
+     
+                RenderFoto photoCell = new RenderFoto();
+                photoCell.setHorizontalAlignment(SwingConstants.CENTER);
+                this.tablaClases.getColumnModel().getColumn(0).setCellRenderer(photoCell);
+                String filePath = "";
+                if (clase.getImage() != null) {
+                    filePath = clase.getImage().getAbsolutePath();
+                }
+                modeloDatos.addRow(new Object[]{ key,filePath, clase.getNombre(),clase.getFecha(), clase.getCapMinima(), clase.getCapMaxima()});
+              
+            });
+             
+     
+         }  catch (Exception e) {
+            JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+         }
+        
+         
+       
     }
     
     public AgregarRegistros() {
@@ -146,10 +157,18 @@ public class AgregarRegistros extends javax.swing.JFrame {
         initSteps();
         llenarComboboxInstituciones();
         llenarComboboxSocios();
+        this.tablaClases.getColumnModel().getColumn(1).setMinWidth(0);
+        this.tablaClases.getColumnModel().getColumn(1).setMaxWidth(0);
+        this.tablaClases.getColumnModel().getColumn(1).setWidth(0);
+        this.tablaClases.setRowHeight(50);
+        this.tablaClases.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
     }
     
     public void nextStep() {
+        
+     
+      
         addFinal.setVisible(false);
         if (!step1.isVisible() && !step2.isVisible() && !step4.isVisible() && !step3.isVisible() && !step5.isVisible()) {
             initSteps();
@@ -168,14 +187,17 @@ public class AgregarRegistros extends javax.swing.JFrame {
         }
         if (!step1.isVisible() && !step2.isVisible() && step3.isVisible() && !step4.isVisible()  && !step5.isVisible()) {
             initSteps();
-            initCalendar();
+            initTableClases();
             step4.setVisible(true);
+            
             return;
         }
+        
         if (!step1.isVisible() && !step2.isVisible() && !step3.isVisible() && step4.isVisible() && !step5.isVisible()) {
             initSteps();
             addFinal.setVisible(true);
             step5.setVisible(true);
+           
             return;
         }
         
@@ -215,7 +237,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
     public void backStep() {
         addFinal.setVisible(false);
         if (step5.isVisible() && !step2.isVisible() && !step3.isVisible() && !step4.isVisible() &&  !step1.isVisible()) {
-            initCalendar();
+            initTableClases();
             step4.setVisible(true);
             step5.setVisible(false);
             return;
@@ -232,17 +254,16 @@ public class AgregarRegistros extends javax.swing.JFrame {
             return;
         }
         if (step2.isVisible() && !step1.isVisible() && !step4.isVisible() && !step3.isVisible() &&  !step5.isVisible()) {
+            initTableClases();
             initSteps();
             step1.setVisible(true);
             step2.setVisible(false);
-            
             return;
         }
         
         if (step5.isVisible() && !step1.isVisible() && !step2.isVisible() && !step3.isVisible() &&  !step4.isVisible()) {
             initSteps();
             step5.setVisible(true);
-            
             return;
         }
     }
@@ -270,8 +291,6 @@ public class AgregarRegistros extends javax.swing.JFrame {
         step3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jComboSocios = new javax.swing.JComboBox<>();
-        step4 = new javax.swing.JPanel();
-        calendarContent = new javax.swing.JPanel();
         selectedClases = new javax.swing.JLabel();
         dragBar = new javax.swing.JLabel();
         btnMinimizarBG = new javax.swing.JPanel();
@@ -282,11 +301,13 @@ public class AgregarRegistros extends javax.swing.JFrame {
         step5 = new javax.swing.JPanel();
         jComboBoxCupo = new javax.swing.JComboBox<>();
         jCheckBoxCuponera = new javax.swing.JCheckBox();
+        step4 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaClases = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(780, 560));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(910, 560));
         setResizable(false);
         setSize(new java.awt.Dimension(780, 560));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -442,17 +463,6 @@ public class AgregarRegistros extends javax.swing.JFrame {
 
         bgPanel.add(step3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 320, 70));
 
-        step4.setBackground(new java.awt.Color(255, 255, 255));
-        step4.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
-        step4.setForeground(new java.awt.Color(0, 153, 153));
-        step4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        calendarContent.setBackground(new java.awt.Color(238, 238, 238));
-        calendarContent.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        step4.add(calendarContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 320));
-
-        bgPanel.add(step4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 540, 320));
-
         selectedClases.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         selectedClases.setText("Clases Seleccionadas: ");
         bgPanel.add(selectedClases, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
@@ -488,7 +498,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
             btnMinimizarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btnMinimizarBGLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnMinimizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnMinimizar, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
                 .addContainerGap())
         );
         btnMinimizarBGLayout.setVerticalGroup(
@@ -557,7 +567,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
                 .addGroup(step5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jCheckBoxCuponera)
                     .addComponent(jComboBoxCupo, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
         step5Layout.setVerticalGroup(
             step5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -572,6 +582,44 @@ public class AgregarRegistros extends javax.swing.JFrame {
         jCheckBoxCuponera.getAccessibleContext().setAccessibleName("ds");
 
         bgPanel.add(step5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 320, -1));
+
+        tablaClases.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "id", "Foto", "Nombre", "Fecha", "CapMin", "CapMax"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tablaClases);
+
+        javax.swing.GroupLayout step4Layout = new javax.swing.GroupLayout(step4);
+        step4.setLayout(step4Layout);
+        step4Layout.setHorizontalGroup(
+            step4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, step4Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        step4Layout.setVerticalGroup(
+            step4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(step4Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        bgPanel.add(step4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 550, 310));
 
         getContentPane().add(bgPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 550));
 
@@ -656,17 +704,18 @@ public class AgregarRegistros extends javax.swing.JFrame {
 
     private void addFinalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addFinalMouseClicked
          try {
-            if (selectedSocioId == 0) {
-                JOptionPane.showMessageDialog(new JFrame(), "Seleccione un id de socio", "Error", JOptionPane.ERROR_MESSAGE);
+            int selectedRowId = this.tablaClases.getSelectedRow();
+            if(selectedRowId == -1){
+                JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una clase existente.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            if (CustomClick.selectedClaseId.size() == 0) {
-                JOptionPane.showMessageDialog(new JFrame(), "Seleccione al menos una clase", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            // TODO GET PRECIO
-            DtRegistro reg = new DtRegistro(0, 155, new Date(), "", "");
-            regBO.agregarRegistro(selectedSocioId, CustomClick.selectedClaseId, reg,this.selectedCuponeraId);
+  
+            Object idObj = this.tablaClases.getValueAt(selectedRowId, 0);
+            int selectedClaseID = (Integer) idObj;
+            
+            DtRegistro reg = new DtRegistro(0, null, new Date(), "", "");
+
+            regBO.agregarRegistro(selectedSocioId,selectedClaseID, reg,this.selectedCuponeraId);
             JOptionPane.showMessageDialog(new JFrame(), "Se registo correctamente el socio a las clases seleccionadas" , "Registro completado", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } catch (Exception e) {
@@ -801,7 +850,6 @@ public class AgregarRegistros extends javax.swing.JFrame {
     private javax.swing.JPanel btnExitBG;
     private javax.swing.JLabel btnMinimizar;
     private javax.swing.JPanel btnMinimizarBG;
-    private javax.swing.JPanel calendarContent;
     private javax.swing.JLabel dragBar;
     private javax.swing.JCheckBox jCheckBoxCuponera;
     private javax.swing.JComboBox<String> jComboActividad;
@@ -812,6 +860,7 @@ public class AgregarRegistros extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton next;
     private javax.swing.JLabel selectedClases;
     private javax.swing.JPanel step1;
@@ -819,5 +868,6 @@ public class AgregarRegistros extends javax.swing.JFrame {
     private javax.swing.JPanel step3;
     private javax.swing.JPanel step4;
     private javax.swing.JPanel step5;
+    private javax.swing.JTable tablaClases;
     // End of variables declaration//GEN-END:variables
 }

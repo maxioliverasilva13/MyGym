@@ -9,8 +9,12 @@ import CompraCuponera.CompraCuponera;
 import CompraCuponera.CompraCuponeraBo;
 import CompraCuponera.ICompraCuponeraBo;
 import Cuponera.Cuponera;
+import CuponeraXActividad.CuponeraXActividad;
+import CuponeraXActividad.CuponeraXActividadBo;
+import CuponeraXActividad.InterfaceCuponeraXActividadBo;
 import Socio.Socio;
 import EntityManajer.InterfaceEntityManager;
+import Exceptions.ClaseNotFoundException;
 import Exceptions.ClassHasMaxOfReg;
 import Exceptions.CompraCuponeraNotFoundException;
 import Exceptions.CuponeraNotFoundException;
@@ -32,7 +36,6 @@ public class RegistroDao implements InterfaceRegistroDao {
     ClaseDao clasedao = new ClaseDao();
     SocioDAO socioDao = new SocioDAO();
     Cuponera cuponeraSelected = null;
-    CompraCuponera compraCuponeraSelected = null;
 
     public RegistroDao(){
 
@@ -46,57 +49,57 @@ public class RegistroDao implements InterfaceRegistroDao {
     }
     
     @Override
-    public void insertar(int idSocio, List<Integer> clases, DtRegistro registro,Integer cuponeraId) throws SocioNotFoundException,CuponeraNotFoundException, MaxClasesForCuponera,CompraCuponeraNotFoundException{
-        System.out.println("voy a buscar a el id" + idSocio);
+    public void insertar(int idSocio, int claseID, DtRegistro registro,Integer cuponeraId) throws SocioNotFoundException,CuponeraNotFoundException, MaxClasesForCuponera,CompraCuponeraNotFoundException{
+        System.out.println("rasputin");
+        /*Validamos si existe el socio enviado*/
         Socio socio = em.find(Socio.class, idSocio);
         if (socio == null) {
             throw new SocioNotFoundException("Socio no encontrado");
         }
+        /*Validamos si existe la clase enviada*/
+        Clase clase = em.find(Clase.class, claseID);
+        if(clase == null) {
+            throw new ClaseNotFoundException("La clase no existe");
+        }
+        SocioEstaEnClase(idSocio, claseID);
+        /*Validamos si se aplica o no una cuponera*/
         Cuponera cup = null;
         if(cuponeraId != null){
           cup = em.find(Cuponera.class, cuponeraId);
+          /* si se aplica o no una cuponera validamos que esta exista*/
           if(cup == null){
               throw new CuponeraNotFoundException("Cuponera no existe");
           }
-          ICompraCuponeraBo compraCupBo = new CompraCuponeraBo();
-          this.compraCuponeraSelected = compraCupBo.getByCuponeraAndSocio(cuponeraId,idSocio);
-          if(this.compraCuponeraSelected.cantClases() <= clases.size()){
-              throw new MaxClasesForCuponera("El numero de clases excede la cantidad de clases que se pueden aplicar con la cuponera");
-          }
         }
-        this.cuponeraSelected = cup;
-        clases.forEach((Integer idClase) -> {
-            Clase clase = clasedao.existe(idClase);
-            int sizeOfRegistros = clase.getRegistros().size();
-            if (sizeOfRegistros >= clase.getCapMaxima()) {
-                throw new ClassHasMaxOfReg("La clase " + clase.getNombre() + " ya alcanzo su limite de alumnos");
+        
+        EntityTransaction tr = em.getTransaction();
+        tr.begin();
+        /*Compra de la cuponera*/
+        float priceOfRegistro; //Precio final
+        if(cup != null){
+            priceOfRegistro =  clase.getActividad().getCosto() - (( clase.getActividad().getCosto() / 100) * cup.getDescuento());
+            /*Vemos si esta asociada a la actividad de la clase previamente encontrada  para restarle cantClases disponibles*/
+            InterfaceCuponeraXActividadBo cupXActBO = new CuponeraXActividadBo();
+            CuponeraXActividad cupXAct = cupXActBO.get(clase.getActividad().getId(), cup.getId());
+            int cantClases = cupXAct.getCantClases();
+            if(cantClases <= 0){
+                throw new MaxClasesForCuponera("Ya no se puede comprar clases con esta cuponera de esta actividad");
             }
-            float priceOfRegistro;
-            if(this.cuponeraSelected != null){
-                priceOfRegistro =  clase.getActividad().getCosto() - (( clase.getActividad().getCosto() / 100) * this.cuponeraSelected.getDescuento());
-                int newCantClass = this.compraCuponeraSelected.cantClases() - 1;
-                this.compraCuponeraSelected.setCantClase(newCantClass);
-            }else{
-               priceOfRegistro = clase.getActividad().getCosto();
-            }
-           
-            
-            Registro r = new Registro();
-            float costoFinal;
+            cupXAct.setCantClases(cantClases - 1);
+        }else{
+            priceOfRegistro = clase.getActividad().getCosto();
+        }    
+        Registro r = new Registro();
+        float costoFinal;
           
-            r.setCosto(priceOfRegistro);
-            r.setFecha(registro.getFecha());
-            SocioEstaEnClase(idSocio, idClase);
-            EntityTransaction tr = em.getTransaction();
-            tr.begin();
-            r.setClase(clase);
-            r.setSocio(socio);
-            em.persist(r);
-            tr.commit();
-            // Agrego el registro actual a las 2 puntas
-            socioDao.agregarRegistro(idSocio, r.getId());
-            clasedao.agregarRegistro(idClase, r.getId());
-        });
+        r.setCosto(priceOfRegistro);
+        r.setFecha(registro.getFecha());
+        r.setClase(clase);
+        r.setSocio(socio);
+        em.persist(r);
+        tr.commit();
+           
+        
     }
 
     @Override

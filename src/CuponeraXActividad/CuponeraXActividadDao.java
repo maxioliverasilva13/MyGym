@@ -50,7 +50,7 @@ public class CuponeraXActividadDao implements InterfaceCuponeraXActividadDao {
     }
     
     @Override
-public CuponeraXActividad existe(int idCuXAc) {
+   public CuponeraXActividad existe(int idCuXAc) {
     CuponeraXActividad cuxa = em.find(CuponeraXActividad.class, idCuXAc);
     if (cuxa == null){
         throw new CuponeraXActividadNotFoundException("Cuponera X Actividad no encontrada");
@@ -65,5 +65,14 @@ public CuponeraXActividad existe(int idCuXAc) {
           throw new CuponeraXActividadNotFoundException("Cuponera X Actividad no encontrada");
         }
         return res.get(0).getCantClases();
+    }
+    
+    @Override
+    public CuponeraXActividad get(Cuponera cup, Actividad act) {
+        List<CuponeraXActividad> res  = em.createNativeQuery("SELECT * from CUPONERAXACTIVIDAD where ACTIVIDAD_ID=" + act.getId() + " AND CUPONERA_ID=" + cup.getId(),CuponeraXActividad.class).getResultList();
+        if(res.size() <= 0){
+          throw new CuponeraXActividadNotFoundException("Cuponera X Actividad no encontrada");
+        }
+        return res.get(0);
     }
 }

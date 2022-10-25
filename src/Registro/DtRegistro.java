@@ -14,13 +14,13 @@ import java.util.Date;
  */
 public class DtRegistro {
     private int id;
-    private float costo;
+    private Float costo;
     private Date fecha;
     private String socioName;
     private String claseName;
     private DtClase clase;
 
-    public DtRegistro(int id, float costo, Date fecha, String socioName, String claseName) {
+    public DtRegistro(int id, Float costo, Date fecha, String socioName, String claseName) {
         this.id = id;
         this.costo = costo;
         this.fecha = fecha;
