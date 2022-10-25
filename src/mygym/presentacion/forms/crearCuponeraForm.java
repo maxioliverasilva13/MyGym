@@ -14,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.util.Date;
 import Cuponera.DtCuponera;
 import ParseDate.ParseDate;
+import utils.BrowseFile;
 
 /**
  *
@@ -32,11 +33,12 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         this.getOwner();
         this.requestFocusInWindow(true);
         separatorNombre.setForeground(gris);
-        separatorDescuento.setForeground(gris);
+        separatorPrecio.setForeground(gris);
         scrollDescr.setViewportBorder(javax.swing.BorderFactory.createLineBorder(gris));
         txtNombre.setText("");
         txtDescuento.setText("");
         txtareaDescripcion.setText("");
+        txtPrecio.setText("");
         
         
         txtDescuento.addKeyListener(new KeyAdapter() {
@@ -58,6 +60,19 @@ public class crearCuponeraForm extends javax.swing.JFrame{
               }
              }
           });
+        
+         txtPrecio.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+                     e.consume();  // if it's not a number, ignore the event
+                }
+            }
+         });
+        
+        
+        
         txtInicio.enable(false);
     }
     
@@ -77,9 +92,9 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         lblNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         separatorNombre = new javax.swing.JSeparator();
-        lblDescuento = new javax.swing.JLabel();
+        lblPrecio = new javax.swing.JLabel();
         txtDescuento = new javax.swing.JTextField();
-        separatorDescuento = new javax.swing.JSeparator();
+        separatorPrecio = new javax.swing.JSeparator();
         lblDescripcion = new javax.swing.JLabel();
         scrollDescr = new javax.swing.JScrollPane();
         txtareaDescripcion = new javax.swing.JTextArea();
@@ -97,11 +112,14 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         btnMinimizar = new javax.swing.JLabel();
         btnExitBG = new javax.swing.JPanel();
         btnExit = new javax.swing.JLabel();
+        labelImage = new javax.swing.JLabel();
+        lblDescuento1 = new javax.swing.JLabel();
+        separatorDescuento = new javax.swing.JSeparator();
+        txtPrecio = new javax.swing.JTextField();
 
         dateChooserActual.setEnabled(false);
         dateChooserActual.setFocusable(false);
         dateChooserActual.setTextRefernce(txtInicio);
-
 
         dateChooserFin.setTextRefernce(txtFin);
 
@@ -120,19 +138,24 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         lblHeader.setForeground(new java.awt.Color(4, 37, 58));
         lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHeader.setText("Alta de Cuponera");
-        jPanel2.add(lblHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 500, 29));
+        jPanel2.add(lblHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 250, 29));
 
         lblNombre.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblNombre.setText("Nombre");
-        jPanel2.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 90, 30));
+        jPanel2.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 90, 30));
 
         txtNombre.setBorder(null);
-        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 210, 30));
-        jPanel2.add(separatorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 210, 20));
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 230, 30));
+        jPanel2.add(separatorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 210, 20));
 
-        lblDescuento.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        lblDescuento.setText("Descuento (%)");
-        jPanel2.add(lblDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 90, 30));
+        lblPrecio.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        lblPrecio.setText("Precio($)");
+        jPanel2.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 90, 30));
 
         txtDescuento.setToolTipText("");
         txtDescuento.setBorder(null);
@@ -141,12 +164,12 @@ public class crearCuponeraForm extends javax.swing.JFrame{
                 txtDescuentoKeyTyped(evt);
             }
         });
-        jPanel2.add(txtDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 210, 30));
-        jPanel2.add(separatorDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 210, 20));
+        jPanel2.add(txtDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 210, 30));
+        jPanel2.add(separatorPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 210, 10));
 
         lblDescripcion.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblDescripcion.setText("Descripción");
-        jPanel2.add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 80, 30));
+        jPanel2.add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 80, 30));
 
         scrollDescr.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         scrollDescr.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 249, 248)));
@@ -157,7 +180,7 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         txtareaDescripcion.setBorder(null);
         scrollDescr.setViewportView(txtareaDescripcion);
 
-        jPanel2.add(scrollDescr, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 320, -1));
+        jPanel2.add(scrollDescr, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 320, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Período de Vigencia", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dubai", 0, 14))); // NOI18N
@@ -167,11 +190,11 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         jLabel5.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Fecha Actual");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 80, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 90, -1));
 
         jLabel6.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jLabel6.setText("Fecha de Fin");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+        jLabel6.setText(" Fecha de Fin");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 90, -1));
 
         txtInicio.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         txtInicio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -183,6 +206,7 @@ public class crearCuponeraForm extends javax.swing.JFrame{
             }
         });
         jPanel1.add(txtInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 140, 20));
+
         txtFin.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         txtFin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtFin.setBorder(null);
@@ -190,9 +214,10 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         jPanel1.add(separatorFInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 140, 20));
         jPanel1.add(separatorFfin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 140, 20));
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 320, 120));
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 320, 120));
 
         btnCrearBG.setBackground(new java.awt.Color(76, 131, 122));
+        btnCrearBG.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnCrear.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
         btnCrear.setForeground(new java.awt.Color(255, 255, 255));
@@ -204,23 +229,9 @@ public class crearCuponeraForm extends javax.swing.JFrame{
                 btnCrearMouseClicked(evt);
             }
         });
+        btnCrearBG.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 30));
 
-        javax.swing.GroupLayout btnCrearBGLayout = new javax.swing.GroupLayout(btnCrearBG);
-        btnCrearBG.setLayout(btnCrearBGLayout);
-        btnCrearBGLayout.setHorizontalGroup(
-            btnCrearBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnCrearBGLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        btnCrearBGLayout.setVerticalGroup(
-            btnCrearBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnCrearBGLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel2.add(btnCrearBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, -1, -1));
+        jPanel2.add(btnCrearBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 510, 150, 30));
 
         dragBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -240,7 +251,7 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         btnMinimizar.setForeground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnMinimizar.setText("-");
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnMinimizarMouseClicked(evt);
@@ -255,10 +266,10 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         );
         btnMinimizarBGLayout.setVerticalGroup(
             btnMinimizarBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnMinimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE)
+            .addComponent(btnMinimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
         );
 
-        jPanel2.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 30, 20));
+        jPanel2.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 30, 20));
 
         btnExitBG.setBackground(new java.awt.Color(174, 0, 51));
 
@@ -266,7 +277,7 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
         btnExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnExit.setText("X");
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnExitMouseClicked(evt);
@@ -286,17 +297,42 @@ public class crearCuponeraForm extends javax.swing.JFrame{
             .addComponent(btnExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel2.add(btnExitBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, 30, 20));
+        jPanel2.add(btnExitBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 0, 30, 20));
+
+        labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mygym/presentacion/forms/Add.png"))); // NOI18N
+        labelImage.setText("Seleccionar Imagen");
+        labelImage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelImage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelImageMouseClicked(evt);
+            }
+        });
+        jPanel2.add(labelImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 130, 70));
+
+        lblDescuento1.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        lblDescuento1.setText("Descuento (%)");
+        jPanel2.add(lblDescuento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 90, 30));
+        jPanel2.add(separatorDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 210, 20));
+
+        txtPrecio.setBorder(null);
+        txtPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecioActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 230, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
         );
 
         pack();
@@ -311,6 +347,10 @@ public class crearCuponeraForm extends javax.swing.JFrame{
             error=true;
         }
         
+        if(txtPrecio.getText().equals("")){
+            separatorPrecio.setForeground(Color.red);
+            error = true;
+        }
         // Control de campo DESCUENTO vacío.
         if (txtDescuento.getText().equals("")){
             separatorDescuento.setForeground(Color.red);
@@ -348,7 +388,7 @@ public class crearCuponeraForm extends javax.swing.JFrame{
             // Parseo al formato de la BD:
             Date ffin = parse.parseDate(fechafin.getYear() + "-" + fechafin.getMonth() + "-" + fechafin.getDay());
             
-            DtCuponera cup = new DtCuponera(0, txtNombre.getText(), txtareaDescripcion.getText(), ffin, Integer.parseInt(txtDescuento.getText()), null);
+            DtCuponera cup = new DtCuponera(0, txtNombre.getText(), txtareaDescripcion.getText(), ffin, Integer.parseInt(txtDescuento.getText()),Float.parseFloat(txtPrecio.getText()),null, BrowseFile.globalFile, null);
             
             try{
                 cupBo.agregarCuponera(cup);
@@ -359,13 +399,11 @@ public class crearCuponeraForm extends javax.swing.JFrame{
                 return;
             }
             
-
-            
             txtNombre.setText("");
             txtDescuento.setText("");
             txtareaDescripcion.setText("");
             separatorNombre.setForeground(gris);
-            separatorDescuento.setForeground(gris);
+            separatorPrecio.setForeground(gris);
             scrollDescr.setViewportBorder(javax.swing.BorderFactory.createLineBorder(gris));
             dispose();
         }
@@ -395,9 +433,22 @@ public class crearCuponeraForm extends javax.swing.JFrame{
         // TODO add your handling code here:
     }//GEN-LAST:event_txtInicioActionPerformed
 
+    private void labelImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelImageMouseClicked
+        BrowseFile.browseClickEvent(labelImage);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelImageMouseClicked
+
     private void txtDescuentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentoKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescuentoKeyTyped
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -449,19 +500,23 @@ public class crearCuponeraForm extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel labelImage;
     private javax.swing.JLabel lblDescripcion;
-    private javax.swing.JLabel lblDescuento;
+    private javax.swing.JLabel lblDescuento1;
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblPrecio;
     private javax.swing.JScrollPane scrollDescr;
     private javax.swing.JSeparator separatorDescuento;
     private javax.swing.JSeparator separatorFInicio;
     private javax.swing.JSeparator separatorFfin;
     private javax.swing.JSeparator separatorNombre;
+    private javax.swing.JSeparator separatorPrecio;
     private javax.swing.JTextField txtDescuento;
     private javax.swing.JTextField txtFin;
     private javax.swing.JTextField txtInicio;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextArea txtareaDescripcion;
     // End of variables declaration//GEN-END:variables
 }

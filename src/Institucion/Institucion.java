@@ -21,6 +21,13 @@ import java.util.List;
 import Profesor.dtos.ProfesorDTO;
 import Actividad.dtos.ActividadDetalleDTO;
 import Actividad.dtos.ActividadDTO;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import javafx.beans.property.SimpleIntegerProperty;
+import javax.persistence.Basic;
+import javax.persistence.FetchType;
+import javax.persistence.Lob;
 import utils.ParserClassesToDt;
 
 /**
@@ -40,6 +47,39 @@ public class Institucion implements Serializable {
     private List<Profesor> profesores = new ArrayList<>();
     @OneToMany(mappedBy = "institucion")
     private List<Actividad> actividades = new ArrayList<>();
+    
+     @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private byte[] image;
+
+    public byte[] getImage() {
+        return image;
+    }
+    
+    public File createTempFile() {
+        String dir = System.getProperty("java.io.tmpdir");
+        File file = new File(dir + "image-institucion-" + this.nombre + ".jpg");
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            fos.write(this.image);
+        } catch (Exception e) {
+            System.out.println("Institucion-createTempFile");
+            System.out.println(e.getMessage());
+        }
+        return file;
+    }
+
+    public void setImage(File file) {
+        try {
+            byte[] picInBytes = new byte[(int) file.length()];
+        FileInputStream fileInputStream = new FileInputStream(file);
+        fileInputStream.read(picInBytes);
+        fileInputStream.close();
+        this.image = picInBytes;
+        } catch (Exception e) {
+            System.out.println("Clase - setImage");
+            System.out.println(e.getMessage());
+        }
+    }
     
     public void addProfesor(Profesor prof) {
         this.profesores.add(prof);
@@ -93,7 +133,17 @@ public class Institucion implements Serializable {
     
     
     public DtInstitucion getDtInstitucion() {
-        DtInstitucion res = new DtInstitucion(this.id,this.nombre,this.descripcion,this.url,null,null);
+        File photo = null;
+        if (this.image != null) {
+            photo = this.createTempFile();
+        }
+        SimpleIntegerProperty totalActividadesAceptadas = new SimpleIntegerProperty();
+        this.actividades.forEach((Actividad act) -> {
+            if (act.getEstado().equals("Aceptada")) {
+                totalActividadesAceptadas.set(totalActividadesAceptadas.get() + 1);
+            }
+        });
+        DtInstitucion res = new DtInstitucion(this.id,this.nombre,this.descripcion,this.url,null,null, photo, this.image, totalActividadesAceptadas.get());
         return res;
     }
     

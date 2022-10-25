@@ -4,6 +4,9 @@
  */
 package CuponeraXActividad;
 
+import Actividad.Actividad;
+import Cuponera.Cuponera;
+
 /**
  *
  * @author maximilianooliverasilva
@@ -11,5 +14,6 @@ package CuponeraXActividad;
 public interface InterfaceCuponeraXActividadDao {
     public void insertar(int idActividad, int idCuponera, DtCuponeraXActividad cupXA);
     public CuponeraXActividad existe(int idCuXAc);
+    public int getCantClass(Cuponera cup , Actividad act);
 
 }

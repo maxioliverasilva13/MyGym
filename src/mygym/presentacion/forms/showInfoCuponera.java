@@ -5,13 +5,17 @@
 package mygym.presentacion.forms;
 
 import Actividad.dtos.ActividadDTO;
+import Categoria.DtCategoria;
 import Cuponera.DtCuponera;
 import CuponeraXActividad.DtCuponeraXActividad;
+import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import mygym.logica.usuario.dataTypes.DtActividad;
+import utils.BrowseFile;
 import utils.ComboItem;
 
 /**
@@ -22,8 +26,9 @@ public class showInfoCuponera extends javax.swing.JFrame {
 
     int xMouse, yMouse;
     public List<DtCuponeraXActividad> actividades; 
-    
+
     DefaultComboBoxModel modelActividades = new DefaultComboBoxModel();
+    DefaultListModel listModelCategorias = new DefaultListModel();
     
     public showInfoCuponera() {
         initComponents();
@@ -36,8 +41,9 @@ public class showInfoCuponera extends javax.swing.JFrame {
         llenarCBoxActividades(dt);
         if(cmbActividades.getItemCount() == 0){
             pnlConsultar.setVisible(false);
-            lblError.setText("Lo sentimos, no hemos encontrado actividades asociadas.");
+            lblErrorAct.setText("Lo sentimos, no hemos encontrado actividades asociadas.");
         }
+        llenarTxtAreaCategorias();
     }
 
     
@@ -66,8 +72,27 @@ public class showInfoCuponera extends javax.swing.JFrame {
         pvigenciaCuponera.setText(day + "/" + month + "/"+ year);
         descuentoCuponera.setText(Integer.toString(cup.getDescuento()) + " %");
         txaDescripcionCuponera.setText(cup.getDescripcion());
+        File tempFile = cup.getImage();
+        if (tempFile != null) {
+             labelImage.setIcon(BrowseFile.RezizeImage(tempFile.getAbsolutePath(), labelImage));
+             this.revalidate();
+             this.repaint();
+        }
     }
-    
+           
+    private void llenarTxtAreaCategorias(){
+        actividades.forEach((currentActXCup) -> {
+            List<DtCategoria> categoriesInCurrentActividad = currentActXCup.getActividad().getCategorias();
+            
+            categoriesInCurrentActividad.forEach((currentCat) -> {
+                if(!listModelCategorias.contains(currentCat.getNombre())){
+                    listModelCategorias.addElement(currentCat.getNombre());
+                }
+            });
+        });
+        this.listCategorias.setModel(listModelCategorias);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -94,11 +119,17 @@ public class showInfoCuponera extends javax.swing.JFrame {
         nombreCuponera = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        labelImage = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         pnlConsultar = new javax.swing.JPanel();
         btnConsultar = new javax.swing.JButton();
         cmbActividades = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        lblError = new javax.swing.JLabel();
+        lblErrorAct = new javax.swing.JLabel();
+        pnlCategorias = new javax.swing.JPanel();
+        scrollCategorias = new javax.swing.JScrollPane();
+        listCategorias = new javax.swing.JList<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(500, 520));
@@ -113,7 +144,7 @@ public class showInfoCuponera extends javax.swing.JFrame {
         lblHeader.setForeground(new java.awt.Color(4, 37, 58));
         lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHeader.setText("Información de la Cuponera");
-        bgPanel.add(lblHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 500, 29));
+        bgPanel.add(lblHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 750, 29));
 
         dragBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -125,7 +156,7 @@ public class showInfoCuponera extends javax.swing.JFrame {
                 dragBarMousePressed(evt);
             }
         });
-        bgPanel.add(dragBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 20));
+        bgPanel.add(dragBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 20));
 
         btnMinimizarBG.setBackground(java.awt.Color.lightGray);
 
@@ -151,7 +182,7 @@ public class showInfoCuponera extends javax.swing.JFrame {
             .addComponent(btnMinimizar, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
         );
 
-        bgPanel.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 30, 20));
+        bgPanel.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, 30, 20));
 
         btnExitBG.setBackground(new java.awt.Color(174, 0, 51));
 
@@ -179,7 +210,7 @@ public class showInfoCuponera extends javax.swing.JFrame {
             .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        bgPanel.add(btnExitBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, 30, 20));
+        bgPanel.add(btnExitBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, 30, 20));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 3, 0, 0, new java.awt.Color(76, 131, 122)));
@@ -194,44 +225,52 @@ public class showInfoCuponera extends javax.swing.JFrame {
         txaDescripcionCuponera.setBorder(null);
         scrollCuponera.setViewportView(txaDescripcionCuponera);
 
-        jPanel1.add(scrollCuponera, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 156, 230, 90));
+        jPanel1.add(scrollCuponera, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 230, 90));
 
         jLabel5.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Descripción");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 130, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 130, -1));
 
         jLabel3.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Descuento");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 70, -1));
 
         descuentoCuponera.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         descuentoCuponera.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         descuentoCuponera.setText("xxxxxxxxxxxxxxx");
-        jPanel1.add(descuentoCuponera, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 260, 20));
+        jPanel1.add(descuentoCuponera, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 260, 20));
 
         pvigenciaCuponera.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         pvigenciaCuponera.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pvigenciaCuponera.setText("xxxxxxxxxxxxxxx");
-        jPanel1.add(pvigenciaCuponera, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 260, 20));
+        jPanel1.add(pvigenciaCuponera, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 260, 20));
 
         nombreCuponera.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         nombreCuponera.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nombreCuponera.setText("xxxxxxxxxxxxxxx");
-        jPanel1.add(nombreCuponera, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 260, 20));
+        jPanel1.add(nombreCuponera, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 260, 20));
 
         jLabel4.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Nombre");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 130, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 130, -1));
 
         jLabel6.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Fecha de Vencimiento");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 130, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 160, -1));
 
-        bgPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 450, 250));
+        labelImage.setText("Imagen");
+        jPanel1.add(labelImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 130, 90));
+
+        jLabel7.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel7.setText("Imagen");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 130, -1));
+
+        bgPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 450, 280));
 
         pnlConsultar.setBackground(new java.awt.Color(255, 255, 255));
         pnlConsultar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -255,7 +294,7 @@ public class showInfoCuponera extends javax.swing.JFrame {
                 btnConsultarActionPerformed(evt);
             }
         });
-        pnlConsultar.add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 310, 40));
+        pnlConsultar.add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 310, 40));
 
         cmbActividades.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         cmbActividades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un Item" }));
@@ -265,18 +304,40 @@ public class showInfoCuponera extends javax.swing.JFrame {
                 cmbActividadesActionPerformed(evt);
             }
         });
-        pnlConsultar.add(cmbActividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 220, -1));
+        pnlConsultar.add(cmbActividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 220, -1));
 
         jLabel1.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Actividades Asociadas");
-        pnlConsultar.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 180, -1));
+        pnlConsultar.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 220, 20));
 
-        bgPanel.add(pnlConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 430, 170));
+        bgPanel.add(pnlConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 730, 130));
 
-        lblError.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        lblError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bgPanel.add(lblError, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 500, 100));
+        lblErrorAct.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        lblErrorAct.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bgPanel.add(lblErrorAct, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 730, 170));
+
+        pnlCategorias.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCategorias.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 3, 0, 0, new java.awt.Color(76, 131, 122)));
+        pnlCategorias.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        scrollCategorias.setBorder(null);
+
+        listCategorias.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        listCategorias.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listCategorias.setFocusable(false);
+        listCategorias.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        listCategorias.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        scrollCategorias.setViewportView(listCategorias);
+
+        pnlCategorias.add(scrollCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 220, 260));
+
+        bgPanel.add(pnlCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, 260, 280));
+
+        jLabel2.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Categoría(s)");
+        bgPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 250, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -286,7 +347,7 @@ public class showInfoCuponera extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+            .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -382,16 +443,22 @@ public class showInfoCuponera extends javax.swing.JFrame {
     private javax.swing.JLabel descuentoCuponera;
     private javax.swing.JLabel dragBar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblError;
+    private javax.swing.JLabel labelImage;
+    private javax.swing.JLabel lblErrorAct;
     private javax.swing.JLabel lblHeader;
+    private javax.swing.JList<String> listCategorias;
     private javax.swing.JLabel nombreCuponera;
+    private javax.swing.JPanel pnlCategorias;
     private javax.swing.JPanel pnlConsultar;
     private javax.swing.JLabel pvigenciaCuponera;
+    private javax.swing.JScrollPane scrollCategorias;
     private javax.swing.JScrollPane scrollCuponera;
     private javax.swing.JTextArea txaDescripcionCuponera;
     // End of variables declaration//GEN-END:variables

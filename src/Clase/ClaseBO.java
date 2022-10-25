@@ -4,6 +4,7 @@
  */
 package Clase;
 
+import EntityManajer.InterfaceEntityManager;
 import Registro.DtRegistro;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,6 +18,12 @@ import java.util.List;
 public class ClaseBO implements InterfaceClaseBO {
     ClaseDao claseDao = new ClaseDao();
     
+        
+    public ClaseBO() {
+        // this is for the frontend servelets because by default the entity manager is not instanced
+        InterfaceEntityManager.getInstance();
+    }
+    
     @Override
     public void insertarClase(int idActividad, DtClase clase){
         Clase cl = new Clase();
@@ -26,7 +33,14 @@ public class ClaseBO implements InterfaceClaseBO {
         cl.setFechaRegistro(clase.getFechaRegistro());
         cl.setNombre(clase.getNombre());
         cl.setUrlAcceso(clase.getUrlAcceso());
-        claseDao.insertar(idActividad, cl);
+        if (clase.getImage() != null) {
+            cl.setImage(clase.getImage());
+        }
+        if (clase.imageBlob != null) {
+            cl.setByteImage(clase.getImageBlob());
+            System.out.println("voy a setear" + clase.getImageBlob());
+        }
+        claseDao.insertar(idActividad, cl, clase);
     }
     
     @Override

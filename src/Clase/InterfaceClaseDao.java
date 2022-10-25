@@ -14,7 +14,7 @@ import Registro.DtRegistro;
  */
 public interface InterfaceClaseDao {
     
-    public void insertar(int idActividad, Clase clase);
+    public void insertar(int idActividad, Clase clase, DtClase dtClase);
     public List<Clase> getClasesByActividad(int idActividad);
     public Clase consultarClase(int idClase);
     public void agregarRegistro(int idClase, int idRegistro);

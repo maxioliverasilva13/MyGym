@@ -4,6 +4,7 @@
  */
 package CuponeraXActividad;
 
+import java.io.File;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import Actividad.Actividad;
 import Actividad.dtos.ActividadDTO;
+import Categoria.DtCategoria;
 import Clase.DtClase;
 import Cuponera.Cuponera;
 import Cuponera.DtCuponera;
@@ -72,7 +74,11 @@ public class CuponeraXActividad implements Serializable {
     
     public DtCuponeraXActividad getDtCuponeraXActividad() {
         if (cuponera != null) {
-            DtCuponera cup = new DtCuponera(this.cuponera.getId(), this.cuponera.getNombre(), this.cuponera.getDescripcion(), this.cuponera.getPeriodoVigencia(), this.cuponera.getDescuento(), null);
+            File photo = null;
+            if (cuponera.getImage() != null) {
+                photo = cuponera.createTempFile();
+            }
+            DtCuponera cup = new DtCuponera(this.cuponera.getId(), this.cuponera.getNombre(), this.cuponera.getDescripcion(), this.cuponera.getPeriodoVigencia(), this.cuponera.getDescuento(),this.cuponera.getPrecio(), null, photo, this.cuponera.getImage());
             if (actividad != null){
                 Collection<Clase.Clase> clases = this.actividad.getClases();
                 List<DtClase> dtclases = new ArrayList<>();
@@ -86,9 +92,15 @@ public class CuponeraXActividad implements Serializable {
                     dtCUXAS.add(new DtCuponeraXActividad(id, cantClases, cup));
                 });
                 
+                Collection<Categoria.Categoria> categorias = this.actividad.getCategorias();
+                List<DtCategoria> dtcats = new ArrayList<>();
+                categorias.forEach((cat) -> {
+                    dtcats.add(cat.getDtCategoria());
+                });
+                
                 ActividadDTO actividad = new ActividadDTO(
                     this.actividad.getId(), this.actividad.getNombre() , this.actividad.getDescripcion(), this.actividad.getDuracion(), this.actividad.getCosto(), this.actividad.getFechaRegistro(), this.actividad.getProfesor().getDtProfesor(),
-                        dtclases, this.actividad.getInstitucion().getDtInstitucion(), dtCUXAS);
+                        dtclases, this.actividad.getInstitucion().getDtInstitucion(), dtCUXAS, null, dtcats, this.actividad.getImage());
                 return new DtCuponeraXActividad(id, cantClases,  cup, actividad);
             }else{
                 return new DtCuponeraXActividad(id, cantClases,  cup);

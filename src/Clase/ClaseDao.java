@@ -11,9 +11,7 @@ import Actividad.Actividad;
 import Exceptions.ActividadNotFoundException;
 import Exceptions.ClaseNotFoundException;
 import Exceptions.RegistroNotFoundException;
-import Registro.DtRegistro;
 import Registro.Registro;
-import java.util.Collection;
 import java.util.List;
 import Actividad.ActividadDao;
 
@@ -22,47 +20,61 @@ import Actividad.ActividadDao;
  * @author maximilianooliverasilva
  */
 public class ClaseDao implements InterfaceClaseDao {
+
     EntityManager em = InterfaceEntityManager.getInstance();
     ActividadDao actdao = new ActividadDao();
-    
-    public ClaseDao(){
-        
+
+    public ClaseDao() {
+
+    }
+
+    public boolean existeClase(String nombreClase) {
+        try {
+            List<Clase> clases = em.createNativeQuery(
+                    "SELECT * FROM CLASE c WHERE c.NOMBRE='" + nombreClase + "'", Clase.class)
+                    .getResultList();
+            return clases.size() > 0;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     @Override
-    public void insertar(int idActividad, Clase clase){
+    public void insertar(int idActividad, Clase clase, DtClase dtClase) {
         Actividad act = em.find(Actividad.class, idActividad);
         if (act == null) {
             throw new ActividadNotFoundException("Actividad no encontrada");
         }
-        EntityTransaction tr = em.getTransaction();
-        tr.begin();
+        if (existeClase(clase.getNombre())) {
+            throw new ClaseNotFoundException("Clase ya existente");
+        }
         clase.setActividad(act);
         actdao.agergarClase(idActividad, clase);
         em.persist(clase);
-        tr.commit();
+        dtClase.setId(clase.getId());
     }
-    
+
     @Override
-    public List<Clase> getClasesByActividad(int idActividad){
+    public List<Clase> getClasesByActividad(int idActividad) {
         List<Clase> clases = em.createNativeQuery(
-        "SELECT * FROM CLASE c WHERE c.ACTIVIDAD_ID=" + idActividad, Clase.class)
-        .getResultList();
+                "SELECT * FROM CLASE c WHERE c.ACTIVIDAD_ID=" + idActividad, Clase.class)
+                .getResultList();
         return clases;
     }
-    
+
     @Override
-    public Clase consultarClase(int idClase){
+    public Clase consultarClase(int idClase) {
         try {
-          Clase clase = existe(idClase);
-        return clase;
+            Clase clase = existe(idClase);
+            return clase;
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
-    
-    public void agregarRegistro(int idClase, int idRegistro){
+
+    public void agregarRegistro(int idClase, int idRegistro) {
         Clase clase = existe(idClase);
         // TODO: SOCIO VALIDATION
         Registro r = em.find(Registro.class, idRegistro);
@@ -74,13 +86,14 @@ public class ClaseDao implements InterfaceClaseDao {
         clase.addRegistro(r);
         tr.commit();
     }
-    
+
     @Override
-    public Clase existe(int id){
+    public Clase existe(int id) {
         Clase clase = em.find(Clase.class, id);
         if (clase == null) {
             throw new ClaseNotFoundException("La clase no existe");
         }
         return clase;
     }
+
 }

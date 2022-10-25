@@ -8,6 +8,7 @@ import Actividad.dtos.ActividadDTO;
 import java.util.List;
 import Profesor.dtos.ProfesorDTO;
 import Actividad.dtos.ActividadDetalleDTO;
+import java.io.File;
 
 /**
  *
@@ -20,14 +21,31 @@ public class DtInstitucion {
     private String url;
     private List<ProfesorDTO> profesores;
     private List<ActividadDTO> actividades;
+    private File image;
+    private int totalActividadesAceptadas;
 
-    public DtInstitucion(int id, String nombre, String descripcion, String url, List<ProfesorDTO> profesores, List<ActividadDTO> actividades) {
+    public File getImage() {
+        return image;
+    }
+    
+    byte [] imageBlob;
+
+    public byte[] getImageBlob() {
+        return imageBlob;
+    }
+    
+    public DtInstitucion(int id, String nombre, String descripcion, String url, List<ProfesorDTO> profesores, List<ActividadDTO> actividades, File file, byte[] imageBlob, int totalActividadesAceptadas) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.url = url;
         this.profesores = profesores;
         this.actividades = actividades;
+        this.image = file;
+        if (imageBlob != null) {
+            this.imageBlob = imageBlob;
+        }
+        this.totalActividadesAceptadas = totalActividadesAceptadas;
     }
     
     public int getId() {
@@ -52,6 +70,10 @@ public class DtInstitucion {
 
     public List<ActividadDTO> getActividades() {
         return actividades;
+    }
+
+    public int getTotalActividadesAceptadas() {
+        return this.totalActividadesAceptadas;
     }
     
 }

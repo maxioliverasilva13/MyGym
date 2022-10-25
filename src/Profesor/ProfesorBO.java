@@ -35,13 +35,6 @@ public class ProfesorBO implements IProfesorBO {
          if(profFind == null){
              throw new ProfesorNotExist("El profesor no existe");
          }
-         List<DtInstitucion> instituciones = new ArrayList();
-         List<ActividadDTO> actividades = new ArrayList();
-         
-          profFind.getActividades().forEach((actividad) ->{
-               actividades.add(actividad.getDtActividad());
-          });
-         
          res = profFind.getDtProfesor();
          return res;
     }
@@ -75,4 +68,13 @@ public class ProfesorBO implements IProfesorBO {
         
         return profesDTO;
     }   
+
+    @Override
+    public DtInstitucion getInstitucion(int idProf) {
+        Profesor profe = profDao.getById(idProf);
+        if(profe == null){
+             throw new ProfesorNotExist("El profesor no existe");
+        }
+        return profe.getInstituciones().get(0).getDtInstitucion();
+    }
 }

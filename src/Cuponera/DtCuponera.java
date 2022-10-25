@@ -2,6 +2,7 @@ package Cuponera;
 
 
 import CuponeraXActividad.DtCuponeraXActividad;
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
@@ -21,16 +22,26 @@ public class DtCuponera {
     private Date periodoVigencia;
     private int descuento;
     private List<DtCuponeraXActividad> cuponerasXActividad;
-
-    public DtCuponera(int id, String nombre, String descripcion, Date periodoVigencia, int descuento, List<DtCuponeraXActividad> cupsXActs) {
+    private File image;
+    private float precio;
+    private byte[] blobImage;
+  
+    public DtCuponera(int id, String nombre, String descripcion, Date periodoVigencia, int descuento,float precio, List<DtCuponeraXActividad> cupsXActs, File file, byte[] blobImage) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.periodoVigencia = periodoVigencia;
         this.descuento = descuento;
         this.cuponerasXActividad = cupsXActs;
+        this.image = file;
+        this.precio = precio;
+        this.blobImage = blobImage;
     }
 
+    public File getImage() {
+        return image;
+    }
+    
     public int getId() {
         return id;
     }
@@ -55,5 +66,12 @@ public class DtCuponera {
         return cuponerasXActividad;
     }
     
+    public float getPrecio(){
+        return this.precio;
+    }
+    
+    public byte[] getBlobImage(){
+        return this.blobImage;
+    }
     
 }

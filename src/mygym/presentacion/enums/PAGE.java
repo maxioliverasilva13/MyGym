@@ -16,4 +16,5 @@ public enum PAGE {
   USUARIO,
   INSTITUCION,
   CLASE,
+  CATEGORIA,
 }

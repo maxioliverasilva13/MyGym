@@ -4,11 +4,13 @@
  */
 package CuponeraXActividad;
 
+import Actividad.dtos.ActividadDTO;
+
 /**
  *
  * @author maximilianooliverasilva
  */
 public interface InterfaceCuponeraXActividadBo {
     public void agregarCupXAct(int idActividad, int idCuponera, DtCuponeraXActividad cupXact);
-    
+    public int getCantClass(Actividad.Actividad idActividad, Cuponera.Cuponera idCuponera);
 }

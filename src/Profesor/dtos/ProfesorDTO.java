@@ -8,6 +8,7 @@ import Actividad.dtos.ActividadDTO;
 import Institucion.DtInstitucion;
 import Institucion.Institucion;
 import Usuario.dtos.UsuarioDTO;
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
@@ -23,23 +24,15 @@ public class ProfesorDTO extends UsuarioDTO {
     private List<DtInstitucion> instituciones;
     private List<ActividadDTO> actividades;
     
-    public ProfesorDTO(int id,String nombre,String apellido,String nickname,String email ,Date nacimiento,String descripcionGeneral,String biografia,String linkSitioWeb){
-        super(id, nombre,apellido,nickname,email,nacimiento);
-        this.descripcionGeneral = descripcionGeneral;
-        this.biografia = biografia;
-        this.linkSitioWeb = linkSitioWeb;
-       
-    }
-    
-    public ProfesorDTO(int id,String nombre,String apellido,String nickname,String email ,Date nacimiento,String descripcionGeneral,String biografia,String linkSitioWeb, List<ActividadDTO> acts, List<DtInstitucion> instituciones){
-      super(id, nombre,apellido,nickname,email,nacimiento);
+    public ProfesorDTO(int id,String nombre,String apellido,String nickname,String email ,Date nacimiento,String descripcionGeneral,String biografia,String linkSitioWeb, List<ActividadDTO> acts, List<DtInstitucion> instituciones, File file, List<UsuarioDTO> seguidos, List<UsuarioDTO> seguidores, byte[] blobImage){
+      super(id, nombre,apellido,nickname,email,nacimiento, file, seguidos, seguidores, blobImage);
       this.descripcionGeneral = descripcionGeneral;
       this.biografia = biografia;
       this.linkSitioWeb = linkSitioWeb;
       this.actividades = acts;
       this.instituciones = instituciones;
-     
     }
+
 
 
     public List<DtInstitucion> getInstituciones() {
@@ -59,6 +52,10 @@ public class ProfesorDTO extends UsuarioDTO {
     }
     public String getLinkSitioWeb(){
         return this.linkSitioWeb;
+    }
+    
+    public String getType(){
+        return "Profesor";
     }
        
 }

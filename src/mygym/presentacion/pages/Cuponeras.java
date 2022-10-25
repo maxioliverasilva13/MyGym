@@ -13,7 +13,9 @@ import javax.swing.table.DefaultTableModel;
 import Cuponera.CuponeraBo;
 import Cuponera.DtCuponera;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import mygym.presentacion.forms.showInfoCuponera;
+import utils.RenderFoto;
 
 /**
  *
@@ -27,10 +29,11 @@ public class Cuponeras extends javax.swing.JPanel {
 
     public Cuponeras() {
         initComponents();
-        tablaCuponeras.getColumnModel().getColumn(0).setMinWidth(0);
-        tablaCuponeras.getColumnModel().getColumn(0).setMaxWidth(0);
-        tablaCuponeras.getColumnModel().getColumn(0).setWidth(0);
+        tablaCuponeras.getColumnModel().getColumn(1).setMinWidth(1);
+        tablaCuponeras.getColumnModel().getColumn(1).setMaxWidth(1);
+        tablaCuponeras.getColumnModel().getColumn(1).setWidth(1);
         tablaCuponeras.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        tablaCuponeras.setRowHeight(50);
         llenarTabla();
         formCrear.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -102,7 +105,10 @@ public class Cuponeras extends javax.swing.JPanel {
         btnCrearBG.setLayout(btnCrearBGLayout);
         btnCrearBGLayout.setHorizontalGroup(
             btnCrearBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnCrear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+            .addGroup(btnCrearBGLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnCrear, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                .addContainerGap())
         );
         btnCrearBGLayout.setVerticalGroup(
             btnCrearBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,7 +117,7 @@ public class Cuponeras extends javax.swing.JPanel {
                 .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        bgPanel.add(btnCrearBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 160, -1));
+        bgPanel.add(btnCrearBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 160, -1));
 
         scrollTabla.setBackground(new java.awt.Color(255, 255, 255));
         scrollTabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -121,48 +127,48 @@ public class Cuponeras extends javax.swing.JPanel {
         tablaCuponeras.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         tablaCuponeras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Nombre", "Descripción", "Descuento"
+                "Foto", "id", "Nombre", "Descuento", "Descripción", "Precio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                true, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -172,7 +178,6 @@ public class Cuponeras extends javax.swing.JPanel {
         tablaCuponeras.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tablaCuponeras.setGridColor(new java.awt.Color(255, 255, 255));
         tablaCuponeras.setSelectionBackground(new java.awt.Color(0, 204, 204));
-        tablaCuponeras.setShowGrid(false);
         tablaCuponeras.setUpdateSelectionOnSort(false);
         scrollTabla.setViewportView(tablaCuponeras);
         if (tablaCuponeras.getColumnModel().getColumnCount() > 0) {
@@ -225,6 +230,7 @@ public class Cuponeras extends javax.swing.JPanel {
         btnConsultar.setText("Consultar Información");
         btnConsultar.setToolTipText("");
         btnConsultar.setBorder(null);
+        btnConsultar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnConsultar.setFocusPainted(false);
         btnConsultar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         btnConsultar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -258,8 +264,14 @@ public class Cuponeras extends javax.swing.JPanel {
         modeloDatos.setRowCount(0);
         cuponeras.forEach((key, value) -> {
             DtCuponera currentCuponera = cuponeras.get(key);
-
-            modeloDatos.addRow(new Object[]{currentCuponera.getId(), currentCuponera.getNombre(), currentCuponera.getDescripcion(), currentCuponera.getDescuento()});
+            RenderFoto photoCell = new RenderFoto();
+            photoCell.setHorizontalAlignment(SwingConstants.CENTER);
+            tablaCuponeras.getColumnModel().getColumn(0).setCellRenderer(photoCell);
+            String filePath = "";
+            if (value.getImage() != null) {
+                filePath = value.getImage().getAbsolutePath();
+            }
+            modeloDatos.addRow(new Object[]{filePath, currentCuponera.getId(), currentCuponera.getNombre(), currentCuponera.getDescripcion(), currentCuponera.getDescuento(), currentCuponera.getPrecio()});
         });
     }
 
@@ -287,9 +299,8 @@ public class Cuponeras extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una cuponera existente.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        Object idObj = tablaCuponeras.getValueAt(selectedRowId, 0);
+        Object idObj = tablaCuponeras.getValueAt(selectedRowId, 1);
         int id = (Integer) idObj;
-        //System.out.println("Id de la cuponera seleccionada en el DASHBOARD: "+ id);
         
         addActividadtoCuponera formAgregar = new addActividadtoCuponera(id);
 
@@ -336,7 +347,7 @@ public class Cuponeras extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una cuponera existente.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        Object idObj = tablaCuponeras.getValueAt(selectedRowId, 0);
+        Object idObj = tablaCuponeras.getValueAt(selectedRowId, 1);
         int selectedCuponeraID = (Integer) idObj;
         DtCuponera selectedCup = cuponeras.get(selectedCuponeraID); // PASARLE ESTE DT POR EL CONSTRUCTOR DEL FORM
         if (selectedCup != null){

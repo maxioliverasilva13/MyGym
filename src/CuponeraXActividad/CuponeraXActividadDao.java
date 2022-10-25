@@ -38,9 +38,9 @@ public class CuponeraXActividadDao implements InterfaceCuponeraXActividadDao {
         }
         Cuponera cup = cupdao.existe(idCuponera);
         CuponeraXActividad cuxa = new CuponeraXActividad();
-        cuxa.setCantClases(cupXact.getCantClases());
         cuxa.setActividad(act);
         cuxa.setCuponera(cup);
+        cuxa.setCantClases(cupXact.getCantClases());
         EntityTransaction et = em.getTransaction();
         et.begin();
         em.persist(cuxa);
@@ -56,5 +56,14 @@ public CuponeraXActividad existe(int idCuXAc) {
         throw new CuponeraXActividadNotFoundException("Cuponera X Actividad no encontrada");
     }
     return cuxa;
+    }
+
+    @Override
+    public int getCantClass(Cuponera cup, Actividad act) {
+        List<CuponeraXActividad> res  = em.createNativeQuery("select * from CUPONERAXACTIVIDAD cuxa where cuxa.ACTIVIDAD_ID=" + act.getId() + " AND cuxa.CUPONERA_ID=" + cup.getId(), CuponeraXActividad.class).getResultList();
+        if(res.size() <= 0){
+          throw new CuponeraXActividadNotFoundException("Cuponera X Actividad no encontrada");
+        }
+        return res.get(0).getCantClases();
     }
 }

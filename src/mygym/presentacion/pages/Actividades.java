@@ -21,6 +21,9 @@ import Actividad.ActividadBO;
 import Actividad.dtos.ActividadDTO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import mygym.presentacion.components.ActividadesPendientes;
+import javax.swing.SwingConstants;
+import utils.RenderFoto;
 
 
 /**
@@ -28,7 +31,6 @@ import java.awt.event.ActionListener;
  * @author maximilianooliverasilva
  */
 public class Actividades extends javax.swing.JPanel {
-    createActividadForm formCreate = new createActividadForm();
     //showActividadInfoForm formInfo = new showActividadInfoForm();
     DefaultComboBoxModel model = new DefaultComboBoxModel();
 
@@ -45,9 +47,10 @@ public class Actividades extends javax.swing.JPanel {
     public Actividades() {
         initComponents();
         
-        tablaActividades.getColumnModel().getColumn(0).setMinWidth(0);
-        tablaActividades.getColumnModel().getColumn(0).setMaxWidth(0);
-        tablaActividades.getColumnModel().getColumn(0).setWidth(0);
+        tablaActividades.getColumnModel().getColumn(1).setMinWidth(0);
+        tablaActividades.getColumnModel().getColumn(1).setMaxWidth(0);
+        tablaActividades.getColumnModel().getColumn(1).setWidth(0);
+        tablaActividades.setRowHeight(50);
         tablaActividades.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         llenarCBoxInstituciones();
@@ -61,28 +64,24 @@ public class Actividades extends javax.swing.JPanel {
                 }
             }
         });
-        
-        formCreate.addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
-                Object selectedItem = cmbInstituciones.getSelectedItem();
-                if (selectedItem != null) {
-                    llenarTabla(Integer.parseInt(((ComboItem)selectedItem).getId()));
-                }
-            }
-        });
     }
     
  
     public void llenarTabla(Integer idInstitucion){
         try {
             DefaultTableModel modeloDatos = (DefaultTableModel) tablaActividades.getModel();
-            actividadesSistema = actBO.listarActividades(idInstitucion);
+            actividadesSistema = actBO.listarActividades(idInstitucion,"Aceptada");
             modeloDatos.setRowCount(0);
             actividadesSistema.forEach((key, value) -> {
                 ActividadDTO currentActividad = actividadesSistema.get(key);
-
-                modeloDatos.addRow(new Object[]{currentActividad.getId(), currentActividad.getNombre(), currentActividad.getDescripcion(), currentActividad.getCosto()});
+                RenderFoto photoCell = new RenderFoto();
+                photoCell.setHorizontalAlignment(SwingConstants.CENTER);
+                tablaActividades.getColumnModel().getColumn(0).setCellRenderer(photoCell);
+                String filePath = "";
+                if (currentActividad.getImage() != null) {
+                    filePath = currentActividad.getImage().getAbsolutePath();
+                }
+                modeloDatos.addRow(new Object[]{filePath, currentActividad.getId(), currentActividad.getNombre(), currentActividad.getDescripcion(), currentActividad.getCosto()});
             });
             
         } catch (Exception e) {
@@ -116,12 +115,14 @@ public class Actividades extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         cmbInstituciones = new javax.swing.JComboBox<>();
         btnAltaBG = new javax.swing.JPanel();
-        btnAlta = new javax.swing.JLabel();
+        btnAlta1 = new javax.swing.JLabel();
         scrollTabla = new javax.swing.JScrollPane();
         tablaActividades = new javax.swing.JTable();
         btnInfoBG = new javax.swing.JPanel();
         btnInfo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        btnAltaBG1 = new javax.swing.JPanel();
+        btnAlta2 = new javax.swing.JLabel();
 
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -142,30 +143,30 @@ public class Actividades extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(41, 69, 87));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Actividades");
-        bgPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, -1));
+        bgPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 720, 20));
 
         cmbInstituciones.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         cmbInstituciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Instituciones" }));
         cmbInstituciones.setBorder(null);
         cmbInstituciones.setFocusable(false);
-        bgPanel.add(cmbInstituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 240, 40));
+        bgPanel.add(cmbInstituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 210, 40));
 
         btnAltaBG.setBackground(new java.awt.Color(76, 131, 122));
 
-        btnAlta.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        btnAlta.setForeground(new java.awt.Color(255, 255, 255));
-        btnAlta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnAlta.setText("Alta de Actividad");
-        btnAlta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAlta.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAlta1.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnAlta1.setForeground(new java.awt.Color(255, 255, 255));
+        btnAlta1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnAlta1.setText("Alta de Actividad");
+        btnAlta1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAlta1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAltaMouseClicked(evt);
+                btnAlta1MouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnAltaMousePressed(evt);
+                btnAlta1MousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnAltaMouseReleased(evt);
+                btnAlta1MouseReleased(evt);
             }
         });
 
@@ -173,16 +174,14 @@ public class Actividades extends javax.swing.JPanel {
         btnAltaBG.setLayout(btnAltaBGLayout);
         btnAltaBGLayout.setHorizontalGroup(
             btnAltaBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnAlta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+            .addComponent(btnAlta1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
         );
         btnAltaBGLayout.setVerticalGroup(
             btnAltaBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnAltaBGLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(btnAlta1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        bgPanel.add(btnAltaBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 160, -1));
+        bgPanel.add(btnAltaBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 160, 50));
 
         scrollTabla.setBackground(new java.awt.Color(255, 255, 255));
         scrollTabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -192,48 +191,48 @@ public class Actividades extends javax.swing.JPanel {
         tablaActividades.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         tablaActividades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "id", "Nombre", "Descripción", "Costo"
+                "Foto", "id", "Nombre", "Descripción", "Costo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -243,7 +242,6 @@ public class Actividades extends javax.swing.JPanel {
         tablaActividades.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tablaActividades.setGridColor(new java.awt.Color(255, 255, 255));
         tablaActividades.setSelectionBackground(new java.awt.Color(0, 204, 204));
-        tablaActividades.setShowGrid(false);
         tablaActividades.setUpdateSelectionOnSort(false);
         scrollTabla.setViewportView(tablaActividades);
 
@@ -288,6 +286,38 @@ public class Actividades extends javax.swing.JPanel {
         jLabel2.setText("Seleccione una Institución");
         bgPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 160, 40));
 
+        btnAltaBG1.setBackground(new java.awt.Color(255, 204, 0));
+
+        btnAlta2.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        btnAlta2.setForeground(new java.awt.Color(255, 255, 255));
+        btnAlta2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnAlta2.setText("Actividades pendientes");
+        btnAlta2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAlta2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAlta2MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAlta2MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAlta2MouseReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnAltaBG1Layout = new javax.swing.GroupLayout(btnAltaBG1);
+        btnAltaBG1.setLayout(btnAltaBG1Layout);
+        btnAltaBG1Layout.setHorizontalGroup(
+            btnAltaBG1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnAlta2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+        );
+        btnAltaBG1Layout.setVerticalGroup(
+            btnAltaBG1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnAlta2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        );
+
+        bgPanel.add(btnAltaBG1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, 200, 50));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -296,11 +326,23 @@ public class Actividades extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+            .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAltaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaMouseClicked
+    private void btnAlta1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaMouseClicked
+        createActividadForm formCreate = new createActividadForm();
+        // Window Listener
+        formCreate.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                Object selectedItem = cmbInstituciones.getSelectedItem();
+                if (selectedItem != null) {
+                    llenarTabla(Integer.parseInt(((ComboItem)selectedItem).getId()));
+                }
+            }
+        });
+        
         if (!formCreate.isVisible()) {
             formCreate.setVisible(true);
         }
@@ -332,13 +374,12 @@ public class Actividades extends javax.swing.JPanel {
     }//GEN-LAST:event_btnInfoMousePressed
 
     private void btnInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInfoMouseClicked
-        System.out.println("Hola!");
         int selectedRowId = tablaActividades.getSelectedRow();
         if(selectedRowId == -1){
             JOptionPane.showMessageDialog(new JFrame(), "Error, seleccione una actividad existente.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        Object idObj = tablaActividades.getValueAt(selectedRowId, 0);
+        Object idObj = tablaActividades.getValueAt(selectedRowId, 1);
         int selectedActividadID = (Integer) idObj;
         ActividadDTO selectedAct = actividadesSistema.get(selectedActividadID); // PASARLE ESTE DT POR EL CONSTRUCTOR DEL FORM
         if (selectedAct != null){
@@ -353,11 +394,34 @@ public class Actividades extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnInfoMouseClicked
 
+    private void btnAlta1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlta1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlta1MousePressed
+
+    private void btnAlta1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlta1MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlta1MouseReleased
+
+    private void btnAlta2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlta2MouseClicked
+              ActividadesPendientes actPend = new ActividadesPendientes();        //
+              actPend.setVisible(true);
+    }//GEN-LAST:event_btnAlta2MouseClicked
+
+    private void btnAlta2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlta2MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlta2MousePressed
+
+    private void btnAlta2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlta2MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlta2MouseReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgPanel;
-    private javax.swing.JLabel btnAlta;
+    private javax.swing.JLabel btnAlta1;
+    private javax.swing.JLabel btnAlta2;
     private javax.swing.JPanel btnAltaBG;
+    private javax.swing.JPanel btnAltaBG1;
     private javax.swing.JLabel btnInfo;
     private javax.swing.JPanel btnInfoBG;
     private javax.swing.JComboBox<String> cmbInstituciones;

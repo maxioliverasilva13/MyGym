@@ -3,6 +3,7 @@
   <persistence-unit name="myConnection" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>Actividad.Actividad</class>
+    <class>Categoria.Categoria</class>
     <class>Clase.Clase</class>
     <class>Cuponera.Cuponera</class>
     <class>CuponeraXActividad.CuponeraXActividad</class>
@@ -11,8 +12,10 @@
     <class>Registro.Registro</class>
     <class>Socio.Socio</class>
     <class>Usuario.Usuario</class>
+    <class>Seguidor.Seguidor</class>
+    <class>CompraCuponera.CompraCuponera</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/my_gym?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/my_gym2?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value=""/>
@@ -22,7 +25,7 @@
   <persistence-unit name="MyGymAppPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/my_gym?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/my_gym2?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value=""/>
