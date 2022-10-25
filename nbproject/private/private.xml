@@ -1,30 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
-        <file>
-            <url>src/mygym/presentacion/components/AgregarRegistros.java</url>
-            <bookmark id="1">
-                <name/>
-                <line>163</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Socio/Socio.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Cuponera/InterfaceCuponeraBo.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Cuponera/CuponeraDao.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/CuponeraXActividad/CuponeraXActividadDao.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/CuponeraXActividad/InterfaceCuponeraXActividadBo.java</file>
             <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Cuponera/CuponeraBo.java</file>
-=======
-            <file>file:/C:/Users/rodrigo/MyGym/src/Actividad/ActividadBO.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/CuponeraXActividad/CuponeraXActividadDao.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/CuponeraXActividad/CuponeraXActividad.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/CuponeraXActividad/DtCuponeraXActividad.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/mygym/presentacion/components/AgregarRegistros.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/CuponeraXActividad/CuponeraXActividadBo.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/CuponeraXActividad/InterfaceCuponeraXActividadBo.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/Registro/RegistroDao.java</file>
-            <file>file:/C:/Users/rodrigo/MyGym/src/CuponeraXActividad/InterfaceCuponeraXActividadDao.java</file>
->>>>>>> ff87308dc076901e8392e2636a69c82ea3b52ed7
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/CuponeraXActividad/InterfaceCuponeraXActividadDao.java</file>
         </group>
     </open-files>
 </project-private>
