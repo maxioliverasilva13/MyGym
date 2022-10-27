@@ -50,7 +50,6 @@ public class RegistroDao implements InterfaceRegistroDao {
     
     @Override
     public void insertar(int idSocio, int claseID, DtRegistro registro,Integer cuponeraId) throws SocioNotFoundException,CuponeraNotFoundException, MaxClasesForCuponera,CompraCuponeraNotFoundException{
-        System.out.println("rasputin");
         /*Validamos si existe el socio enviado*/
         Socio socio = em.find(Socio.class, idSocio);
         if (socio == null) {
@@ -83,6 +82,7 @@ public class RegistroDao implements InterfaceRegistroDao {
             CuponeraXActividad cupXAct = cupXActBO.get(clase.getActividad().getId(), cup.getId());
             int cantClases = cupXAct.getCantClases();
             if(cantClases <= 0){
+                tr.rollback();
                 throw new MaxClasesForCuponera("Ya no se puede comprar clases con esta cuponera de esta actividad");
             }
             cupXAct.setCantClases(cantClases - 1);

@@ -132,7 +132,7 @@ public class CuponeraDao implements InterfaceCuponeraDao {
     @Override
     public List<Cuponera> listarDisponiblesBySocioAndActividad(int socioID, int actId) {
         List<Cuponera> cuponeras = em.createNativeQuery(
-                "SELECT * FROM CUPONERA cup WHERE  EXISTS (SELECT * FROM compracuponera cp WHERE cp.CUPONERA_ID = cup.ID AND cp.SOCIO_ID = " + socioID + ") AND EXISTS (SELECT * FROM cuponeraxactividad ca WHERE ca.CUPONERA_ID = cup.ID AND ca.ACTIVIDAD_ID = " + actId + "); ",
+                "SELECT * FROM CUPONERA cup WHERE  EXISTS (SELECT * FROM compracuponera cp WHERE cp.CUPONERA_ID = cup.ID AND cp.SOCIO_ID = " + socioID + ") AND EXISTS (SELECT * FROM cuponeraxactividad ca WHERE ca.CUPONERA_ID = cup.ID AND ca.ACTIVIDAD_ID = " + actId + ") AND PERIODOVIGENCIA > NOW(); ",
                  Cuponera.class)
                 .getResultList();
 
@@ -141,7 +141,7 @@ public class CuponeraDao implements InterfaceCuponeraDao {
 
     public List<Cuponera> listarDisponiblesBySocio(int socioID) {
         List<Cuponera> cuponeras = em.createNativeQuery(
-                "SELECT * FROM CUPONERA cup WHERE NOT EXISTS (SELECT * FROM compracuponera cp WHERE cp.CUPONERA_ID = cup.ID AND cp.SOCIO_ID = " + socioID + "); ",
+                "SELECT * FROM CUPONERA cup WHERE NOT EXISTS (SELECT * FROM compracuponera cp WHERE cp.CUPONERA_ID = cup.ID AND cp.SOCIO_ID = " + socioID + ") AND PERIODOVIGENCIA > NOW(); ",
                  Cuponera.class)
                 .getResultList();
         return cuponeras;
