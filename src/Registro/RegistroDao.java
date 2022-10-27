@@ -60,6 +60,11 @@ public class RegistroDao implements InterfaceRegistroDao {
         if(clase == null) {
             throw new ClaseNotFoundException("La clase no existe");
         }
+        
+        if ((clase.getCapMaxima() == 0) || (clase.getRegistros().size() <= clase.getCapMaxima())){
+            throw new MaxClasesForCuponera("La clase a la que te intentas inscribir, ya esta llena.");
+        }
+        
         SocioEstaEnClase(idSocio, claseID);
         /*Validamos si se aplica o no una cuponera*/
         Cuponera cup = null;

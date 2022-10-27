@@ -36,6 +36,10 @@ public class CuponeraXActividadDao implements InterfaceCuponeraXActividadDao {
         if (exists.size() > 0) {
             throw new CuponeraXActividadExistsForThisActivityAndCuponera("Esta cuponera ya tiene esta actividad");
         }
+        List<CuponeraXActividad> isAvailable = em.createNativeQuery("select * from CUPONERAXACTIVIDAD where CUPONERA_ID= "+ idCuponera + " AND NOT EXISTS (SELECT * FROM compracuponera WHERE CUPONERA_ID = 301);").getResultList();
+        if (isAvailable.size() == 0) {
+            throw new CuponeraXActividadExistsForThisActivityAndCuponera("Esta cuponera ya ha sido comprada, no se le pueden agregar actividades.");
+        }
         Cuponera cup = cupdao.existe(idCuponera);
         CuponeraXActividad cuxa = new CuponeraXActividad();
         cuxa.setActividad(act);
