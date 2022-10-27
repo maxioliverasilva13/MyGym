@@ -30,7 +30,22 @@ public class CuponeraXActividadBo implements InterfaceCuponeraXActividadBo {
     }
 
     @Override
-    public int getCantClass(int idActividad, int idCuponera) {
+    public int getCantClass(Actividad idActividad, Cuponera idCuponera) {
+        InterfaceCuponeraDao  cupDao = new CuponeraDao();
+        Cuponera cup = cupDao.existe(idCuponera.getId());
+        if(cup == null){
+            throw new CuponeraNotFoundException("La cuponera no existe");
+        }
+        IActividadDao actBo = new ActividadDao();
+        Actividad act = actBo.getById(idActividad.getId());
+        if(act  == null){
+            throw new ActividadNotFoundException("Actividad no existe");
+        }
+        return this.cupxactdao.getCantClass(cup, act);
+    }
+    
+     @Override
+    public CuponeraXActividad get(int idActividad, int idCuponera) {
         InterfaceCuponeraDao  cupDao = new CuponeraDao();
         Cuponera cup = cupDao.existe(idCuponera);
         if(cup == null){
@@ -41,7 +56,8 @@ public class CuponeraXActividadBo implements InterfaceCuponeraXActividadBo {
         if(act  == null){
             throw new ActividadNotFoundException("Actividad no existe");
         }
-        return this.cupxactdao.getCantClass(cup, act);
+        CuponeraXActividad res = this.cupxactdao.get(cup,act);
+        return res;
     }
     
     

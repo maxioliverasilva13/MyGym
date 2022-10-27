@@ -28,7 +28,7 @@ public class CompraCuponera implements Serializable {
     private int id;
     private float costo;
     private Date fecha;
-    private int cantClases;
+ 
     
     @ManyToOne
     @JoinColumn
@@ -82,11 +82,6 @@ public class CompraCuponera implements Serializable {
         this.fecha = fecha;
     }
     
-    public int cantClases(){
-        return this.cantClases;
-    }
-    public void setCantClase(int cantClases){
-        this.cantClases = cantClases;
-    }
+  
 }
 

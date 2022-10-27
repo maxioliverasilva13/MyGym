@@ -3,7 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/feder/Documents/Proyectos/MyGym/src/Institucion/Institucion.java</file>
+=======
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Socio/Socio.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Cuponera/InterfaceCuponeraBo.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Cuponera/CuponeraDao.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/CuponeraXActividad/CuponeraXActividadDao.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/CuponeraXActividad/InterfaceCuponeraXActividadBo.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/Cuponera/CuponeraBo.java</file>
+            <file>file:/C:/Users/angel/OneDrive/Escritorio/MyGym/src/CuponeraXActividad/InterfaceCuponeraXActividadDao.java</file>
+>>>>>>> d06bc4773a04d40f6800fe6b8989b82b312a4756
         </group>
     </open-files>
 </project-private>

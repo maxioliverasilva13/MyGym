@@ -4,10 +4,12 @@
  */
 package Cuponera;
 
+import Actividad.Actividad;
 import Actividad.ActividadBO;
 import Actividad.ActividadDao;
 import Actividad.IActividadBO;
 import Actividad.IActividadDao;
+import Actividad.dtos.ActividadDTO;
 import CompraCuponera.CompraCuponera;
 import CuponeraXActividad.CuponeraXActividad;
 import CuponeraXActividad.CuponeraXActividadBo;
@@ -77,8 +79,7 @@ public class CuponeraBo implements InterfaceCuponeraBo {
         if(cuponeraFind == null){
             throw new CuponeraNotFoundException("La cuponera no existe");
         }
-       
-        Collection<CompraCuponera> comprasCuponerasBySocio = socioFind.getCuponerasCompradas();
+        List<CompraCuponera> comprasCuponerasBySocio = socioFind.getCuponerasCompradas();
         Iterator<CompraCuponera> it = comprasCuponerasBySocio.iterator();
         CompraCuponera curr;
         boolean alreadyPurchase = false;
@@ -93,7 +94,9 @@ public class CuponeraBo implements InterfaceCuponeraBo {
            throw new CuponeraAlreadyPurchaseBySocio("El socio ya tiene esta cuponera"); 
         }
         InterfaceCuponeraXActividadBo cupxActBo = new CuponeraXActividadBo();
-        int cantClases =  cupxActBo.getCantClass(idActividad, IdCuponera);
+        ActividadDao actDao = new ActividadDao();
+        Actividad act = actDao.getById(idActividad);
+        int cantClases =  cupxActBo.getCantClass(act, cuponeraFind);
         cuponeradao.comprarCuponera(socioFind, cuponeraFind,cantClases);
         
     }

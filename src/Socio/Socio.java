@@ -25,10 +25,10 @@ import Registro.DtRegistro;
 public class Socio extends Usuario{
     
     @OneToMany(mappedBy = "socio")
-    private Collection<Registro> registros;
+    private List<Registro> registros;
     
     @OneToMany(mappedBy = "socio")
-    private Collection<CompraCuponera> comprasCuponeras;
+    private List<CompraCuponera> comprasCuponeras;
     
     public void addRegistro(Registro r) {
         this.registros.add(r);
@@ -38,11 +38,11 @@ public class Socio extends Usuario{
         return registros;
     }
     
-    public Collection<CompraCuponera> getCuponerasCompradas(){
+    public List<CompraCuponera> getCuponerasCompradas(){
         return this.comprasCuponeras;
     }
 
-    public void setRegistros(Collection<Registro> registros) {
+    public void setRegistros(List<Registro> registros) {
         this.registros = registros;
     }
 

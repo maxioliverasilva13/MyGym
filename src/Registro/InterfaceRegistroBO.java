@@ -15,5 +15,5 @@ import java.util.List;
  * @author maximilianooliverasilva
  */
 public interface InterfaceRegistroBO {
-    public void agregarRegistro(int idSocio, List<Integer> clases, DtRegistro registro,Integer cuponeraId) throws MaxClasesForCuponera,CompraCuponeraNotFoundException,ClassHasMaxOfReg,SocioAlreadyAreInClass;
+    public void agregarRegistro(int idSocio, int claseID, DtRegistro registro,Integer cuponeraId) throws MaxClasesForCuponera,CompraCuponeraNotFoundException,ClassHasMaxOfReg,SocioAlreadyAreInClass;
 }

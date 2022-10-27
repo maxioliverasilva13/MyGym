@@ -380,6 +380,7 @@ public class Actividades extends javax.swing.JPanel {
             return;
         }
         Object idObj = tablaActividades.getValueAt(selectedRowId, 1);
+        System.out.println(idObj);
         int selectedActividadID = (Integer) idObj;
         ActividadDTO selectedAct = actividadesSistema.get(selectedActividadID); // PASARLE ESTE DT POR EL CONSTRUCTOR DEL FORM
         if (selectedAct != null){
