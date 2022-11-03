@@ -188,7 +188,7 @@ public class UsuarioDAO implements IUsuarioDAO{
         
         Usuario personaASeguir = getById(idUsuario);
         if (personaASeguir == null) {
-            throw new UsuarioASeguirNotFoundException("El usuario que va a seguir no existe");
+            throw new UsuarioASeguirNotFoundException("El usuario que voy a seguir no existe");
         }
         EntityTransaction tx = this.em.getTransaction();
         tx.begin();
