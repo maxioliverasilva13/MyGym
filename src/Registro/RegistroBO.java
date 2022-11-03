@@ -23,8 +23,6 @@ public class RegistroBO implements InterfaceRegistroBO {
     
     @Override
     public void agregarRegistro(int idSocio,  int claseID, DtRegistro registro,Integer cuponeraId) throws MaxClasesForCuponera,CompraCuponeraNotFoundException,ClassHasMaxOfReg,SocioAlreadyAreInClass{
-       
             registrodao.insertar(idSocio,  claseID, registro,cuponeraId);
-        
     } 
 }
