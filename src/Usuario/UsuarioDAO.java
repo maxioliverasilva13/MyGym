@@ -154,8 +154,8 @@ public class UsuarioDAO implements IUsuarioDAO{
          try{
               tx.begin();
                Usuario find = (Usuario)this.em.find(Usuario.class, id);
-               System.out.println("encontre " + find.getId());
-               System.out.println("encontre " + find.getDtype());
+               //System.out.println("encontre " + find.getId());
+               //System.out.println("encontre " + find.getDtype());
                tx.commit();
                return find.getDtype();
           } catch(NoResultException e){

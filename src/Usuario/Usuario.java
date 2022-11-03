@@ -120,14 +120,15 @@ public class Usuario implements Serializable {
      public void setImage(File file) {
         
          try {
-             
-            byte[] picInBytes = new byte[(int) file.length()];
-            FileInputStream fileInputStream = new FileInputStream(file);
-            fileInputStream.read(picInBytes);
-            fileInputStream.close();
-            this.image = picInBytes;
+             if (file != null){
+                byte[] picInBytes = new byte[(int) file.length()];
+                FileInputStream fileInputStream = new FileInputStream(file);
+                fileInputStream.read(picInBytes);
+                fileInputStream.close();
+                this.image = picInBytes;
+             }
          } catch (Exception e) {
-             System.out.println("Usuario-SetImage");
+             //System.out.println("Usuario-SetImage");
              System.out.println(e.getMessage());
          }
     }
