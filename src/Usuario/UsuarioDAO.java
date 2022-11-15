@@ -154,8 +154,8 @@ public class UsuarioDAO implements IUsuarioDAO{
          try{
               tx.begin();
                Usuario find = (Usuario)this.em.find(Usuario.class, id);
-               System.out.println("encontre " + find.getId());
-               System.out.println("encontre " + find.getDtype());
+               //System.out.println("encontre " + find.getId());
+               //System.out.println("encontre " + find.getDtype());
                tx.commit();
                return find.getDtype();
           } catch(NoResultException e){
@@ -188,7 +188,7 @@ public class UsuarioDAO implements IUsuarioDAO{
         
         Usuario personaASeguir = getById(idUsuario);
         if (personaASeguir == null) {
-            throw new UsuarioASeguirNotFoundException("El usuario que va a seguir no existe");
+            throw new UsuarioASeguirNotFoundException("El usuario que voy a seguir no existe");
         }
         EntityTransaction tx = this.em.getTransaction();
         tx.begin();
