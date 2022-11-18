@@ -5,6 +5,7 @@
 package Clase;
 
 import EntityManajer.InterfaceEntityManager;
+import Premio.PremioDao;
 import Registro.DtRegistro;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,6 +18,7 @@ import java.util.List;
  */
 public class ClaseBO implements InterfaceClaseBO {
     ClaseDao claseDao = new ClaseDao();
+    PremioDao premioDao = new PremioDao();
     
         
     public ClaseBO() {
@@ -41,6 +43,27 @@ public class ClaseBO implements InterfaceClaseBO {
             System.out.println("voy a setear" + clase.getImageBlob());
         }
         claseDao.insertar(idActividad, cl, clase);
+    }
+    
+    @Override
+    public void insertarClaseAndPremio(int idActividad, DtClase clase, String nombrePremio, int cantidadSorteados){
+        Clase cl = new Clase();
+        cl.setCapMaxima(clase.getCapMaxima());
+        cl.setCapMinima(clase.getCapMinima());
+        cl.setFecha(clase.getFecha());
+        cl.setFechaRegistro(clase.getFechaRegistro());
+        cl.setNombre(clase.getNombre());
+        cl.setUrlAcceso(clase.getUrlAcceso());
+        if (clase.getImage() != null) {
+            cl.setImage(clase.getImage());
+        }
+        if (clase.imageBlob != null) {
+            cl.setByteImage(clase.getImageBlob());
+            System.out.println("voy a setear" + clase.getImageBlob());
+        }
+        claseDao.insertar(idActividad, cl, clase);
+        System.out.println(cl.getId());
+        premioDao.insertarPremio(cl.getId(), nombrePremio, cantidadSorteados);
     }
     
     @Override

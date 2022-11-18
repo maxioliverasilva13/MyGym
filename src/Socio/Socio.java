@@ -18,10 +18,13 @@ import java.util.List;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.PrimaryKeyJoinColumn;
 import Registro.DtRegistro;
+import javax.persistence.Cacheable;
+import org.eclipse.persistence.annotations.Cache;
 
 
 @Entity
 @PrimaryKeyJoinColumn(name = "userId")
+@Cacheable(false)
 public class Socio extends Usuario{
     
     @OneToMany(mappedBy = "socio")
@@ -89,5 +92,9 @@ public class Socio extends Usuario{
         return new SocioDTO(this.getId(), this.getNombre(),this.getApellido(),this.getNickname(),this.getEmail(),this.getNacimiento(), null, this.createTempFile(), null,null, this.getImage()); 
     }
     
+    
+    public SocioDTO getDtSocioWithoutRegistros() {
+        return new SocioDTO(this.getId(), this.getNombre(),this.getApellido(),this.getNickname(),this.getEmail(),this.getNacimiento(), null, this.createTempFile(), null,null, this.getImage()); 
+    }
     
 }

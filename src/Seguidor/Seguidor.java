@@ -13,8 +13,10 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import Usuario.Usuario;
+import javax.persistence.Cacheable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.eclipse.persistence.annotations.Cache;
 
 /**
  *
@@ -22,6 +24,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table()
+@Cacheable(false)
 public class Seguidor implements Serializable {
     @Id
     @ManyToOne()

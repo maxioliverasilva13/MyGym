@@ -19,14 +19,14 @@ import static org.junit.Assert.*;
  * @author mandi
  */
 public class UsuarioBOAltaUsuarioTest {
-    
+
     public UsuarioBOAltaUsuarioTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
@@ -38,21 +38,19 @@ public class UsuarioBOAltaUsuarioTest {
     public void testCreate() {
         UsuarioBO instance = new UsuarioBO();
         SocioBO isocio = new SocioBO();
-        
+
         System.out.println("\n--- Test Alta Usuario (Socio) ---");
         UsuarioCreateDTO userCreate = new SocioCreateDTO("Pepe", "Farias", "pf123", "asd".toCharArray(), "pfarias@gmail.com", new Date(2001, 6, 22), null);
-        
-        try {
-            instance.create(userCreate);
-        } catch (Exception e) {
-            // El usuario ya existe...
-        }
 
         try {
-            isocio.consultarSocio(1);
-            System.out.println("--- ÉXITO ---");
-        } catch (SocioNotExist e) {
-            fail(e.getMessage());
+            instance.create(userCreate);
+            assertTrue(true);
+        } catch (Exception e) {
+            if (e.getMessage().contains("ya existe un usuario con este nickname")) {
+                assertTrue(true);
+            } else {
+                fail(e.getMessage());
+            }
         }
     }
 }

@@ -24,8 +24,10 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
+import org.eclipse.persistence.annotations.Cache;
 
 /**
  *
@@ -33,6 +35,7 @@ import javax.persistence.Lob;
  */
 @Entity
 @Table()
+@Cacheable(false)
 public class Cuponera implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

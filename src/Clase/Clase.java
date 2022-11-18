@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import java.util.Date;
 import javax.persistence.ManyToOne;
 import Actividad.Actividad;
+import Premio.Premio;
 import java.util.Collection;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -29,15 +30,19 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import javax.persistence.Cacheable;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
-
+import org.eclipse.persistence.annotations.Cache;
+import Premio.Premio;
+import Premio.dtos.PremioDTO;
 /**
  *
  * @author maximilianooliverasilva
  */
 @Entity
 @Table()
+@Cacheable(false)
 public class Clase implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -57,6 +62,8 @@ public class Clase implements Serializable {
     private Actividad actividad;
     @OneToMany(mappedBy = "clase")
     private List<Registro> registros;
+    @OneToMany(mappedBy = "claseOfPremio")
+    private List<Premio> premios;
 
     @Lob
     @Basic(fetch = FetchType.LAZY)
@@ -66,6 +73,14 @@ public class Clase implements Serializable {
         return image;
     }
 
+    public List<Premio> getPremios() {
+        return premios;
+    }
+
+    public void setPremios(List<Premio> premios) {
+        this.premios = premios;
+    }
+    
     public File createTempFile() {
         String dir = System.getProperty("java.io.tmpdir");
         File file = new File(dir + "image-clase-" + this.nombre + ".jpg");
@@ -168,6 +183,52 @@ public class Clase implements Serializable {
     }
 
     public DtClase getDtClase() {
+        int idInstitucion = 0;
+        if (actividad.getInstitucion() != null) {
+            idInstitucion = this.actividad.getInstitucion().getId();
+        }
+        PremioDTO premio = null;
+        if (this.premios.size() >= 1) {
+            premio = this.premios.get(0).getDtPremio();
+        }
+        List<DtRegistro> registrosClase = new ArrayList<DtRegistro>();
+        this.getRegistros().forEach((registro) -> {
+            registrosClase.add(registro.getDtRegistro());
+        });
+        String profeNombre = "";
+        String profeApellido = "";
+        int profesorId = 0;
+        if (this.actividad.getProfesor() != null) {
+            profeNombre = this.actividad.getProfesor().getNombre();
+            profeApellido = this.actividad.getProfesor().getApellido();
+            profesorId = this.actividad.getProfesor().getId();
+        }
+        File file = null;
+
+        if (this.image != null) {
+            file = this.createTempFile();
+        }
+
+        DtClase classParsed = new DtClase(id, nombre, fecha, (actividad != null)
+                ? profeNombre + " " + profeApellido
+                : null,
+                (actividad != null)
+                        ? profesorId
+                        : null,
+                capMinima, capMaxima, urlAcceso, fechaRegistro,
+                registrosClase, (actividad != null)
+                        ? this.actividad.getId()
+                        : null,
+                (actividad != null)
+                        ? this.actividad.getNombre()
+                        : null,
+                idInstitucion,
+                file, this.image, premio);
+        return classParsed;
+    }
+
+    
+      public DtClase getDtClaseWithoutPremios() {
         int idInstitucion = 0;
         if (actividad.getInstitucion() != null) {
             idInstitucion = this.actividad.getInstitucion().getId();

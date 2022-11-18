@@ -33,6 +33,7 @@ import javax.persistence.OneToMany;
 import Seguidor.Seguidor;
 import Socio.Socio;
 import Usuario.dtos.UsuarioDTO;
+import javax.persistence.Cacheable;
 
 /**
  *
@@ -41,6 +42,7 @@ import Usuario.dtos.UsuarioDTO;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@Cacheable(true)
 @DiscriminatorColumn(name="DTYPE")
 public class Usuario implements Serializable {
     @Id

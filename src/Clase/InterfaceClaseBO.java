@@ -17,5 +17,5 @@ public interface InterfaceClaseBO {
     public HashMap<Integer, DtClase> listarClasesByAct(int idActividad);
     public DtClase consultarClase(int idClase);
     public void agregarRegistro(int idClase, int idRegistro);
-
+    public void insertarClaseAndPremio(int idActividad, DtClase clase, String nombrePremio, int cantidadSorteados);
 }

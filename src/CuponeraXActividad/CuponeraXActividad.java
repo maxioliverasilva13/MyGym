@@ -22,12 +22,15 @@ import Cuponera.DtCuponera;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import javax.persistence.Cacheable;
+import org.eclipse.persistence.annotations.Cache;
 /**
  *
  * @author maximilianooliverasilva
  */
 @Entity
 @Table()
+@Cacheable(false)
 public class CuponeraXActividad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

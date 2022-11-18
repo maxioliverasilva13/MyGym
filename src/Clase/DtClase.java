@@ -4,6 +4,7 @@
  */
 package Clase;
 
+import Premio.dtos.PremioDTO;
 import Registro.DtRegistro;
 import java.io.File;
 import java.util.ArrayList;
@@ -28,9 +29,12 @@ public class DtClase {
     private int idActividad;
     private String actividadName;
     private int idInstitucion;
+    private PremioDTO premio;
     File image;
     byte [] imageBlob;
     // TODO: Change this for the new DtProfesor and DtActividad
+    
+    
     
     public DtClase(int id, String nombre, Date fecha, String profesor, Integer ProfesorId , Integer capMinima, Integer capMaxima, String urlAcceso, Date fechaRegistro, List<DtRegistro> registros, Integer idActividad, String actividadName, Integer idInstitucion, File imageFile, byte[] imageBlob) {
         this.id = id;
@@ -58,6 +62,39 @@ public class DtClase {
         }
         this.image = imageFile;
         this.imageBlob = imageBlob;
+    }
+    
+       public DtClase(int id, String nombre, Date fecha, String profesor, Integer ProfesorId , Integer capMinima, Integer capMaxima, String urlAcceso, Date fechaRegistro, List<DtRegistro> registros, Integer idActividad, String actividadName, Integer idInstitucion, File imageFile, byte[] imageBlob, PremioDTO premio) {
+        this.id = id;
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.profesor = profesor;
+        if (ProfesorId != null) {
+            this.ProfesorId = ProfesorId;
+        }
+        if (capMinima != null) {
+           this.capMinima = capMinima;
+        }
+        if (capMaxima != null) {
+           this.capMaxima = capMaxima;
+        }
+        this.urlAcceso = urlAcceso;
+        this.fechaRegistro = fechaRegistro;
+        this.registros = registros;
+        if (idActividad != null) {
+           this.idActividad = idActividad;
+        }
+        this.actividadName = actividadName;
+        if (idInstitucion != null) {
+            this.idInstitucion = idInstitucion;
+        }
+        this.image = imageFile;
+        this.imageBlob = imageBlob;
+        this.premio = premio;
+    }
+
+    public PremioDTO getPremio() {
+        return premio;
     }
     
     public void setId(int id) {
