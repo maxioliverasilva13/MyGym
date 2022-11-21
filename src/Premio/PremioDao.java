@@ -6,23 +6,29 @@ package Premio;
 
 import Clase.Clase;
 import EntityManajer.InterfaceEntityManager;
-import Premio.InterfacePremioDao;
 import Clase.ClaseDao;
 import Exceptions.ClaseNotFoundException;
 import Exceptions.PremioNotFoundException;
-import Exceptions.SocioAlreadyAreInClass;
 import javax.persistence.EntityManager;
-import Premio.Premio;
 import Premio.dtos.PremioDTO;
-import Usuario.dtos.UsuarioDTO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import Registro.Registro;
+import Socio.Socio;
 import Socio.dtos.SocioDTO;
 import java.util.Random;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import Socio.SocioDAO;
 
 /**
  *
@@ -115,13 +121,73 @@ public class PremioDao implements InterfacePremioDao {
     @Override
     public List<PremioDTO> premiosOfUser(int idSocio) {
         List<PremioDTO> premiosToReturn = new ArrayList<>();
-        List<Premio> lista = em.createNativeQuery("select prem.ID, prem.CANTIDADSORTEADOS, prem.DESCRIPCION, prem.FECHACREACION, prem.FUESORTEADO, prem.CLASEOFPREMIO_ID from registro_premio rp inner join premio prem on prem.ID = rp.premios_ID where EXISTS (select * from registro r where r.id = rp.registros_ID and r.SOCIO_ID = " + idSocio + " );", Premio.class).getResultList();
+        List<Premio> lista = em.createNativeQuery("select prem.ID, prem.CANTIDADSORTEADOS, prem.DESCRIPCION, prem.FECHACREACION, prem.FUESORTEADO, prem.CLASEOFPREMIO_ID from registro_premio rp inner join premio prem on prem.ID = rp.premios_ID where EXISTS (select * from registro r where r.id = rp.registros_ID and r.SOCIO_ID = " + idSocio + " ) ORDER BY prem.FECHACREACION DES;", Premio.class).getResultList();
         if (lista.size() > 0) {
             lista.forEach((Premio premio) -> {
                 premiosToReturn.add(premio.getDtPremio());
             });
         }
         return premiosToReturn;
+    }
+
+    private static void addEmptyLine(Document paragraph, int number) {
+        for (int i = 0; i < number; i++) {
+            paragraph.add(new Paragraph(" "));
+        }
+    }
+
+    @Override
+    public File imprimirPremio(int idPremio, int idSocio) {
+        try {
+            SocioDAO socDao = new SocioDAO();
+            Premio prem = existe(idPremio);
+            Socio soc = socDao.getById(idSocio);
+
+            File file = new File("hello_world.pdf");
+            PdfWriter pdfWriter = new PdfWriter(file);
+
+            PdfDocument pdfDocument = new PdfDocument(pdfWriter);
+            // Image img = Image.getInstance("blablabla.jpg");  
+
+            Document document = new Document(pdfDocument);
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(prem.getFechaCreacion());
+            cal.add(Calendar.DATE, 30);
+
+            Paragraph titlePargraph = new Paragraph("Comprobante de sorteo para la clase " + prem.getClase().getNombre());
+            Paragraph premioNombre = new Paragraph("Premio: " + prem.getDescripcion());
+            Paragraph premioCant = new Paragraph("Cantidad Ganadores: " + prem.getCantidadSorteados());
+            Paragraph premioActividad = new Paragraph("Actividad :" + prem.getClase().getActividad().getNombre());
+            Paragraph ganadorName = new Paragraph("Ganador: " + soc.getNombre() + " - NickName:" + soc.getNickname());
+            
+            SimpleDateFormat formatValidez = new SimpleDateFormat("MM/dd/yyyy");
+            Paragraph validez = new Paragraph("Valido hasta :" + formatValidez.format(cal.getTime()));
+
+            document.add(titlePargraph);
+            addEmptyLine(document, 3);
+            document.add(premioNombre);
+            document.add(premioCant);
+            document.add(premioActividad);
+             document.add(ganadorName);
+            addEmptyLine(document, 1);
+            document.add(validez);
+
+            document.close();
+
+            pdfWriter.close();
+
+            System.out.println("PDF creado");
+            return file;
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        } catch (PremioNotFoundException ex) {
+            System.out.println("PremioDao - generarPdf");
+            System.out.println(ex.getMessage());
+        }
+
+        return null;
     }
 
 }

@@ -8,6 +8,7 @@ import Premio.InterfacePremioDao;
 import Socio.dtos.SocioDTO;
 import java.util.List;
 import Premio.dtos.PremioDTO;
+import java.io.File;
 
 /**
  *
@@ -31,5 +32,9 @@ public class PremioBO implements InterfacePremioBo {
     public List<SocioDTO> realizarSorteo(int idPremio) {
         return premioDao.realizarSorteo(idPremio);
     }
+    
+       public File imprimirPremio(int idPremio, int idSocio) {
+           return premioDao.imprimirPremio(idPremio, idSocio);
+       }
 
 }
