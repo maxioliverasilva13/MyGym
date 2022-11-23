@@ -16,12 +16,15 @@ import javax.persistence.Table;
 import Socio.Socio;
 import Clase.Clase;
 import Clase.DtClase;
+import PuntuacionProfesor.PuntuacionProfesor;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import mygym.logica.usuario.dataTypes.DtPuntuacionProfesor;
 
 /**
  *
@@ -44,6 +47,9 @@ public class Registro implements Serializable {
     @ManyToOne
     @JoinColumn
     private Clase clase;
+    
+    @OneToOne(mappedBy = "registro")
+    private PuntuacionProfesor puntuacionProfesor;
 
     public Socio getSocio() {
         return socio;
@@ -95,15 +101,27 @@ public class Registro implements Serializable {
         if (this.clase.getImage() != null) {
             file = this.clase.createTempFile();
         }
+        String profesorName = this.clase.getActividad().getProfesor().getNombre();
+        String profesorSurname = this.clase.getActividad().getProfesor().getApellido();
         DtClase clase = new DtClase(
-           this.clase.getId(), this.clase.getNombre(), this.clase.getFecha(),null, null, this.clase.getCapMinima(), this.clase.getCapMaxima(), this.clase.getUrlAcceso(), this.clase.getFechaRegistro(), regsOfClass, this.clase.getActividad().getId(), this.clase.getActividad().getNombre(), null, file, null);
+         this.clase.getId(), this.clase.getNombre(), this.clase.getFecha(),profesorName + " " + profesorSurname , null, this.clase.getCapMinima(), this.clase.getCapMaxima(), this.clase.getUrlAcceso(), this.clase.getFechaRegistro(), regsOfClass, this.clase.getActividad().getId(), this.clase.getActividad().getNombre(), null, file, null);
+        DtPuntuacionProfesor puntuacionProf = null;
+        if(this.puntuacionProfesor != null){
+        
+         puntuacionProf = this.puntuacionProfesor.getDt();   
+        }
         
         DtRegistro dtToReturn = new DtRegistro(
           id, costo, fecha, (socio != null) ? socio.getNombre() : null,
-          (clase != null) ? clase.getNombre() : null, clase
+          (clase != null) ? clase.getNombre() : null, clase, (puntuacionProf != null) ? puntuacionProf : null
         );
         return dtToReturn;
     }
+    
+    public PuntuacionProfesor getPuntuacionProfesor() {
+       return this.puntuacionProfesor;
+    }
+    
     
 
 }

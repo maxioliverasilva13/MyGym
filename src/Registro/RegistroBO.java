@@ -8,8 +8,12 @@ import Exceptions.ClassHasMaxOfReg;
 import Exceptions.CompraCuponeraNotFoundException;
 import Exceptions.CuponeraNotFoundException;
 import Exceptions.MaxClasesForCuponera;
+import Exceptions.RegistroNotFoundException;
 import Exceptions.SocioAlreadyAreInClass;
 import Exceptions.SocioNotFoundException;
+import Exceptions.RegistroNotFoundException;
+import PuntuacionProfesor.IPuntuacionProfesorDAO;
+import PuntuacionProfesor.PuntuacionProfesorDAO;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,4 +31,17 @@ public class RegistroBO implements InterfaceRegistroBO {
             registrodao.insertar(idSocio,  claseID, registro,cuponeraId);
         
     } 
+
+    @Override
+    public void addPuntuacionToProfesor(Registro registro, int puntuacion) {
+        IPuntuacionProfesorDAO puntProfDao = new PuntuacionProfesorDAO();
+        puntProfDao.create(registro, puntuacion);
+    }
+
+    @Override
+    public DtRegistro getById(int id) throws RegistroNotFoundException{
+       Registro registro = this.registrodao.existe(id);
+       System.out.println(registro.getId());
+       return registro.getDtRegistro();
+    }
 }

@@ -19,6 +19,7 @@ import Profesor.dtos.ProfesorDTO;
 import java.util.ArrayList;
 import Institucion.DtInstitucion;
 import Actividad.dtos.ActividadDTO;
+import PuntuacionProfesor.PuntuacionProfesor;
 import java.util.List;
 import javax.persistence.OneToOne;
 import utils.ParserClassesToDt;
@@ -34,10 +35,16 @@ public class Profesor extends Usuario {
  private String descripcionGeneral;
  private String biografia;
  private String linkSitioWeb;
+ 
  @ManyToMany()
  private List<Institucion> instituciones = new ArrayList();
  @OneToMany(mappedBy = "profesor")
  private Set<Actividad> actividades;
+ 
+
+ 
+ 
+    
  
     public void agregarInstitucion(Institucion ins) {
         this.instituciones.add(ins);
@@ -89,5 +96,7 @@ public class Profesor extends Usuario {
             return profe;
         }
     }
+    
+  
 
 }

@@ -4,10 +4,12 @@
  */
 package Profesor;
 
+import Clase.Clase;
 import EntityManajer.InterfaceEntityManager;
 import Profesor.dtos.ProfesorCreateDTO;
 import Profesor.dtos.ProfesorDTO;
 import Profesor.dtos.ProfesorEditDTO;
+import PuntuacionProfesor.PuntuacionProfesor;
 import Socio.Socio;
 import Socio.dtos.SocioEditDTO;
 import Socio.exceptions.SocioNotExist;
@@ -22,6 +24,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import Usuario.UsuarioDAO;
+import mygym.logica.usuario.dataTypes.ProfesorPuntuacionesDTO;
 import utils.EncryptPass;
 
 /**
@@ -57,7 +60,6 @@ public class ProfesorDao  implements IProfesorDao {
 
         EntityTransaction tr = em.getTransaction();
         tr.begin();
-        System.out.println(editProf.getEmail());
         prof.setApellido(editProf.getApellido());
         if (editProf.getEmail() != null){
             prof.setEmail(editProf.getEmail());
@@ -104,4 +106,24 @@ public class ProfesorDao  implements IProfesorDao {
     public Profesor getByNickname(String nickname) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public List<PuntuacionProfesor> getPuntuacionesProfesor(Profesor prof) {
+        List<PuntuacionProfesor> res;
+        Query query = this.em.createNativeQuery("SELECT puntuacionprofesor.ID, puntuacionprofesor.PUNTUACION, puntuacionprofesor.FECHA, puntuacionprofesor.REGISTRO_ID  FROM puntuacionprofesor JOIN registro ON registro.ID = puntuacionprofesor.REGISTRO_ID JOIN clase ON clase.ID = registro.CLASE_ID JOIN actividad ON actividad.ID = clase.ACTIVIDAD_ID JOIN profesor ON profesor.userId ="+prof.getId(),PuntuacionProfesor.class);
+        res = query.getResultList();
+    
+        return res;
+    }
+
+    @Override
+    public List<PuntuacionProfesor> getPuntuacionesProfesorByClass(Clase clase) {
+        List<PuntuacionProfesor> res;
+        Query query = this.em.createNativeQuery("SELECT puntuacionprofesor.ID, puntuacionprofesor.PUNTUACION, puntuacionprofesor.FECHA, puntuacionprofesor.REGISTRO_ID  FROM puntuacionprofesor JOIN registro ON registro.ID = puntuacionprofesor.REGISTRO_ID JOIN clase ON clase.ID = registro.CLASE_ID WHERE clase.ID="+clase.getId()+"",PuntuacionProfesor.class);
+        res = query.getResultList();
+    
+        return res;// Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
 }

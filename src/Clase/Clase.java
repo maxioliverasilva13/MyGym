@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import java.util.Date;
 import javax.persistence.ManyToOne;
 import Actividad.Actividad;
+import PuntuacionProfesor.PuntuacionProfesor;
 import java.util.Collection;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -57,6 +58,7 @@ public class Clase implements Serializable {
     private Actividad actividad;
     @OneToMany(mappedBy = "clase")
     private List<Registro> registros;
+    
 
     @Lob
     @Basic(fetch = FetchType.LAZY)
@@ -207,5 +209,9 @@ public class Clase implements Serializable {
                 file, this.image);
         return classParsed;
     }
+    
+    
+     
+    
 
 }

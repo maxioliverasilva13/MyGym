@@ -9,6 +9,7 @@ import Exceptions.CompraCuponeraNotFoundException;
 import Exceptions.CuponeraNotFoundException;
 import Exceptions.MaxClasesForCuponera;
 import Exceptions.SocioNotFoundException;
+import Socio.Socio;
 import java.util.List;
 
 /**
@@ -18,4 +19,7 @@ import java.util.List;
 public interface InterfaceRegistroDao {
     public void insertar(int idSocio, int claseID, DtRegistro registro,Integer cuponeraId) throws SocioNotFoundException,CuponeraNotFoundException, MaxClasesForCuponera,CompraCuponeraNotFoundException;
     public Registro existe(int idRegistro);
+    public void SocioEstaEnClase (int idSocio, int idClase);
+    public Registro getByClaseAndSocio(Socio socio, Clase clase);
+   
 }

@@ -5,6 +5,7 @@
 package Socio;
 
 import CompraCuponera.CompraCuponera;
+import PuntuacionProfesor.PuntuacionProfesor;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Entity;
@@ -29,6 +30,8 @@ public class Socio extends Usuario{
     
     @OneToMany(mappedBy = "socio")
     private List<CompraCuponera> comprasCuponeras;
+    
+    
     
     public void addRegistro(Registro r) {
         this.registros.add(r);
@@ -88,6 +91,10 @@ public class Socio extends Usuario{
 
         return new SocioDTO(this.getId(), this.getNombre(),this.getApellido(),this.getNickname(),this.getEmail(),this.getNacimiento(), null, this.createTempFile(), null,null, this.getImage()); 
     }
+    
+
+  
+    
     
     
 }

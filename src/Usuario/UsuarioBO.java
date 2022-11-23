@@ -106,4 +106,6 @@ public class UsuarioBO implements IUsuarioBO {
     public int getSeguidores(int idUsuario) {
         return userDao.getSeguidores(idUsuario);
     }
+    
+  
 }
