@@ -5,10 +5,14 @@
 package Profesor;
 
 import Actividad.Actividad;
+import Exceptions.ClaseNotFoundException;
+import Exceptions.ProfesorNoDictaClaseException;
 import Institucion.DtInstitucion;
 import Profesor.dtos.ProfesorDTO;
 import Profesor.dtos.ProfesorEditDTO;
 import Profesor.exceptions.ProfesorNotExist;
+import java.util.List;
+import mygym.logica.usuario.dataTypes.ProfesorPuntuacionesDTO;
 
 /**
  *
@@ -20,5 +24,8 @@ public interface IProfesorBO  {
     public boolean existeById(int id);
     public void agregarActividad(Actividad act);
     public DtInstitucion getInstitucion(int idProf);
+    public ProfesorPuntuacionesDTO getValoracionesGenerales(int idProf);
+    public double getValoracionByClass(int idClass) ; 
+    public int getCantValoracionByClass(int idClass);
    
 }

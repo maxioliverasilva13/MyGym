@@ -16,4 +16,7 @@ import java.util.List;
  */
 public interface InterfaceRegistroBO {
     public void agregarRegistro(int idSocio, int claseID, DtRegistro registro,Integer cuponeraId) throws MaxClasesForCuponera,CompraCuponeraNotFoundException,ClassHasMaxOfReg,SocioAlreadyAreInClass;
+    public void addPuntuacionToProfesor(Registro registro, int puntuacion);
+    public DtRegistro getById(int id);
+
 }

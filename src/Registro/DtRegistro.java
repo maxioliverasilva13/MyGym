@@ -3,6 +3,7 @@ package Registro;
 import Clase.DtClase;
 import Socio.dtos.SocioDTO;
 import java.util.Date;
+import mygym.logica.usuario.dataTypes.DtPuntuacionProfesor;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -21,6 +22,7 @@ public class DtRegistro {
     private String claseName;
     private DtClase clase;
     private SocioDTO socio;
+    private DtPuntuacionProfesor puntuacionProfesor;
 
     public DtRegistro(int id, Float costo, Date fecha, String socioName, String claseName) {
         this.id = id;
@@ -28,15 +30,17 @@ public class DtRegistro {
         this.fecha = fecha;
         this.socioName = socioName;
         this.claseName = claseName;
+        
     }
     
-    public DtRegistro(int id, float costo, Date fecha, String socioName, String claseName, DtClase clase) {
+    public DtRegistro(int id, float costo, Date fecha, String socioName, String claseName, DtClase clase,DtPuntuacionProfesor puntuacionProfesor) {
         this.id = id;
         this.costo = costo;
         this.fecha = fecha;
         this.socioName = socioName;
         this.claseName = claseName;
         this.clase = clase;
+        this.puntuacionProfesor = puntuacionProfesor;
     }
 
     public DtRegistro(int id, float costo, Date fecha, String socioName, String claseName, DtClase clase, SocioDTO socio) {
@@ -47,6 +51,17 @@ public class DtRegistro {
         this.claseName = claseName;
         this.clase = clase;
         this.socio = socio;
+    }
+
+      public DtRegistro(int id, float costo, Date fecha, String socioName, String claseName, DtClase clase, SocioDTO socio, DtPuntuacionProfesor puntuacionProfesor) {
+        this.id = id;
+        this.costo = costo;
+        this.fecha = fecha;
+        this.socioName = socioName;
+        this.claseName = claseName;
+        this.clase = clase;
+        this.socio = socio;
+        this.puntuacionProfesor = puntuacionProfesor;
     }
     
     public int getId() {

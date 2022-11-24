@@ -41,7 +41,7 @@ public class RegistroDao implements InterfaceRegistroDao {
 
     }
     
-    private void SocioEstaEnClase (int idSocio, int idClase) {
+    public void SocioEstaEnClase (int idSocio, int idClase) {
         List<Registro> lista =em.createNativeQuery("select * from registro r where r.CLASE_ID=" + idClase + " and r.SOCIO_id=" + idSocio, Registro.class).getResultList();
         if (lista.size() > 0) {
             throw new SocioAlreadyAreInClass("El socio" + idSocio + " ya es parte de la clase" + idClase);
@@ -115,6 +115,18 @@ public class RegistroDao implements InterfaceRegistroDao {
         }
         return ins;
     }
+    
+    @Override
+    public Registro getByClaseAndSocio(Socio socio, Clase clase){
+        List<Registro> lista =em.createNativeQuery("select * from registro r where r.CLASE_ID=" + clase.getId() + " and r.SOCIO_id=" + socio.getId(), Registro.class).getResultList();
+        if (lista.size() > 0) {
+            return lista.get(0);
+        }
+        return null;
+    }
+
+    
+   
 
     
     

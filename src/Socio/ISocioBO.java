@@ -20,6 +20,7 @@ public interface ISocioBO {
     public void editar(int id, SocioEditDTO socioEdit);
     public SocioDTO consultarSocio(int id) throws SocioNotExist;
     public void agregarRegistro(Registro newRegistro);
+    public void puntuarProfesorEnClase(int claseId,int socioId, int puntuacion) throws Exception;  //puntua a un profesor de una clase en la que el socio participo.
    
     
     

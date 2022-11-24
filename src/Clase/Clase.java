@@ -14,6 +14,7 @@ import java.util.Date;
 import javax.persistence.ManyToOne;
 import Actividad.Actividad;
 import Premio.Premio;
+import PuntuacionProfesor.PuntuacionProfesor;
 import java.util.Collection;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -64,6 +65,7 @@ public class Clase implements Serializable {
     private List<Registro> registros;
     @OneToMany(mappedBy = "claseOfPremio")
     private List<Premio> premios;
+    
 
     @Lob
     @Basic(fetch = FetchType.LAZY)
@@ -268,5 +270,9 @@ public class Clase implements Serializable {
                 file, this.image);
         return classParsed;
     }
+    
+    
+     
+    
 
 }
