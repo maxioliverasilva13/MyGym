@@ -14,6 +14,7 @@ import Exceptions.RegistroNotFoundException;
 import Registro.Registro;
 import java.util.List;
 import Actividad.ActividadDao;
+import Exceptions.ActividadEstaFinalizada;
 
 /**
  *
@@ -48,6 +49,9 @@ public class ClaseDao implements InterfaceClaseDao {
         }
         if (existeClase(clase.getNombre())) {
             throw new ClaseNotFoundException("Clase ya existente");
+        }
+        if(act.getEstado().equals("Finalizada")){
+            throw new ActividadEstaFinalizada("No se pudo agregar la clase, debido a que la actividad ya esta finalizada.");
         }
         clase.setActividad(act);
         actdao.agergarClase(idActividad, clase);

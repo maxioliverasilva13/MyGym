@@ -24,6 +24,7 @@ public class InterfaceEntityManager {
         if (instance==null) {
             InterfaceEntityManager interfaceEntityManager = new InterfaceEntityManager();
         }
+        instance.clear();
         return instance;
     }
     
