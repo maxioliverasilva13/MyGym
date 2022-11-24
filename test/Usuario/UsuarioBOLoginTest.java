@@ -10,6 +10,7 @@ import Usuario.dtos.UsuarioDTO;
 import Usuario.exceptions.UnauthorizedException;
 import java.util.Date;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.Rule;

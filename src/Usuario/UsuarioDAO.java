@@ -113,9 +113,9 @@ public class UsuarioDAO implements IUsuarioDAO{
  
 
     @Override
-    public Usuario getByEmail(String email) {
+    public Usuario getByEmail(String emailOrNickname) {
         List<Usuario> usuarios;
-        Query query = this.em.createNativeQuery("SELECT * FROM usuario WHERE EMAIL = "+"'"+email+"'",Usuario.class);
+        Query query = this.em.createNativeQuery("SELECT * FROM usuario WHERE EMAIL = '" + emailOrNickname + "' OR NICKNAME = '" + emailOrNickname + "';",Usuario.class);
         query.setMaxResults(1);
         usuarios = query.getResultList();
         if(usuarios.isEmpty()){
