@@ -36,10 +36,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import javafx.beans.property.SimpleIntegerProperty;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
+import org.eclipse.persistence.annotations.Cache;
 
 /**
  *
@@ -47,6 +49,7 @@ import javax.persistence.Lob;
  */
 @Entity
 @Table()
+@Cacheable(false)
 public class Actividad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -20,15 +20,20 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+import org.eclipse.persistence.annotations.Cache;
+import Premio.Premio;
+import Socio.dtos.SocioDTO;
 /**
  *
  * @author maximilianooliverasilva
  */
 @Entity
 @Table()
+@Cacheable(false)
 public class Registro implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,6 +49,8 @@ public class Registro implements Serializable {
     @ManyToOne
     @JoinColumn
     private Clase clase;
+    @ManyToMany()
+    private List<Premio> premios;
 
     public Socio getSocio() {
         return socio;
@@ -85,6 +92,10 @@ public class Registro implements Serializable {
         this.fecha = fecha;
     }
     
+    public void agregarPremio(Premio prem) {
+        this.premios.add(prem);
+    }
+    
     public DtRegistro getDtRegistro() {
         List<DtRegistro> regsOfClass = new ArrayList<>();
         
@@ -98,9 +109,11 @@ public class Registro implements Serializable {
         DtClase clase = new DtClase(
            this.clase.getId(), this.clase.getNombre(), this.clase.getFecha(),null, null, this.clase.getCapMinima(), this.clase.getCapMaxima(), this.clase.getUrlAcceso(), this.clase.getFechaRegistro(), regsOfClass, this.clase.getActividad().getId(), this.clase.getActividad().getNombre(), null, file, null);
         
+        SocioDTO socio = this.socio.getDtSocioWithoutRegistros();
+        
         DtRegistro dtToReturn = new DtRegistro(
           id, costo, fecha, (socio != null) ? socio.getNombre() : null,
-          (clase != null) ? clase.getNombre() : null, clase
+          (clase != null) ? clase.getNombre() : null, clase, socio
         );
         return dtToReturn;
     }

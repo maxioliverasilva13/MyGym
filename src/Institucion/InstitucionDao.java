@@ -13,6 +13,7 @@ import Actividad.Actividad;
 import Exceptions.ActividadNotFoundException;
 import Exceptions.ProfesorNotFoundException;
 import java.util.List;
+import org.eclipse.persistence.config.QueryHints;
 
 /**
  *
@@ -85,8 +86,7 @@ public class InstitucionDao implements InterfaceInstitucionDao {
     
     @Override
     public List<Institucion> listarInstituciones() {
-        List<Institucion> instituciones = em.createNativeQuery("select * from INSTITUCION", Institucion.class)
-        .getResultList();
+        List<Institucion> instituciones = em.createNativeQuery("SELECT * FROM INSTITUCION", Institucion.class).getResultList();
         return instituciones;
     }
 

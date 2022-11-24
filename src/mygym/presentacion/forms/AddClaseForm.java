@@ -30,7 +30,6 @@ import javax.swing.WindowConstants;
 import javax.swing.plaf.IconUIResource;
 import utils.BrowseFile;
 
-
 /**
  *
  * @author maximilianooliverasilva
@@ -41,7 +40,7 @@ public class AddClaseForm extends javax.swing.JFrame {
      * Creates new form AddUsersForm
      */
     String[] profesores;
-    
+
     InstitucionBO insBO = new InstitucionBO();
     ActividadBO actBO = new ActividadBO();
     ClaseBO claseBO = new ClaseBO();
@@ -58,7 +57,7 @@ public class AddClaseForm extends javax.swing.JFrame {
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         dispose();
         this.loadInstituciones();
-       
+
     }
 
     /**
@@ -83,7 +82,7 @@ public class AddClaseForm extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
-        jTextField5 = new javax.swing.JTextField();
+        jTextDescripcionPremio = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
@@ -93,7 +92,7 @@ public class AddClaseForm extends javax.swing.JFrame {
         jTextField7 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jTextField8 = new javax.swing.JTextField();
+        jTextCantidadGanadores = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -103,6 +102,13 @@ public class AddClaseForm extends javax.swing.JFrame {
         fecha = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         labelImage = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jTextField9 = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jTextMaxSocios = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
 
         dateChooserFechaRegistro.setForeground(new java.awt.Color(76, 131, 122));
         dateChooserFechaRegistro.setToolTipText("");
@@ -110,7 +116,6 @@ public class AddClaseForm extends javax.swing.JFrame {
         dateChooserFechaRegistro.setTextRefernce(fecha);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(480, 680));
         setMinimumSize(new java.awt.Dimension(480, 680));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -146,7 +151,7 @@ public class AddClaseForm extends javax.swing.JFrame {
             .addComponent(btnMinimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
         );
 
-        jPanel1.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 30, 20));
+        jPanel1.add(btnMinimizarBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 0, 30, 20));
 
         btnExitBG.setBackground(new java.awt.Color(174, 0, 51));
 
@@ -174,13 +179,13 @@ public class AddClaseForm extends javax.swing.JFrame {
             .addComponent(btnExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel1.add(btnExitBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 30, 20));
+        jPanel1.add(btnExitBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, 30, 20));
 
         jLabel1.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(41, 69, 87));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Alta de Clase");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 120, 30));
+        jLabel1.setText("Premios(Opcional)");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 190, 30));
 
         jComboBox1.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jComboBox1.setEnabled(false);
@@ -224,18 +229,18 @@ public class AddClaseForm extends javax.swing.JFrame {
         });
         jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 344, 34));
 
-        jTextField5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(160, 160, 160)));
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        jTextDescripcionPremio.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(160, 160, 160)));
+        jTextDescripcionPremio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                jTextDescripcionPremioActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 344, 35));
+        jPanel1.add(jTextDescripcionPremio, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 330, 35));
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jLabel2.setText("Ingresa un nombre");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
+        jLabel2.setText("Ingresa una descripcion");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, -1, -1));
 
         jTextField6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(160, 160, 160)));
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
@@ -305,30 +310,30 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 600, 180, 47));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 610, 180, 47));
 
-        jTextField8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(160, 160, 160)));
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        jTextCantidadGanadores.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(160, 160, 160)));
+        jTextCantidadGanadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                jTextCantidadGanadoresActionPerformed(evt);
             }
         });
-        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextCantidadGanadores.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField8KeyPressed(evt);
+                jTextCantidadGanadoresKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField8KeyReleased(evt);
+                jTextCantidadGanadoresKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField8KeyTyped(evt);
+                jTextCantidadGanadoresKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 350, 95, 35));
+        jPanel1.add(jTextCantidadGanadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, 120, 35));
 
         jLabel6.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jLabel6.setText("Maximo Socios");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, -1, -1));
+        jLabel6.setText("Cantidad de ganadores");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
 
         jLabel11.setBackground(new java.awt.Color(255, 0, 102));
         jLabel11.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
@@ -336,7 +341,7 @@ public class AddClaseForm extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel11.setName("errorLblMinSocios"); // NOI18N
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, 190, 16));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 160, 16));
 
         jLabel12.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 0, 51));
@@ -357,7 +362,7 @@ public class AddClaseForm extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 0, 51));
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, -1, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 580, 350, 20));
 
         fecha.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         fecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -383,26 +388,83 @@ public class AddClaseForm extends javax.swing.JFrame {
         });
         jPanel1.add(labelImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 100, 70));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 678));
+        jLabel17.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(41, 69, 87));
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("Alta de Clase");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 120, 30));
+
+        jTextField9.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(160, 160, 160)));
+        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField9ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 344, 35));
+
+        jLabel18.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        jLabel18.setText("Ingresa un nombre");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
+
+        jLabel19.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        jLabel19.setText("Maximo Socios");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, -1, -1));
+
+        jTextMaxSocios.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(160, 160, 160)));
+        jTextMaxSocios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextMaxSociosActionPerformed(evt);
+            }
+        });
+        jTextMaxSocios.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextMaxSociosKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextMaxSociosKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextMaxSociosKeyTyped(evt);
+            }
+        });
+        jPanel1.add(jTextMaxSocios, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 350, 100, 35));
+
+        jLabel20.setBackground(new java.awt.Color(255, 0, 102));
+        jLabel20.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel20.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jLabel20.setName("errorLblMinSocios"); // NOI18N
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, 190, 16));
+
+        jLabel21.setBackground(new java.awt.Color(255, 0, 102));
+        jLabel21.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel21.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jLabel21.setName("errorLblMinSocios"); // NOI18N
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 270, 16));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 678));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void jTextDescripcionPremioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextDescripcionPremioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_jTextDescripcionPremioActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jTextField6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyPressed
-        
+
     }//GEN-LAST:event_jTextField6KeyPressed
 
     private void jTextField6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyReleased
-        
-         
+
+
     }//GEN-LAST:event_jTextField6KeyReleased
 
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
@@ -417,120 +479,152 @@ public class AddClaseForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7KeyReleased
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void jTextCantidadGanadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCantidadGanadoresActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_jTextCantidadGanadoresActionPerformed
 
-    private void jTextField8KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyPressed
+    private void jTextCantidadGanadoresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextCantidadGanadoresKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8KeyPressed
+    }//GEN-LAST:event_jTextCantidadGanadoresKeyPressed
 
-    private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
+    private void jTextCantidadGanadoresKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextCantidadGanadoresKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8KeyReleased
+    }//GEN-LAST:event_jTextCantidadGanadoresKeyReleased
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         String valueMinSocios = this.jTextField7.getText();
-        String valueMaxSocios = this.jTextField8.getText();
-        String nombreText = this.jTextField5.getText();
+        String valueMaxSocios = this.jTextMaxSocios.getText();
+        String valueCantidadSorteados = this.jTextCantidadGanadores.getText();
+        String nombreText = this.jTextDescripcionPremio.getText();
         String urlAccesoText = this.jTextField6.getText();
+        String nombrePremio = this.jTextDescripcionPremio.getText();
         int countErrors = 0;
         this.cleanFields();
-       
+
         boolean validNumbers = true;
-         if(!this.checkIfStringIsNumber(valueMinSocios)){
-               this.jLabel12.setVisible(true);
-               this.jLabel12.setText("Capacidad mínima inválida");
-               countErrors++;
-               validNumbers = false;
-         }
-                
-        if(!this.checkIfStringIsNumber(valueMaxSocios)){
-                  this.jLabel11.setVisible(true);
-                  this.jLabel11.setText("Capacidad máxima inválida");
-                  countErrors++;
-                  validNumbers = false;
+        if (!this.checkIfStringIsNumber(valueMinSocios)) {
+            this.jLabel11.setVisible(true);
+            this.jLabel11.setText("Cantidad Maxima invalida");
+            countErrors++;
+            validNumbers = false;
+        }
+
+        if (!this.checkIfStringIsNumber(valueMaxSocios)) {
+            this.jLabel11.setVisible(true);
+            this.jLabel11.setText("Cantidad maxima invalida");
+            countErrors++;
+            validNumbers = false;
         }
         
-        if(validNumbers){
+         if (!this.checkIfStringIsNumber(valueCantidadSorteados)) {
+            this.jLabel11.setVisible(true);
+            this.jLabel20.setText("Cantidad sorteados invalido");
+            countErrors++;
+            validNumbers = false;
+        }
+
+
+        if (validNumbers) {
             int minSociosInt = Integer.parseInt(valueMinSocios);
             int maxSociosInt = Integer.parseInt(valueMaxSocios);
-        
-            if(minSociosInt > maxSociosInt){
+            int valueCantidadSorteadosInt = Integer.parseInt(valueCantidadSorteados);
+
+            if (minSociosInt > maxSociosInt) {
                 countErrors++;
                 this.jLabel15.setText("Max socios debe ser mayor que Min");
             }
+
+            if (nombrePremio != "") {
+                if (valueCantidadSorteadosInt > maxSociosInt) {
+                    countErrors++;
+                    this.jLabel20.setText("No puedes sortear mas que la capacidad maxima");
+                }
+
+                if (valueCantidadSorteadosInt < minSociosInt) {
+                    countErrors++;
+                    this.jLabel20.setText("No puedes sortear menos que la capacidad minima");
+                }
+            }
+            if (valueCantidadSorteadosInt <= 0) {
+                countErrors++;
+                this.jLabel21.setText("Debes ingresar un nombre de premio");
+            }
+
         }
-        
-                
-         if(nombreText.isEmpty()){
-             this.jLabel13.setText("El nombre no puede estar vacío");
-             countErrors++;
-          } 
-                
-          if(urlAccesoText.isEmpty()){
-              this.jLabel14.setText("La URL no debe estar vacía");
-              countErrors++;
-           }else{
-              if(!checkValidUrl(urlAccesoText)){
-              this.jLabel14.setText("URL inválida");
-              countErrors++;
-           }
-                }        
-         if(countErrors > 0){
-             return;
-         }
-         
-      
+
+        if (nombreText.isEmpty()) {
+            this.jLabel13.setText("El nombre no puede estar vacío");
+            countErrors++;
+        }
+
+        if (urlAccesoText.isEmpty()) {
+            this.jLabel14.setText("La URL no debe estar vacía");
+            countErrors++;
+        } else {
+            if (!checkValidUrl(urlAccesoText)) {
+                this.jLabel14.setText("URL inválida");
+                countErrors++;
+            }
+        }
+        if (countErrors > 0) {
+            return;
+        }
+
         ParseDate parseDate = new ParseDate();
         LocalDate now = LocalDate.now();
         int capMinima = Integer.parseInt(jTextField7.getText());
-        int capMaxima = Integer.parseInt(jTextField8.getText());
+        int capMaxima = Integer.parseInt(jTextCantidadGanadores.getText());
         String urlAcceso = jTextField6.getText();
         Date fechaRegistro = parseDate.parseDate(now.getYear() + "-" + now.getMonthValue() + "-" + now.getDayOfMonth());
         SelectedDate selected = dateChooserFechaRegistro.getSelectedDate();
         Date fechaClase = parseDate.parseDate(selected.getYear() + "-" + selected.getMonth() + "-" + selected.getDay());
-        String nombre = jTextField5.getText();
-       
-        if(selectedActividadId == null){
-             JOptionPane.showMessageDialog(new JFrame(), "Debes elegir una actividad", "Actividad no seleccionada", JOptionPane.ERROR_MESSAGE);
-             return;
+        String nombre = jTextField9.getText();
+
+        if (selectedActividadId == null) {
+            JOptionPane.showMessageDialog(new JFrame(), "Debes elegir una actividad", "Actividad no seleccionada", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        DtClase dt = new DtClase(0, nombre, fechaClase,null, null, capMinima, capMaxima, urlAcceso, fechaRegistro, null, null, null, null, BrowseFile.globalFile, null);
-   
+        DtClase dt = new DtClase(0, nombre, fechaClase, null, null, capMinima, capMaxima, urlAcceso, fechaRegistro, null, null, null, null, BrowseFile.globalFile, null);
+
         try {
-            claseBO.insertarClase(selectedActividadId, dt);
+            int valueCantidadSorteadosInt = Integer.parseInt(valueCantidadSorteados);
+
+            
+            if (valueCantidadSorteadosInt > 0 && nombrePremio != "") {
+                 claseBO.insertarClaseAndPremio(selectedActividadId, dt, nombrePremio, valueCantidadSorteadosInt);
+            } else {
+                 claseBO.insertarClase(selectedActividadId, dt);
+            }
             JOptionPane.showMessageDialog(new JFrame(), "La clase se insertó correctamente", "Agregado Correctamente", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             System.out.println("AddClaseForm - Crear Clase");
             System.out.println(e.getMessage());
         }
-         
-        
+
         this.setVisible(false);
         this.cleanFields();
     }//GEN-LAST:event_jButton1MouseClicked
 
-     private static boolean  checkValidUrl(String url){
-         String regex = "((http|https)://)(www.)?"
-              + "[a-zA-Z0-9@:%._\\+~#?&//=]"
-              + "{2,256}\\.[a-z]"
-              + "{2,6}\\b([-a-zA-Z0-9@:%"
-              + "._\\+~#?&//=]*)";
+    private static boolean checkValidUrl(String url) {
+        String regex = "((http|https)://)(www.)?"
+                + "[a-zA-Z0-9@:%._\\+~#?&//=]"
+                + "{2,256}\\.[a-z]"
+                + "{2,6}\\b([-a-zA-Z0-9@:%"
+                + "._\\+~#?&//=]*)";
         Pattern p = Pattern.compile(regex);
-        
+
         Matcher m = p.matcher(url);
         return m.matches();
-        
-     }
+
+    }
     private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
         String selectedItem = jComboBox2.getSelectedItem().toString();
         instituciones.forEach((Integer k, DtInstitucion d) -> {
             if (d.getNombre() == selectedItem) {
                 if (selectedInstitucionId != k) {
-                  selectedInstitucionId = k;
-                  this.loadActividades();
-                } 
+                    selectedInstitucionId = k;
+                    this.loadActividades();
+                }
             }
         });
     }//GEN-LAST:event_jComboBox2ItemStateChanged
@@ -539,19 +633,19 @@ public class AddClaseForm extends javax.swing.JFrame {
         Object sels = this.jComboBox3.getSelectedItem();
         String selectedItem = (sels != null) ? sels.toString() : null;
         if (selectedItem != null) {
-             actividades.forEach((Integer k, ActividadDTO d) -> {
-            if (d.getNombre() == selectedItem) {
-                if (selectedActividadId != k) {
-                  selectedActividadId = k;
-                  if (d.getProfesor() != null) {
-                      ProfesorDTO profe = d.getProfesor();
-                    // add the only profesor for this class
-                    this.jComboBox1.addItem(profe.getNombre() + " " + profe.getApellido());
-                  }
-                } 
-            }
+            actividades.forEach((Integer k, ActividadDTO d) -> {
+                if (d.getNombre() == selectedItem) {
+                    if (selectedActividadId != k) {
+                        selectedActividadId = k;
+                        if (d.getProfesor() != null) {
+                            ProfesorDTO profe = d.getProfesor();
+                            // add the only profesor for this class
+                            this.jComboBox1.addItem(profe.getNombre() + " " + profe.getApellido());
+                        }
+                    }
+                }
             });
-        }else{
+        } else {
             selectedActividadId = null;
         }
     }//GEN-LAST:event_jComboBox3ItemStateChanged
@@ -565,20 +659,20 @@ public class AddClaseForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_fechaActionPerformed
 
-    private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
-    char c = evt.getKeyChar();
-    if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
-         evt.consume();  // if it's not a number, ignore the event
-    }
-    // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8KeyTyped
+    private void jTextCantidadGanadoresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextCantidadGanadoresKeyTyped
+        char c = evt.getKeyChar();
+        if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+            evt.consume();  // if it's not a number, ignore the event
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextCantidadGanadoresKeyTyped
 
     private void jTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyTyped
-    char c = evt.getKeyChar();
-    if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
-         evt.consume();  // if it's not a number, ignore the event
-    }
-    // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+            evt.consume();  // if it's not a number, ignore the event
+        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7KeyTyped
 
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
@@ -599,18 +693,42 @@ public class AddClaseForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_labelImageMouseClicked
 
+    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField9ActionPerformed
+
+    private void jTextMaxSociosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextMaxSociosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextMaxSociosActionPerformed
+
+    private void jTextMaxSociosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextMaxSociosKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextMaxSociosKeyPressed
+
+    private void jTextMaxSociosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextMaxSociosKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextMaxSociosKeyReleased
+
+    private void jTextMaxSociosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextMaxSociosKeyTyped
+        char c = evt.getKeyChar();
+        if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+            evt.consume();  // if it's not a number, ignore the event
+        }
+        // TODO add your handling code here:        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextMaxSociosKeyTyped
+
     /**
      * @param args the command line arguments
      */
-    
-    private void cleanFields(){
-           this.jLabel11.setText("");
-           this.jLabel12.setText("");
-           this.jLabel13.setText("");
-           this.jLabel14.setText("");
-           this.jLabel15.setText("");
-        
+    private void cleanFields() {
+        this.jLabel11.setText("");
+        this.jLabel12.setText("");
+        this.jLabel13.setText("");
+        this.jLabel14.setText("");
+        this.jLabel15.setText("");
+
     }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -643,49 +761,48 @@ public class AddClaseForm extends javax.swing.JFrame {
             }
         });
     }
-    
+
     /*CUSTOMS FUNCTIONS*/
-    
-    private boolean checkIfStringIsNumber(String value){
-          if (value.isEmpty()) {
-              return false;
-          }
-          try {
-              int res = Integer.parseInt(value);
-          } catch (NumberFormatException nfe) {
-              return false;
-          }
-          return true;
+    private boolean checkIfStringIsNumber(String value) {
+        if (value.isEmpty()) {
+            return false;
+        }
+        try {
+            int res = Integer.parseInt(value);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
-    
-    private void loadInstituciones(){
-       this.jComboBox2.removeAllItems();
+
+    private void loadInstituciones() {
+        this.jComboBox2.removeAllItems();
         instituciones.forEach((Integer key, DtInstitucion i) -> {
             this.jComboBox2.addItem(i.getNombre());
-       });
-       this.jComboBox2.enable(true);
+        });
+        this.jComboBox2.enable(true);
     }
-    
-      private void loadActividades(){
-       this.jComboBox3.removeAllItems();
-       actividades = actBO.listarActividades(selectedInstitucionId,"Aceptada");
-       actividades.forEach((Integer key, ActividadDTO data) -> {
-           this.jComboBox3.addItem(data.getNombre());
-       });
-      
-       this.jComboBox3.enable(true);
-       
+
+    private void loadActividades() {
+        this.jComboBox3.removeAllItems();
+        actividades = actBO.listarActividades(selectedInstitucionId, "Aceptada");
+        actividades.forEach((Integer key, ActividadDTO data) -> {
+            this.jComboBox3.addItem(data.getNombre());
+        });
+
+        this.jComboBox3.enable(true);
+
     }
-      
-     private void loadProfesores(){
-       this.jComboBox1.removeAllItems();
-       this.profesores =  new String[]{"Daniel Diaz", "Nicolas escobra"};
-       for(String cadena :profesores) {
-           this.jComboBox1.addItem(cadena);
-       }
-       this.jComboBox1.enable(true);
-      }
-  
+
+    private void loadProfesores() {
+        this.jComboBox1.removeAllItems();
+        this.profesores = new String[]{"Daniel Diaz", "Nicolas escobra"};
+        for (String cadena : profesores) {
+            this.jComboBox1.addItem(cadena);
+        }
+        this.jComboBox1.enable(true);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnExit;
     private javax.swing.JPanel btnExitBG;
@@ -706,7 +823,12 @@ public class AddClaseForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -715,10 +837,12 @@ public class AddClaseForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextCantidadGanadores;
+    private javax.swing.JTextField jTextDescripcionPremio;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jTextMaxSocios;
     private javax.swing.JLabel labelImage;
     // End of variables declaration//GEN-END:variables
 }

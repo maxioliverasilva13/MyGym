@@ -20,7 +20,9 @@ import java.util.ArrayList;
 import Institucion.DtInstitucion;
 import Actividad.dtos.ActividadDTO;
 import java.util.List;
+import javax.persistence.Cacheable;
 import javax.persistence.OneToOne;
+import org.eclipse.persistence.annotations.Cache;
 import utils.ParserClassesToDt;
 
 /**
@@ -30,6 +32,7 @@ import utils.ParserClassesToDt;
 @Entity
 @PrimaryKeyJoinColumn(name = "userId")
 @Table
+@Cacheable(false)
 public class Profesor extends Usuario {
  private String descripcionGeneral;
  private String biografia;

@@ -26,8 +26,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import javafx.beans.property.SimpleIntegerProperty;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
+import org.eclipse.persistence.annotations.Cache;
 import utils.ParserClassesToDt;
 
 /**
@@ -36,6 +38,7 @@ import utils.ParserClassesToDt;
  */
 @Entity
 @Table()
+@Cacheable(false)
 public class Institucion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

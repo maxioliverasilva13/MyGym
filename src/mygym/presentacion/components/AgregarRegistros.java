@@ -39,7 +39,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import mygym.presentacion.pages.Instituciones;
-import sun.security.pkcs.ContentInfo;
 import utils.CustomClick;
 import utils.RenderFoto;
 

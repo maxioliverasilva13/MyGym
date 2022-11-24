@@ -51,7 +51,9 @@ public class ClaseDao implements InterfaceClaseDao {
         }
         clase.setActividad(act);
         actdao.agergarClase(idActividad, clase);
+        em.getTransaction().begin();
         em.persist(clase);
+        em.getTransaction().commit();
         dtClase.setId(clase.getId());
     }
 

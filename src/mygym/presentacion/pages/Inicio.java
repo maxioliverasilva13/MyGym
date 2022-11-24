@@ -10,11 +10,20 @@ import Cuponera.CuponeraBo;
 import Cuponera.DtCuponera;
 import Institucion.DtInstitucion;
 import Institucion.InstitucionBO;
+import RegistroSitio.RegistroSitioDTO;
 import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import mygym.presentacion.pages.Cuponeras;
 import mygym.presentacion.pages.Actividades;
+import RegistroSitio.RegistroSitioBO;
+import RegistroSitio.RegistroSitioDao;
+import java.util.List;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import static mygym.presentacion.pages.Actividades.actividadesSistema;
+import utils.RenderFoto;
 /**
  *
  * @author maximilianooliverasilva
@@ -32,28 +41,29 @@ public class Inicio extends javax.swing.JPanel {
     HashMap<Integer, DtInstitucion> institucionesSistema = new HashMap<>(); 
     HashMap<Integer, ActividadDTO> actividadesSistema = new HashMap<>(); 
 
+    RegistroSitioBO regsBO = new RegistroSitioBO();
     
     public Inicio() {
         initComponents();
-        initializeFields();
+        tablaInicio.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        tablaInicio.setRowHeight(50);
+        llenarTabla();
     }
-
-    public void initializeFields(){
+        
+    public void llenarTabla(){
         try {
-            cuponerasSistema = cupBo.listarCuponeras();
-            institucionesSistema = insBO.listarInstituciones();
-            actividadesSistema = actBO.getAllActividades();
+            DefaultTableModel modeloDatos = (DefaultTableModel) tablaInicio.getModel();
+            List<RegistroSitioDTO> registros = regsBO.listarRegistros();
+            modeloDatos.setRowCount(0);
+            registros.forEach((RegistroSitioDTO r) -> {
+                modeloDatos.addRow(new Object[]{r.getId(), r.getUrl(), r.getBrowser(), r.getBrowser(), r.getIp()});
+            });
             
-            cantInstituciones.setText(Integer.toString(institucionesSistema.size()));
-            cantCuponeras.setText(Integer.toString(cuponerasSistema.size()));
-            cantActividades.setText(Integer.toString(actividadesSistema.size()));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -78,6 +88,9 @@ public class Inicio extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        scrollTabla = new javax.swing.JScrollPane();
+        tablaInicio = new javax.swing.JTable();
+        subTitulo1 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(720, 540));
 
@@ -93,16 +106,16 @@ public class Inicio extends javax.swing.JPanel {
 
         subTitulo.setFont(new java.awt.Font("Dubai Light", 1, 24)); // NOI18N
         subTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        subTitulo.setText("Estadísticas del Sistema");
-        bgPanel.add(subTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 92, 720, 20));
+        subTitulo.setText("Acceso al sitio");
+        bgPanel.add(subTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 220, 720, 20));
 
         logoIns.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/casa80.png"))); // NOI18N
-        bgPanel.add(logoIns, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 90, -1));
+        bgPanel.add(logoIns, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 90, -1));
 
         inst.setFont(new java.awt.Font("Dubai Light", 0, 24)); // NOI18N
         inst.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         inst.setText("Instituciones");
-        bgPanel.add(inst, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 210, 60));
+        bgPanel.add(inst, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 210, 60));
 
         cantInstituciones.setFont(new java.awt.Font("Dubai Light", 0, 24)); // NOI18N
         cantInstituciones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -110,12 +123,12 @@ public class Inicio extends javax.swing.JPanel {
 
         logoCup.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         logoCup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/pngwing90.png"))); // NOI18N
-        bgPanel.add(logoCup, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 120, 80));
+        bgPanel.add(logoCup, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 120, 80));
 
         cup.setFont(new java.awt.Font("Dubai Light", 0, 24)); // NOI18N
         cup.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cup.setText("Cuponeras");
-        bgPanel.add(cup, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 220, 60));
+        bgPanel.add(cup, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 220, 60));
 
         cantCuponeras.setFont(new java.awt.Font("Dubai Light", 0, 24)); // NOI18N
         cantCuponeras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -123,12 +136,12 @@ public class Inicio extends javax.swing.JPanel {
 
         logoAct.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         logoAct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/corriendo80.png"))); // NOI18N
-        bgPanel.add(logoAct, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 140, 130, 80));
+        bgPanel.add(logoAct, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 130, 80));
 
         act.setFont(new java.awt.Font("Dubai Light", 0, 24)); // NOI18N
         act.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         act.setText("Actividades");
-        bgPanel.add(act, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 210, 60));
+        bgPanel.add(act, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 210, 60));
 
         cantActividades.setFont(new java.awt.Font("Dubai Light", 0, 24)); // NOI18N
         cantActividades.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -148,7 +161,7 @@ public class Inicio extends javax.swing.JPanel {
             .addGap(0, 47, Short.MAX_VALUE)
         );
 
-        bgPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 170, 50));
+        bgPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 170, 50));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(76, 131, 122)));
@@ -165,7 +178,7 @@ public class Inicio extends javax.swing.JPanel {
             .addGap(0, 47, Short.MAX_VALUE)
         );
 
-        bgPanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 220, 180, 50));
+        bgPanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 180, 50));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(76, 131, 122)));
@@ -181,7 +194,76 @@ public class Inicio extends javax.swing.JPanel {
             .addGap(0, 47, Short.MAX_VALUE)
         );
 
-        bgPanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 180, 50));
+        bgPanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 180, 50));
+
+        scrollTabla.setBackground(new java.awt.Color(255, 255, 255));
+        scrollTabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        scrollTabla.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        tablaInicio.setAutoCreateRowSorter(true);
+        tablaInicio.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        tablaInicio.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Id", "Url", "Browser", "Navegador", "Ip"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tablaInicio.setGridColor(new java.awt.Color(255, 255, 255));
+        tablaInicio.setSelectionBackground(new java.awt.Color(0, 204, 204));
+        tablaInicio.setUpdateSelectionOnSort(false);
+        scrollTabla.setViewportView(tablaInicio);
+
+        bgPanel.add(scrollTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 640, 240));
+
+        subTitulo1.setFont(new java.awt.Font("Dubai Light", 1, 24)); // NOI18N
+        subTitulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        subTitulo1.setText("Estadísticas del Sistema");
+        bgPanel.add(subTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 720, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -211,6 +293,9 @@ public class Inicio extends javax.swing.JPanel {
     private javax.swing.JLabel logoAct;
     private javax.swing.JLabel logoCup;
     private javax.swing.JLabel logoIns;
+    private javax.swing.JScrollPane scrollTabla;
     private javax.swing.JLabel subTitulo;
+    private javax.swing.JLabel subTitulo1;
+    private javax.swing.JTable tablaInicio;
     // End of variables declaration//GEN-END:variables
 }

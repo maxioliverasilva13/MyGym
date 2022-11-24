@@ -21,9 +21,11 @@ public class InterfaceEntityManager {
     }
     
     public static EntityManager getInstance(){
+        // instance.refresh();
         if (instance==null) {
             InterfaceEntityManager interfaceEntityManager = new InterfaceEntityManager();
         }
+        instance.clear();
         return instance;
     }
     

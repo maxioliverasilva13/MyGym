@@ -17,22 +17,22 @@ import static org.junit.Assert.*;
  * @author maximilianoolivera
  */
 public class RegistroBOTest {
-    
+
     public RegistroBOTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -54,12 +54,12 @@ public class RegistroBOTest {
             assertTrue(e.getMessage().contains("Socio no encontrado"));
         }
     }
-    
+
     @Test
     public void testAgregarRegistroSiClaseNoExiste() throws Exception {
         int idSocio = 2;
         int claseID = 234;
-        DtRegistro registro = new DtRegistro(0, null , new Date(), "", "");
+        DtRegistro registro = new DtRegistro(0, null, new Date(), "", "");
         Integer cuponeraId = null;
         RegistroBO instance = new RegistroBO();
         try {
@@ -69,12 +69,12 @@ public class RegistroBOTest {
             assertTrue(e.getMessage().contains("La clase no existe"));
         }
     }
-    
+
     @Test
     public void testAgregarRegistro() throws Exception {
         int idSocio = 2;
         int claseID = 1;
-        DtRegistro registro = new DtRegistro(0, null , new Date(), "", "");
+        DtRegistro registro = new DtRegistro(0, null, new Date(), "", "");
         Integer cuponeraId = null;
         RegistroBO instance = new RegistroBO();
         try {
@@ -89,20 +89,24 @@ public class RegistroBOTest {
             }
         }
     }
-    
-      @Test
+
+    @Test
     public void testAgregarRegistroSiCuponeraNoExiste() throws Exception {
         int idSocio = 2;
         int claseID = 1;
-        DtRegistro registro = new DtRegistro(0, null , new Date(), "", "");
+        DtRegistro registro = new DtRegistro(0, null, new Date(), "", "");
         Integer cuponeraId = 333333;
         RegistroBO instance = new RegistroBO();
         try {
             instance.agregarRegistro(idSocio, claseID, registro, cuponeraId);
-            assertTrue(false);
+
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            assertTrue(e.getMessage().contains("Cuponera no existe"));
+            if (e.getMessage().contains("La clase a la que te intentas inscribir, ya esta llena.")) {
+                assertTrue(true);
+            } else {
+                assertTrue(e.getMessage().contains("Cuponera no existe"));
+
+            }
         }
     }
 }
