@@ -10,10 +10,10 @@ import Usuario.dtos.UsuarioDTO;
 import Usuario.exceptions.UnauthorizedException;
 import java.util.Date;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.Rule;
-import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.rules.ExpectedException;
 
 /**
@@ -64,7 +64,7 @@ public class UsuarioBOLoginTest {
         } catch (Exception e) {
             // TODO review the generated test code and remove the default call to fail.
             System.err.println(e.getMessage());
-            fail("Credenciales Incorrectas.");
+            Assert.fail("Credenciales Incorrectas.");
         }
     }
     
