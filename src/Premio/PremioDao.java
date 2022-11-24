@@ -121,7 +121,7 @@ public class PremioDao implements InterfacePremioDao {
     @Override
     public List<PremioDTO> premiosOfUser(int idSocio) {
         List<PremioDTO> premiosToReturn = new ArrayList<>();
-        List<Premio> lista = em.createNativeQuery("select prem.ID, prem.CANTIDADSORTEADOS, prem.DESCRIPCION, prem.FECHACREACION, prem.FUESORTEADO, prem.CLASEOFPREMIO_ID from registro_premio rp inner join premio prem on prem.ID = rp.premios_ID where EXISTS (select * from registro r where r.id = rp.registros_ID and r.SOCIO_ID = " + idSocio + " ) ORDER BY prem.FECHACREACION DES;", Premio.class).getResultList();
+        List<Premio> lista = em.createNativeQuery("select prem.ID, prem.CANTIDADSORTEADOS, prem.DESCRIPCION, prem.FECHACREACION, prem.FUESORTEADO, prem.CLASEOFPREMIO_ID from registro_premio rp inner join premio prem on prem.ID = rp.premios_ID where EXISTS (select * from registro r where r.id = rp.registros_ID and r.SOCIO_ID = " + idSocio + " ) ORDER BY prem.FECHACREACION DESC;", Premio.class).getResultList();
         if (lista.size() > 0) {
             lista.forEach((Premio premio) -> {
                 premiosToReturn.add(premio.getDtPremio());
