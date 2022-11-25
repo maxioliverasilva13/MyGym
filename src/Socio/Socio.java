@@ -21,7 +21,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import Registro.DtRegistro;
 import javax.persistence.Cacheable;
 import org.eclipse.persistence.annotations.Cache;
-
+import Favoritos.Favorito;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "userId")
@@ -33,7 +33,8 @@ public class Socio extends Usuario{
     
     @OneToMany(mappedBy = "socio")
     private List<CompraCuponera> comprasCuponeras;
-    
+    @OneToMany(mappedBy = "socioFav")
+    private List<Favorito> favoritos = new ArrayList();
     
     
     public void addRegistro(Registro r) {

@@ -8,6 +8,7 @@ package Actividad.dtos;
 import Categoria.DtCategoria;
 import Clase.DtClase;
 import CuponeraXActividad.DtCuponeraXActividad;
+import Favoritos.FavoritoDTO;
 import Institucion.DtInstitucion;
 import Profesor.dtos.ProfesorDTO;
 import java.io.File;
@@ -29,7 +30,14 @@ public class ActividadDTO {
     private List<DtCategoria> categorias = new ArrayList<>();
     public byte[] imageBlob = null;
     private String estado;
+    private List<FavoritoDTO> favoritos = new ArrayList();
 
+    public List<FavoritoDTO> getFavoritos() {
+        return favoritos;
+    }
+    
+    
+    
     DtInstitucion institucion;
     File image;
 
@@ -90,6 +98,36 @@ public class ActividadDTO {
         }
     }
 
+        
+    public ActividadDTO(int id, String nombre, String descripcion, int duracion, float costo, Date fechaRegistro, ProfesorDTO profe, List<DtClase> clases, DtInstitucion ins, List<DtCuponeraXActividad> cupsXAct, File file, List<DtCategoria> cats, byte[] imageBlob, String estado, List<FavoritoDTO> favoritos) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.duracion = duracion;
+        this.costo = costo;
+        this.fechaRegistro = fechaRegistro;
+        this.profesor = profe;
+        if (clases != null) {
+            this.clases = clases;
+        }
+        this.clases = clases;
+        this.id = id;
+        this.institucion = ins;
+        if (cupsXAct != null) {
+           this.cuponerasXActivdad = cupsXAct;
+        }
+        if (cats != null) {
+            this.categorias = cats;
+        }
+        this.image = file;
+        if (imageBlob != null) {
+            this.imageBlob = imageBlob;
+        }
+        if (estado != null) {
+            this.estado = estado;
+        }
+        this.favoritos = favoritos;
+    }
+    
     public List<DtCuponeraXActividad> getCuponerasXActivdad() {
         return cuponerasXActivdad;
     }

@@ -42,6 +42,8 @@ import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import org.eclipse.persistence.annotations.Cache;
+import Favoritos.Favorito;
+import Favoritos.FavoritoDTO;
 
 /**
  *
@@ -51,6 +53,7 @@ import org.eclipse.persistence.annotations.Cache;
 @Table()
 @Cacheable(false)
 public class Actividad implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -73,6 +76,17 @@ public class Actividad implements Serializable {
     private Collection<CuponeraXActividad> cuponerasXActividad;
     @OneToMany
     private Collection<Categoria> categorias;
+    @OneToMany(mappedBy = "actividadFav")
+    private List<Favorito> favoritos;
+
+    public List<Favorito> getFavoritos() {
+        return favoritos;
+    }
+
+    public void setFavoritos(List<Favorito> favoritos) {
+        this.favoritos = favoritos;
+    }
+
     @Lob
     @Basic(fetch = FetchType.LAZY)
     private byte[] image;
@@ -84,7 +98,7 @@ public class Actividad implements Serializable {
     public File createTempFile() {
         String dir = System.getProperty("java.io.tmpdir");
         File file = new File(dir + "image-" + this.nombre + ".jpg");
-        try (FileOutputStream fos = new FileOutputStream(file)) {
+        try ( FileOutputStream fos = new FileOutputStream(file)) {
             fos.write(this.image);
         } catch (Exception e) {
             System.out.println("Actividad-createTempFile");
@@ -245,12 +259,21 @@ public class Actividad implements Serializable {
             });
 
         }
+        // TO DO TO DO TO DO TO DO TO DO TO DO TO DO TO DO
+        List<FavoritoDTO> favoritos = new ArrayList<>(); // Agregar al DTO creado.
+        if (this.getFavoritos() != null) {
+
+            this.getFavoritos().forEach((favorito) -> {
+                favoritos.add(favorito.getFavoritoDTO());
+            });
+
+        }
 
         try {
             ActividadDTO dt = new ActividadDTO(
                     this.id, this.nombre, this.descripcion, this.duracion, this.costo, this.fechaRegistro, profe,
                     allClases, dtIns, cuponerasXact, this.image != null ? createTempFile() : null, categorias,
-                    this.getImage(), this.estado);
+                    this.getImage(), this.estado, favoritos);
             return dt;
         } catch (Exception e) {
             System.out.println(e.getMessage());
