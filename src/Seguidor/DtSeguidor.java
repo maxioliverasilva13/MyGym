@@ -4,10 +4,13 @@
  */
 package Seguidor;
 import Usuario.dtos.UsuarioDTO;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 /**
  *
  * @author Maximiliano Olivera
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DtSeguidor {
     UsuarioDTO persona;
     UsuarioDTO sigueA;

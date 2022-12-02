@@ -5,6 +5,8 @@ import Clase.DtClase;
 import Registro.DtRegistro;
 import java.util.Date;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -14,6 +16,7 @@ import java.util.List;
  *
  * @author maximilianoolivera
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class PremioDTO {
 
     private int id;

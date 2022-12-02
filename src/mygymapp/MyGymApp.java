@@ -12,10 +12,13 @@ import Cuponera.CuponeraBo;
 import Cuponera.InterfaceCuponeraBo;
 import EntityManajer.InterfaceEntityManager;
 import Usuario.UsuarioDAO;
+import java.net.MalformedURLException;
 import java.util.HashMap;
 import javax.persistence.EntityManager;
 import mygym.presentacion.pages.Dashboard;
-import utils.EncryptPass;
+import webservices.Services;
+import webservices.WebService;
+import ws.Publicador;
 
 /**
  *
@@ -23,17 +26,18 @@ import utils.EncryptPass;
  */
 public class MyGymApp {
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) throws MalformedURLException {
         EntityManager em = InterfaceEntityManager.getInstance();
         Dashboard ds = new Dashboard();
         ds.setVisible(true);
-        
+
         IActividadBO actBo = new ActividadBO();
-       
-      
-      
-       // int institucion_id,int profesor_id, float costo, String nombre, String descripcion, Date fecha_registro, int duracion
-       // ActividadCreateDTO actDTO = new ActividadCreateDTO(null,null,);
-     //   actBo.crear(actCreate, 0, 0);
+        
+        Publicador p = new Publicador();
+        p.publicar();
+
+        // int institucion_id,int profesor_id, float costo, String nombre, String descripcion, Date fecha_registro, int duracion
+        // ActividadCreateDTO actDTO = new ActividadCreateDTO(null,null,);
+        //   actBo.crear(actCreate, 0, 0);
     }
 }

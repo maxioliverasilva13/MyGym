@@ -6,11 +6,14 @@ package Socio.dtos;
 
 import java.io.File;
 import java.util.Date;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 /**
  *
  * @author angel
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class SocioEditDTO {
     private String nombre;
     private String apellido;
@@ -34,6 +37,10 @@ public class SocioEditDTO {
         this.image = image;
     }
     
+    public SocioEditDTO() {
+        
+    }
+    
     public String getNombre(){
         return this.nombre;
     }
@@ -55,6 +62,9 @@ public class SocioEditDTO {
     public String getEmail(){
         return this.email;
     }
-    
+
+    public void setPassword(char[] password) {
+        this.password = password;
+    }
     
 }

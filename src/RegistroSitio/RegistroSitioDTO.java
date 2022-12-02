@@ -4,10 +4,14 @@
  */
 package RegistroSitio;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  *
  * @author maximilianoolivera
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RegistroSitioDTO {
 
     private int id;

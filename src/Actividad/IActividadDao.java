@@ -6,6 +6,7 @@ package Actividad;
 
 import Actividad.dtos.ActividadCreateDTO;
 import Categoria.Categoria;
+import Categoria.DtCategoria;
 import Clase.Clase;
 import CuponeraXActividad.CuponeraXActividad;
 import Institucion.Institucion;
@@ -20,6 +21,7 @@ import java.util.List;
  */
 public interface IActividadDao {
     public void create(ActividadCreateDTO act ,Profesor profesor,Institucion institucion);
+    public void createWithCategorias(ActividadCreateDTO act ,Profesor profesor,Institucion institucion, List<DtCategoria> categorias);
     public Actividad getById(int idAct);
     public void agregarCategoria(int idActividad, Categoria cat);
     public List<Actividad> listAll();

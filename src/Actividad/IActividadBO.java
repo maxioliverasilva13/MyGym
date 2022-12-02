@@ -7,6 +7,7 @@ package Actividad;
 import Actividad.dtos.ActividadCreateDTO;
 import Actividad.dtos.ActividadDTO;
 import Actividad.dtos.ActividadDetalleDTO;
+import Categoria.DtCategoria;
 import CuponeraXActividad.CuponeraXActividad;
 import Exceptions.ActividadNotFoundException;
 import Exceptions.CuponeraNotFoundException;
@@ -33,4 +34,5 @@ public interface IActividadBO {
     public HashMap<Integer, ActividadDTO> getActividadesWithLimitAndAccepted(int limite);
     public int getActividadesAceptadasSize();
     public HashMap<Integer, ActividadDTO> listarActividadesByProfesor(int idProf);
+    public void crearWithCategorias(ActividadCreateDTO actCreate, int institucionId, int profesorId, List<DtCategoria> categorias);
 }

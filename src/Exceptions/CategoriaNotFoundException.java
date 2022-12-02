@@ -4,11 +4,14 @@
  */
 package Exceptions;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  *
  * @author mandi
  */
-
+@XmlAccessorType(XmlAccessType.FIELD)
 public class CategoriaNotFoundException extends RuntimeException {
     public CategoriaNotFoundException(String err) {
         super(err);

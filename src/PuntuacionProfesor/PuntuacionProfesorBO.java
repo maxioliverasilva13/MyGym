@@ -4,6 +4,7 @@
  */
 package PuntuacionProfesor;
 
+import EntityManajer.InterfaceEntityManager;
 import Exceptions.RegistroNotFoundException;
 import Exceptions.SocioNotFoundException;
 import Registro.InterfaceRegistroDao;
@@ -21,6 +22,10 @@ import mygym.logica.usuario.dataTypes.DtPuntuacionProfesor;
  */
 public class PuntuacionProfesorBO implements IPuntuacionProfesorBO  {
 
+    public PuntuacionProfesorBO() {
+               InterfaceEntityManager.getInstance();
+    }
+    
     @Override
     public DtPuntuacionProfesor create(int puntuacion, int socioId, int registroId) throws SocioNotFoundException,RegistroNotFoundException,Exception {
        ISocioDAO socioDao = new SocioDAO();

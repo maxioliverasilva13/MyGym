@@ -5,15 +5,19 @@
 package Usuario.dtos;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 /**
  *
  * @author angel
  */
-public  class UsuarioDTO {
+@XmlAccessorType(XmlAccessType.FIELD)
+public  class UsuarioDTO implements Serializable {
     protected int ID;
     protected String NOMBRE;
     protected String APELLIDO;

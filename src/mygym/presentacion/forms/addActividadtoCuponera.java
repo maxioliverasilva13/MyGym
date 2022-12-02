@@ -141,7 +141,7 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         btnMinimizar.setForeground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnMinimizar.setText("-");
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnMinimizarMouseClicked(evt);
@@ -167,7 +167,7 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
         btnExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnExit.setText("X");
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnExitMouseClicked(evt);
@@ -263,7 +263,7 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         btnSeleccionarActividad.setForeground(new java.awt.Color(255, 255, 255));
         btnSeleccionarActividad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnSeleccionarActividad.setText("Agregar a la Cuponera");
-        btnSeleccionarActividad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSeleccionarActividad.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSeleccionarActividad.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSeleccionarActividadMouseClicked(evt);
@@ -388,7 +388,10 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
         cmbActividades.removeAllItems(); // Primero elimino todos los elems del combobox, para que solo se vean los de la institución seleccionada en el grid.
         //System.out.println("Id de la institucion seleccionada en la tabla: " + selectedInsitucionID);
         try {
+            System.out.println(selectedInsitucionID);
+            System.out.println(idCupSeleccionada);
             HashMap<Integer, ActividadDTO> actividades = actBO.listarByInstitucionNotInCuponeras(selectedInsitucionID, idCupSeleccionada,"Aceptada");
+            System.out.println("Las agrego bien");
             actividades.forEach((key, value) -> {
                 ActividadDTO currentActividadDTO = actividades.get(key);
                 model.addElement(new ComboItem(key.toString(), currentActividadDTO.getNombre()));
@@ -397,6 +400,8 @@ public class addActividadtoCuponera extends javax.swing.JFrame {
             cmbActividades.setSelectedItem(null);
         } catch (Exception e) {
             cmbActividades.setSelectedItem(null);
+            System.out.println("Error aca");
+            System.out.println(e);
             JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }  
     }//GEN-LAST:event_tablaInstitucionesMouseClicked

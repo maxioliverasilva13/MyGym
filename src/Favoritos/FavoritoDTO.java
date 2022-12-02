@@ -4,10 +4,14 @@
  */
 package Favoritos;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  *
  * @author maximilianoolivera
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class FavoritoDTO {
     private int userId;
     private int actid;

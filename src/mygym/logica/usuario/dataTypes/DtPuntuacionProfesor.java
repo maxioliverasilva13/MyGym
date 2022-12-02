@@ -5,11 +5,14 @@
 package mygym.logica.usuario.dataTypes;
 
 import java.util.Date;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 /**
  *
  * @author rodrigo
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DtPuntuacionProfesor {
     private int id;
     private Date fecha;
