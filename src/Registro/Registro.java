@@ -115,8 +115,15 @@ public class Registro implements Serializable {
         if (this.clase.getImage() != null) {
             file = this.clase.createTempFile();
         }
-        String profesorName = this.clase.getActividad().getProfesor().getNombre();
-        String profesorSurname = this.clase.getActividad().getProfesor().getApellido();
+        String profesorName = "";
+        if(this.clase.getActividad().getProfesor() != null){
+            profesorName = this.clase.getActividad().getProfesor().getNombre();
+        }
+        String profesorSurname = "";
+        if(this.clase.getActividad().getProfesor() != null){
+            profesorSurname = this.clase.getActividad().getProfesor().getApellido();
+        }
+
         DtClase clase = new DtClase(
          this.clase.getId(), this.clase.getNombre(), this.clase.getFecha(),profesorName + " " + profesorSurname , null, this.clase.getCapMinima(), this.clase.getCapMaxima(), this.clase.getUrlAcceso(), this.clase.getFechaRegistro(), regsOfClass, this.clase.getActividad().getId(), this.clase.getActividad().getNombre(), null, file, null);
         DtPuntuacionProfesor puntuacionProf = null;
