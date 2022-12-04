@@ -404,7 +404,7 @@ public class Publicador {
 
     @WebMethod(operationName = "editProfeInfo")
     public void editProfeInfo(@WebParam(name = "userId") int userId, @WebParam(name = "data") ProfesorEditDTO data, @WebParam(name = "newPasword") String newPasword) {
-        if (newPasword != "") {
+        if (newPasword != null && !newPasword.equals("")) {
             data.setPassword(newPasword.toCharArray());
         }
         profeBO.editProfesorById(userId, data);
@@ -412,8 +412,12 @@ public class Publicador {
 
     @WebMethod(operationName = "editSocioInfo")
     public void editSocioInfo(@WebParam(name = "userId") int userId, @WebParam(name = "data") SocioEditDTO data, @WebParam(name = "newPasword") String newPasword) {
-        if (newPasword != "") {
+        if (newPasword != null && !newPasword.equals("")) {
             data.setPassword(newPasword.toCharArray());
+            System.out.println("lo seteo aca");
+            System.out.println(newPasword);
+            System.out.println(newPasword.toCharArray());
+            
         }
         socioBO.editar(userId, data);
     }

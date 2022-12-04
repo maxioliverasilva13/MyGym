@@ -140,6 +140,8 @@ public class ProfesorBO implements IProfesorBO {
            sumPuntuaciones = sumPuntuaciones + puntCurr;
            cant++;
        }
+       System.out.println("sumPuntuaciones is" + sumPuntuaciones);
+       System.out.println("cant is" + cant);
        double puntuacionGeneral = sumPuntuaciones > 0 ? sumPuntuaciones / cant : 0; 
        double percentageOne = Math.round(cantOne > 0 ? (cantOne/cant) * 100 : 0);
        double percentageTwo = cantTwo > 0 ? (cantTwo / cant) * 100 : 0;

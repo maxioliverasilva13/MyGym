@@ -110,7 +110,7 @@ public class ProfesorDao  implements IProfesorDao {
     @Override
     public List<PuntuacionProfesor> getPuntuacionesProfesor(Profesor prof) {
         List<PuntuacionProfesor> res;
-        Query query = this.em.createNativeQuery("SELECT puntuacionprofesor.ID, puntuacionprofesor.PUNTUACION, puntuacionprofesor.FECHA, puntuacionprofesor.REGISTRO_ID  FROM puntuacionprofesor JOIN registro ON registro.ID = puntuacionprofesor.REGISTRO_ID JOIN clase ON clase.ID = registro.CLASE_ID JOIN actividad ON actividad.ID = clase.ACTIVIDAD_ID JOIN profesor ON profesor.userId ="+prof.getId(),PuntuacionProfesor.class);
+        Query query = this.em.createNativeQuery("SELECT puntuacionprofesor.ID, puntuacionprofesor.PUNTUACION, puntuacionprofesor.FECHA, puntuacionprofesor.REGISTRO_ID  FROM puntuacionprofesor JOIN registro ON registro.ID = puntuacionprofesor.REGISTRO_ID JOIN clase ON clase.ID = registro.CLASE_ID JOIN actividad ON actividad.ID = clase.ACTIVIDAD_ID WHERE ACTIVIDAD.PROFESOR_ID="+prof.getId(),PuntuacionProfesor.class);
         res = query.getResultList();
     
         return res;
