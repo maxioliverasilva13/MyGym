@@ -4,10 +4,14 @@
  */
 package Exceptions;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  *
  * @author maximilianooliverasilva
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ProfesorNotFoundException extends RuntimeException { 
     public ProfesorNotFoundException(String errorMessage) {
         super(errorMessage);

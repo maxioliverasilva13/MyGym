@@ -39,7 +39,7 @@ public class ActividadDao implements IActividadDao {
     CategoriaDao catDao = new CategoriaDao();
 
     public ActividadDao() {
-
+       InterfaceEntityManager.getInstance();
     }
 
     @Override
@@ -70,6 +70,44 @@ public class ActividadDao implements IActividadDao {
             try {
                 activity.setImage(act.getImage());
                 activity.setCategorias(categorias);
+            } catch (Exception e) {
+                System.out.println("Error al subir el archivo");
+                System.out.println(e.getMessage());
+            }
+            em.persist(activity);
+            tx.commit();
+        }
+    }
+
+    @Override
+    public void createWithCategorias(ActividadCreateDTO act, Profesor profesor, Institucion institucion, List<DtCategoria> categorias) {
+
+        List<Actividad> existe = em.createNativeQuery("select * from ACTIVIDAD where NOMBRE='" + act.getNombre() + "' AND INSTITUCION_ID=" + institucion.getId()).getResultList();
+        if (!existe.isEmpty()) {
+            throw new ActividadAlreadyExistsException("Ya existe una actividad con ese Nombre, en la institución especificada.");
+        } else {
+            Collection<Categoria> categoriasFinal = new ArrayList<>();
+            List<DtCategoria> listCats = categorias;
+
+            listCats.forEach((DtCategoria cat) -> {
+                Categoria c = catDao.existe(cat.getId());
+                categoriasFinal.add(c);
+            });
+
+            EntityTransaction tx = em.getTransaction();
+            tx.begin();
+            Actividad activity = new Actividad();
+            activity.setNombre(act.getNombre());
+            activity.setDescripcion(act.getDescripcion());
+            activity.setDuracion(act.getDuracion());
+            activity.setFechaRegistro(act.getFechaRegistro());
+            activity.setCosto(act.getCosto());
+            activity.setProfesor(profesor);
+            activity.setInstitucion(institucion);
+            activity.setCategorias(categoriasFinal);
+            try {
+                activity.setImage(act.getImage());
+                activity.setCategorias(categoriasFinal);
             } catch (Exception e) {
                 System.out.println("Error al subir el archivo");
                 System.out.println(e.getMessage());
@@ -184,8 +222,9 @@ public class ActividadDao implements IActividadDao {
         EntityTransaction tx = em.getTransaction();
         try {
             List<ActividadDTO> actividades = new ArrayList();
-            
+
             cats.forEach(cat -> {
+                System.out.println("Pruebo con categoria " + cat);
                 List<Actividad> actividadesFilter = new ArrayList<>();
                 actividadesFilter = em.createNativeQuery("select actividad.ID, actividad.IMAGE, actividad.COSTO, actividad.DURACION, actividad.FECHAREGISTRO, actividad.NOMBRE ,actividad.DESCRIPCION from ACTIVIDAD actividad join actividad_categoria on actividad_categoria.Actividad_ID = actividad.ID join categoria on categoria.ID = actividad_categoria.categorias_ID WHERE actividad.ESTADO='" + estado + "' and categoria.NOMBRE = '" + cat + "'", Actividad.class).getResultList();
                 actividadesFilter.forEach((Actividad act) -> {
@@ -194,8 +233,7 @@ public class ActividadDao implements IActividadDao {
                     }
                 });
             });
-            
-          
+
             return actividades;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -215,9 +253,8 @@ public class ActividadDao implements IActividadDao {
     // Lista todas las actividades de un Profe, en todos sus estados. (Necesario para el listado de la web).
     public List<Actividad> listarActividadesByProfesor(int profID) {
         List<Actividad> actividades = em.createNativeQuery(
-            "SELECT * FROM ACTIVIDAD WHERE PROFESOR_ID = "+profID +";", Actividad.class).getResultList();
-       return actividades;
+                "SELECT * FROM ACTIVIDAD WHERE PROFESOR_ID = " + profID + ";", Actividad.class).getResultList();
+        return actividades;
     }
-    
-    
+
 }

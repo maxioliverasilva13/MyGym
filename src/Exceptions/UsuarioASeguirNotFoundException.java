@@ -4,10 +4,14 @@
  */
 package Exceptions;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  *
  * @author Maximiliano Olivera
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class UsuarioASeguirNotFoundException extends RuntimeException { 
     public UsuarioASeguirNotFoundException(String errorMessage) {
         super(errorMessage);

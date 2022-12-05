@@ -8,6 +8,7 @@ import Clase.Clase;
 import Clase.ClaseDao;
 import Clase.DtClase;
 import Clase.InterfaceClaseDao;
+import EntityManajer.InterfaceEntityManager;
 import Exceptions.RegistroNotFoundException;
 import Exceptions.SocioAlreadyAreInClass;
 import Profesor.Profesor;
@@ -36,7 +37,7 @@ import java.util.List;
  */
 public class SocioBO implements ISocioBO {
     public SocioBO(){
-        
+               InterfaceEntityManager.getInstance();
     }
   
     @Override

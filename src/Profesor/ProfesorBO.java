@@ -9,6 +9,7 @@ import Actividad.dtos.ActividadDTO;
 import Clase.Clase;
 import Clase.ClaseDao;
 import Clase.InterfaceClaseDao;
+import EntityManajer.InterfaceEntityManager;
 import Exceptions.ClaseNotFoundException;
 import Exceptions.ProfesorNoDictaClaseException;
 import Exceptions.ProfesorNoDictaClaseException;
@@ -42,6 +43,10 @@ import utils.ParserClassesToDt;
 public class ProfesorBO implements IProfesorBO {
     ProfesorDao profDao = new ProfesorDao();
 
+    public ProfesorBO() {
+               InterfaceEntityManager.getInstance();
+    }
+    
     @Override
     public ProfesorDTO getProfesorById(int id) throws ProfesorNotExist  {
          IProfesorDao profDao = new ProfesorDao();
@@ -135,17 +140,14 @@ public class ProfesorBO implements IProfesorBO {
            sumPuntuaciones = sumPuntuaciones + puntCurr;
            cant++;
        }
-       System.out.println("cant three: "  + cantThree);
-       System.out.println("cant four: "  + cantFour);
-       System.out.println((cantThree / cant) * 100);
-       double puntuacionGeneral = sumPuntuaciones / cant; 
-       double percentageOne = Math.round((cantOne/cant) * 100);
-       double percentageTwo = (cantTwo / cant) * 100;
-       double percentageThree = (cantThree / cant) * 100;
-       double percentageFour = (cantFour / cant) * 100;
-       double percentageFive = (cantFive  / cant) * 100;
-       
-      
+       System.out.println("sumPuntuaciones is" + sumPuntuaciones);
+       System.out.println("cant is" + cant);
+       double puntuacionGeneral = sumPuntuaciones > 0 ? sumPuntuaciones / cant : 0; 
+       double percentageOne = Math.round(cantOne > 0 ? (cantOne/cant) * 100 : 0);
+       double percentageTwo = cantTwo > 0 ? (cantTwo / cant) * 100 : 0;
+       double percentageThree = cantThree > 0 ? (cantThree / cant) * 100 : 0;
+       double percentageFour = cantFour > 0 ? (cantFour / cant) * 100 : 0;
+       double percentageFive = cantFive > 0 ? (cantFive / cant) * 100 : 0;
        
        ProfesorPuntuacionesDTO res = new ProfesorPuntuacionesDTO(puntuacionGeneral, percentageOne,percentageTwo,percentageThree,percentageFour,percentageFive);
        return res;

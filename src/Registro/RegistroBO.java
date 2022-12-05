@@ -4,6 +4,7 @@
  */
 package Registro;
 
+import EntityManajer.InterfaceEntityManager;
 import Exceptions.ClassHasMaxOfReg;
 import Exceptions.CompraCuponeraNotFoundException;
 import Exceptions.CuponeraNotFoundException;
@@ -24,6 +25,10 @@ import java.util.logging.Logger;
  */
 public class RegistroBO implements InterfaceRegistroBO {
     RegistroDao registrodao = new RegistroDao();
+    
+    public RegistroBO() {
+               InterfaceEntityManager.getInstance();
+    }
     
     @Override
     public void agregarRegistro(int idSocio,  int claseID, DtRegistro registro,Integer cuponeraId) throws MaxClasesForCuponera,CompraCuponeraNotFoundException,ClassHasMaxOfReg,SocioAlreadyAreInClass{

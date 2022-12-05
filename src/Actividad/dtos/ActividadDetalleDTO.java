@@ -5,11 +5,14 @@
 package Actividad.dtos;
 
 import java.util.Date;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 /**
  *
  * @author angel
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ActividadDetalleDTO {
     private String nombre;
     private int id;

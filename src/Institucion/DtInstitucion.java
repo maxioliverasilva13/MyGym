@@ -9,11 +9,14 @@ import java.util.List;
 import Profesor.dtos.ProfesorDTO;
 import Actividad.dtos.ActividadDetalleDTO;
 import java.io.File;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 /**
  *
  * @author maximilianooliverasilva
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DtInstitucion {
     private int id;
     private String nombre;

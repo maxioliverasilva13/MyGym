@@ -80,7 +80,9 @@ public class SocioDAO implements ISocioDAO {
         soc.setNacimiento(socio.getNacimiento());
         soc.setNombre(socio.getNombre());
         soc.setNickname(soc.getNickname());
+                    System.out.println("casi ALOHA");
         if (socio.getPasswordChar() != null){
+            System.out.println("ACAAAA ALOHA");
             String encryptedPassword = ep.encryptPass(new String(socio.getPasswordChar()));
             soc.setPassword(encryptedPassword);
         }

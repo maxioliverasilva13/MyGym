@@ -4,10 +4,14 @@
  */
 package Exceptions;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  *
  * @author maximilianooliverasilva
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class CuponeraXActividadExistsForThisActivityAndCuponera extends RuntimeException { 
     public CuponeraXActividadExistsForThisActivityAndCuponera(String errorMessage) {
         super(errorMessage);

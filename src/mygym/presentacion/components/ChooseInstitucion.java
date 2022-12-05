@@ -56,6 +56,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
         this.jComboClases.setEnabled(false);
         this.jComboInstituciones.setEnabled(false);
         this.panelNotFound.setVisible(false);
+        this.videoClase.setText("");
     }
     
     public ChooseInstitucion() {
@@ -125,6 +126,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
             this.labelCapMaxima.setText(capMax);
             this.labelCapMinima.setText(capMin);
             this.labelUrl.setText(urlAcceso);
+            this.videoClase.setText(this.selectedClase.getLinkClase() != null && this.selectedClase.getLinkClase() != "" ? this.selectedClase.getLinkClase(): "Esta clase no tiene un video");
             this.labelCantAlumnos.setText(cantAlumnos);
             this.labelNombre.setText(selectedClase.getNombre());
             colocateCorrectResults();
@@ -190,6 +192,8 @@ public class ChooseInstitucion extends javax.swing.JFrame {
         labelCantAlumnos = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         labelNombre = new javax.swing.JLabel();
+        jTextNombre1 = new javax.swing.JLabel();
+        videoClase = new javax.swing.JLabel();
         panelNotFound = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         labelImage = new javax.swing.JLabel();
@@ -395,11 +399,11 @@ public class ChooseInstitucion extends javax.swing.JFrame {
 
         labelUrl.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         labelUrl.setText("https://zoom.com/sa2ad");
-        panelInfo.add(labelUrl, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 240, -1));
+        panelInfo.add(labelUrl, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 240, -1));
 
         jTextNombre.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jTextNombre.setText("Nombre:");
-        panelInfo.add(jTextNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
+        jTextNombre.setText("Video Clase:");
+        panelInfo.add(jTextNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
 
         jLabel22.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel22.setText("Url de acceso");
@@ -417,7 +421,15 @@ public class ChooseInstitucion extends javax.swing.JFrame {
         labelNombre.setText("2");
         panelInfo.add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 170, -1));
 
-        bgPanel.add(panelInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 330, 190));
+        jTextNombre1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        jTextNombre1.setText("Nombre:");
+        panelInfo.add(jTextNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
+
+        videoClase.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        videoClase.setText("https://zoom.com/sa2ad");
+        panelInfo.add(videoClase, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 240, -1));
+
+        bgPanel.add(panelInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 330, 220));
 
         panelNotFound.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 0, 0, new java.awt.Color(0, 0, 0)));
         panelNotFound.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -431,7 +443,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
         labelImage.setText("Imagen");
         bgPanel.add(labelImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 110, 80));
 
-        getContentPane().add(bgPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 550));
+        getContentPane().add(bgPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 570));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -617,6 +629,7 @@ public class ChooseInstitucion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JLabel jTextNombre;
+    private javax.swing.JLabel jTextNombre1;
     private javax.swing.JLabel labelCantAlumnos;
     private javax.swing.JLabel labelCapMaxima;
     private javax.swing.JLabel labelCapMinima;
@@ -628,5 +641,6 @@ public class ChooseInstitucion extends javax.swing.JFrame {
     private javax.swing.JLabel labelUrl;
     private javax.swing.JPanel panelInfo;
     private javax.swing.JPanel panelNotFound;
+    private javax.swing.JLabel videoClase;
     // End of variables declaration//GEN-END:variables
 }

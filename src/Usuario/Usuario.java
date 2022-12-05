@@ -232,6 +232,11 @@ public class Usuario implements Serializable {
         });
         return allUsers;
     }
+    
+    public UsuarioDTO getDtUsuario() {
+        UsuarioDTO userInfo = new UsuarioDTO(id, nombre, apellido, nickname, email, nacimiento, null, null, null, null);
+        return userInfo;
+    }
    
 
 }

@@ -6,11 +6,14 @@ package Profesor.dtos;
 
 import java.io.File;
 import java.util.Date;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 /**
  *
  * @author angel
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ProfesorEditDTO {
 
     private String nombre; //
@@ -26,6 +29,10 @@ public class ProfesorEditDTO {
 
     public File getImage() {
         return image;
+    }
+    
+    public ProfesorEditDTO() {
+        
     }
     
     public ProfesorEditDTO(String nombre, String apellido, String nickname, char[] pass, String descripcionGeneral, String biografia, String linkSitioWeb, String mail, Date fechaNac, File file) {
@@ -57,6 +64,10 @@ public class ProfesorEditDTO {
         return password;
     }
 
+    public char[] getPassword() {
+        return password;
+    }
+
     public String getDescripcionGeneral() {
         return descripcionGeneral;
     }
@@ -77,4 +88,8 @@ public class ProfesorEditDTO {
         return fechaNacimiento;
     }
 
+    public void setPassword(char[] password) {
+        this.password = password;
+    }
+    
 }

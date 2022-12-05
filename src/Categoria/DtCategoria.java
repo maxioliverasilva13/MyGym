@@ -4,10 +4,14 @@
  */
 package Categoria;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  *
  * @author mandi
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DtCategoria {
     private int id;
     private String nombre;

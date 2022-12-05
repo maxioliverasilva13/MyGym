@@ -35,6 +35,7 @@ public class ClaseBO implements InterfaceClaseBO {
         cl.setFechaRegistro(clase.getFechaRegistro());
         cl.setNombre(clase.getNombre());
         cl.setUrlAcceso(clase.getUrlAcceso());
+        cl.setLinkVideoClase(clase.getLinkClase());
         if (clase.getImage() != null) {
             cl.setImage(clase.getImage());
         }
@@ -54,6 +55,7 @@ public class ClaseBO implements InterfaceClaseBO {
         cl.setFechaRegistro(clase.getFechaRegistro());
         cl.setNombre(clase.getNombre());
         cl.setUrlAcceso(clase.getUrlAcceso());
+        cl.setLinkVideoClase(clase.getLinkClase());
         if (clase.getImage() != null) {
             cl.setImage(clase.getImage());
         }

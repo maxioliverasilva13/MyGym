@@ -11,11 +11,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  *
  * @author maximilianooliverasilva
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DtClase {
+
     private int id;
     private String nombre;
     private Date fecha;
@@ -31,12 +36,19 @@ public class DtClase {
     private int idInstitucion;
     private PremioDTO premio;
     File image;
-    byte [] imageBlob;
+    byte[] imageBlob;
     // TODO: Change this for the new DtProfesor and DtActividad
-    
-    
-    
-    public DtClase(int id, String nombre, Date fecha, String profesor, Integer ProfesorId , Integer capMinima, Integer capMaxima, String urlAcceso, Date fechaRegistro, List<DtRegistro> registros, Integer idActividad, String actividadName, Integer idInstitucion, File imageFile, byte[] imageBlob) {
+    private String linkClase;
+
+    public String getLinkClase() {
+        return linkClase;
+    }
+
+    public DtClase() {
+
+    }
+
+    public DtClase(int id, String nombre, Date fecha, String profesor, Integer ProfesorId, Integer capMinima, Integer capMaxima, String urlAcceso, Date fechaRegistro, List<DtRegistro> registros, Integer idActividad, String actividadName, Integer idInstitucion, File imageFile, byte[] imageBlob) {
         this.id = id;
         this.nombre = nombre;
         this.fecha = fecha;
@@ -45,16 +57,16 @@ public class DtClase {
             this.ProfesorId = ProfesorId;
         }
         if (capMinima != null) {
-           this.capMinima = capMinima;
+            this.capMinima = capMinima;
         }
         if (capMaxima != null) {
-           this.capMaxima = capMaxima;
+            this.capMaxima = capMaxima;
         }
         this.urlAcceso = urlAcceso;
         this.fechaRegistro = fechaRegistro;
         this.registros = registros;
         if (idActividad != null) {
-           this.idActividad = idActividad;
+            this.idActividad = idActividad;
         }
         this.actividadName = actividadName;
         if (idInstitucion != null) {
@@ -63,8 +75,8 @@ public class DtClase {
         this.image = imageFile;
         this.imageBlob = imageBlob;
     }
-    
-       public DtClase(int id, String nombre, Date fecha, String profesor, Integer ProfesorId , Integer capMinima, Integer capMaxima, String urlAcceso, Date fechaRegistro, List<DtRegistro> registros, Integer idActividad, String actividadName, Integer idInstitucion, File imageFile, byte[] imageBlob, PremioDTO premio) {
+
+    public DtClase(int id, String nombre, Date fecha, String profesor, Integer ProfesorId, Integer capMinima, Integer capMaxima, String urlAcceso, Date fechaRegistro, List<DtRegistro> registros, Integer idActividad, String actividadName, Integer idInstitucion, File imageFile, byte[] imageBlob, PremioDTO premio) {
         this.id = id;
         this.nombre = nombre;
         this.fecha = fecha;
@@ -73,16 +85,16 @@ public class DtClase {
             this.ProfesorId = ProfesorId;
         }
         if (capMinima != null) {
-           this.capMinima = capMinima;
+            this.capMinima = capMinima;
         }
         if (capMaxima != null) {
-           this.capMaxima = capMaxima;
+            this.capMaxima = capMaxima;
         }
         this.urlAcceso = urlAcceso;
         this.fechaRegistro = fechaRegistro;
         this.registros = registros;
         if (idActividad != null) {
-           this.idActividad = idActividad;
+            this.idActividad = idActividad;
         }
         this.actividadName = actividadName;
         if (idInstitucion != null) {
@@ -93,23 +105,47 @@ public class DtClase {
         this.premio = premio;
     }
 
+    public DtClase(int id, String nombre, Date fecha, String profesor, Integer ProfesorId, Integer capMinima, Integer capMaxima, String urlAcceso, Date fechaRegistro, List<DtRegistro> registros, Integer idActividad, String actividadName, Integer idInstitucion, File imageFile, byte[] imageBlob, PremioDTO premio, String linkClase) {
+        this.id = id;
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.profesor = profesor;
+        if (ProfesorId != null) {
+            this.ProfesorId = ProfesorId;
+        }
+        if (capMinima != null) {
+            this.capMinima = capMinima;
+        }
+        if (capMaxima != null) {
+            this.capMaxima = capMaxima;
+        }
+        this.urlAcceso = urlAcceso;
+        this.fechaRegistro = fechaRegistro;
+        this.registros = registros;
+        if (idActividad != null) {
+            this.idActividad = idActividad;
+        }
+        this.actividadName = actividadName;
+        if (idInstitucion != null) {
+            this.idInstitucion = idInstitucion;
+        }
+        this.image = imageFile;
+        this.imageBlob = imageBlob;
+        this.premio = premio;
+        this.linkClase = linkClase;
+    }
+
     public PremioDTO getPremio() {
         return premio;
     }
-    
+
     public void setId(int id) {
         this.id = id;
-    }
-    
-    public DtClase() {
-       
     }
 
     public int getIdInstitucion() {
         return idInstitucion;
     }
-
-    
 
     public int getId() {
         return id;
@@ -162,8 +198,8 @@ public class DtClase {
     public File getImage() {
         return image;
     }
-    
-    public byte [] getImageBlob() {
-       return this.imageBlob; 
+
+    public byte[] getImageBlob() {
+        return this.imageBlob;
     }
 }
