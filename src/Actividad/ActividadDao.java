@@ -226,7 +226,7 @@ public class ActividadDao implements IActividadDao {
             cats.forEach(cat -> {
                 System.out.println("Pruebo con categoria " + cat);
                 List<Actividad> actividadesFilter = new ArrayList<>();
-                actividadesFilter = em.createNativeQuery("select actividad.ID,actividad.IMAGE, actividad.COSTO, actividad.DURACION, actividad.FECHAREGISTRO, actividad.NOMBRE ,actividad.DESCRIPCION from ACTIVIDAD actividad join actividad_categoria on actividad_categoria.Actividad_ID = actividad.ID join categoria on categoria.ID = actividad_categoria.categorias_ID WHERE actividad.ESTADO='" + estado + "' and categoria.NOMBRE = '" + cat + "'", Actividad.class).getResultList();
+                actividadesFilter = em.createNativeQuery("select actividad.ID, actividad.IMAGE, actividad.COSTO, actividad.DURACION, actividad.FECHAREGISTRO, actividad.NOMBRE ,actividad.DESCRIPCION from ACTIVIDAD actividad join actividad_categoria on actividad_categoria.Actividad_ID = actividad.ID join categoria on categoria.ID = actividad_categoria.categorias_ID WHERE actividad.ESTADO='" + estado + "' and categoria.NOMBRE = '" + cat + "'", Actividad.class).getResultList();
                 actividadesFilter.forEach((Actividad act) -> {
                     if (!actividades.contains(act.getDtActividad())) {
                         actividades.add(act.getDtActividad());

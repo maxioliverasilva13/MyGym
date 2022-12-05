@@ -34,12 +34,15 @@ public class ActividadDTO {
     public byte[] imageBlob = null;
     private String estado;
     private List<FavoritoDTO> favoritos = new ArrayList();
+    private int cantFavs = 0;
 
     public List<FavoritoDTO> getFavoritos() {
         return favoritos;
     }
     
-    
+    public int getCantFavoritos(){
+        return cantFavs;
+    }
     
     DtInstitucion institucion;
     File image;
@@ -129,6 +132,7 @@ public class ActividadDTO {
             this.estado = estado;
         }
         this.favoritos = favoritos;
+        this.cantFavs = favoritos.size();
     }
     
     public List<DtCuponeraXActividad> getCuponerasXActivdad() {
