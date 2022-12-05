@@ -4,6 +4,7 @@
  */
 package RegistroSitio;
 
+import EntityManajer.InterfaceEntityManager;
 import java.util.List;
 
 /**
@@ -14,6 +15,10 @@ public class RegistroSitioBO implements InterfaceRegistroSitioBO {
 
     InterfaceRegistroSitioDao regSitioDao = new RegistroSitioDao();
 
+    public RegistroSitioBO() {
+               InterfaceEntityManager.getInstance();
+    }
+    
     @Override
     public void insertar(RegistroSitioDTO registro) {
         regSitioDao.insertar(registro);

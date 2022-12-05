@@ -37,6 +37,7 @@ import org.eclipse.persistence.annotations.Cache;
 import Clase.Clase;
 import javax.persistence.ManyToMany;
 import Clase.DtClase;
+
 /**
  *
  * @author maximilianooliverasilva
@@ -45,6 +46,7 @@ import Clase.DtClase;
 @Table()
 @Cacheable(false)
 public class Premio implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -54,12 +56,12 @@ public class Premio implements Serializable {
     private Date fechaCreacion;
     private int cantidadSorteados;
     private boolean fueSorteado;
-   
+
     @ManyToOne
     @JoinColumn()
     private Clase claseOfPremio;
     @ManyToMany(mappedBy = "premios")
-    private List<Registro> registros;
+    private List<Registro> registros = new ArrayList();
 
     public int getId() {
         return id;
@@ -116,21 +118,22 @@ public class Premio implements Serializable {
     public void setRegistros(List<Registro> registros) {
         this.registros = registros;
     }
-    
+
     public void agregarRegistro(Registro reg) {
         this.registros.add(reg);
     }
-    
+
     public PremioDTO getDtPremio() {
         List<DtRegistro> registros = new ArrayList<>();
-        this.registros.forEach((Registro reg) -> {
-            registros.add(reg.getDtRegistro());
-        });
+        if (this.registros.size() > 0) {
+            this.registros.forEach((Registro reg) -> {
+                registros.add(reg.getDtRegistro());                      
+            });
+        }
         DtClase claseInfo = this.claseOfPremio.getDtClaseWithoutPremios();
-        
+
         PremioDTO premio = new PremioDTO(id, descripcion, fechaCreacion, cantidadSorteados, fueSorteado, registros, claseInfo);
         return premio;
     }
-    
 
 }

@@ -9,14 +9,18 @@ import Institucion.DtInstitucion;
 import Institucion.Institucion;
 import Usuario.dtos.UsuarioDTO;
 import java.io.File;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 /**
  *
  * @author angel
  */
-public class ProfesorDTO extends UsuarioDTO {
+@XmlAccessorType(XmlAccessType.FIELD)
+public class ProfesorDTO extends UsuarioDTO implements Serializable {
    
     private String descripcionGeneral;
     private String biografia;

@@ -4,10 +4,14 @@
  */
 package Exceptions;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  *
  * @author mandi
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ActividadEstaFinalizada extends RuntimeException {
     public ActividadEstaFinalizada(String errorMessage) {
         super(errorMessage);

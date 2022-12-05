@@ -16,8 +16,8 @@ import javax.persistence.EntityManager;
 public class InstitucionBO implements InterfaceInstitucionBO {
         
     public InstitucionBO() {
-        // this is for the frontend servelets because by default the entity manager is not instanced
-        //InterfaceEntityManager.getInstance();
+       InterfaceEntityManager.getInstance();
+       //InterfaceEntityManager.getInstance();
     }
     
     InstitucionDao insDao = new InstitucionDao();

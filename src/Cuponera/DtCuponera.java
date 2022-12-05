@@ -5,6 +5,8 @@ import CuponeraXActividad.DtCuponeraXActividad;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -15,6 +17,7 @@ import java.util.List;
  *
  * @author maximilianooliverasilva
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DtCuponera {
     private int id;
     private String nombre;

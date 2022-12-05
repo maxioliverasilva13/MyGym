@@ -7,11 +7,14 @@ package CuponeraXActividad;
 
 import Actividad.dtos.ActividadDTO;
 import Cuponera.DtCuponera;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 /**
  *
  * @author maximilianooliverasilva
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DtCuponeraXActividad {
     private int id;
     private int cantClases;

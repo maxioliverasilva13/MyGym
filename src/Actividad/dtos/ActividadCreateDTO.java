@@ -9,11 +9,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 /**
  *
  * @author angel
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ActividadCreateDTO {
     private int institucion_id;
     private float costo;
@@ -26,6 +29,9 @@ public class ActividadCreateDTO {
     private String estado;
     private List<DtCategoria> categorias = new ArrayList<>();
     
+    public ActividadCreateDTO() {
+        
+    }
     
     public ActividadCreateDTO(int institucion_id,int profesor_id, float costo, String nombre, String descripcion, Date fecha_registro, int duracion, File file, List<DtCategoria> catsInThisActividad, String estado){
         this.institucion_id = institucion_id;

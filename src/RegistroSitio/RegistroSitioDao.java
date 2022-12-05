@@ -44,10 +44,7 @@ public class RegistroSitioDao implements InterfaceRegistroSitioDao {
         reg.setIp(registro.getIp());
         reg.setSo(registro.getSo());
         reg.setUrl(registro.getUrl());
-
-        em.getTransaction().begin();
         em.persist(reg);
-        em.getTransaction().commit();
     }
 
     public List<RegistroSitioDTO> listarRegistros() {

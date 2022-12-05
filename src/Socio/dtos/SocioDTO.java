@@ -7,14 +7,18 @@ package Socio.dtos;
 import Registro.DtRegistro;
 import Usuario.dtos.UsuarioDTO;
 import java.io.File;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 /**
  *
  * @author angel
  */
-public class SocioDTO extends UsuarioDTO {
+@XmlAccessorType(XmlAccessType.FIELD)
+public class SocioDTO extends UsuarioDTO implements Serializable {
 
     private List<DtRegistro> registros;
     

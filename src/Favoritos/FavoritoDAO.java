@@ -21,7 +21,11 @@ public class FavoritoDAO implements InterfaceFavoritoDAO {
     EntityManager em = InterfaceEntityManager.getInstance();
     ActividadDao actDao = new ActividadDao();
     SocioDAO socDao = new SocioDAO();
-
+    
+    public FavoritoDAO() {
+               InterfaceEntityManager.getInstance();
+    }
+    
     @Override
     public boolean toggleFavoritoActividad(int idActividad, int idSocio) {
         try {

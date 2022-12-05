@@ -109,6 +109,8 @@ public class AddClaseForm extends javax.swing.JFrame {
         jTextMaxSocios = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
+        urlvideoclase = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
 
         dateChooserFechaRegistro.setForeground(new java.awt.Color(76, 131, 122));
         dateChooserFechaRegistro.setToolTipText("");
@@ -329,11 +331,11 @@ public class AddClaseForm extends javax.swing.JFrame {
                 jTextCantidadGanadoresKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextCantidadGanadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, 120, 35));
+        jPanel1.add(jTextCantidadGanadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 120, 35));
 
         jLabel6.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jLabel6.setText("Cantidad de ganadores");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
+        jLabel6.setText("Url al video clase");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, -1, -1));
 
         jLabel11.setBackground(new java.awt.Color(255, 0, 102));
         jLabel11.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
@@ -445,6 +447,29 @@ public class AddClaseForm extends javax.swing.JFrame {
         jLabel21.setName("errorLblMinSocios"); // NOI18N
         jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 270, 16));
 
+        urlvideoclase.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(160, 160, 160)));
+        urlvideoclase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                urlvideoclaseActionPerformed(evt);
+            }
+        });
+        urlvideoclase.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                urlvideoclaseKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                urlvideoclaseKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                urlvideoclaseKeyTyped(evt);
+            }
+        });
+        jPanel1.add(urlvideoclase, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, 120, 30));
+
+        jLabel22.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        jLabel22.setText("Cantidad de ganadores");
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 678));
 
         pack();
@@ -497,6 +522,7 @@ public class AddClaseForm extends javax.swing.JFrame {
         String valueCantidadSorteados = this.jTextCantidadGanadores.getText();
         String nombreText = this.jTextDescripcionPremio.getText();
         String urlAccesoText = this.jTextField6.getText();
+        String urlVideoClase = this.urlvideoclase.getText();
         String nombrePremio = this.jTextDescripcionPremio.getText();
         int countErrors = 0;
         this.cleanFields();
@@ -584,7 +610,8 @@ public class AddClaseForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(new JFrame(), "Debes elegir una actividad", "Actividad no seleccionada", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        DtClase dt = new DtClase(0, nombre, fechaClase, null, null, capMinima, capMaxima, urlAcceso, fechaRegistro, null, null, null, null, BrowseFile.globalFile, null);
+        System.out.println(urlVideoClase);
+        DtClase dt = new DtClase(0, nombre, fechaClase, null, null, capMinima, capMaxima, urlAcceso, fechaRegistro, null, null, null, null, BrowseFile.globalFile, null, null, urlVideoClase);
 
         try {
             int valueCantidadSorteadosInt = Integer.parseInt(valueCantidadSorteados);
@@ -717,6 +744,22 @@ public class AddClaseForm extends javax.swing.JFrame {
         // TODO add your handling code here:        // TODO add your handling code here:
     }//GEN-LAST:event_jTextMaxSociosKeyTyped
 
+    private void urlvideoclaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_urlvideoclaseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_urlvideoclaseActionPerformed
+
+    private void urlvideoclaseKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_urlvideoclaseKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_urlvideoclaseKeyPressed
+
+    private void urlvideoclaseKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_urlvideoclaseKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_urlvideoclaseKeyReleased
+
+    private void urlvideoclaseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_urlvideoclaseKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_urlvideoclaseKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -829,6 +872,7 @@ public class AddClaseForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -844,5 +888,6 @@ public class AddClaseForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField jTextMaxSocios;
     private javax.swing.JLabel labelImage;
+    private javax.swing.JTextField urlvideoclase;
     // End of variables declaration//GEN-END:variables
 }

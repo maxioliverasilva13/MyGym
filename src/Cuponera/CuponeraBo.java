@@ -5,15 +5,12 @@
 package Cuponera;
 
 import Actividad.Actividad;
-import Actividad.ActividadBO;
 import Actividad.ActividadDao;
-import Actividad.IActividadBO;
 import Actividad.IActividadDao;
-import Actividad.dtos.ActividadDTO;
 import CompraCuponera.CompraCuponera;
-import CuponeraXActividad.CuponeraXActividad;
 import CuponeraXActividad.CuponeraXActividadBo;
 import CuponeraXActividad.InterfaceCuponeraXActividadBo;
+import EntityManajer.InterfaceEntityManager;
 import Exceptions.ActividadNotFoundException;
 import Exceptions.CuponeraAlreadyPurchaseBySocio;
 import Exceptions.CuponeraNotFoundException;
@@ -23,7 +20,6 @@ import Socio.Socio;
 import Socio.SocioBO;
 import Socio.SocioDAO;
 import Socio.exceptions.SocioNotExist;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -35,6 +31,11 @@ import java.util.List;
 public class CuponeraBo implements InterfaceCuponeraBo {
     CuponeraDao cuponeradao = new CuponeraDao();
 
+    
+    public CuponeraBo() {
+               InterfaceEntityManager.getInstance();
+    }
+    
     @Override
     public void agregarCuponera(DtCuponera cuponera){
         cuponeradao.insertar(cuponera);

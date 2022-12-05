@@ -65,8 +65,16 @@ public class Clase implements Serializable {
     private List<Registro> registros;
     @OneToMany(mappedBy = "claseOfPremio")
     private List<Premio> premios;
-    
+    private String linkVideoClase;
 
+    public String getLinkVideoClase() {
+        return linkVideoClase;
+    }
+
+    public void setLinkVideoClase(String linkVideoClase) {
+        this.linkVideoClase = linkVideoClase;
+    }
+    
     @Lob
     @Basic(fetch = FetchType.LAZY)
     private byte[] image;
@@ -74,6 +82,16 @@ public class Clase implements Serializable {
     public byte[] getImage() {
         return image;
     }
+
+    public void setRegistros(List<Registro> registros) {
+        this.registros = registros;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+    
+    
 
     public List<Premio> getPremios() {
         return premios;
@@ -190,8 +208,10 @@ public class Clase implements Serializable {
             idInstitucion = this.actividad.getInstitucion().getId();
         }
         PremioDTO premio = null;
-        if (this.premios.size() >= 1) {
-            premio = this.premios.get(0).getDtPremio();
+        if (this.premios != null) {
+            if (this.premios.size() >= 1) {
+                    premio = this.premios.get(0).getDtPremio();
+            }
         }
         List<DtRegistro> registrosClase = new ArrayList<DtRegistro>();
         this.getRegistros().forEach((registro) -> {
@@ -225,7 +245,7 @@ public class Clase implements Serializable {
                         ? this.actividad.getNombre()
                         : null,
                 idInstitucion,
-                file, this.image, premio);
+                file, this.image, premio, this.getLinkVideoClase() );
         return classParsed;
     }
 
@@ -267,7 +287,7 @@ public class Clase implements Serializable {
                         ? this.actividad.getNombre()
                         : null,
                 idInstitucion,
-                file, this.image);
+                file, this.image, null, linkVideoClase);
         return classParsed;
     }
     

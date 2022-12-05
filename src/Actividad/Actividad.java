@@ -222,10 +222,13 @@ public class Actividad implements Serializable {
     public ActividadDTO getDtActividad() {
         SimpleIntegerProperty totalActividadesAceptadas = new SimpleIntegerProperty();
         List<DtClase> allClases = new ArrayList<>();
-        this.getClases().forEach((clase) -> {
-            allClases.add(clase.getDtClase());
-        });
+        if (this.getClases() != null) {
+            this.getClases().forEach((clase) -> {
+                allClases.add(clase.getDtClase());
+            });
+        }
         ProfesorDTO profe = null;
+
         if (this.profesor != null) {
             profe = new ProfesorDTO(profesor.getId(), profesor.getNombre(), profesor.getApellido(),
                     profesor.getNickname(), profesor.getEmail(), profesor.getNacimiento(),
@@ -233,6 +236,7 @@ public class Actividad implements Serializable {
                     null, profesor.getSeguidosDt(), profesor.getSeguidoresDT(), profesor.getImage());
         }
         DtInstitucion dtIns = null;
+
         if (this.institucion != null) {
             this.institucion.getActividades().forEach((Actividad act) -> {
                 if (act.getEstado().equals("Aceptada")) {
@@ -246,6 +250,7 @@ public class Actividad implements Serializable {
             dtIns = new DtInstitucion(institucion.getId(), institucion.getNombre(), institucion.getDescripcion(),
                     institucion.getUrl(), null, null, photo, null, totalActividadesAceptadas.get());
         }
+
         List<DtCuponeraXActividad> cuponerasXact = new ArrayList<>();
         cuponerasXActividad.forEach((cuponera) -> {
             cuponerasXact.add(cuponera.getDtCuponeraXActividad());

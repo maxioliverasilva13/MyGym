@@ -4,6 +4,7 @@
  */
 package Premio;
 
+import EntityManajer.InterfaceEntityManager;
 import Premio.InterfacePremioDao;
 import Socio.dtos.SocioDTO;
 import java.util.List;
@@ -18,6 +19,10 @@ public class PremioBO implements InterfacePremioBo {
 
     InterfacePremioDao premioDao = new PremioDao();
 
+    public PremioBO() {
+               InterfaceEntityManager.getInstance();
+    }
+    
     @Override
     public void insertarPremio(int idClase, String nombre, int cantidadSorteado) {
         premioDao.insertarPremio(idClase, nombre, cantidadSorteado);

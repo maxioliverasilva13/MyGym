@@ -4,10 +4,14 @@
  */
 package Exceptions;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  *
  * @author maximilianooliverasilva
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class CuponeraXActividadNotFoundException extends RuntimeException { 
     public CuponeraXActividadNotFoundException(String errorMessage) {
         super(errorMessage);

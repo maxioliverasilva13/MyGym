@@ -41,6 +41,7 @@ import mygym.logica.usuario.dataTypes.DtPuntuacionProfesor;
 @Table()
 @Cacheable(false)
 public class Registro implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -57,7 +58,7 @@ public class Registro implements Serializable {
     private Clase clase;
     @ManyToMany()
     private List<Premio> premios;
-    
+
     @OneToOne(mappedBy = "registro")
     private PuntuacionProfesor puntuacionProfesor;
 
@@ -100,44 +101,49 @@ public class Registro implements Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
+
     public void agregarPremio(Premio prem) {
         this.premios.add(prem);
     }
-    
+
     public DtRegistro getDtRegistro() {
         List<DtRegistro> regsOfClass = new ArrayList<>();
-        
-        this.clase.getRegistros().forEach((Registro r) -> {
-            regsOfClass.add(new DtRegistro(r.getId(), r.getCosto(), r.getFecha(), "", ""));
-        });
+
+        if (this.clase.getRegistros() != null) {
+            this.clase.getRegistros().forEach((Registro r) -> {
+                regsOfClass.add(new DtRegistro(r.getId(), r.getCosto(), r.getFecha(), "", ""));
+            });
+        }
         File file = null;
         if (this.clase.getImage() != null) {
             file = this.clase.createTempFile();
         }
-        String profesorName = this.clase.getActividad().getProfesor().getNombre();
-        String profesorSurname = this.clase.getActividad().getProfesor().getApellido();
-        DtClase clase = new DtClase(
-         this.clase.getId(), this.clase.getNombre(), this.clase.getFecha(),profesorName + " " + profesorSurname , null, this.clase.getCapMinima(), this.clase.getCapMaxima(), this.clase.getUrlAcceso(), this.clase.getFechaRegistro(), regsOfClass, this.clase.getActividad().getId(), this.clase.getActividad().getNombre(), null, file, null);
-        DtPuntuacionProfesor puntuacionProf = null;
-        if(this.puntuacionProfesor != null){
-        
-         puntuacionProf = this.puntuacionProfesor.getDt();   
+                                
+        String profesorName = "";
+        String profesorSurnam = "";
+        if (this.clase.getActividad().getProfesor() != null) {
+            profesorName = this.clase.getActividad().getProfesor().getNombre();
+            profesorSurnam = this.clase.getActividad().getProfesor().getApellido();
         }
-        
+        DtClase clase = new DtClase(
+                this.clase.getId(), this.clase.getNombre(), this.clase.getFecha(), profesorName + " " + profesorSurnam, null, this.clase.getCapMinima(), this.clase.getCapMaxima(), this.clase.getUrlAcceso(), this.clase.getFechaRegistro(), regsOfClass, this.clase.getActividad().getId(), this.clase.getActividad().getNombre(), null, file, null);
+        DtPuntuacionProfesor puntuacionProf = null;
+        if (this.puntuacionProfesor != null) {
+
+            puntuacionProf = this.puntuacionProfesor.getDt();
+        }
+
         SocioDTO socio = this.socio.getDtSocioWithoutRegistros();
-        
+
         DtRegistro dtToReturn = new DtRegistro(
-          id, costo, fecha, (socio != null) ? socio.getNombre() : null,
-          (clase != null) ? clase.getNombre() : null, clase,socio, (puntuacionProf != null) ? puntuacionProf : null
+                id, costo, fecha, (socio != null) ? socio.getNombre() : null,
+                (clase != null) ? clase.getNombre() : null, clase, socio, (puntuacionProf != null) ? puntuacionProf : null
         );
         return dtToReturn;
     }
-    
+
     public PuntuacionProfesor getPuntuacionProfesor() {
-       return this.puntuacionProfesor;
+        return this.puntuacionProfesor;
     }
-    
-    
 
 }

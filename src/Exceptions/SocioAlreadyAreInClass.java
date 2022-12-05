@@ -4,10 +4,14 @@
  */
 package Exceptions;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  *
  * @author maximilianooliverasilva
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class SocioAlreadyAreInClass extends RuntimeException { 
     public SocioAlreadyAreInClass(String errorMessage) {
         super(errorMessage);

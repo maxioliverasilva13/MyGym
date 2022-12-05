@@ -39,6 +39,10 @@ public class PremioDao implements InterfacePremioDao {
     EntityManager em = InterfaceEntityManager.getInstance();
     ClaseDao claseDao = new ClaseDao();
 
+    public PremioDao() {
+        InterfaceEntityManager.getInstance();
+    }
+    
     public void insertarPremio(int idClase, String nombre, int cantidadSorteado) {
         try {
             Clase clase = claseDao.existe(idClase);

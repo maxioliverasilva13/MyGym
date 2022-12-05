@@ -4,10 +4,14 @@
  */
 package Exceptions;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  *
  * @author rodrigo
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class CuponeraAlreadyPurchaseBySocio extends Exception{
 
     /**
