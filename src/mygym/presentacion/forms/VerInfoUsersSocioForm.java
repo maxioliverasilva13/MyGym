@@ -249,9 +249,7 @@ public class VerInfoUsersSocioForm extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jList1MouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
+   
     public  DtClase findClaseByName(String claseName) {
         List<DtClase> allClases = new ArrayList<>();
         
