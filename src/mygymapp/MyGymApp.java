@@ -16,8 +16,6 @@ import java.net.MalformedURLException;
 import java.util.HashMap;
 import javax.persistence.EntityManager;
 import mygym.presentacion.pages.Dashboard;
-import webservices.Services;
-import webservices.WebService;
 import ws.Publicador;
 
 /**
