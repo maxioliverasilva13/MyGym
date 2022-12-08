@@ -305,9 +305,7 @@ public class VerInfoUsersProfesorForm extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jList2ValueChanged
 
-    /**
-     * @param args the command line arguments
-     */
+    
     
     public  DtClase findClaseByName(String claseName) {
         List<DtClase> claseToReturn = new ArrayList<>();

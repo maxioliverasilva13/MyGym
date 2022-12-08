@@ -604,9 +604,7 @@ public class showActividadInfoForm extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_cmbClasesActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+   
 
     public void fillSelectedCuponera() {
         if (selectedCuponera.getCuponera() != null) {
